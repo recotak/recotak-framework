@@ -28,13 +28,9 @@ You're done.<br>
 Find more information here: http://recotak.org/documentation/installation.html
 
 <h2>Usage</h2>
-
-
-Find information here: 
-
-http://recotak.org/documentation/Configuration.html
-
-http://recotak.org/documentation/Use_Recotak.html
+Find information here: <br>
+http://recotak.org/documentation/Configuration.html<br>
+http://recotak.org/documentation/Use_Recotak.html<br>
 
 <h2>Final Words</h2>
 
