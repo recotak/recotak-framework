@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>whois</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd plugin documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;whois
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="whois-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="whois-module.html">Package whois</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Module cureto.main=cureto.main-module.html,Module dir_bruteforce.main=dir_bruteforce.main-module.html,Module dns2ip.main=dns2ip.main-module.html,Module dnsversion.main=dnsversion.main-module.html,Module dnszone.main=dnszone.main-module.html,Module ftp_bruteforce.main=ftp_bruteforce.main-module.html,Module geoip.main=geoip.main-module.html,Module heartbleed.main=heartbleed.main-module.html,Module http_basic_bruteforce.main=http_basic_bruteforce.main-module.html,Module imapbruteforce.main=imapbruteforce.main-module.html,Module imapget.main=imapget.main-module.html,Module ip2dns.main=ip2dns.main-module.html,Module ip2dns_bing.main=ip2dns_bing.main-module.html,Module irc.main=irc.main-module.html,Module massdns2ip.main=massdns2ip.main-module.html,Module mysql_bruteforce.main=mysql_bruteforce.main-module.html,Module mysql_client.main=mysql_client.main-module.html,Module popbruteforce.main=popbruteforce.main-module.html,Module popget.main=popget.main-module.html,Module portscanner.main=portscanner.main-module.html,Module ripe_db_extractor.main=ripe_db_extractor.main-module.html,Module rlogin_bruteforce.main=rlogin_bruteforce.main-module.html,Module rpcinfo.main=rpcinfo.main-module.html,Module rsh_bruteforce.main=rsh_bruteforce.main-module.html,Module search-bing.main=search-bing.main-module.html,Module search-duckgo.main=search-duckgo.main-module.html,Module search-google.main=search-google.main-module.html,Module sftpclient.main=sftpclient.main-module.html,Module showmount.main=showmount.main-module.html,Module smtp_user_enum.main=smtp_user_enum.main-module.html,Module ssh_bruteforce.main=ssh_bruteforce.main-module.html,Module ssh_snitch.main=ssh_snitch.main-module.html,Module ssh_user_enum.main=ssh_user_enum.main-module.html,Module sshlogin.main=sshlogin.main-module.html,Module ssl_tester.main=ssl_tester.main-module.html,Module subdns.main=subdns.main-module.html,Module tcp_traceroute.main=tcp_traceroute.main-module.html,Module telnet_bruteforce.main=telnet_bruteforce.main-module.html,Module whois.main=whois.main-module.html"><a title="cureto.main
+dir_bruteforce.main
+dns2ip.main
+dnsversion.main
+dnszone.main
+ftp_bruteforce.main
+geoip.main
+heartbleed.main
+http_basic_bruteforce.main
+imapbruteforce.main
+imapget.main
+ip2dns.main
+ip2dns_bing.main
+irc.main
+massdns2ip.main
+mysql_bruteforce.main
+mysql_client.main
+popbruteforce.main
+popget.main
+portscanner.main
+ripe_db_extractor.main
+rlogin_bruteforce.main
+rpcinfo.main
+rsh_bruteforce.main
+search-bing.main
+search-duckgo.main
+search-google.main
+sftpclient.main
+showmount.main
+smtp_user_enum.main
+ssh_bruteforce.main
+ssh_snitch.main
+ssh_user_enum.main
+sshlogin.main
+ssl_tester.main
+subdns.main
+tcp_traceroute.main
+telnet_bruteforce.main
+whois.main" class="py-name" href="#" onclick="return doclink('link-0', 'main', 'link-0');">main</a></tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2014, curesec GmbH</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment"># All rights reserved.</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment"># Redistribution and use in source and binary forms, with or without modification, </tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment"># are permitted provided that the following conditions are met:</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-comment"># 1. Redistributions of source code must retain the above copyright notice, this list of </tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-comment"># conditions and the following disclaimer.</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-comment"># 2. Redistributions in binary form must reproduce the above copyright notice, this list </tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-comment"># of conditions and the following disclaimer in the documentation and/or other materials </tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-comment"># provided with the distribution.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-comment"># 3. Neither the name of the copyright holder nor the names of its contributors may be used </tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-comment"># to endorse or promote products derived from this software without specific prior written </tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-comment"># permission.</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-comment"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS </tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"><tt class="py-comment"># OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF </tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE </tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt class="py-comment"># COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, </tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"><tt class="py-comment"># EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF </tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-comment"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) </tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"><tt class="py-comment"># HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR </tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt class="py-comment"># TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, </tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt class="py-comment"># EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-1" class="py-name"><a title="cureto.main
+dir_bruteforce.main
+dns2ip.main
+dnsversion.main
+dnszone.main
+ftp_bruteforce.main
+geoip.main
+heartbleed.main
+http_basic_bruteforce.main
+imapbruteforce.main
+imapget.main
+ip2dns.main
+ip2dns_bing.main
+irc.main
+massdns2ip.main
+mysql_bruteforce.main
+mysql_client.main
+popbruteforce.main
+popget.main
+portscanner.main
+ripe_db_extractor.main
+rlogin_bruteforce.main
+rpcinfo.main
+rsh_bruteforce.main
+search-bing.main
+search-duckgo.main
+search-google.main
+sftpclient.main
+showmount.main
+smtp_user_enum.main
+ssh_bruteforce.main
+ssh_snitch.main
+ssh_user_enum.main
+sshlogin.main
+ssl_tester.main
+subdns.main
+tcp_traceroute.main
+telnet_bruteforce.main
+whois.main" class="py-name" href="#" onclick="return doclink('link-1', 'main', 'link-0');">main</a></tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd plugin documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:45 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

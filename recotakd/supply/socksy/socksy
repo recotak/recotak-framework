@@ -1,0 +1,28 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides: socksy
+# Required-Start:    $local_fs $syslog $remote_fs
+# Required-Stop:     $local_fs $syslog $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start socks proxy
+### END INIT INFO
+
+# The following part carries out specific functions depending on arguments.
+case "$1" in
+    start)
+        echo "Starting socksy"
+        {python_interpreter} {socksy_location} -d -c{config_file} {venv_option}
+        ;;
+    stop)
+        echo "Stopping socksy"
+        kill `cat /var/run/socksy.pid`
+        ;;
+    *)
+        echo "Usage: /etc/init.d/socksy [start|stop]"
+        exit 1
+        ;;
+esac
+
+exit 0

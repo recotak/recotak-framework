@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>ctools.dns.exceptions</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="ctools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >ctools</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="ctools-module.html">Package&nbsp;ctools</a> ::
+        <a href="ctools.dns-module.html">Package&nbsp;dns</a> ::
+        Module&nbsp;exceptions
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="ctools.dns.exceptions-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="ctools.dns.exceptions-module.html">Module ctools.dns.exceptions</a></h1>
+<pre class="py-src">
+<a name="BadUrl"></a><div id="BadUrl-def"><a name="L1"></a><tt class="py-lineno"> 1</tt> <a class="py-toggle" href="#" id="BadUrl-toggle" onclick="return toggle('BadUrl');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="ctools.dns.exceptions.BadUrl-class.html">BadUrl</a><tt class="py-op">(</tt><tt class="py-base-class">ValueError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BadUrl-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="BadUrl-expanded"><a name="BadUrl.__init__"></a><div id="BadUrl.__init__-def"><a name="L2"></a><tt class="py-lineno"> 2</tt> <a class="py-toggle" href="#" id="BadUrl.__init__-toggle" onclick="return toggle('BadUrl.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.dns.exceptions.BadUrl-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">url</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="BadUrl.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="BadUrl.__init__-expanded"><a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2014, curesec GmbH</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment"># All rights reserved.</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment"># Redistribution and use in source and binary forms, with or without modification, </tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment"># are permitted provided that the following conditions are met:</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-comment"># 1. Redistributions of source code must retain the above copyright notice, this list of </tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-comment"># conditions and the following disclaimer.</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-comment"># 2. Redistributions in binary form must reproduce the above copyright notice, this list </tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-comment"># of conditions and the following disclaimer in the documentation and/or other materials </tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-comment"># provided with the distribution.</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-comment"># 3. Neither the name of the copyright holder nor the names of its contributors may be used </tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-comment"># to endorse or promote products derived from this software without specific prior written </tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-comment"># permission.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"><tt class="py-comment"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS </tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-comment"># OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF </tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE </tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"><tt class="py-comment"># COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, </tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-comment"># EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF </tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"><tt class="py-comment"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) </tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt class="py-comment"># HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR </tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt class="py-comment"># TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, </tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt class="py-comment"># EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line">        <tt class="py-name">super</tt><tt class="py-op">(</tt><tt class="py-name">ValueError</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Method ctools.bloomfilter.BloomFilter.__init__()=ctools.bloomfilter.BloomFilter-class.html#__init__,Method ctools.cBing.bing.BingQuery.__init__()=ctools.cBing.bing.BingQuery-class.html#__init__,Method ctools.cBing.socks4.Socks4Socket.__init__()=ctools.cBing.socks4.Socks4Socket-class.html#__init__,Method ctools.cCircCash.EInvalidThreshold.__init__()=ctools.cCircCash.EInvalidThreshold-class.html#__init__,Method ctools.cCircCash._circ_cash.__init__()=ctools.cCircCash._circ_cash-class.html#__init__,Method ctools.cComm.Mark.__init__()=ctools.cComm.Mark-class.html#__init__,Method ctools.cDns.DNSQuery.__init__()=ctools.cDns.DNSQuery-class.html#__init__,Method ctools.cDns.DNSparam.__init__()=ctools.cDns.DNSparam-class.html#__init__,Method ctools.cDns.EInvalidDNS.__init__()=ctools.cDns.EInvalidDNS-class.html#__init__,Method ctools.cMon.MonitorCPU.__init__()=ctools.cMon.MonitorCPU-class.html#__init__,Method ctools.cMon.MonitorRAM.__init__()=ctools.cMon.MonitorRAM-class.html#__init__,Method ctools.cMssql.Mssql.__init__()=ctools.cMssql.Mssql-class.html#__init__,Method ctools.cMysql.MysqlClient.__init__()=ctools.cMysql.MysqlClient-class.html#__init__,Method ctools.cProbeparse.Probeparser.__init__()=ctools.cProbeparse.Probeparser-class.html#__init__,Method ctools.cRpc.Rpc.__init__()=ctools.cRpc.Rpc-class.html#__init__,Method ctools.cScanner.cScanner.__init__()=ctools.cScanner.cScanner-class.html#__init__,Method ctools.cTargets.TargetGenerator.__init__()=ctools.cTargets.TargetGenerator-class.html#__init__,Method ctools.cTelnet.Listener.__init__()=ctools.cTelnet.Listener-class.html#__init__,Method ctools.cTelnet.Telnet.__init__()=ctools.cTelnet.Telnet-class.html#__init__,Method ctools.cTuples.ENoInput.__init__()=ctools.cTuples.ENoInput-class.html#__init__,Method ctools.cTuples.cInputGenerator.__init__()=ctools.cTuples.cInputGenerator-class.html#__init__,Method ctools.cTuples.cTHQueue.__init__()=ctools.cTuples.cTHQueue-class.html#__init__,Method ctools.cTuples.cTuples.__init__()=ctools.cTuples.cTuples-class.html#__init__,Method ctools.cUtil.cTimer.__init__()=ctools.cUtil.cTimer-class.html#__init__,Method ctools.cWorkerThreads._cWorker.__init__()=ctools.cWorkerThreads._cWorker-class.html#__init__,Method ctools.cWorkerThreads.cWork.__init__()=ctools.cWorkerThreads.cWork-class.html#__init__,Method ctools.dns.exceptions.BadUrl.__init__()=ctools.dns.exceptions.BadUrl-class.html#__init__,Method ctools.dns.exceptions.DomainNotFound.__init__()=ctools.dns.exceptions.DomainNotFound-class.html#__init__,Method ctools.imapccd.CCDIMAP4.__init__()=ctools.imapccd.CCDIMAP4-class.html#__init__,Method ctools.popccd.CCDPOP3.__init__()=ctools.popccd.CCDPOP3-class.html#__init__,Method ctools.sshlib.sftpClass.__init__()=ctools.sshlib.sftpClass-class.html#__init__,Method ctools.sshlib.socketClass.__init__()=ctools.sshlib.socketClass-class.html#__init__,Method ctools.sshlib.sshClass.__init__()=ctools.sshlib.sshClass-class.html#__init__,Method ctools.tee.tee.__init__()=ctools.tee.tee-class.html#__init__"><a title="ctools.bloomfilter.BloomFilter.__init__
+ctools.cBing.bing.BingQuery.__init__
+ctools.cBing.socks4.Socks4Socket.__init__
+ctools.cCircCash.EInvalidThreshold.__init__
+ctools.cCircCash._circ_cash.__init__
+ctools.cComm.Mark.__init__
+ctools.cDns.DNSQuery.__init__
+ctools.cDns.DNSparam.__init__
+ctools.cDns.EInvalidDNS.__init__
+ctools.cMon.MonitorCPU.__init__
+ctools.cMon.MonitorRAM.__init__
+ctools.cMssql.Mssql.__init__
+ctools.cMysql.MysqlClient.__init__
+ctools.cProbeparse.Probeparser.__init__
+ctools.cRpc.Rpc.__init__
+ctools.cScanner.cScanner.__init__
+ctools.cTargets.TargetGenerator.__init__
+ctools.cTelnet.Listener.__init__
+ctools.cTelnet.Telnet.__init__
+ctools.cTuples.ENoInput.__init__
+ctools.cTuples.cInputGenerator.__init__
+ctools.cTuples.cTHQueue.__init__
+ctools.cTuples.cTuples.__init__
+ctools.cUtil.cTimer.__init__
+ctools.cWorkerThreads._cWorker.__init__
+ctools.cWorkerThreads.cWork.__init__
+ctools.dns.exceptions.BadUrl.__init__
+ctools.dns.exceptions.DomainNotFound.__init__
+ctools.imapccd.CCDIMAP4.__init__
+ctools.popccd.CCDPOP3.__init__
+ctools.sshlib.sftpClass.__init__
+ctools.sshlib.socketClass.__init__
+ctools.sshlib.sshClass.__init__
+ctools.tee.tee.__init__" class="py-name" href="#" onclick="return doclink('link-0', '__init__', 'link-0');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-string">"Bad url (%s)"</tt> <tt class="py-op">%</tt> <tt class="py-name">url</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"> </tt>
+<a name="DomainNotFound"></a><div id="DomainNotFound-def"><a name="L31"></a><tt class="py-lineno">31</tt> <a class="py-toggle" href="#" id="DomainNotFound-toggle" onclick="return toggle('DomainNotFound');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="ctools.dns.exceptions.DomainNotFound-class.html">DomainNotFound</a><tt class="py-op">(</tt><tt class="py-base-class">IOError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DomainNotFound-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="DomainNotFound-expanded"><a name="DomainNotFound.__init__"></a><div id="DomainNotFound.__init__-def"><a name="L32"></a><tt class="py-lineno">32</tt> <a class="py-toggle" href="#" id="DomainNotFound.__init__-toggle" onclick="return toggle('DomainNotFound.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.dns.exceptions.DomainNotFound-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">domain</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DomainNotFound.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="DomainNotFound.__init__-expanded"><a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">        <tt class="py-name">super</tt><tt class="py-op">(</tt><tt class="py-name">IOError</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name"><a title="ctools.bloomfilter.BloomFilter.__init__
+ctools.cBing.bing.BingQuery.__init__
+ctools.cBing.socks4.Socks4Socket.__init__
+ctools.cCircCash.EInvalidThreshold.__init__
+ctools.cCircCash._circ_cash.__init__
+ctools.cComm.Mark.__init__
+ctools.cDns.DNSQuery.__init__
+ctools.cDns.DNSparam.__init__
+ctools.cDns.EInvalidDNS.__init__
+ctools.cMon.MonitorCPU.__init__
+ctools.cMon.MonitorRAM.__init__
+ctools.cMssql.Mssql.__init__
+ctools.cMysql.MysqlClient.__init__
+ctools.cProbeparse.Probeparser.__init__
+ctools.cRpc.Rpc.__init__
+ctools.cScanner.cScanner.__init__
+ctools.cTargets.TargetGenerator.__init__
+ctools.cTelnet.Listener.__init__
+ctools.cTelnet.Telnet.__init__
+ctools.cTuples.ENoInput.__init__
+ctools.cTuples.cInputGenerator.__init__
+ctools.cTuples.cTHQueue.__init__
+ctools.cTuples.cTuples.__init__
+ctools.cUtil.cTimer.__init__
+ctools.cWorkerThreads._cWorker.__init__
+ctools.cWorkerThreads.cWork.__init__
+ctools.dns.exceptions.BadUrl.__init__
+ctools.dns.exceptions.DomainNotFound.__init__
+ctools.imapccd.CCDIMAP4.__init__
+ctools.popccd.CCDPOP3.__init__
+ctools.sshlib.sftpClass.__init__
+ctools.sshlib.socketClass.__init__
+ctools.sshlib.sshClass.__init__
+ctools.tee.tee.__init__" class="py-name" href="#" onclick="return doclink('link-1', '__init__', 'link-0');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-string">"Domain not found (%s)"</tt> <tt class="py-op">%</tt> <tt id="link-2" class="py-name" targets="Module ctools.dns.domain=ctools.dns.domain-module.html"><a title="ctools.dns.domain" class="py-name" href="#" onclick="return doclink('link-2', 'domain', 'link-2');">domain</a></tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="ctools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >ctools</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:41 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

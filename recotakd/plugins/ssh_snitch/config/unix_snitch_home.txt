@@ -1,0 +1,16 @@
+.bash_history
+.sh_history
+.mysql_history
+.ssh/authorized_keys
+.ssh/id_rsa
+.ssh/id_rsa.keystore
+.ssh/id_rsa.pub
+.ssh/known_hosts
+.gnupg/gpg.conf 
+.gnupg/pubring.gpg 
+.gnupg/pubring.gpg~ 
+.gnupg/random_seed 
+.gnupg/secring.gpg 
+.gnupg/trustdb.gpg 
+.vnc/passwd
+.vnx/xstartup

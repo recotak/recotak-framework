@@ -1,0 +1,11 @@
+[Unit]
+Description=Start socksy as a daemon
+
+[Service]
+User=root
+PIDFile=/var/run/socksy.pid
+Type=forking
+ExecStart={python_interpreter} {socksy_location} -d -c{config_file} {venv_option}
+
+[Install]
+WantedBy=multi-user.target

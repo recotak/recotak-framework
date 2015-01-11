@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>config.read</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="config-module.html">Package&nbsp;config</a> ::
+        Module&nbsp;read
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="config.read-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="config.read-module.html">Module config.read</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-docstring">""" methods to read config file """</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2014, curesec GmbH</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># All rights reserved.</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># Redistribution and use in source and binary forms, with or without modification, </tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># are permitted provided that the following conditions are met:</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"># 1. Redistributions of source code must retain the above copyright notice, this list of </tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"># conditions and the following disclaimer.</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"># 2. Redistributions in binary form must reproduce the above copyright notice, this list </tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># of conditions and the following disclaimer in the documentation and/or other materials </tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># provided with the distribution.</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"># 3. Neither the name of the copyright holder nor the names of its contributors may be used </tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"># to endorse or promote products derived from this software without specific prior written </tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># permission.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-comment"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS </tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-comment"># OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF </tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE </tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-comment"># COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, </tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-comment"># EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF </tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-comment"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) </tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-comment"># HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR </tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-comment"># TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, </tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-comment"># EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">ConfigParser</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">pwd</tt> <tt class="py-keyword">import</tt> <tt class="py-name">getpwnam</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">grp</tt> <tt class="py-keyword">import</tt> <tt class="py-name">getgrnam</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt id="link-0" class="py-name" targets="Variable ccd.logger=ccd-module.html#logger,Variable config.read.logger=config.read-module.html#logger,Variable connection.ccdGroup.logger=connection.ccdGroup-module.html#logger,Variable connection.ccdProxy.logger=connection.ccdProxy-module.html#logger,Variable connection.ccdProxyChain.logger=connection.ccdProxyChain-module.html#logger,Variable connection.ccdSession.logger=connection.ccdSession-module.html#logger,Variable connection.ccdlib.logger=connection.ccdlib-module.html#logger,Variable database.ccdProject.logger=database.ccdProject-module.html#logger,Variable database.ccdUser.logger=database.ccdUser-module.html#logger,Variable database.ccdWorkgroup.logger=database.ccdWorkgroup-module.html#logger,Variable database.ccddb.logger=database.ccddb-module.html#logger,Variable database.project.db.logger=database.project.db-module.html#logger,Variable database.project.tables.logger=database.project.tables-module.html#logger,Variable files.download.logger=files.download-module.html#logger,Variable files.open.logger=files.open-module.html#logger,Variable files.upload.logger=files.upload-module.html#logger,Variable genreport.cOdf.logger=genreport.cOdf-module.html#logger,Variable genreport.csv.logger=genreport.csv-module.html#logger,Variable genreport.latex.logger=genreport.latex-module.html#logger,Variable genreport.pdf.logger=genreport.pdf-module.html#logger,Variable plugins.comm.logger=plugins.comm-module.html#logger,Variable plugins.plugin.logger=plugins.plugin-module.html#logger,Variable plugins.setup.logger=plugins.setup-module.html#logger"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-0', 'logger', 'link-0');">logger</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-string">"ccd.%s"</tt> <tt class="py-op">%</tt> <tt class="py-name">__name__</tt><tt class="py-op">)</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt id="link-1" class="py-name" targets="Variable config.read.FILE=config.read-module.html#FILE"><a title="config.read.FILE" class="py-name" href="#" onclick="return doclink('link-1', 'FILE', 'link-1');">FILE</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"log"</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt id="link-2" class="py-name" targets="Variable config.read.FILE_PLG_DBG=config.read-module.html#FILE_PLG_DBG"><a title="config.read.FILE_PLG_DBG" class="py-name" href="#" onclick="return doclink('link-2', 'FILE_PLG_DBG', 'link-2');">FILE_PLG_DBG</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"plg_debug_output.log"</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"> </tt>
+<a name="Config"></a><div id="Config-def"><a name="L40"></a><tt class="py-lineno"> 40</tt> <a class="py-toggle" href="#" id="Config-toggle" onclick="return toggle('Config');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="config.read.Config-class.html">Config</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Config-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Config-expanded"><a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"> </tt>
+<a name="read_config"></a><div id="read_config-def"><a name="L43"></a><tt class="py-lineno"> 43</tt> <a class="py-toggle" href="#" id="read_config-toggle" onclick="return toggle('read_config');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="config.read-module.html#read_config">read_config</a><tt class="py-op">(</tt><tt class="py-param">config_fn</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="read_config-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="read_config-expanded"><a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-docstring">    read config file and set member variable</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-docstring">    input:</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-docstring">        config_fn       filename of config file</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-docstring">    output:</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-docstring">        option          object that contains extracted configurations</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">    <tt id="link-3" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-3', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">"reading config file %s"</tt><tt class="py-op">,</tt> <tt class="py-name">config_fn</tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">    <tt id="link-4" class="py-name" targets="Package config=config-module.html,Module genreport.creport.io.config=genreport.creport.io.config-module.html"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-4', 'config', 'link-4');">config</a></tt> <tt class="py-op">=</tt> <tt class="py-name">ConfigParser</tt><tt class="py-op">.</tt><tt class="py-name">RawConfigParser</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">    <tt id="link-5" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-5', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Module config.read=config.read-module.html,Function genreport.creport.io.config.read()=genreport.creport.io.config-module.html#read"><a title="config.read
+genreport.creport.io.config.read" class="py-name" href="#" onclick="return doclink('link-6', 'read', 'link-6');">read</a></tt><tt class="py-op">(</tt><tt class="py-name">config_fn</tt><tt class="py-op">)</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">    <tt class="py-comment"># cache to return options</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">    <tt class="py-name">options</tt> <tt class="py-op">=</tt> <tt id="link-7" class="py-name" targets="Class config.read.Config=config.read.Config-class.html"><a title="config.read.Config" class="py-name" href="#" onclick="return doclink('link-7', 'Config', 'link-7');">Config</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">    <tt class="py-comment"># logging</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">log_level</tt> <tt class="py-op">=</tt> <tt id="link-8" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-8', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt class="py-name">getint</tt><tt class="py-op">(</tt><tt class="py-string">"Logging"</tt><tt class="py-op">,</tt> <tt class="py-string">"level"</tt><tt class="py-op">)</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">log_dir</tt> <tt class="py-op">=</tt> <tt id="link-9" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-9', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Method plugins.localCategory.LocalCategory.get()=plugins.localCategory.LocalCategory-class.html#get"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-10', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"Logging"</tt><tt class="py-op">,</tt> <tt class="py-string">"file"</tt><tt class="py-op">)</tt> <tt class="py-comment"># directory</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">log_dest</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">log_dir</tt><tt class="py-op">,</tt> <tt id="link-11" class="py-name"><a title="config.read.FILE" class="py-name" href="#" onclick="return doclink('link-11', 'FILE', 'link-1');">FILE</a></tt><tt class="py-op">)</tt> <tt class="py-comment"># file</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">log_plg_fn</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">log_dir</tt><tt class="py-op">,</tt> <tt id="link-12" class="py-name"><a title="config.read.FILE_PLG_DBG" class="py-name" href="#" onclick="return doclink('link-12', 'FILE_PLG_DBG', 'link-2');">FILE_PLG_DBG</a></tt><tt class="py-op">)</tt> <tt class="py-comment"># plugin</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">    <tt class="py-comment"># database</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">    <tt class="py-comment">#FIXME BASE64 encoding for url parameters</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">    <tt class="py-name">dialect</tt> <tt class="py-op">=</tt> <tt id="link-13" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-13', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-14', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"Database"</tt><tt class="py-op">,</tt> <tt class="py-string">"dialect"</tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">    <tt class="py-name">user</tt> <tt class="py-op">=</tt> <tt id="link-15" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-15', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-16', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"Database"</tt><tt class="py-op">,</tt> <tt class="py-string">"user"</tt><tt class="py-op">)</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">    <tt class="py-name">password</tt> <tt class="py-op">=</tt> <tt id="link-17" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-17', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-18', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"Database"</tt><tt class="py-op">,</tt> <tt class="py-string">"password"</tt><tt class="py-op">)</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">    <tt class="py-name">location</tt> <tt class="py-op">=</tt> <tt id="link-19" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-19', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-20', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"Database"</tt><tt class="py-op">,</tt> <tt class="py-string">"location"</tt><tt class="py-op">)</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">    <tt id="link-21" class="py-name" targets="Package database=database-module.html"><a title="database" class="py-name" href="#" onclick="return doclink('link-21', 'database', 'link-21');">database</a></tt> <tt class="py-op">=</tt> <tt id="link-22" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-22', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-23', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"Database"</tt><tt class="py-op">,</tt> <tt class="py-string">"database"</tt><tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">db_url</tt> <tt class="py-op">=</tt> <tt class="py-string">"{dialect}://{user}:{password}@{location}/{database}"</tt><tt class="py-op">.</tt>\ </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">                    <tt class="py-name">format</tt><tt class="py-op">(</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">                        <tt class="py-name">dialect</tt><tt class="py-op">=</tt><tt class="py-name">dialect</tt><tt class="py-op">,</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">                        <tt class="py-name">user</tt><tt class="py-op">=</tt><tt class="py-name">user</tt><tt class="py-op">,</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">                        <tt class="py-name">password</tt><tt class="py-op">=</tt><tt class="py-name">password</tt><tt class="py-op">,</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">                        <tt class="py-name">location</tt><tt class="py-op">=</tt><tt class="py-name">location</tt><tt class="py-op">,</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">                        <tt id="link-24" class="py-name"><a title="database" class="py-name" href="#" onclick="return doclink('link-24', 'database', 'link-21');">database</a></tt><tt class="py-op">=</tt><tt id="link-25" class="py-name"><a title="database" class="py-name" href="#" onclick="return doclink('link-25', 'database', 'link-21');">database</a></tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">                    <tt class="py-op">)</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">db_psql_url</tt> <tt class="py-op">=</tt> <tt class="py-string">"{dialect}://{user}:{password}@{location}"</tt><tt class="py-op">.</tt>\ </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">                    <tt class="py-name">format</tt><tt class="py-op">(</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">                        <tt class="py-name">dialect</tt><tt class="py-op">=</tt><tt class="py-name">dialect</tt><tt class="py-op">,</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">                        <tt class="py-name">user</tt><tt class="py-op">=</tt><tt class="py-name">user</tt><tt class="py-op">,</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">                        <tt class="py-name">password</tt><tt class="py-op">=</tt><tt class="py-name">password</tt><tt class="py-op">,</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">                        <tt class="py-name">location</tt><tt class="py-op">=</tt><tt class="py-name">location</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">                    <tt class="py-op">)</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">db_psql_db</tt> <tt class="py-op">=</tt> <tt class="py-string">"postgres"</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">    <tt class="py-comment"># to enable the ccd to use a proxy chain, get servers from</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">    <tt class="py-comment"># config file and store them in a list</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">useSocks</tt> <tt class="py-op">=</tt> <tt id="link-26" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-26', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt class="py-name">getboolean</tt><tt class="py-op">(</tt><tt class="py-string">'Connection'</tt><tt class="py-op">,</tt> <tt class="py-string">'useSocks'</tt><tt class="py-op">)</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">    <tt class="py-name">socksserver</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">    <tt class="py-name">_servers</tt> <tt class="py-op">=</tt> <tt id="link-27" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-27', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-28', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"Connection"</tt><tt class="py-op">,</tt> <tt class="py-string">"socksServer"</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">";"</tt><tt class="py-op">)</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">_s</tt> <tt class="py-keyword">in</tt> <tt class="py-name">_servers</tt><tt class="py-op">:</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-name">_addr</tt> <tt class="py-op">=</tt> <tt class="py-name">_s</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">":"</tt><tt class="py-op">)</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-name">socksserver</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">_addr</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">_addr</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">socksserver</tt> <tt class="py-op">=</tt> <tt class="py-name">socksserver</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">    <tt class="py-comment"># the addr to listen for clients</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">    <tt class="py-name">_addr</tt> <tt class="py-op">=</tt> <tt id="link-29" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-29', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-30', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"Connection"</tt><tt class="py-op">,</tt> <tt class="py-string">"bind"</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">":"</tt><tt class="py-op">)</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">_addr</tt><tt class="py-op">)</tt><tt class="py-op">!=</tt><tt class="py-number">2</tt><tt class="py-op">:</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"fatal: Invalid bind option in config!"</tt><tt class="py-op">)</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">addr</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">_addr</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">_addr</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">listenmax</tt> <tt class="py-op">=</tt> <tt id="link-31" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-31', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt class="py-name">getint</tt><tt class="py-op">(</tt><tt class="py-string">"Connection"</tt><tt class="py-op">,</tt> <tt class="py-string">"listenmax"</tt><tt class="py-op">)</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">cert</tt> <tt class="py-op">=</tt> <tt id="link-32" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-32', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-33', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"Connection"</tt><tt class="py-op">,</tt> <tt class="py-string">"cert"</tt><tt class="py-op">)</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">cert_key</tt> <tt class="py-op">=</tt> <tt id="link-34" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-34', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-35', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"Connection"</tt><tt class="py-op">,</tt> <tt class="py-string">"key"</tt><tt class="py-op">)</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">client_fingerprint</tt> <tt class="py-op">=</tt> <tt id="link-36" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-36', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-37', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"Connection"</tt><tt class="py-op">,</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">                                         <tt class="py-string">"client_fingerprint"</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">","</tt><tt class="py-op">)</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">ssl_version</tt> <tt class="py-op">=</tt> <tt id="link-38" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-38', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt class="py-name">getint</tt><tt class="py-op">(</tt><tt class="py-string">"Connection"</tt><tt class="py-op">,</tt> <tt class="py-string">"ssl_version"</tt><tt class="py-op">)</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">ssl_enabled</tt> <tt class="py-op">=</tt> <tt id="link-39" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-39', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt class="py-name">getboolean</tt><tt class="py-op">(</tt><tt class="py-string">"Connection"</tt><tt class="py-op">,</tt> <tt class="py-string">"ssl_enabled"</tt><tt class="py-op">)</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">    <tt class="py-comment"># plugin</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">plugindir</tt> <tt class="py-op">=</tt> <tt id="link-40" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-40', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-41" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-41', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"Plugins"</tt><tt class="py-op">,</tt> <tt class="py-string">"dir"</tt><tt class="py-op">)</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">    <tt class="py-name">_addr_dbg</tt> <tt class="py-op">=</tt> <tt id="link-42" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-42', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-43" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-43', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"Plugins"</tt><tt class="py-op">,</tt> <tt class="py-string">"bind"</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">":"</tt><tt class="py-op">)</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">_addr_dbg</tt><tt class="py-op">)</tt><tt class="py-op">!=</tt><tt class="py-number">2</tt><tt class="py-op">:</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"fatal: Invalid plugin bind option in config!"</tt><tt class="py-op">)</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">addr_dbg</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">_addr_dbg</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">_addr_dbg</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">listenmax_dbg</tt> <tt class="py-op">=</tt> <tt id="link-44" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-44', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt class="py-name">getint</tt><tt class="py-op">(</tt><tt class="py-string">"Plugins"</tt><tt class="py-op">,</tt> <tt class="py-string">"listenmax"</tt><tt class="py-op">)</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">runAsUser</tt> <tt class="py-op">=</tt> <tt id="link-45" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-45', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-46" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-46', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"Plugins"</tt><tt class="py-op">,</tt> <tt class="py-string">"runas_user"</tt><tt class="py-op">)</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">runAsGroup</tt> <tt class="py-op">=</tt> <tt id="link-47" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-47', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-48" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-48', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"Plugins"</tt><tt class="py-op">,</tt> <tt class="py-string">"runas_group"</tt><tt class="py-op">)</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">runAsUid</tt> <tt class="py-op">=</tt> <tt class="py-name">getpwnam</tt><tt class="py-op">(</tt><tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">runAsUser</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">pw_uid</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">runAsGid</tt> <tt class="py-op">=</tt> <tt class="py-name">getgrnam</tt><tt class="py-op">(</tt><tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">runAsGroup</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">gr_gid</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">    <tt class="py-comment"># user</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">userdir</tt> <tt class="py-op">=</tt> <tt id="link-49" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-49', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-50" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-50', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"User"</tt><tt class="py-op">,</tt> <tt class="py-string">"dir"</tt><tt class="py-op">)</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">shared_directory</tt> <tt class="py-op">=</tt> <tt id="link-51" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-51', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-52" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-52', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"User"</tt><tt class="py-op">,</tt> <tt class="py-string">"shared"</tt><tt class="py-op">)</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">    <tt class="py-comment"># superadmin</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">sa_name</tt> <tt class="py-op">=</tt> <tt id="link-53" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-53', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-54" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-54', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"Superadmin"</tt><tt class="py-op">,</tt> <tt class="py-string">"name"</tt><tt class="py-op">)</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">sa_pwd</tt> <tt class="py-op">=</tt> <tt id="link-55" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-55', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-56" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-56', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"Superadmin"</tt><tt class="py-op">,</tt> <tt class="py-string">"password"</tt><tt class="py-op">)</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">    <tt class="py-name">options</tt><tt class="py-op">.</tt><tt class="py-name">sa_mail</tt> <tt class="py-op">=</tt> <tt id="link-57" class="py-name"><a title="config
+genreport.creport.io.config" class="py-name" href="#" onclick="return doclink('link-57', 'config', 'link-4');">config</a></tt><tt class="py-op">.</tt><tt id="link-58" class="py-name"><a title="plugins.localCategory.LocalCategory.get" class="py-name" href="#" onclick="return doclink('link-58', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-string">"Superadmin"</tt><tt class="py-op">,</tt> <tt class="py-string">"mail"</tt><tt class="py-op">)</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line"> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">options</tt> </tt>
+</div><a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:38 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

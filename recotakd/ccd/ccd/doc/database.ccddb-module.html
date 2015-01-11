@@ -1,0 +1,4217 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>database.ccddb</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="database-module.html">Package&nbsp;database</a> ::
+        Module&nbsp;ccddb
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="database.ccddb-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module ccddb</h1><p class="nomargin-top"><span class="codelink"><a href="database.ccddb-pysrc.html">source&nbsp;code</a></span></p>
+<p>This module handels all ccd database interactions, that do not concern
+  projects # Copyright (c) 2014, curesec GmbH # All rights reserved. # # 
+  Redistribution and use in source and binary forms, with or without 
+  modification, # are permitted provided that the following conditions are 
+  met: # # 1. Redistributions of source code must retain the above 
+  copyright notice, this list of # conditions and the following disclaimer.
+  # # 2. Redistributions in binary form must reproduce the above copyright 
+  notice, this list # of conditions and the following disclaimer in the 
+  documentation and/or other materials # provided with the distribution. # 
+  # 3. Neither the name of the copyright holder nor the names of its 
+  contributors may be used # to endorse or promote products derived from 
+  this software without specific prior written # permission. # # THIS 
+  SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS 
+  IS&quot; AND ANY EXPRESS # OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+  LIMITED TO, THE IMPLIED WARRANTIES OF # MERCHANTABILITY AND FITNESS FOR A
+  PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE # COPYRIGHT 
+  HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  SPECIAL, # EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+  LIMITED TO, PROCUREMENT OF # SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) # HOWEVER CAUSED AND ON ANY 
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR # TORT 
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF 
+  THIS SOFTWARE, # EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+  specifics (e.g. storing data by plugin that is created during execution 
+  in context of a project is stored in database.project.*). Though, this 
+  module handles user, wgroup, proxychains and a lot more.</p>
+
+<!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="database.ccddb.AlreadyExistingError-class.html" class="summary-name">AlreadyExistingError</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="database.ccddb.DatabaseError-class.html" class="summary-name">DatabaseError</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="database.ccddb.InvalidQuery-class.html" class="summary-name">InvalidQuery</a>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="initdatabase"></a><span class="summary-sig-name">initdatabase</span>(<span class="summary-sig-arg">url</span>)</span><br />
+      Connect to database, create database session and create tables.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#initdatabase">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_init_protocols"></a><span class="summary-sig-name">_init_protocols</span>(<span class="summary-sig-arg">db</span>)</span><br />
+      create some basic protocols</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#_init_protocols">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_init_roles"></a><span class="summary-sig-name">_init_roles</span>(<span class="summary-sig-arg">db</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#_init_roles">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_init_ptypes"></a><span class="summary-sig-name">_init_ptypes</span>(<span class="summary-sig-arg">db</span>)</span><br />
+      create the initial roles</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#_init_ptypes">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="connect_to_database"></a><span class="summary-sig-name">connect_to_database</span>(<span class="summary-sig-arg">url</span>)</span><br />
+      create new database engine and return bound metadata and connection</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#connect_to_database">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#connect" class="summary-sig-name">connect</a>()</span><br />
+      returns a new connection from sql connection pool.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#connect">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#close" class="summary-sig-name">close</a>(<span class="summary-sig-arg">db</span>)</span><br />
+      closes a database connection</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#close">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#getDatabaseMetadata" class="summary-sig-name">getDatabaseMetadata</a>(<span class="summary-sig-arg">addr</span>)</span><br />
+      Connect to database and create a database session.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#getDatabaseMetadata">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createPluginTable"></a><span class="summary-sig-name">createPluginTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create the table that contains plugin information.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createPluginTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#get_plugin_name_by_id" class="summary-sig-name">get_plugin_name_by_id</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">plg_id</span>)</span><br />
+      return the plugins name</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_plugin_name_by_id">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#undelete_plugin_by_id" class="summary-sig-name">undelete_plugin_by_id</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">plg_id</span>)</span><br />
+      undelete a plugin by a given id</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#undelete_plugin_by_id">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#delete_plugin_by_name" class="summary-sig-name">delete_plugin_by_name</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">plg_name</span>)</span><br />
+      delete a plugin by a given name</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#delete_plugin_by_name">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_all_plugins"></a><span class="summary-sig-name">get_all_plugins</span>(<span class="summary-sig-arg">db</span>)</span><br />
+      returns a list with all plugin ids</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_all_plugins">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="add_plugin"></a><span class="summary-sig-name">add_plugin</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      add plugin to plugin table</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#add_plugin">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createProject2PluginTable"></a><span class="summary-sig-name">createProject2PluginTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create project2plugin table and return table object</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createProject2PluginTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="add_project2plugin"></a><span class="summary-sig-name">add_project2plugin</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pid</span>,
+        <span class="summary-sig-arg">plg_id</span>)</span><br />
+      Add new project plugin relation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#add_project2plugin">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="delete_project2plugin"></a><span class="summary-sig-name">delete_project2plugin</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pid</span>,
+        <span class="summary-sig-arg">plg_id</span>)</span><br />
+      sets the delete flag</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#delete_project2plugin">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createWorkgroup2PluginTable"></a><span class="summary-sig-name">createWorkgroup2PluginTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create project2plugin table and return table object</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createWorkgroup2PluginTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="add_workgroup2plugin"></a><span class="summary-sig-name">add_workgroup2plugin</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">wid</span>,
+        <span class="summary-sig-arg">plg_id</span>)</span><br />
+      Add new workgroup plugin relation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#add_workgroup2plugin">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="delete_workgroup2plugin"></a><span class="summary-sig-name">delete_workgroup2plugin</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">wid</span>,
+        <span class="summary-sig-arg">plg_id</span>)</span><br />
+      sets the delete flag</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#delete_workgroup2plugin">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createpTypeTable"></a><span class="summary-sig-name">createpTypeTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create the table that contains project types.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createpTypeTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="create_ptype"></a><span class="summary-sig-name">create_ptype</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">name</span>)</span><br />
+      create projects' type table</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#create_ptype">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="delete_ptype_byname"></a><span class="summary-sig-name">delete_ptype_byname</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">name</span>)</span><br />
+      remove project type by name</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#delete_ptype_byname">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getptype_byname"></a><span class="summary-sig-name">getptype_byname</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">name</span>)</span><br />
+      return type with given name</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#getptype_byname">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="add_user2project"></a><span class="summary-sig-name">add_user2project</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">uid</span>,
+        <span class="summary-sig-arg">pid</span>,
+        <span class="summary-sig-arg">rid</span>)</span><br />
+      Add new user project relation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#add_user2project">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="delete_user2project"></a><span class="summary-sig-name">delete_user2project</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">uid</span>,
+        <span class="summary-sig-arg">pid</span>)</span><br />
+      sets the delete flag</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#delete_user2project">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createUser2ProjectTable"></a><span class="summary-sig-name">createUser2ProjectTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create user2project table and return table object</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createUser2ProjectTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createProjectTable"></a><span class="summary-sig-name">createProjectTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create project table and return table object.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createProjectTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#create_project" class="summary-sig-name">create_project</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">creator_uid</span>,
+        <span class="summary-sig-arg">owner_uid</span>,
+        <span class="summary-sig-arg">ptype</span>,
+        <span class="summary-sig-arg">description</span>=<span class="summary-sig-default">&quot;&quot;</span>)</span><br />
+      create a project entry.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#create_project">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_all_projects"></a><span class="summary-sig-name">get_all_projects</span>(<span class="summary-sig-arg">db</span>)</span><br />
+      return all existing non-deleted workgroups</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_all_projects">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="delete_project"></a><span class="summary-sig-name">delete_project</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pid</span>)</span><br />
+      delete project given by its id</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#delete_project">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="update_project_description"></a><span class="summary-sig-name">update_project_description</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pid</span>,
+        <span class="summary-sig-arg">description</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#update_project_description">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="update_project"></a><span class="summary-sig-name">update_project</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pid</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">ptype</span>,
+        <span class="summary-sig-arg">creator</span>,
+        <span class="summary-sig-arg">owner</span>,
+        <span class="summary-sig-arg">description</span>)</span><br />
+      updata a project's entry given by its id.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#update_project">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getproject_byuid"></a><span class="summary-sig-name">getproject_byuid</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">uid</span>)</span><br />
+      return projects' pid that is associated with a user given by uid</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#getproject_byuid">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getproject_byname"></a><span class="summary-sig-name">getproject_byname</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">name</span>)</span><br />
+      return entry for project with the given name that is not deleted</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#getproject_byname">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#getproject_bypid" class="summary-sig-name">getproject_bypid</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pid</span>)</span><br />
+      return entry for project with the given id that is not deleted</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#getproject_bypid">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#get_project_access" class="summary-sig-name">get_project_access</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pid</span>,
+        <span class="summary-sig-arg">uid</span>)</span><br />
+      returns a user's access matrix</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_project_access">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_project_plugins"></a><span class="summary-sig-name">get_project_plugins</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pid</span>)</span><br />
+      returns a list of plg_ids that are part of project</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_project_plugins">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_project_members"></a><span class="summary-sig-name">get_project_members</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pid</span>)</span><br />
+      return a list of a project's members</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_project_members">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="create_projectdb_config_table"></a><span class="summary-sig-name">create_projectdb_config_table</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create the table that contains project configuration.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#create_projectdb_config_table">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="create_projectdb_passwd_table"></a><span class="summary-sig-name">create_projectdb_passwd_table</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create Table that contains projectdb password</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#create_projectdb_passwd_table">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_projectdb_config"></a><span class="summary-sig-name">get_projectdb_config</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pid</span>)</span><br />
+      return the projectdb configuration for a given project id</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_projectdb_config">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="store_projectdb_config"></a><span class="summary-sig-name">store_projectdb_config</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pid</span>,
+        <span class="summary-sig-arg">dialect</span>,
+        <span class="summary-sig-arg">user</span>,
+        <span class="summary-sig-arg">pwd</span>,
+        <span class="summary-sig-arg">ip</span>,
+        <span class="summary-sig-arg">port</span>,
+        <span class="summary-sig-arg">dbname</span>)</span><br />
+      store project db configuration to ccddb database</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#store_projectdb_config">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createProtocolTable"></a><span class="summary-sig-name">createProtocolTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create protocol table and return table object</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createProtocolTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="add_protocol"></a><span class="summary-sig-name">add_protocol</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">on_error_return_id</span>=<span class="summary-sig-default">False</span>)</span><br />
+      add a new protocol</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#add_protocol">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_protid_by_name"></a><span class="summary-sig-name">get_protid_by_name</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">name</span>)</span><br />
+      return the protocol id by a given name</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_protid_by_name">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createProxyTable"></a><span class="summary-sig-name">createProxyTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create proxies table and return table object</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createProxyTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="add_proxy"></a><span class="summary-sig-name">add_proxy</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">ip</span>,
+        <span class="summary-sig-arg">port</span>,
+        <span class="summary-sig-arg">protocol</span>,
+        <span class="summary-sig-arg">description</span>)</span><br />
+      add a new proxy to proxy table</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#add_proxy">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="delete_proxy"></a><span class="summary-sig-name">delete_proxy</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pxid</span>)</span><br />
+      delete proxy from proxy table</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#delete_proxy">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_proxy_by_id"></a><span class="summary-sig-name">get_proxy_by_id</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pxid</span>)</span><br />
+      get proxy configuration for a given proxy id</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_proxy_by_id">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_proxy_by_addr"></a><span class="summary-sig-name">get_proxy_by_addr</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">ip</span>,
+        <span class="summary-sig-arg">port</span>)</span><br />
+      get proxy configuration for a given proxy address</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_proxy_by_addr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_all_proxies"></a><span class="summary-sig-name">get_all_proxies</span>(<span class="summary-sig-arg">db</span>)</span><br />
+      return a list of all proxies</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_all_proxies">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createProxyChainTable"></a><span class="summary-sig-name">createProxyChainTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create proxies table and return table object</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createProxyChainTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#add_proxychain" class="summary-sig-name">add_proxychain</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pcid</span>,
+        <span class="summary-sig-arg">description</span>)</span><br />
+      add a new proxy to proxy table</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#add_proxychain">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="del_proxychain"></a><span class="summary-sig-name">del_proxychain</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pcid</span>)</span><br />
+      delete proxy to proxy table</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#del_proxychain">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_chain_by_id"></a><span class="summary-sig-name">get_chain_by_id</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pcid</span>)</span><br />
+      return a chain</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_chain_by_id">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_all_chains"></a><span class="summary-sig-name">get_all_chains</span>(<span class="summary-sig-arg">db</span>)</span><br />
+      return a list of all chains, joined with the proxies</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_all_chains">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createProxy2ChainTable"></a><span class="summary-sig-name">createProxy2ChainTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create proxies table and return table object</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createProxy2ChainTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#add_proxy_to_proxychain" class="summary-sig-name">add_proxy_to_proxychain</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pcid</span>,
+        <span class="summary-sig-arg">pxid</span>)</span><br />
+      add a poxy to a proxy chain.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#add_proxy_to_proxychain">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#del_proxy_from_proxychain" class="summary-sig-name">del_proxy_from_proxychain</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pcid</span>,
+        <span class="summary-sig-arg">pxid</span>)</span><br />
+      remove poxy from proxy chain.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#del_proxy_from_proxychain">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_proxies_of_chain"></a><span class="summary-sig-name">get_proxies_of_chain</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pcid</span>)</span><br />
+      return a list of all proxies associated with a chain</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_proxies_of_chain">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createConnectionGroupTable"></a><span class="summary-sig-name">createConnectionGroupTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create connection group table and return table object</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createConnectionGroupTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="add_connection_group"></a><span class="summary-sig-name">add_connection_group</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">grpid</span>,
+        <span class="summary-sig-arg">description</span>)</span><br />
+      add a new connection group to table</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#add_connection_group">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="del_connection_group"></a><span class="summary-sig-name">del_connection_group</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">grpid</span>)</span><br />
+      delete connection group</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#del_connection_group">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_group_by_id"></a><span class="summary-sig-name">get_group_by_id</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">grpid</span>)</span><br />
+      return a group</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_group_by_id">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createChain2GroupTable"></a><span class="summary-sig-name">createChain2GroupTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create proxies table and return table object</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createChain2GroupTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#add_chain_to_group" class="summary-sig-name">add_chain_to_group</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">grpid</span>,
+        <span class="summary-sig-arg">pcid</span>,
+        <span class="summary-sig-arg">prio</span>)</span><br />
+      add a proxy chain to a connection group.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#add_chain_to_group">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#del_chain_from_group" class="summary-sig-name">del_chain_from_group</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">grpid</span>,
+        <span class="summary-sig-arg">pcid</span>)</span><br />
+      remove chain from connection group.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#del_chain_from_group">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_chains_of_group"></a><span class="summary-sig-name">get_chains_of_group</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">grpid</span>)</span><br />
+      return a list of all chains associated with a group</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_chains_of_group">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#set_default_conngroup" class="summary-sig-name">set_default_conngroup</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">grpid</span>)</span><br />
+      set default flag of connection group.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#set_default_conngroup">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#get_default_conngroup" class="summary-sig-name">get_default_conngroup</a>(<span class="summary-sig-arg">db</span>)</span><br />
+      get connection group with default flag set</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_default_conngroup">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_all_conngroups"></a><span class="summary-sig-name">get_all_conngroups</span>(<span class="summary-sig-arg">db</span>)</span><br />
+      return a list of all groups, joined with the chains</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_all_conngroups">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#__concat_ws" class="summary-sig-name" onclick="show_private();">__concat_ws</a>(<span class="summary-sig-arg">entries</span>)</span><br />
+      this is a concat_ws replacement.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#__concat_ws">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createGroup2Project2PluginTable"></a><span class="summary-sig-name">createGroup2Project2PluginTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create table and return table object</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createGroup2Project2PluginTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_group_by_projectplugin"></a><span class="summary-sig-name">get_group_by_projectplugin</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">plg_id</span>,
+        <span class="summary-sig-arg">pid</span>)</span><br />
+      returns the group id associated with the plugin-proj combination</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_group_by_projectplugin">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#add_group_to_projectplugin" class="summary-sig-name">add_group_to_projectplugin</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">grpid</span>,
+        <span class="summary-sig-arg">plg_id</span>,
+        <span class="summary-sig-arg">pid</span>)</span><br />
+      add a connection group to a project/plugin</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#add_group_to_projectplugin">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#del_group_from_projectplugin" class="summary-sig-name">del_group_from_projectplugin</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">plg_id</span>,
+        <span class="summary-sig-arg">pid</span>)</span><br />
+      delete a connection group from a project/plugin</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#del_group_from_projectplugin">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#get_group_by_plugin_project" class="summary-sig-name">get_group_by_plugin_project</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">plg_id</span>,
+        <span class="summary-sig-arg">pid</span>)</span><br />
+      get connection group given a plugin and a project id</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_group_by_plugin_project">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="add_user2workgroup"></a><span class="summary-sig-name">add_user2workgroup</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">uid</span>,
+        <span class="summary-sig-arg">wid</span>,
+        <span class="summary-sig-arg">rid</span>)</span><br />
+      Add new user workgroup relation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#add_user2workgroup">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="delete_user2workgroup"></a><span class="summary-sig-name">delete_user2workgroup</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">uid</span>,
+        <span class="summary-sig-arg">wid</span>)</span><br />
+      sets the delete flag</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#delete_user2workgroup">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createUser2WorkgroupTable"></a><span class="summary-sig-name">createUser2WorkgroupTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create user2workgroup table and return table object</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createUser2WorkgroupTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createWorkgroupTable"></a><span class="summary-sig-name">createWorkgroupTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create workgroup table and return table object</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createWorkgroupTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#create_workgroup" class="summary-sig-name">create_workgroup</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">pseudo</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">description</span>=<span class="summary-sig-default">''</span>)</span><br />
+      create a workgroup entry.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#create_workgroup">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="delete_workgroup"></a><span class="summary-sig-name">delete_workgroup</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">wid</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#delete_workgroup">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_all_workgroups"></a><span class="summary-sig-name">get_all_workgroups</span>(<span class="summary-sig-arg">db</span>)</span><br />
+      return all existing non-deleted workgroups</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_all_workgroups">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_workgroup_plugins"></a><span class="summary-sig-name">get_workgroup_plugins</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">wid</span>)</span><br />
+      returns a list of plg_ids that are part of workgroup</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_workgroup_plugins">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getworkgroup_byname"></a><span class="summary-sig-name">getworkgroup_byname</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">name</span>)</span><br />
+      return entry for workgroup with the given name that is not deleted</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#getworkgroup_byname">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getworkgroup_bywid"></a><span class="summary-sig-name">getworkgroup_bywid</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">wid</span>)</span><br />
+      return entry for workgroup for the given wid that is not deleted</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#getworkgroup_bywid">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_get_permissions"></a><span class="summary-sig-name">_get_permissions</span>(<span class="summary-sig-arg">*args</span>)</span><br />
+      gets the permission matrix from database and builds the byte 
+      representation to return</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#_get_permissions">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_workgroup_access"></a><span class="summary-sig-name">get_workgroup_access</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">wid</span>,
+        <span class="summary-sig-arg">uid</span>)</span><br />
+      returns a user's access matrix</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_workgroup_access">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_workgroup_members"></a><span class="summary-sig-name">get_workgroup_members</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">wid</span>)</span><br />
+      return a list of a project's members</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_workgroup_members">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getworkgroup_byuid"></a><span class="summary-sig-name">getworkgroup_byuid</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">uid</span>)</span><br />
+      return workgroup that is associated with a user given by uid</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#getworkgroup_byuid">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="update_workgroup_description"></a><span class="summary-sig-name">update_workgroup_description</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">wid</span>,
+        <span class="summary-sig-arg">description</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#update_workgroup_description">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="update_workgroup"></a><span class="summary-sig-name">update_workgroup</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">wid</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">description</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#update_workgroup">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createRoleTable"></a><span class="summary-sig-name">createRoleTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create role table and return table object</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createRoleTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="create_role"></a><span class="summary-sig-name">create_role</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">acl</span>)</span><br />
+      create a new role in database</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#create_role">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getrole_byname"></a><span class="summary-sig-name">getrole_byname</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">name</span>)</span><br />
+      select role by name</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#getrole_byname">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="add_user2user"></a><span class="summary-sig-name">add_user2user</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">uid</span>,
+        <span class="summary-sig-arg">rid</span>)</span><br />
+      Add new user user relation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#add_user2user">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="del_user2user"></a><span class="summary-sig-name">del_user2user</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">uid</span>)</span><br />
+      Delete user user relation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#del_user2user">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createUser2UserTable"></a><span class="summary-sig-name">createUser2UserTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create user2user table and return table object</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createUser2UserTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#createUserTable" class="summary-sig-name">createUserTable</a>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create user table.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createUserTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createPasswdTable"></a><span class="summary-sig-name">createPasswdTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create Table that contains users' password</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createPasswdTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#getusers" class="summary-sig-name">getusers</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">username</span>,
+        <span class="summary-sig-arg">pwd</span>)</span><br />
+      Return a list of users given by 'username' and
+corresponding password.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#getusers">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#get_all_users" class="summary-sig-name">get_all_users</a>(<span class="summary-sig-arg">db</span>)</span><br />
+      return all existing non-deleted users</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_all_users">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getuser_byname"></a><span class="summary-sig-name">getuser_byname</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">name</span>)</span><br />
+      returns user entry for a given user name</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#getuser_byname">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#getuser_byuid" class="summary-sig-name">getuser_byuid</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">uid</span>)</span><br />
+      returns user entry for a given user id</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#getuser_byuid">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="create_user"></a><span class="summary-sig-name">create_user</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">user</span>,
+        <span class="summary-sig-arg">pwd</span>,
+        <span class="summary-sig-arg">mail</span>=<span class="summary-sig-default">&quot;&quot;</span>,
+        <span class="summary-sig-arg">description</span>=<span class="summary-sig-default">&quot;&quot;</span>)</span><br />
+      creates a user if not already existing</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#create_user">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#update_user_password" class="summary-sig-name">update_user_password</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">uid</span>,
+        <span class="summary-sig-arg">old_pwd</span>,
+        <span class="summary-sig-arg">new_pwd</span>)</span><br />
+      update a user's password.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#update_user_password">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#delete_user" class="summary-sig-name">delete_user</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">uid</span>)</span><br />
+      delete a user</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#delete_user">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="update_user_description"></a><span class="summary-sig-name">update_user_description</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">uid</span>,
+        <span class="summary-sig-arg">description</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#update_user_description">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#update_user" class="summary-sig-name">update_user</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">uid</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">mail</span>,
+        <span class="summary-sig-arg">description</span>)</span><br />
+      updates a user's name and mail information</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#update_user">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getuser_bywid"></a><span class="summary-sig-name">getuser_bywid</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">wid</span>)</span><br />
+      return user that is associated with a workgroup given by wid</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#getuser_bywid">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_user_access"></a><span class="summary-sig-name">get_user_access</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">uid</span>)</span><br />
+      returns a user's access matrix</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_user_access">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createTaskTable"></a><span class="summary-sig-name">createTaskTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create the table that contains project types.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createTaskTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#insert_task" class="summary-sig-name">insert_task</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">start</span>,
+        <span class="summary-sig-arg">uid</span>,
+        <span class="summary-sig-arg">pid</span>)</span><br />
+      create a new task entry and return task id</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#insert_task">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createScanTable"></a><span class="summary-sig-name">createScanTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create the table that contains project types.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createScanTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#insert_scan" class="summary-sig-name">insert_scan</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">start</span>,
+        <span class="summary-sig-arg">stop</span>,
+        <span class="summary-sig-arg">tid</span>,
+        <span class="summary-sig-arg">plg_id</span>)</span><br />
+      create a new scan entry and return scan id</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#insert_scan">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#createSessionTable" class="summary-sig-name">createSessionTable</a>(<span class="summary-sig-arg">meta</span>)</span><br />
+      Create session table.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createSessionTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#store_session" class="summary-sig-name">store_session</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">sid</span>,
+        <span class="summary-sig-arg">uid</span>,
+        <span class="summary-sig-arg">pid</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Stores a session associated with a user.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#store_session">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="update_session"></a><span class="summary-sig-name">update_session</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">sid</span>,
+        <span class="summary-sig-arg">pid</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#update_session">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#get_sessions" class="summary-sig-name">get_sessions</a>(<span class="summary-sig-arg">db</span>)</span><br />
+      returns a dictionary containing all sessions</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_sessions">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="delete_session_by_uid"></a><span class="summary-sig-name">delete_session_by_uid</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">uid</span>)</span><br />
+      get a user id and deletes the corresponding session</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#delete_session_by_uid">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="createFdTable"></a><span class="summary-sig-name">createFdTable</span>(<span class="summary-sig-arg">meta</span>)</span><br />
+      create fd table to contain file descriptors to which a running plugin
+      writes its stdout/reads its stdin</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#createFdTable">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="is_fd_interactive"></a><span class="summary-sig-name">is_fd_interactive</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">plg_id</span>)</span><br />
+      check whether plugin is interactive</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#is_fd_interactive">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getFdByUid"></a><span class="summary-sig-name">getFdByUid</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">uid</span>)</span><br />
+      Returns a list of fd entries for a given user id.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#getFdByUid">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getFdByRid"></a><span class="summary-sig-name">getFdByRid</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">rid</span>,
+        <span class="summary-sig-arg">uid</span>)</span><br />
+      Returns a list of fd entries for a given user id.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#getFdByRid">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getFdByFid"></a><span class="summary-sig-name">getFdByFid</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">fid</span>,
+        <span class="summary-sig-arg">uid</span>)</span><br />
+      Returns a list of fd entries for a given user id.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#getFdByFid">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getFdByCommand"></a><span class="summary-sig-name">getFdByCommand</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">command</span>,
+        <span class="summary-sig-arg">uid</span>)</span><br />
+      Returns a list of fd entries for a given user id.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#getFdByCommand">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#_sanitise_fd_state" class="summary-sig-name" onclick="show_private();">_sanitise_fd_state</a>(<span class="summary-sig-arg">db</span>)</span><br />
+      sets all states with value -1 to 9.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#_sanitise_fd_state">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#set_fd_state" class="summary-sig-name">set_fd_state</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">fid</span>,
+        <span class="summary-sig-arg">new_state</span>)</span><br />
+      set file descriptor/plugin state</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#set_fd_state">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#get_fd_state" class="summary-sig-name">get_fd_state</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">fid</span>)</span><br />
+      get file descriptor/plugin state</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_fd_state">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#set_fd_state_by_rid" class="summary-sig-name">set_fd_state_by_rid</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">rid</span>,
+        <span class="summary-sig-arg">new_state</span>)</span><br />
+      set file descriptor/plugin state given the request id</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#set_fd_state_by_rid">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#get_fd_by_rid" class="summary-sig-name">get_fd_by_rid</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">request_id</span>)</span><br />
+      return the fd entry for a given request id</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#get_fd_by_rid">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#set_fd_process_id" class="summary-sig-name">set_fd_process_id</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">fid</span>,
+        <span class="summary-sig-arg">pid</span>)</span><br />
+      set the file decriptor/plugin process id</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#set_fd_process_id">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccddb-module.html#storeFd" class="summary-sig-name">storeFd</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">fd_out</span>,
+        <span class="summary-sig-arg">fd_in</span>,
+        <span class="summary-sig-arg">uid</span>,
+        <span class="summary-sig-arg">command</span>,
+        <span class="summary-sig-arg">plg_id</span>,
+        <span class="summary-sig-arg">request_id</span>,
+        <span class="summary-sig-arg">state</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">process_id</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Stores a plugin's new file descriptor (aka stdin/stdout), the user that
+issued the plugin execution and the command that was triggered.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#storeFd">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="removeFd"></a><span class="summary-sig-name">removeFd</span>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">fid</span>)</span><br />
+      removes a file descriptor from _fd table</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccddb-pysrc.html#removeFd">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="logger"></a><span class="summary-name">logger</span> = <code title="logging.getLogger(&quot;ccd.%s&quot; % __name__)">logging.getLogger(&quot;ccd.%s&quot; % __name__)</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_users"></a><span class="summary-name">__table_users</span> = <code title="&quot;users&quot;">&quot;users&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_passwd"></a><span class="summary-name">__table_passwd</span> = <code title="&quot;_passwd&quot;">&quot;_passwd&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_sessions"></a><span class="summary-name">__table_sessions</span> = <code title="&quot;sessions&quot;">&quot;sessions&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_ptype"></a><span class="summary-name">__table_ptype</span> = <code title="&quot;ptypes&quot;">&quot;ptypes&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_role"></a><span class="summary-name">__table_role</span> = <code title="&quot;roles&quot;">&quot;roles&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_projects"></a><span class="summary-name">__table_projects</span> = <code title="&quot;projects&quot;">&quot;projects&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_workgroup"></a><span class="summary-name">__table_workgroup</span> = <code title="&quot;workgroups&quot;">&quot;workgroups&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_user2project"></a><span class="summary-name">__table_user2project</span> = <code title="&quot;_user2project&quot;">&quot;_user2project&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_user2workgroup"></a><span class="summary-name">__table_user2workgroup</span> = <code title="&quot;_user2workgroup&quot;">&quot;_user2workgroup&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_user2user"></a><span class="summary-name">__table_user2user</span> = <code title="&quot;_user2user&quot;">&quot;_user2user&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_projectdb_config"></a><span class="summary-name">__table_projectdb_config</span> = <code title="&quot;_projectdb_config&quot;">&quot;_projectdb_config&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_projectdb_passwd"></a><span class="summary-name">__table_projectdb_passwd</span> = <code title="&quot;_projectdb_passwd&quot;">&quot;_projectdb_passwd&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_plugins"></a><span class="summary-name">__table_plugins</span> = <code title="&quot;plugins&quot;">&quot;plugins&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_project2plugin"></a><span class="summary-name">__table_project2plugin</span> = <code title="&quot;_project2plugin&quot;">&quot;_project2plugin&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_workgroup2plugin"></a><span class="summary-name">__table_workgroup2plugin</span> = <code title="&quot;_workgroup2plugin&quot;">&quot;_workgroup2plugin&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_fd"></a><span class="summary-name">__table_fd</span> = <code title="&quot;_fd&quot;">&quot;_fd&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_scans"></a><span class="summary-name">__table_scans</span> = <code title="&quot;scans&quot;">&quot;scans&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_tasks"></a><span class="summary-name">__table_tasks</span> = <code title="&quot;tasks&quot;">&quot;tasks&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_proxies"></a><span class="summary-name">__table_proxies</span> = <code title="&quot;proxies&quot;">&quot;proxies&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_protocols"></a><span class="summary-name">__table_protocols</span> = <code title="&quot;_protocols&quot;">&quot;_protocols&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_proxychains"></a><span class="summary-name">__table_proxychains</span> = <code title="&quot;proxychains&quot;">&quot;proxychains&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_conngroup"></a><span class="summary-name">__table_conngroup</span> = <code title="&quot;conngroup&quot;">&quot;conngroup&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_proxy2chain"></a><span class="summary-name">__table_proxy2chain</span> = <code title="&quot;_proxy2chain&quot;">&quot;_proxy2chain&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_chain2group"></a><span class="summary-name">__table_chain2group</span> = <code title="&quot;_chain2group&quot;">&quot;_chain2group&quot;</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__table_group2project2plugin"></a><span class="summary-name">__table_group2project2plugin</span> = <code title="&quot;_group2project2plugin&quot;">&quot;_group2project2plugin&quot;</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="database.ccddb-module.html#ENGINE_ARGS" class="summary-name">ENGINE_ARGS</a> = <code title="dict(encoding= &quot;utf-8&quot;, echo= False, pool_size= 0, pool_reset_on_retur\
+n= 'commit')">dict(encoding= &quot;utf-8&quot;, echo= False, pool_size= <code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__meta"></a><span class="summary-name">__meta</span> = <code title="sql.MetaData()">sql.MetaData()</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__engine"></a><span class="summary-name">__engine</span> = <code title="None">None</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="MAX_LEN_NAME"></a><span class="summary-name">MAX_LEN_NAME</span> = <code title="255">255</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="MAX_LEN_MAIL"></a><span class="summary-name">MAX_LEN_MAIL</span> = <code title="255">255</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="MAX_LEN_PASSWORD"></a><span class="summary-name">MAX_LEN_PASSWORD</span> = <code title="255">255</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="MAX_LEN_DESC"></a><span class="summary-name">MAX_LEN_DESC</span> = <code title="8096">8096</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ROLE_SA"></a><span class="summary-name">ROLE_SA</span> = <code title="-1">-1</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ROLE_ADMIN"></a><span class="summary-name">ROLE_ADMIN</span> = <code title="-1">-1</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ROLE_USER"></a><span class="summary-name">ROLE_USER</span> = <code title="-1">-1</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ROLE_VIEW"></a><span class="summary-name">ROLE_VIEW</span> = <code title="-1">-1</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ACCESS_READ"></a><span class="summary-name">ACCESS_READ</span> = <code title="1">1</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ACCESS_WRITE"></a><span class="summary-name">ACCESS_WRITE</span> = <code title="2">2</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ACCESS_ADD"></a><span class="summary-name">ACCESS_ADD</span> = <code title="4">4</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ACCESS_DEL"></a><span class="summary-name">ACCESS_DEL</span> = <code title="8">8</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ACCESS_EXEC"></a><span class="summary-name">ACCESS_EXEC</span> = <code title="16">16</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="PTYPE_AUDIT"></a><span class="summary-name">PTYPE_AUDIT</span> = <code title="-1">-1</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="PTYPE_ROUTINE"></a><span class="summary-name">PTYPE_ROUTINE</span> = <code title="-1">-1</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="PTYPE_ANALYSIS"></a><span class="summary-name">PTYPE_ANALYSIS</span> = <code title="-1">-1</code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="connect"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">connect</span>()</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#connect">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>returns a new connection from sql connection pool. note, this does not
+  recreate the database engine</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="close"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">close</span>(<span class="sig-arg">db</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#close">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+closes a database connection
+
+input:
+    db  tuple containing db meta and db connection
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="getDatabaseMetadata"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getDatabaseMetadata</span>(<span class="sig-arg">addr</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#getDatabaseMetadata">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Connect to database and create a database session. Return a database 
+  session object and the database session factory.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_plugin_name_by_id"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_plugin_name_by_id</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">plg_id</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#get_plugin_name_by_id">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+return the plugins name
+
+input:
+    plg_id  plugin's id
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="undelete_plugin_by_id"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">undelete_plugin_by_id</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">plg_id</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#undelete_plugin_by_id">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+undelete a plugin by a given id
+
+input:
+    plg_id plugin's id
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="delete_plugin_by_name"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">delete_plugin_by_name</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">plg_name</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#delete_plugin_by_name">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+delete a plugin by a given name
+
+input:
+    plg_name  plugin's name
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="create_project"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">create_project</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">name</span>,
+        <span class="sig-arg">creator_uid</span>,
+        <span class="sig-arg">owner_uid</span>,
+        <span class="sig-arg">ptype</span>,
+        <span class="sig-arg">description</span>=<span class="sig-default">&quot;&quot;</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#create_project">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>create a project entry. return project id</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="getproject_bypid"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getproject_bypid</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">pid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#getproject_bypid">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+return entry for project with the given id that is not deleted
+
+input:
+    db  tuple containing db meta and db connection
+    pid project id to look for
+
+output:
+    project
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_project_access"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_project_access</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">pid</span>,
+        <span class="sig-arg">uid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#get_project_access">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+returns a user's access matrix
+
+input:
+    db  tuple containing db meta and db connection
+    pid project id to query permissions  of
+    uid user id of the user who's permissions are checked
+
+output:
+    permission  permission matrix
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="add_proxychain"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">add_proxychain</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">pcid</span>,
+        <span class="sig-arg">description</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#add_proxychain">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+add a new proxy to proxy table
+
+input:
+    db          database meta/connection tuple
+    pcid        proxy chain id string
+    description additional information
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="add_proxy_to_proxychain"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">add_proxy_to_proxychain</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">pcid</span>,
+        <span class="sig-arg">pxid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#add_proxy_to_proxychain">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+add a poxy to a proxy chain.
+
+input:
+    db      database connection foo
+    pcid    proxy chain id to add the proxy to
+    pxid   proxy id of the proxy to add
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="del_proxy_from_proxychain"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">del_proxy_from_proxychain</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">pcid</span>,
+        <span class="sig-arg">pxid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#del_proxy_from_proxychain">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+remove poxy from proxy chain.
+
+input:
+    db      database connection foo
+    pcid    proxy chain id to add the proxy to
+    pxid   proxy id of the proxy to add
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="add_chain_to_group"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">add_chain_to_group</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">grpid</span>,
+        <span class="sig-arg">pcid</span>,
+        <span class="sig-arg">prio</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#add_chain_to_group">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+add a proxy chain to a connection group.
+
+input:
+    db      database connection foo
+    pcid    proxy chain id to add
+    grpid   id of the connection group to add to
+    prio    priority that is assigned to the chain
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="del_chain_from_group"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">del_chain_from_group</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">grpid</span>,
+        <span class="sig-arg">pcid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#del_chain_from_group">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+remove chain from connection group.
+
+input:
+    db      database connection foo
+    pcid    proxy chain id to add
+    grpid   id of the connection group to add to
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_default_conngroup"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_default_conngroup</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">grpid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#set_default_conngroup">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+set default flag of connection group.
+
+input:
+    db      database connection foo
+    pcid    proxy chain id to add
+    grpid   id of the connection group
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_default_conngroup"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_default_conngroup</span>(<span class="sig-arg">db</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#get_default_conngroup">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+get connection group with default flag set
+
+input:
+    db      database connection foo
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__concat_ws"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__concat_ws</span>(<span class="sig-arg">entries</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#__concat_ws">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>this is a concat_ws replacement. the entries that are returned by the 
+  query look like &lt;grpid&gt;, &lt;description&gt;, &lt;pcid&gt;. the bad
+  is, that for every chain assigned to the group, the first to columns 
+  become redundant. as a consequence, we build an easy dictionary 
+  containing the grpid and description and a list of chains</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="add_group_to_projectplugin"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">add_group_to_projectplugin</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">grpid</span>,
+        <span class="sig-arg">plg_id</span>,
+        <span class="sig-arg">pid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#add_group_to_projectplugin">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+add a connection group to a project/plugin
+
+input:
+    db      database connection foo
+    grpid   group to add
+    plg_id  id of the plugin
+    pid   id of the project
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="del_group_from_projectplugin"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">del_group_from_projectplugin</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">plg_id</span>,
+        <span class="sig-arg">pid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#del_group_from_projectplugin">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+delete a connection group from a project/plugin
+
+input:
+    db      database connection foo
+    plg_id  id of the plugin
+    pid   id of the project
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_group_by_plugin_project"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_group_by_plugin_project</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">plg_id</span>,
+        <span class="sig-arg">pid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#get_group_by_plugin_project">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+get connection group given a plugin and a project id
+
+input:
+    db      database connection foo
+    plg_id  plugin id
+    pid     project id
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="create_workgroup"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">create_workgroup</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">name</span>,
+        <span class="sig-arg">pseudo</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">description</span>=<span class="sig-default">''</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#create_workgroup">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+create a workgroup entry. return project id
+
+input:
+    pseudo  set a wgroup as pseudo group
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="createUserTable"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">createUserTable</span>(<span class="sig-arg">meta</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#createUserTable">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Create user table. Return table object.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="getusers"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getusers</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">username</span>,
+        <span class="sig-arg">pwd</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#getusers">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+Return a list of users given by 'username' and
+corresponding password.
+
+input:
+    db          tuple containing db meta and db connection
+    username    username to look for
+    pwd         password of the user
+
+output:
+    users       users that have this username/password. this should be
+                a list of length one
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_all_users"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_all_users</span>(<span class="sig-arg">db</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#get_all_users">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+return all existing non-deleted users
+
+input:
+    db  tuple containing db meta and db connection
+
+output:
+    users   a list of all users
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="getuser_byuid"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getuser_byuid</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">uid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#getuser_byuid">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+returns user entry for a given user id
+
+input:
+    db  tuple containing db meta and db connection
+    uid user id of the user to look for
+
+output:
+    res the database entry of the found user
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="update_user_password"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">update_user_password</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">uid</span>,
+        <span class="sig-arg">old_pwd</span>,
+        <span class="sig-arg">new_pwd</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#update_user_password">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+update a user's password. verifies that user and password combination
+matches. if no user is found with the given uid-old_pwd combination, throws
+a InputError.
+
+input:
+    db      tuple containing db meta and db connection
+    uid     user id of user to change password
+    old_pwd old password
+    new_pwd password to set
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="delete_user"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">delete_user</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">uid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#delete_user">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+delete a user
+
+input:
+    db      tuple containing db meta and db connection
+    uid     user id of the user to delete
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="update_user"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">update_user</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">uid</span>,
+        <span class="sig-arg">name</span>,
+        <span class="sig-arg">mail</span>,
+        <span class="sig-arg">description</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#update_user">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+updates a user's name and mail information
+
+input:
+    db      tuple containing db meta and db connection
+    uid     user to change information of
+    name    new name to set
+    mail    new mail to set
+    description description to set
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="insert_task"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">insert_task</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">start</span>,
+        <span class="sig-arg">uid</span>,
+        <span class="sig-arg">pid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#insert_task">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+create a new task entry and return task id
+
+input:
+    start   datetime the task should be executed at
+    uid     user id that created the task
+    pid     id of the project
+
+output :
+    tid     task id
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="insert_scan"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">insert_scan</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">start</span>,
+        <span class="sig-arg">stop</span>,
+        <span class="sig-arg">tid</span>,
+        <span class="sig-arg">plg_id</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#insert_scan">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+create a new scan entry and return scan id
+
+input:
+    stop    datetime scan ended
+    tid     task id that triggered the scan
+    start   datetime the scan startet
+    plg_id  plugin id
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="createSessionTable"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">createSessionTable</span>(<span class="sig-arg">meta</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#createSessionTable">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Create session table. Return table object.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="store_session"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">store_session</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">sid</span>,
+        <span class="sig-arg">uid</span>,
+        <span class="sig-arg">pid</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#store_session">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+Stores a session associated with a user.
+
+input:
+    db  tuple containing db meta and db connection
+    sid session id to store
+    uid user that is associated with that session
+    pid project id, that is associated with the session
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_sessions"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_sessions</span>(<span class="sig-arg">db</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#get_sessions">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+returns a dictionary containing all sessions
+
+input:
+    db  tuple containing db meta and db connection
+
+output:
+    res return a list of all sessions
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_sanitise_fd_state"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_sanitise_fd_state</span>(<span class="sig-arg">db</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#_sanitise_fd_state">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>sets all states with value -1 to 9.</p>
+  <p>this is usefull if the ccd is killed via SIGKILL and all plugins are 
+  killed too. if so, the ccd is not able to their state, which leads to 
+  inconsistencies since the states remain -1 although the plugin is not 
+  running anymore.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_fd_state"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_fd_state</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">fid</span>,
+        <span class="sig-arg">new_state</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#set_fd_state">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+set file descriptor/plugin state
+
+input:
+    fid     id of the file descriptor table entry
+    state   integer indicating the state
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_fd_state"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_fd_state</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">fid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#get_fd_state">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+get file descriptor/plugin state
+
+input:
+    fid     id of the file descriptor table entry
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_fd_state_by_rid"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_fd_state_by_rid</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">rid</span>,
+        <span class="sig-arg">new_state</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#set_fd_state_by_rid">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+set file descriptor/plugin state given the request id
+
+input:
+    rid         id of the request, that started the plugin
+    state       integer indicating the state
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_fd_by_rid"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_fd_by_rid</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">request_id</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#get_fd_by_rid">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+return the fd entry for a given request id
+
+input:
+    request_id  id of the request, that started the plugin
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_fd_process_id"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_fd_process_id</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">fid</span>,
+        <span class="sig-arg">pid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#set_fd_process_id">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+set the file decriptor/plugin process id
+
+input:
+    fid  id of the file descriptor table entry
+    pid  process id associated with the running plugin
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="storeFd"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">storeFd</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">fd_out</span>,
+        <span class="sig-arg">fd_in</span>,
+        <span class="sig-arg">uid</span>,
+        <span class="sig-arg">command</span>,
+        <span class="sig-arg">plg_id</span>,
+        <span class="sig-arg">request_id</span>,
+        <span class="sig-arg">state</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">process_id</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccddb-pysrc.html#storeFd">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Stores a plugin's new file descriptor (aka stdin/stdout), the user that
+issued the plugin execution and the command that was triggered.
+
+insert:
+    fd_out      file path to stdout descriptor to store
+    fd_int      file path to stdin descriptor to store
+
+    uid         user id of the owner
+    command     command that executes the plugin which makes use of the
+                fd
+    plg_id      plugin id of the plugin executed
+    request_id  id of the request that issued the plugin
+    status      an integer to indicate status (&lt;0: running,
+                0: finished, &gt;0: error, empty: not running)
+    process_id  process id of the plugin process
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== VARIABLES DETAILS ==================== -->
+<a name="section-VariablesDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-VariablesDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="ENGINE_ARGS"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">ENGINE_ARGS</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+dict(encoding= &quot;utf-8&quot;, echo= False, pool_size= 0, pool_reset_on_retur<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+n= 'commit')
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:37 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

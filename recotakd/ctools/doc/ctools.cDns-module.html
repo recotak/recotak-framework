@@ -1,0 +1,897 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>ctools.cDns</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="ctools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >ctools</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="ctools-module.html">Package&nbsp;ctools</a> ::
+        Module&nbsp;cDns
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="ctools.cDns-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module cDns</h1><p class="nomargin-top"><span class="codelink"><a href="ctools.cDns-pysrc.html">source&nbsp;code</a></span></p>
+<!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ctools.cDns.EInvalidDNS-class.html" class="summary-name">EInvalidDNS</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ctools.cDns.NOTAUTH-class.html" class="summary-name">NOTAUTH</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ctools.cDns.DNSparam-class.html" class="summary-name">DNSparam</a><br />
+      Class to encapsulate some DNS parameter types (type, class etc)
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ctools.cDns.DNSQuery-class.html" class="summary-name">DNSQuery</a>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="hexdump"></a><span class="summary-sig-name">hexdump</span>(<span class="summary-sig-arg">input</span>,
+        <span class="summary-sig-arg">separator</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"> </code><code class="variable-quote">'</code></span>)</span><br />
+      return a hexadecimal representation of the given string</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#hexdump">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="packed2int"></a><span class="summary-sig-name">packed2int</span>(<span class="summary-sig-arg">input</span>)</span><br />
+      convert arbitrary sized bigendian packed string into an integer</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#packed2int">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="domain_name_match"></a><span class="summary-sig-name">domain_name_match</span>(<span class="summary-sig-arg">s1</span>,
+        <span class="summary-sig-arg">s2</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#domain_name_match">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="ip2ptr"></a><span class="summary-sig-name">ip2ptr</span>(<span class="summary-sig-arg">address</span>)</span><br />
+      return PTR owner name of an IPv4 or IPv6 address (for -x option)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#ip2ptr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="ctools.cDns-module.html#get_socketparams" class="summary-sig-name">get_socketparams</a>(<span class="summary-sig-arg">server</span>,
+        <span class="summary-sig-arg">port</span>,
+        <span class="summary-sig-arg">af</span>,
+        <span class="summary-sig-arg">type</span>)</span><br />
+      Only the first set of parameters is used.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#get_socketparams">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="send_request_udp"></a><span class="summary-sig-name">send_request_udp</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">host</span>,
+        <span class="summary-sig-arg">port</span>,
+        <span class="summary-sig-arg">family</span>,
+        <span class="summary-sig-arg">itimeout</span>,
+        <span class="summary-sig-arg">retries</span>)</span><br />
+      Send the request via UDP, with retries using exponential backoff</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#send_request_udp">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="send_request_tcp"></a><span class="summary-sig-name">send_request_tcp</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">host</span>,
+        <span class="summary-sig-arg">port</span>,
+        <span class="summary-sig-arg">family</span>)</span><br />
+      Send the request packet via TCP</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#send_request_tcp">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="do_axfr"></a><span class="summary-sig-name">do_axfr</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">host</span>,
+        <span class="summary-sig-arg">port</span>,
+        <span class="summary-sig-arg">family</span>)</span><br />
+      AXFR uses TCP, and is answered by a sequence of response messages.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#do_axfr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_axfr"></a><span class="summary-sig-name">decode_axfr</span>(<span class="summary-sig-arg">response</span>,
+        <span class="summary-sig-arg">resplen</span>)</span><br />
+      given a string containing a sequence of response messages from an 
+      AXFR request, decode and print only the answer RRs</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#decode_axfr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="ctools.cDns-module.html#decode_header" class="summary-sig-name">decode_header</a>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">sentid</span>,
+        <span class="summary-sig-arg">checkid</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Decode a DNS protocol header</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#decode_header">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="txt2domainname"></a><span class="summary-sig-name">txt2domainname</span>(<span class="summary-sig-arg">input</span>,
+        <span class="summary-sig-arg">canonical_form</span>=<span class="summary-sig-default">False</span>)</span><br />
+      turn textual representation of a domain name into its wire format</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#txt2domainname">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_domainname"></a><span class="summary-sig-name">get_domainname</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>)</span><br />
+      decode a domainname at the given packet offset; see RFC 1035</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#get_domainname">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="pdomainname"></a><span class="summary-sig-name">pdomainname</span>(<span class="summary-sig-arg">labels</span>)</span><br />
+      given a sequence of domainname labels, return a printable string</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#pdomainname">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_question"></a><span class="summary-sig-name">decode_question</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>)</span><br />
+      decode question section of a DNS message</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#decode_question">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="generic_rdata_encoding"></a><span class="summary-sig-name">generic_rdata_encoding</span>(<span class="summary-sig-arg">rdata</span>,
+        <span class="summary-sig-arg">rdlen</span>)</span><br />
+      return generic encoding of rdata for unknown types; see RFC 3597</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#generic_rdata_encoding">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_txt_rdata"></a><span class="summary-sig-name">decode_txt_rdata</span>(<span class="summary-sig-arg">rdata</span>,
+        <span class="summary-sig-arg">rdlen</span>)</span><br />
+      decode TXT RR rdata into a string of quoted text strings, escaping 
+      any embedded double quotes</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#decode_txt_rdata">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_soa_rdata"></a><span class="summary-sig-name">decode_soa_rdata</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>,
+        <span class="summary-sig-arg">rdlen</span>)</span><br />
+      decode SOA rdata: mname, rname, serial, refresh, retry, expire, min</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#decode_soa_rdata">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_srv_rdata"></a><span class="summary-sig-name">decode_srv_rdata</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>)</span><br />
+      decode SRV rdata: priority (2), weight (2), port, target; RFC 2782</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#decode_srv_rdata">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_naptr_rdata"></a><span class="summary-sig-name">decode_naptr_rdata</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>,
+        <span class="summary-sig-arg">rdlen</span>)</span><br />
+      decode NAPTR: order, pref, flags, svc, regexp, replacement; RFC 2915</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#decode_naptr_rdata">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_rr"></a><span class="summary-sig-name">decode_rr</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>,
+        <span class="summary-sig-arg">hexrdata</span>)</span><br />
+      Decode a resource record, given DNS packet and offset</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#decode_rr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getauthns"></a><span class="summary-sig-name">getauthns</span>(<span class="summary-sig-arg">qname</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#getauthns">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="gethostbyname"></a><span class="summary-sig-name">gethostbyname</span>(<span class="summary-sig-arg">qname</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#gethostbyname">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="gethostbyaddr"></a><span class="summary-sig-name">gethostbyaddr</span>(<span class="summary-sig-arg">ip</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cDns-pysrc.html#gethostbyaddr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="logger"></a><span class="summary-name">logger</span> = <code title="logging.getLogger(__name__)">logging.getLogger(__name__)</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="RESOLV_CONF"></a><span class="summary-name">RESOLV_CONF</span> = <code title="'/etc/resolv.conf'"><code class="variable-quote">'</code><code class="variable-string">/etc/resolv.conf</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="DEFAULT_PORT"></a><span class="summary-name">DEFAULT_PORT</span> = <code title="53">53</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ITIMEOUT"></a><span class="summary-name">ITIMEOUT</span> = <code title="0.5">0.5</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="RETRIES"></a><span class="summary-name">RETRIES</span> = <code title="3">3</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="BUFSIZE"></a><span class="summary-name">BUFSIZE</span> = <code title="4096">4096</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="EDNS0_UDPSIZE"></a><span class="summary-name">EDNS0_UDPSIZE</span> = <code title="4096">4096</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="DEBUG"></a><span class="summary-name">DEBUG</span> = <code title="False">False</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="count_compression"></a><span class="summary-name">count_compression</span> = <code title="0">0</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="size_query"></a><span class="summary-name">size_query</span> = <code title="0">0</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="size_response"></a><span class="summary-name">size_response</span> = <code title="0">0</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ctools.cDns-module.html#qt" class="summary-name">qt</a> = <code title="DNSparam(&quot;TYPE&quot;, dict(A= 1, NS= 2, CNAME= 5, SOA= 6, PTR= 12, MX= 15, \
+TXT= 16, SIG= 24, KEY= 25, AAAA= 28, NXT= 30, SRV= 33, NAPTR= 35, CERT\
+= 37, A6= 38, DNAME= 39, OPT= 41, DS= 43, SSHFP= 44, IPSECKEY= 45, RRS\
+IG= 46, NSEC= 47, DNSKEY= 48, DHCID= 49, NSEC3= 50, NSEC3PARAM= 51, TL\
+SA= 52, HIP= 55, SPF= 99, AXFR= 252, TKEY= 249, TSIG= 250, ANY= 255, T\
+A= 32768, DLV= 32769))">DNSparam(&quot;TYPE&quot;, dict(A= 1, NS= 2, CNAME= 5, SOA= 6, PTR=<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="qc"></a><span class="summary-name">qc</span> = <code title="DNSparam(&quot;CLASS&quot;, dict(IN= 1, CH= 3, HS= 4, ANY= 255))">DNSparam(&quot;CLASS&quot;, dict(IN= 1, CH= 3, HS= 4, ANY= 255))</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ctools.cDns-module.html#rc" class="summary-name">rc</a> = <code title="DNSparam(&quot;RCODE&quot;, dict(NOERROR= 0, FORMERR= 1, SERVFAIL= 2, NXDOMAIN= \
+3, NOTIMPL= 4, REFUSED= 5, NOTAUTH= 9, BADVERS= 16, BADKEY= 17, BADTIM\
+E= 18, BADMODE= 19, BADNAME= 20, BADALG= 21, BADTRUNC= 22))">DNSparam(&quot;RCODE&quot;, dict(NOERROR= 0, FORMERR= 1, SERVFAIL= <code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ctools.cDns-module.html#dnssec_proto" class="summary-name">dnssec_proto</a> = <code title="{0: 'Reserved', 1: 'TLS', 2: 'Email', 3: 'DNSSEC', 4: 'IPSEC'}"><code class="variable-group">{</code>0<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">Reserved</code><code class="variable-quote">'</code><code class="variable-op">, </code>1<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">TLS</code><code class="variable-quote">'</code><code class="variable-op">, </code>2<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">Email</code><code class="variable-quote">'</code><code class="variable-op">, </code>3<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">DNSSE</code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="'ctools'"><code class="variable-quote">'</code><code class="variable-string">ctools</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="get_socketparams"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_socketparams</span>(<span class="sig-arg">server</span>,
+        <span class="sig-arg">port</span>,
+        <span class="sig-arg">af</span>,
+        <span class="sig-arg">type</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="ctools.cDns-pysrc.html#get_socketparams">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Only the first set of parameters is used. Passing af=AF_UNSPEC prefers
+  IPv6 if possible.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="decode_header"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">decode_header</span>(<span class="sig-arg">pkt</span>,
+        <span class="sig-arg">sentid</span>,
+        <span class="sig-arg">checkid</span>=<span class="sig-default">True</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="ctools.cDns-pysrc.html#decode_header">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Decode a DNS protocol header
+
+  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|                      ID                       |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|QR|   OpCode  |AA|TC|RD|RA| Z|AD|CD|   RCODE   |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|                QDCOUNT/ZOCOUNT                |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|                ANCOUNT/PRCOUNT                |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|                NSCOUNT/UPCOUNT                |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|                    ARCOUNT                    |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== VARIABLES DETAILS ==================== -->
+<a name="section-VariablesDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-VariablesDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="qt"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">qt</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+DNSparam(&quot;TYPE&quot;, dict(A= 1, NS= 2, CNAME= 5, SOA= 6, PTR= 12, MX= 15, <span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+TXT= 16, SIG= 24, KEY= 25, AAAA= 28, NXT= 30, SRV= 33, NAPTR= 35, CERT<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+= 37, A6= 38, DNAME= 39, OPT= 41, DS= 43, SSHFP= 44, IPSECKEY= 45, RRS<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+IG= 46, NSEC= 47, DNSKEY= 48, DHCID= 49, NSEC3= 50, NSEC3PARAM= 51, TL<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+SA= 52, HIP= 55, SPF= 99, AXFR= 252, TKEY= 249, TSIG= 250, ANY= 255, T<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+A= 32768, DLV= 32769))
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="rc"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">rc</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+DNSparam(&quot;RCODE&quot;, dict(NOERROR= 0, FORMERR= 1, SERVFAIL= 2, NXDOMAIN= <span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+3, NOTIMPL= 4, REFUSED= 5, NOTAUTH= 9, BADVERS= 16, BADKEY= 17, BADTIM<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+E= 18, BADMODE= 19, BADNAME= 20, BADALG= 21, BADTRUNC= 22))
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="dnssec_proto"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">dnssec_proto</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-group">{</code>0<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">Reserved</code><code class="variable-quote">'</code><code class="variable-op">, </code>1<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">TLS</code><code class="variable-quote">'</code><code class="variable-op">, </code>2<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">Email</code><code class="variable-quote">'</code><code class="variable-op">, </code>3<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">DNSSEC</code><code class="variable-quote">'</code><code class="variable-op">, </code>4<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">IPSEC</code><code class="variable-quote">'</code><code class="variable-group">}</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="ctools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >ctools</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:40 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

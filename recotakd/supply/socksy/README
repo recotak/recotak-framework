@@ -1,0 +1,5 @@
+socksy is a small SOCKS server. it relies on the ctools package.
+
+% ./socksy [OPTIONS] <ip>:<port>
+
+if you want to run socksy as daemon use option -d. for the rest, see help.

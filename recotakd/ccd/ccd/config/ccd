@@ -1,0 +1,29 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides: ccd
+# Required-Start:    $local_fs $syslog $remote_fs socksy
+# Required-Stop:     $local_fs $syslog $remote_fs socksy
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Rekotak Server
+### END INIT INFO
+
+
+# The following part carries out specific functions depending on arguments.
+case "$1" in
+    start)
+        echo "Starting ccd"
+	{python_interpreter} {ccd_location} --daemon --config {config_file} {venv_option}
+        ;;
+    stop)
+        echo "Stopping ccd"
+        kill `cat /var/run/ccd.pid`
+        ;;
+    *)
+        echo "Usage: /etc/init.d/ccd [start|stop]"
+        exit 1
+        ;;
+esac
+
+exit 0

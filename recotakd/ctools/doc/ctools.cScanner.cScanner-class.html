@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>ctools.cScanner.cScanner</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="ctools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >ctools</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="ctools-module.html">Package&nbsp;ctools</a> ::
+        <a href="ctools.cScanner-module.html">Module&nbsp;cScanner</a> ::
+        Class&nbsp;cScanner
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="ctools.cScanner.cScanner-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class cScanner</h1><p class="nomargin-top"><span class="codelink"><a href="ctools.cScanner-pysrc.html#cScanner">source&nbsp;code</a></span></p>
+<center>
+
+</center>
+<hr />
+<pre class="literalblock">
+
+Scanner process that is responsible for scanning a list of targets. It
+abstracts calls to other ctool libraries.
+onsider you want to write a short port scanner. Either your scanner
+inherits from cScanner or you use cScanner directly. In the constructor, the
+callback function(cb_scan) needs to be set in order to the actual scan. In
+this example it is a tcp connection to the target, but it might also be a
+whois check or a dns resolve. Before scanning targets should be added.
+
+from ctools import cScanner
+import socket
+
+TARGETS = [127.0.0.1, 192.168.170.1/16, 127.0.1.0-127.0.1.50]
+PORTS = [80]
+
+def scan(addr, hostname):
+    if instance(addr, tuple):
+        ip = addr[0]
+        port = addr[1]
+    else:
+        ip = addr
+        port = 80
+
+    # the actual scan for a passed target
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((ip, port))
+    s.sendall(&quot;my data&quot;)
+    response = s.recv()
+
+portscanner = cScanner(cb_scan=scan)
+portscanner.add_targets(TARGETS)
+porscannner.set_ports(PORTS)
+portscanner.start()
+portscanner.join()
+
+</pre>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="ctools.cScanner.cScanner-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">cb_scan</span>,
+        <span class="summary-sig-arg">name</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">dns_resolve</span>=<span class="summary-sig-default">True</span>,
+        <span class="summary-sig-arg">max_threads</span>=<span class="summary-sig-default">64</span>)</span><br />
+      create a cScanner object.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cScanner-pysrc.html#cScanner.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="ctools.cScanner.cScanner-class.html#set_randomness" class="summary-sig-name">set_randomness</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">randomness</span>)</span><br />
+      sets the randomness of scanning.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cScanner-pysrc.html#cScanner.set_randomness">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="ctools.cScanner.cScanner-class.html#set_ports" class="summary-sig-name">set_ports</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">ports</span>)</span><br />
+      Add a string containing ports that ought to be scanned for each target.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cScanner-pysrc.html#cScanner.set_ports">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="ctools.cScanner.cScanner-class.html#add_targets" class="summary-sig-name">add_targets</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">targets</span>)</span><br />
+      In order to scan, we need targets.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cScanner-pysrc.html#cScanner.add_targets">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="ctools.cScanner.cScanner-class.html#add_target_file" class="summary-sig-name">add_target_file</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">target_file</span>)</span><br />
+      In order to add targets that a stored in a file, you can pass the file
+name and the targets will be extracted in real time during scan.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cScanner-pysrc.html#cScanner.add_target_file">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_write_pid"></a><span class="summary-sig-name">_write_pid</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      write pid to /var/run</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cScanner-pysrc.html#cScanner._write_pid">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_remove_pid"></a><span class="summary-sig-name">_remove_pid</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      remove pid from /var/run</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cScanner-pysrc.html#cScanner._remove_pid">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="ctools.cScanner.cScanner-class.html#__start_scan_thread" class="summary-sig-name" onclick="show_private();">__start_scan_thread</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">target</span>)</span><br />
+      Creates a new scan thread, if max_threads allows to.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cScanner-pysrc.html#cScanner.__start_scan_thread">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="run"></a><span class="summary-sig-name">run</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cScanner-pysrc.html#cScanner.run">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">cb_scan</span>,
+        <span class="sig-arg">name</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">dns_resolve</span>=<span class="sig-default">True</span>,
+        <span class="sig-arg">max_threads</span>=<span class="sig-default">64</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="ctools.cScanner-pysrc.html#cScanner.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+create a cScanner object.
+
+input:
+    cb_scan     the callback function that is called for every target
+    name        you can name the scanner in order to find its pid file
+                in /var/log. if no name given, takes current time in
+                milliseconds
+    dns_resolve resolve dns names (optional)
+    max_threads the amount of threads that actually call cb_scan
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_randomness"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_randomness</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">randomness</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="ctools.cScanner-pysrc.html#cScanner.set_randomness">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+sets the randomness of scanning. the higher the randomness, the more
+random are targets scanned and the lower is performance.
+
+input:
+        randomness  an integer, that indicates the randomness.
+
+                        1    no randomness
+                        2    randomness
+                        10   high randomness
+                        100  ultra randomness
+                        1000 incredible ranomness
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_ports"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_ports</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">ports</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="ctools.cScanner-pysrc.html#cScanner.set_ports">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+Add a string containing ports that ought to be scanned for each target.
+
+input:
+    ports   a list containing ports to scan. supported types are:
+            single ports, port ranges
+
+            eg:
+                set_ports([21-23, 80, 443])
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="add_targets"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">add_targets</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">targets</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="ctools.cScanner-pysrc.html#cScanner.add_targets">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+In order to scan, we need targets. .
+
+input:
+    targets     a list containing the targets to scan
+                supported types are: single ip, ip range,
+                ip mask, domain name
+
+                e.g.:
+
+                 [127.0.0.1, 192.168.170.1/16, 127.0.1.0-127.0.1.50,
+                  google.de]
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="add_target_file"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">add_target_file</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">target_file</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="ctools.cScanner-pysrc.html#cScanner.add_target_file">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+In order to add targets that a stored in a file, you can pass the file
+name and the targets will be extracted in real time during scan. For
+each line, the add_targets function is called. See help(cScanner.
+add_target) for details about allowed target types.
+
+input:
+    target_file     a file containg one target per line. add_targets is
+                    applied to each line of the file
+
+                    e.g.:
+
+                     &quot;/tmp/my_targets.txt&quot;
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__start_scan_thread"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__start_scan_thread</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">target</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="ctools.cScanner-pysrc.html#cScanner.__start_scan_thread">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+Creates a new scan thread, if max_threads allows to.
+Every scan thread is assigned a queue that contains the targets to
+scan. For every element of the queue, the scan callback function is
+called.
+
+input:
+    target  a new target to scan. basically the result of cUtil.mkIP2
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="ctools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >ctools</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:41 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

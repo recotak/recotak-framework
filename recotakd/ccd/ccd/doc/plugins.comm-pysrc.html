@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>plugins.comm</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="plugins-module.html">Package&nbsp;plugins</a> ::
+        Module&nbsp;comm
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="plugins.comm-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="plugins.comm-module.html">Module plugins.comm</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-docstring">registering and unregistering for plugins</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-docstring"># Copyright (c) 2014, curesec GmbH</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-docstring"># All rights reserved.</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring"># Redistribution and use in source and binary forms, with or without modification, </tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring"># are permitted provided that the following conditions are met:</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring"># 1. Redistributions of source code must retain the above copyright notice, this list of </tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring"># conditions and the following disclaimer.</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-docstring"># 2. Redistributions in binary form must reproduce the above copyright notice, this list </tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring"># of conditions and the following disclaimer in the documentation and/or other materials </tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-docstring"># provided with the distribution.</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-docstring"># 3. Neither the name of the copyright holder nor the names of its contributors may be used </tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring"># to endorse or promote products derived from this software without specific prior written </tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring"># permission.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS </tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring"># OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF </tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-docstring"># MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE </tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-docstring"># COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, </tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring"># EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF </tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) </tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring"># HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR </tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring"># TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, </tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring"># EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring">In order to receive a plugin's output, the client needs to register for the</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">plugin. This is done by sending a OP_REGISTER packet. If so, the plugin's</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-docstring">stdout is forwarded to the client, while the client's stdin is received and</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-docstring">forwarded to the plugin.</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-docstring">Forwarding is done by a ForwarderThread of the ccdSession object.</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring">In order to stop forwarding, the client unregisters for the plugin</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package database=database-module.html"><a title="database" class="py-name" href="#" onclick="return doclink('link-0', 'database', 'link-0');">database</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Module database.ccdErrors=database.ccdErrors-module.html"><a title="database.ccdErrors" class="py-name" href="#" onclick="return doclink('link-1', 'ccdErrors', 'link-1');">ccdErrors</a></tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Class database.ccdErrors.EClosed=database.ccdErrors.EClosed-class.html"><a title="database.ccdErrors.EClosed" class="py-name" href="#" onclick="return doclink('link-2', 'EClosed', 'link-2');">EClosed</a></tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-3" class="py-name" targets="Package connection=connection-module.html"><a title="connection" class="py-name" href="#" onclick="return doclink('link-3', 'connection', 'link-3');">connection</a></tt> <tt class="py-keyword">import</tt> <tt id="link-4" class="py-name" targets="Module connection.ccdSession=connection.ccdSession-module.html,Module unittests.connectionTests.ccdSession=unittests.connectionTests.ccdSession-module.html"><a title="connection.ccdSession
+unittests.connectionTests.ccdSession" class="py-name" href="#" onclick="return doclink('link-4', 'ccdSession', 'link-4');">ccdSession</a></tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-5" class="py-name"><a title="connection" class="py-name" href="#" onclick="return doclink('link-5', 'connection', 'link-3');">connection</a></tt> <tt class="py-keyword">import</tt> <tt id="link-6" class="py-name" targets="Module connection.ccdSocket=connection.ccdSocket-module.html"><a title="connection.ccdSocket" class="py-name" href="#" onclick="return doclink('link-6', 'ccdSocket', 'link-6');">ccdSocket</a></tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-7" class="py-name"><a title="database" class="py-name" href="#" onclick="return doclink('link-7', 'database', 'link-0');">database</a></tt> <tt class="py-keyword">import</tt> <tt id="link-8" class="py-name" targets="Module database.ccddb=database.ccddb-module.html"><a title="database.ccddb" class="py-name" href="#" onclick="return doclink('link-8', 'ccddb', 'link-8');">ccddb</a></tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">socket</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt id="link-9" class="py-name" targets="Variable ccd.logger=ccd-module.html#logger,Variable config.read.logger=config.read-module.html#logger,Variable connection.ccdGroup.logger=connection.ccdGroup-module.html#logger,Variable connection.ccdProxy.logger=connection.ccdProxy-module.html#logger,Variable connection.ccdProxyChain.logger=connection.ccdProxyChain-module.html#logger,Variable connection.ccdSession.logger=connection.ccdSession-module.html#logger,Variable connection.ccdlib.logger=connection.ccdlib-module.html#logger,Variable database.ccdProject.logger=database.ccdProject-module.html#logger,Variable database.ccdUser.logger=database.ccdUser-module.html#logger,Variable database.ccdWorkgroup.logger=database.ccdWorkgroup-module.html#logger,Variable database.ccddb.logger=database.ccddb-module.html#logger,Variable database.project.db.logger=database.project.db-module.html#logger,Variable database.project.tables.logger=database.project.tables-module.html#logger,Variable files.download.logger=files.download-module.html#logger,Variable files.open.logger=files.open-module.html#logger,Variable files.upload.logger=files.upload-module.html#logger,Variable genreport.cOdf.logger=genreport.cOdf-module.html#logger,Variable genreport.csv.logger=genreport.csv-module.html#logger,Variable genreport.latex.logger=genreport.latex-module.html#logger,Variable genreport.pdf.logger=genreport.pdf-module.html#logger,Variable plugins.comm.logger=plugins.comm-module.html#logger,Variable plugins.plugin.logger=plugins.plugin-module.html#logger,Variable plugins.setup.logger=plugins.setup-module.html#logger"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-9', 'logger', 'link-9');">logger</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-string">"ccd.%s"</tt> <tt class="py-op">%</tt> <tt class="py-name">__name__</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"> </tt>
+<a name="close"></a><div id="close-def"><a name="L48"></a><tt class="py-lineno"> 48</tt> <a class="py-toggle" href="#" id="close-toggle" onclick="return toggle('close');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="plugins.comm-module.html#close">close</a><tt class="py-op">(</tt><tt class="py-param">ccd</tt><tt class="py-op">,</tt> <tt class="py-param">conn</tt><tt class="py-op">,</tt> <tt class="py-param">sid</tt><tt class="py-op">,</tt> <tt class="py-param">fid</tt><tt class="py-op">,</tt> <tt class="py-param">uid</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="close-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="close-expanded"><a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">    <tt class="py-docstring">""" Unregisters a user associated with sid that interacts with a</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-docstring">        fd given in pld.</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt class="py-docstring">        input:</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt class="py-docstring">            sid:    session id</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-docstring">            pld:    list of fds to unregister from</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-docstring">        ouputs:</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-docstring">            a string</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">    <tt class="py-name">fd_database_entry</tt> <tt class="py-op">=</tt> <tt id="link-10" class="py-name"><a title="database.ccddb" class="py-name" href="#" onclick="return doclink('link-10', 'ccddb', 'link-8');">ccddb</a></tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Function database.ccddb.getFdByFid()=database.ccddb-module.html#getFdByFid"><a title="database.ccddb.getFdByFid" class="py-name" href="#" onclick="return doclink('link-11', 'getFdByFid', 'link-11');">getFdByFid</a></tt><tt class="py-op">(</tt><tt class="py-name">conn</tt><tt class="py-op">,</tt> <tt class="py-name">fid</tt><tt class="py-op">,</tt> <tt class="py-name">uid</tt><tt class="py-op">)</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">    <tt class="py-comment">#fd_in = fd_database_entry[0][3]</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">    <tt class="py-comment">#fd_out = fd_database_entry[0][4]</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">fd_database_entry</tt><tt class="py-op">:</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt id="link-12" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-12', 'logger', 'link-9');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">error</tt><tt class="py-op">(</tt><tt class="py-string">"Database returned no fd that I can close!"</tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">    <tt id="link-13" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-13', 'logger', 'link-9');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'Closing %s'</tt><tt class="py-op">,</tt> <tt class="py-name">fd_database_entry</tt><tt class="py-op">)</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">    <tt id="link-14" class="py-name" targets="Function plugins.comm.unregister()=plugins.comm-module.html#unregister"><a title="plugins.comm.unregister" class="py-name" href="#" onclick="return doclink('link-14', 'unregister', 'link-14');">unregister</a></tt><tt class="py-op">(</tt><tt id="link-15" class="py-name" targets="Module ccd=ccd-module.html"><a title="ccd" class="py-name" href="#" onclick="return doclink('link-15', 'ccd', 'link-15');">ccd</a></tt><tt class="py-op">,</tt> <tt class="py-name">sid</tt><tt class="py-op">)</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">    <tt class="py-name">ses</tt> <tt class="py-op">=</tt> <tt id="link-16" class="py-name"><a title="ccd" class="py-name" href="#" onclick="return doclink('link-16', 'ccd', 'link-15');">ccd</a></tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Method ccd.Ccd.get_session()=ccd.Ccd-class.html#get_session"><a title="ccd.Ccd.get_session" class="py-name" href="#" onclick="return doclink('link-17', 'get_session', 'link-17');">get_session</a></tt><tt class="py-op">(</tt><tt class="py-name">sid</tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">    <tt class="py-name">rid</tt> <tt class="py-op">=</tt> <tt class="py-name">fd_database_entry</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-number">6</tt><tt class="py-op">]</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-name">ses</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Method connection.ccdSession.Session.close_fds()=connection.ccdSession.Session-class.html#close_fds"><a title="connection.ccdSession.Session.close_fds" class="py-name" href="#" onclick="return doclink('link-18', 'close_fds', 'link-18');">close_fds</a></tt><tt class="py-op">(</tt><tt class="py-name">rid</tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt> <tt class="py-keyword">as</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt id="link-19" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-19', 'logger', 'link-9');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">'Could not close %s/%s: %s'</tt><tt class="py-op">,</tt> <tt class="py-name">fd_database_entry</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-number">4</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">fd_database_entry</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-number">3</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"> </tt>
+<a name="unregister"></a><div id="unregister-def"><a name="L80"></a><tt class="py-lineno"> 80</tt> <a class="py-toggle" href="#" id="unregister-toggle" onclick="return toggle('unregister');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="plugins.comm-module.html#unregister">unregister</a><tt class="py-op">(</tt><tt class="py-param">ccd</tt><tt class="py-op">,</tt> <tt class="py-param">sid</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="unregister-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="unregister-expanded"><a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">    <tt class="py-docstring">""" Unregisters a user associated with sid that interacts with a</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"><tt class="py-docstring">        fd given in pld.</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-docstring">        input:</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-docstring">            sid:    session id</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-docstring">            pld:    list of fds to unregister from</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"><tt class="py-docstring">        ouputs:</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"><tt class="py-docstring">            a string</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">    <tt id="link-20" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-20', 'logger', 'link-9');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"unregistering for plugin.."</tt><tt class="py-op">)</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">    <tt class="py-name">ses</tt> <tt class="py-op">=</tt> <tt id="link-21" class="py-name"><a title="ccd" class="py-name" href="#" onclick="return doclink('link-21', 'ccd', 'link-15');">ccd</a></tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="ccd.Ccd.get_session" class="py-name" href="#" onclick="return doclink('link-22', 'get_session', 'link-17');">get_session</a></tt><tt class="py-op">(</tt><tt class="py-name">sid</tt><tt class="py-op">)</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">    <tt class="py-name">ses</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Method connection.ccdSession.Session.stop_forwarding()=connection.ccdSession.Session-class.html#stop_forwarding"><a title="connection.ccdSession.Session.stop_forwarding" class="py-name" href="#" onclick="return doclink('link-23', 'stop_forwarding', 'link-23');">stop_forwarding</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"> </tt>
+<a name="register"></a><div id="register-def"><a name="L96"></a><tt class="py-lineno"> 96</tt> <a class="py-toggle" href="#" id="register-toggle" onclick="return toggle('register');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="plugins.comm-module.html#register">register</a><tt class="py-op">(</tt><tt class="py-param">ccd</tt><tt class="py-op">,</tt> <tt class="py-param">sock</tt><tt class="py-op">,</tt> <tt class="py-param">req_t</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="register-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="register-expanded"><a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">    <tt class="py-docstring">""" Registers a user associated with sid to interact with a plugin</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"><tt class="py-docstring">        given in pld.</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"><tt class="py-docstring">        If forwarder not running, start forwarder in separete thread.</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"><tt class="py-docstring">        input:</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"><tt class="py-docstring">            sid    session id</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"><tt class="py-docstring">            req_t  the actual request containing the payload</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">    <tt class="py-name">pld</tt> <tt class="py-op">=</tt> <tt class="py-name">req_t</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">    <tt class="py-name">uid</tt> <tt class="py-op">=</tt> <tt id="link-24" class="py-name"><a title="ccd" class="py-name" href="#" onclick="return doclink('link-24', 'ccd', 'link-15');">ccd</a></tt><tt class="py-op">.</tt><tt id="link-25" class="py-name" targets="Method ccd.Ccd.get_user_and_workgroup()=ccd.Ccd-class.html#get_user_and_workgroup"><a title="ccd.Ccd.get_user_and_workgroup" class="py-name" href="#" onclick="return doclink('link-25', 'get_user_and_workgroup', 'link-25');">get_user_and_workgroup</a></tt><tt class="py-op">(</tt><tt class="py-name">req_t</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">uid</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">    <tt class="py-name">plg_id_register</tt> <tt class="py-op">=</tt> <tt class="py-name">req_t</tt><tt class="py-op">[</tt><tt class="py-number">4</tt><tt class="py-op">]</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">    <tt id="link-26" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-26', 'logger', 'link-9');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"registering for plugin %s, pld:%s"</tt><tt class="py-op">,</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">                 <tt class="py-name">plg_id_register</tt><tt class="py-op">,</tt> <tt class="py-name">pld</tt><tt class="py-op">)</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">        <tt class="py-comment"># extract payload</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">        <tt class="py-name">rid</tt> <tt class="py-op">=</tt> <tt class="py-name">pld</tt><tt class="py-op">[</tt><tt class="py-string">"rid"</tt><tt class="py-op">]</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">        <tt class="py-name">fd_database_entry</tt> <tt class="py-op">=</tt> <tt id="link-27" class="py-name"><a title="database.ccddb" class="py-name" href="#" onclick="return doclink('link-27', 'ccddb', 'link-8');">ccddb</a></tt><tt class="py-op">.</tt><tt id="link-28" class="py-name" targets="Function database.ccddb.getFdByRid()=database.ccddb-module.html#getFdByRid"><a title="database.ccddb.getFdByRid" class="py-name" href="#" onclick="return doclink('link-28', 'getFdByRid', 'link-28');">getFdByRid</a></tt><tt class="py-op">(</tt><tt id="link-29" class="py-name"><a title="ccd" class="py-name" href="#" onclick="return doclink('link-29', 'ccd', 'link-15');">ccd</a></tt><tt class="py-op">.</tt><tt class="py-name">_db</tt><tt class="py-op">.</tt><tt class="py-name">conn</tt><tt class="py-op">,</tt> <tt class="py-name">rid</tt><tt class="py-op">,</tt> <tt class="py-name">uid</tt><tt class="py-op">)</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt id="link-30" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-30', 'logger', 'link-9');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"fds:%s"</tt><tt class="py-op">,</tt> <tt class="py-name">fd_database_entry</tt><tt class="py-op">)</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-op">(</tt><tt class="py-name">KeyError</tt><tt class="py-op">,</tt> <tt class="py-name">ValueError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"Unproper payload!"</tt><tt class="py-op">)</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt> <tt class="py-keyword">as</tt> <tt class="py-name">err</tt><tt class="py-op">:</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"Failed to get fd for uid '%s':'%s'"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">uid</tt><tt class="py-op">,</tt> <tt class="py-name">err</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">    <tt class="py-comment"># check whether uid is allowed to access fd</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">    <tt class="py-comment"># the for-loop is mainly due to logging-fds. there multiple</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">    <tt class="py-comment"># logging-fd entries in db (for every user that is allowed to</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">    <tt class="py-comment"># access)</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">    <tt class="py-name">f_in</tt> <tt class="py-op">=</tt> <tt class="py-name">fd_database_entry</tt><tt class="py-op">[</tt><tt class="py-number">3</tt><tt class="py-op">]</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">    <tt class="py-name">f_out</tt> <tt class="py-op">=</tt> <tt class="py-name">fd_database_entry</tt><tt class="py-op">[</tt><tt class="py-number">4</tt><tt class="py-op">]</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">    <tt class="py-name">plg_id</tt> <tt class="py-op">=</tt> <tt class="py-name">fd_database_entry</tt><tt class="py-op">[</tt><tt class="py-number">5</tt><tt class="py-op">]</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">    <tt class="py-name">ses</tt> <tt class="py-op">=</tt> <tt id="link-31" class="py-name"><a title="ccd" class="py-name" href="#" onclick="return doclink('link-31', 'ccd', 'link-15');">ccd</a></tt><tt class="py-op">.</tt><tt id="link-32" class="py-name"><a title="ccd.Ccd.get_session" class="py-name" href="#" onclick="return doclink('link-32', 'get_session', 'link-17');">get_session</a></tt><tt class="py-op">(</tt><tt class="py-name">req_t</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">plg_id_register</tt> <tt class="py-op">==</tt> <tt class="py-name">plg_id</tt><tt class="py-op">:</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"Invalid plugin id!"</tt><tt class="py-op">)</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">    <tt class="py-comment"># get the plugin state: -1 = running, &gt;=0 = terminated</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">    <tt class="py-name">state</tt> <tt class="py-op">=</tt> <tt class="py-name">fd_database_entry</tt><tt class="py-op">[</tt><tt class="py-number">8</tt><tt class="py-op">]</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">state</tt> <tt class="py-op">&lt;</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">        <tt class="py-comment"># if the pulgin is still running, we use the forwarder thread to read from</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">        <tt class="py-comment"># the fifo and pass the data along to the client</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">        <tt class="py-comment"># add the correspondig fds to the session. Now, the session is able</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">        <tt class="py-comment"># to forward content from fd to client and vice versa</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">            <tt class="py-comment">#ses.set_fd(f_out, f_in, rid)</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">            <tt class="py-name">ses</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name" targets="Method connection.ccdSession.Session.start_forwarding()=connection.ccdSession.Session-class.html#start_forwarding"><a title="connection.ccdSession.Session.start_forwarding" class="py-name" href="#" onclick="return doclink('link-33', 'start_forwarding', 'link-33');">start_forwarding</a></tt><tt class="py-op">(</tt><tt class="py-name">f_out</tt><tt class="py-op">,</tt> <tt class="py-name">f_in</tt><tt class="py-op">,</tt> <tt class="py-name">sock</tt><tt class="py-op">,</tt> <tt class="py-name">rid</tt><tt class="py-op">,</tt> <tt class="py-name">req_t</tt><tt class="py-op">)</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt id="link-34" class="py-name"><a title="database.ccdErrors.EClosed" class="py-name" href="#" onclick="return doclink('link-34', 'EClosed', 'link-2');">EClosed</a></tt> <tt class="py-keyword">as</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">            <tt id="link-35" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-35', 'logger', 'link-9');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">)</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt> <tt class="py-keyword">as</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">            <tt id="link-36" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-36', 'logger', 'link-9');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">error</tt><tt class="py-op">(</tt><tt class="py-string">'Could not set fds for client io forwarding: %s'</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">)</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line"> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">        <tt class="py-comment"># if the plugin is terminated and does not produce any more output,</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">        <tt class="py-comment"># just send the saved output to the client</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">        <tt id="link-37" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-37', 'logger', 'link-9');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Plugin is not running -&gt; sending buffered output'</tt><tt class="py-op">)</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">        <tt id="link-38" class="py-name"><a title="connection.ccdSession
+unittests.connectionTests.ccdSession" class="py-name" href="#" onclick="return doclink('link-38', 'ccdSession', 'link-4');">ccdSession</a></tt><tt class="py-op">.</tt><tt id="link-39" class="py-name" targets="Class connection.ccdSession.Session=connection.ccdSession.Session-class.html"><a title="connection.ccdSession.Session" class="py-name" href="#" onclick="return doclink('link-39', 'Session', 'link-39');">Session</a></tt><tt class="py-op">.</tt><tt id="link-40" class="py-name" targets="Static Method connection.ccdSession.Session.resend_output()=connection.ccdSession.Session-class.html#resend_output"><a title="connection.ccdSession.Session.resend_output" class="py-name" href="#" onclick="return doclink('link-40', 'resend_output', 'link-40');">resend_output</a></tt><tt class="py-op">(</tt><tt class="py-name">sock</tt><tt class="py-op">,</tt> <tt class="py-name">f_out</tt><tt class="py-op">,</tt> <tt class="py-name">rid</tt><tt class="py-op">,</tt> <tt class="py-name">req_t</tt><tt class="py-op">)</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line"> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">    <tt class="py-comment"># check whether plugin is interactive</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">    <tt class="py-name">interactive</tt> <tt class="py-op">=</tt> <tt id="link-41" class="py-name"><a title="database.ccddb" class="py-name" href="#" onclick="return doclink('link-41', 'ccddb', 'link-8');">ccddb</a></tt><tt class="py-op">.</tt><tt id="link-42" class="py-name" targets="Function database.ccddb.is_fd_interactive()=database.ccddb-module.html#is_fd_interactive"><a title="database.ccddb.is_fd_interactive" class="py-name" href="#" onclick="return doclink('link-42', 'is_fd_interactive', 'link-42');">is_fd_interactive</a></tt><tt class="py-op">(</tt><tt id="link-43" class="py-name"><a title="ccd" class="py-name" href="#" onclick="return doclink('link-43', 'ccd', 'link-15');">ccd</a></tt><tt class="py-op">.</tt><tt class="py-name">_db</tt><tt class="py-op">.</tt><tt class="py-name">conn</tt><tt class="py-op">,</tt> <tt class="py-name">plg_id</tt><tt class="py-op">)</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">dict</tt><tt class="py-op">(</tt><tt class="py-name">interactive</tt><tt class="py-op">=</tt><tt class="py-name">interactive</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line"> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line"> </tt>
+<a name="getstate"></a><div id="getstate-def"><a name="L164"></a><tt class="py-lineno">164</tt> <a class="py-toggle" href="#" id="getstate-toggle" onclick="return toggle('getstate');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="plugins.comm-module.html#getstate">getstate</a><tt class="py-op">(</tt><tt class="py-param">ccd</tt><tt class="py-op">,</tt> <tt class="py-param">sid</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="getstate-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="getstate-expanded"><a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">    <tt class="py-docstring">""" returns all plugin names and fid that are created by the user</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line"><tt class="py-docstring">        associated with the given sid</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">    <tt id="link-44" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-44', 'logger', 'link-9');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"get state for sid %s"</tt><tt class="py-op">,</tt> <tt class="py-name">sid</tt><tt class="py-op">)</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">    <tt class="py-name">res</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line"> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">    <tt class="py-comment"># get information from database</tt> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">    <tt class="py-name">uid</tt> <tt class="py-op">=</tt> <tt id="link-45" class="py-name"><a title="ccd" class="py-name" href="#" onclick="return doclink('link-45', 'ccd', 'link-15');">ccd</a></tt><tt class="py-op">.</tt><tt id="link-46" class="py-name"><a title="ccd.Ccd.get_user_and_workgroup" class="py-name" href="#" onclick="return doclink('link-46', 'get_user_and_workgroup', 'link-25');">get_user_and_workgroup</a></tt><tt class="py-op">(</tt><tt class="py-name">sid</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">uid</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">    <tt class="py-name">fd_db</tt> <tt class="py-op">=</tt> <tt id="link-47" class="py-name"><a title="database.ccddb" class="py-name" href="#" onclick="return doclink('link-47', 'ccddb', 'link-8');">ccddb</a></tt><tt class="py-op">.</tt><tt id="link-48" class="py-name" targets="Function database.ccddb.getFdByUid()=database.ccddb-module.html#getFdByUid"><a title="database.ccddb.getFdByUid" class="py-name" href="#" onclick="return doclink('link-48', 'getFdByUid', 'link-48');">getFdByUid</a></tt><tt class="py-op">(</tt><tt id="link-49" class="py-name"><a title="ccd" class="py-name" href="#" onclick="return doclink('link-49', 'ccd', 'link-15');">ccd</a></tt><tt class="py-op">.</tt><tt class="py-name">_db</tt><tt class="py-op">.</tt><tt class="py-name">conn</tt><tt class="py-op">,</tt> <tt class="py-name">uid</tt><tt class="py-op">)</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line"> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">    <tt class="py-comment"># return fds and plugin name</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">e</tt> <tt class="py-keyword">in</tt> <tt class="py-name">fd_db</tt><tt class="py-op">:</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">            <tt class="py-name">res</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">dict</tt><tt class="py-op">(</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">                       <tt class="py-name">command</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">                       <tt class="py-name">plg_id</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">5</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">                       <tt class="py-name">rid</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">6</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">                       <tt class="py-name">state</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">8</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt> <tt class="py-keyword">as</tt> <tt class="py-name">err</tt><tt class="py-op">:</tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">            <tt id="link-50" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-50', 'logger', 'link-9');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">"Failed to get state for %s: %s"</tt><tt class="py-op">,</tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line">                           <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">err</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line"> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">res</tt> </tt>
+</div><a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:39 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+v0.3.3
+* minor changes in templates (Tmpl)
+
+v0.3.0
+* database type/errors
+* new: plugin.dbtemplate to indicate template type
+
+v0.2.0
+* groups to contain proxy chains and their priorities
+* socket chains to contain a list of server address and their protocol types

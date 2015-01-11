@@ -1,0 +1,64 @@
+v0.50
+* fixed invalid-response-error due to MTH_TERMINATE packet
+* fixed validate_wid-issue
+* d6df095 additional testcases and input validation
+* Removed dependency on ccdClasses module
+* added description for workgroups and projects
+* added OP_PERMISSION_DENIED
+* added length check project and workgroup
+* Special handling for MTH_TERMINATE and MTH_OUTPUT, which can be send by
+ccd independantly instead of a response to a request se
+* issue 529, windows now represent the plugins running state
+* changed default download destination form /tmp to ./outdir/project_x
+* table output, resolved
+* client setup script
+
+v0.49
+* issue 374 (wgroup admin is able to see all plugins)
+* issue 384 (SA is able to add/del plugins to/from wgroups)
+
+v0.48
+* issue 227 (client now compares ccd certificate fingerprint vs fingerprint
+             given in config)
+* issue 224
+* cli now kills plugins before ^C termination
+* issue 232 (session resumption)
+
+v0.47
+* new versioning. moved from string to float
+* switched from pickle marshalling to json files
+* major bug fixes
+
+v0.4.6
+* bug fix: authentication failure processing
+
+v0.4.5
+* 'new group' to create new group
+* 'new chain prot://ip:port prot2://ip2:port2' to create new chain
+* 'add chain <group id> <chain id> (<prio>)' to add chain to group
+* 'del chain <chain id>' to remove chain
+* 'del group <group id> (-f)' to remove group, -f removes its chains too
+* minor fixes
+
+v0.4.2
+* fixes window use to support interactivity
+
+v0.4.1
+* 'find plg' to list all loaded plugins
+* 'ls -l' to show in list view
+* 'ls -r' to show recursively
+* '!<cmd>' to execute <cmd> on shell
+
+v0.4.0
+* client supports remote shell within its window system. To leave remote shell
+  enter 'close' within plugin's window.
+
+v0.3.4
+* kill window with 'kill win <id>'
+* tab completion
+
+v0.3.3
+* 'help' command to show possible commands
+* win 0 shows plugins' debug infos
+* pseudo auth (incl. command line option '--account=user:pwd')
+* upload of files using 'upload <plugin> <file>'

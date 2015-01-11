@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>ctools.cTelnet</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="ctools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >ctools</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="ctools-module.html">Package&nbsp;ctools</a> ::
+        Module&nbsp;cTelnet
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="ctools.cTelnet-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="ctools.cTelnet-module.html">Module ctools.cTelnet</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/python</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2014, curesec GmbH</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># All rights reserved.</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># Redistribution and use in source and binary forms, with or without modification, </tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># are permitted provided that the following conditions are met:</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"># 1. Redistributions of source code must retain the above copyright notice, this list of </tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"># conditions and the following disclaimer.</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"># 2. Redistributions in binary form must reproduce the above copyright notice, this list </tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># of conditions and the following disclaimer in the documentation and/or other materials </tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># provided with the distribution.</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"># 3. Neither the name of the copyright holder nor the names of its contributors may be used </tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"># to endorse or promote products derived from this software without specific prior written </tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># permission.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-comment"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS </tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-comment"># OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF </tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE </tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-comment"># COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, </tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-comment"># EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF </tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-comment"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) </tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-comment"># HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR </tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-comment"># TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, </tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-comment"># EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">binascii</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">socket</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">ssl</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">re</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">multiprocessing</tt> <tt class="py-keyword">as</tt> <tt class="py-name">mp</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">Queue</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Method ctools.imapccd.CCDIMAP4.select()=ctools.imapccd.CCDIMAP4-class.html#select"><a title="ctools.imapccd.CCDIMAP4.select" class="py-name" href="#" onclick="return doclink('link-0', 'select', 'link-0');">select</a></tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">time</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt id="link-1" class="py-name" targets="Variable ctools.bloomfilter.__version__=ctools.bloomfilter-module.html#__version__"><a title="ctools.bloomfilter.__version__" class="py-name" href="#" onclick="return doclink('link-1', '__version__', 'link-1');">__version__</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'0.0'</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-name">__author__</tt> <tt class="py-op">=</tt> <tt class="py-string">'feli'</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt id="link-2" class="py-name" targets="Variable ctools.cTelnet.__plgname__=ctools.cTelnet-module.html#__plgname__"><a title="ctools.cTelnet.__plgname__" class="py-name" href="#" onclick="return doclink('link-2', '__plgname__', 'link-2');">__plgname__</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'telnet_bruteforce'</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-comment"># logging</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-comment">#LOG = "/tmp/" + __plgname__ + ".log"</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-comment">#FORMAT = '%(asctime)s - %(name)s - ' + \</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt class="py-comment">#    '%(levelname)s - %(threadName)s - %(message)s'</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-comment">#logging.basicConfig(filename=LOG,</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-comment">#                    filemode="w",</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-comment">#                    format=FORMAT,</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-comment">#                    level=logging.DEBUG)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt id="link-3" class="py-name" targets="Variable ctools.cCircCash.logger=ctools.cCircCash-module.html#logger,Variable ctools.cComm.logger=ctools.cComm-module.html#logger,Variable ctools.cDns.logger=ctools.cDns-module.html#logger,Variable ctools.cMon.logger=ctools.cMon-module.html#logger,Variable ctools.cMysql.logger=ctools.cMysql-module.html#logger,Variable ctools.cTargets.logger=ctools.cTargets-module.html#logger,Variable ctools.cTelnet.logger=ctools.cTelnet-module.html#logger,Variable ctools.cTuples.logger=ctools.cTuples-module.html#logger,Variable ctools.cUtil.logger=ctools.cUtil-module.html#logger,Variable ctools.cWorkerThreads.logger=ctools.cWorkerThreads-module.html#logger,Variable ctools.csockslib.logger=ctools.csockslib-module.html#logger,Variable ctools.sshlib.logger=ctools.sshlib-module.html#logger"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-3', 'logger', 'link-3');">logger</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-name">__name__</tt><tt class="py-op">)</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt id="link-4" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-4', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">setLevel</tt><tt class="py-op">(</tt><tt class="py-name">logging</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Variable ctools.cDns.DEBUG=ctools.cDns-module.html#DEBUG"><a title="ctools.cDns.DEBUG" class="py-name" href="#" onclick="return doclink('link-5', 'DEBUG', 'link-5');">DEBUG</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt id="link-6" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-6', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">addHandler</tt><tt class="py-op">(</tt><tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">NullHandler</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt id="link-7" class="py-name" targets="Variable ctools.cTelnet.CRLF=ctools.cTelnet-module.html#CRLF,Variable ctools.imapccd.CRLF=ctools.imapccd-module.html#CRLF,Variable ctools.popccd.CRLF=ctools.popccd-module.html#CRLF"><a title="ctools.cTelnet.CRLF
+ctools.imapccd.CRLF
+ctools.popccd.CRLF" class="py-name" href="#" onclick="return doclink('link-7', 'CRLF', 'link-7');">CRLF</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'\r\n'</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt id="link-8" class="py-name" targets="Variable ctools.cTelnet.SELECT_TIMEOUT=ctools.cTelnet-module.html#SELECT_TIMEOUT"><a title="ctools.cTelnet.SELECT_TIMEOUT" class="py-name" href="#" onclick="return doclink('link-8', 'SELECT_TIMEOUT', 'link-8');">SELECT_TIMEOUT</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0.5</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-comment"># from telnetlib.py</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-comment"># Telnet protocol characters (don't change)</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"><tt id="link-9" class="py-name" targets="Variable ctools.cTelnet.IAC=ctools.cTelnet-module.html#IAC"><a title="ctools.cTelnet.IAC" class="py-name" href="#" onclick="return doclink('link-9', 'IAC', 'link-9');">IAC</a></tt>  <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">255</tt><tt class="py-op">)</tt>  <tt class="py-comment"># "Interpret As Command"</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt id="link-10" class="py-name" targets="Variable ctools.cTelnet.DONT=ctools.cTelnet-module.html#DONT"><a title="ctools.cTelnet.DONT" class="py-name" href="#" onclick="return doclink('link-10', 'DONT', 'link-10');">DONT</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">254</tt><tt class="py-op">)</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"><tt id="link-11" class="py-name" targets="Variable ctools.cTelnet.DO=ctools.cTelnet-module.html#DO"><a title="ctools.cTelnet.DO" class="py-name" href="#" onclick="return doclink('link-11', 'DO', 'link-11');">DO</a></tt>   <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">253</tt><tt class="py-op">)</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt id="link-12" class="py-name" targets="Variable ctools.cTelnet.WONT=ctools.cTelnet-module.html#WONT"><a title="ctools.cTelnet.WONT" class="py-name" href="#" onclick="return doclink('link-12', 'WONT', 'link-12');">WONT</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">252</tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt id="link-13" class="py-name" targets="Variable ctools.cTelnet.WILL=ctools.cTelnet-module.html#WILL"><a title="ctools.cTelnet.WILL" class="py-name" href="#" onclick="return doclink('link-13', 'WILL', 'link-13');">WILL</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">251</tt><tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt id="link-14" class="py-name" targets="Variable ctools.cTelnet.theNULL=ctools.cTelnet-module.html#theNULL"><a title="ctools.cTelnet.theNULL" class="py-name" href="#" onclick="return doclink('link-14', 'theNULL', 'link-14');">theNULL</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt id="link-15" class="py-name" targets="Variable ctools.cTelnet.SE=ctools.cTelnet-module.html#SE"><a title="ctools.cTelnet.SE" class="py-name" href="#" onclick="return doclink('link-15', 'SE', 'link-15');">SE</a></tt>  <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">240</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Subnegotiation End</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt id="link-16" class="py-name" targets="Variable ctools.cTelnet.NOP=ctools.cTelnet-module.html#NOP"><a title="ctools.cTelnet.NOP" class="py-name" href="#" onclick="return doclink('link-16', 'NOP', 'link-16');">NOP</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">241</tt><tt class="py-op">)</tt>  <tt class="py-comment"># No Operation</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt id="link-17" class="py-name" targets="Variable ctools.cTelnet.DM=ctools.cTelnet-module.html#DM"><a title="ctools.cTelnet.DM" class="py-name" href="#" onclick="return doclink('link-17', 'DM', 'link-17');">DM</a></tt>  <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">242</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Data Mark</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt id="link-18" class="py-name" targets="Variable ctools.cTelnet.BRK=ctools.cTelnet-module.html#BRK"><a title="ctools.cTelnet.BRK" class="py-name" href="#" onclick="return doclink('link-18', 'BRK', 'link-18');">BRK</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">243</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Break</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt id="link-19" class="py-name" targets="Variable ctools.cTelnet.IP=ctools.cTelnet-module.html#IP,Variable ctools.cUtil.EST_SIZE.IP=ctools.cUtil.EST_SIZE-class.html#IP,Variable ctools.cUtil.TTYPE.IP=ctools.cUtil.TTYPE-class.html#IP"><a title="ctools.cTelnet.IP
+ctools.cUtil.EST_SIZE.IP
+ctools.cUtil.TTYPE.IP" class="py-name" href="#" onclick="return doclink('link-19', 'IP', 'link-19');">IP</a></tt>  <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">244</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Interrupt process</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt id="link-20" class="py-name" targets="Variable ctools.cTelnet.AO=ctools.cTelnet-module.html#AO"><a title="ctools.cTelnet.AO" class="py-name" href="#" onclick="return doclink('link-20', 'AO', 'link-20');">AO</a></tt>  <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">245</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Abort output</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt id="link-21" class="py-name" targets="Variable ctools.cTelnet.AYT=ctools.cTelnet-module.html#AYT"><a title="ctools.cTelnet.AYT" class="py-name" href="#" onclick="return doclink('link-21', 'AYT', 'link-21');">AYT</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">246</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Are You There</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt id="link-22" class="py-name" targets="Variable ctools.cTelnet.EC=ctools.cTelnet-module.html#EC"><a title="ctools.cTelnet.EC" class="py-name" href="#" onclick="return doclink('link-22', 'EC', 'link-22');">EC</a></tt>  <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">247</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Erase Character</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"><tt id="link-23" class="py-name" targets="Variable ctools.cTelnet.EL=ctools.cTelnet-module.html#EL"><a title="ctools.cTelnet.EL" class="py-name" href="#" onclick="return doclink('link-23', 'EL', 'link-23');">EL</a></tt>  <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">248</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Erase Line</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt id="link-24" class="py-name" targets="Variable ctools.cTelnet.GA=ctools.cTelnet-module.html#GA"><a title="ctools.cTelnet.GA" class="py-name" href="#" onclick="return doclink('link-24', 'GA', 'link-24');">GA</a></tt>  <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">249</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Go Ahead</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"><tt id="link-25" class="py-name" targets="Variable ctools.cTelnet.SB=ctools.cTelnet-module.html#SB"><a title="ctools.cTelnet.SB" class="py-name" href="#" onclick="return doclink('link-25', 'SB', 'link-25');">SB</a></tt>  <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">250</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Subnegotiation Begin</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"><tt class="py-comment"># Telnet protocol options code (don't change)</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-comment"># These ones all come from arpa/telnet.h</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt id="link-26" class="py-name" targets="Variable ctools.cTelnet.BINARY=ctools.cTelnet-module.html#BINARY"><a title="ctools.cTelnet.BINARY" class="py-name" href="#" onclick="return doclink('link-26', 'BINARY', 'link-26');">BINARY</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt>  <tt class="py-comment"># 8-bit data path</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt id="link-27" class="py-name" targets="Variable ctools.cTelnet.ECHO=ctools.cTelnet-module.html#ECHO"><a title="ctools.cTelnet.ECHO" class="py-name" href="#" onclick="return doclink('link-27', 'ECHO', 'link-27');">ECHO</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">)</tt>  <tt class="py-comment"># echo</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt id="link-28" class="py-name" targets="Variable ctools.cTelnet.RCP=ctools.cTelnet-module.html#RCP"><a title="ctools.cTelnet.RCP" class="py-name" href="#" onclick="return doclink('link-28', 'RCP', 'link-28');">RCP</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">2</tt><tt class="py-op">)</tt>  <tt class="py-comment"># prepare to reconnect</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"><tt id="link-29" class="py-name" targets="Variable ctools.cTelnet.SGA=ctools.cTelnet-module.html#SGA"><a title="ctools.cTelnet.SGA" class="py-name" href="#" onclick="return doclink('link-29', 'SGA', 'link-29');">SGA</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">3</tt><tt class="py-op">)</tt>  <tt class="py-comment"># suppress go ahead</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"><tt id="link-30" class="py-name" targets="Variable ctools.cTelnet.NAMS=ctools.cTelnet-module.html#NAMS"><a title="ctools.cTelnet.NAMS" class="py-name" href="#" onclick="return doclink('link-30', 'NAMS', 'link-30');">NAMS</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">4</tt><tt class="py-op">)</tt>  <tt class="py-comment"># approximate message size</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"><tt id="link-31" class="py-name" targets="Variable ctools.cTelnet.STATUS=ctools.cTelnet-module.html#STATUS"><a title="ctools.cTelnet.STATUS" class="py-name" href="#" onclick="return doclink('link-31', 'STATUS', 'link-31');">STATUS</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">5</tt><tt class="py-op">)</tt>  <tt class="py-comment"># give status</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"><tt id="link-32" class="py-name" targets="Variable ctools.cTelnet.TM=ctools.cTelnet-module.html#TM"><a title="ctools.cTelnet.TM" class="py-name" href="#" onclick="return doclink('link-32', 'TM', 'link-32');">TM</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">6</tt><tt class="py-op">)</tt>  <tt class="py-comment"># timing mark</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"><tt id="link-33" class="py-name" targets="Variable ctools.cTelnet.RCTE=ctools.cTelnet-module.html#RCTE"><a title="ctools.cTelnet.RCTE" class="py-name" href="#" onclick="return doclink('link-33', 'RCTE', 'link-33');">RCTE</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">7</tt><tt class="py-op">)</tt>  <tt class="py-comment"># remote controlled transmission and echo</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt id="link-34" class="py-name" targets="Variable ctools.cTelnet.NAOL=ctools.cTelnet-module.html#NAOL"><a title="ctools.cTelnet.NAOL" class="py-name" href="#" onclick="return doclink('link-34', 'NAOL', 'link-34');">NAOL</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">8</tt><tt class="py-op">)</tt>  <tt class="py-comment"># negotiate about output line width</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt id="link-35" class="py-name" targets="Variable ctools.cTelnet.NAOP=ctools.cTelnet-module.html#NAOP"><a title="ctools.cTelnet.NAOP" class="py-name" href="#" onclick="return doclink('link-35', 'NAOP', 'link-35');">NAOP</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">9</tt><tt class="py-op">)</tt>  <tt class="py-comment"># negotiate about output page size</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt id="link-36" class="py-name" targets="Variable ctools.cTelnet.NAOCRD=ctools.cTelnet-module.html#NAOCRD"><a title="ctools.cTelnet.NAOCRD" class="py-name" href="#" onclick="return doclink('link-36', 'NAOCRD', 'link-36');">NAOCRD</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">10</tt><tt class="py-op">)</tt>  <tt class="py-comment"># negotiate about CR disposition</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt id="link-37" class="py-name" targets="Variable ctools.cTelnet.NAOHTS=ctools.cTelnet-module.html#NAOHTS"><a title="ctools.cTelnet.NAOHTS" class="py-name" href="#" onclick="return doclink('link-37', 'NAOHTS', 'link-37');">NAOHTS</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">11</tt><tt class="py-op">)</tt>  <tt class="py-comment"># negotiate about horizontal tabstops</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt id="link-38" class="py-name" targets="Variable ctools.cTelnet.NAOHTD=ctools.cTelnet-module.html#NAOHTD"><a title="ctools.cTelnet.NAOHTD" class="py-name" href="#" onclick="return doclink('link-38', 'NAOHTD', 'link-38');">NAOHTD</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">12</tt><tt class="py-op">)</tt>  <tt class="py-comment"># negotiate about horizontal tab disposition</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"><tt id="link-39" class="py-name" targets="Variable ctools.cTelnet.NAOFFD=ctools.cTelnet-module.html#NAOFFD"><a title="ctools.cTelnet.NAOFFD" class="py-name" href="#" onclick="return doclink('link-39', 'NAOFFD', 'link-39');">NAOFFD</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">13</tt><tt class="py-op">)</tt>  <tt class="py-comment"># negotiate about formfeed disposition</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"><tt id="link-40" class="py-name" targets="Variable ctools.cTelnet.NAOVTS=ctools.cTelnet-module.html#NAOVTS"><a title="ctools.cTelnet.NAOVTS" class="py-name" href="#" onclick="return doclink('link-40', 'NAOVTS', 'link-40');">NAOVTS</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">14</tt><tt class="py-op">)</tt>  <tt class="py-comment"># negotiate about vertical tab stops</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"><tt id="link-41" class="py-name" targets="Variable ctools.cTelnet.NAOVTD=ctools.cTelnet-module.html#NAOVTD"><a title="ctools.cTelnet.NAOVTD" class="py-name" href="#" onclick="return doclink('link-41', 'NAOVTD', 'link-41');">NAOVTD</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">15</tt><tt class="py-op">)</tt>  <tt class="py-comment"># negotiate about vertical tab disposition</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line"><tt id="link-42" class="py-name" targets="Variable ctools.cTelnet.NAOLFD=ctools.cTelnet-module.html#NAOLFD"><a title="ctools.cTelnet.NAOLFD" class="py-name" href="#" onclick="return doclink('link-42', 'NAOLFD', 'link-42');">NAOLFD</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">16</tt><tt class="py-op">)</tt>  <tt class="py-comment"># negotiate about output LF disposition</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"><tt id="link-43" class="py-name" targets="Variable ctools.cTelnet.XASCII=ctools.cTelnet-module.html#XASCII"><a title="ctools.cTelnet.XASCII" class="py-name" href="#" onclick="return doclink('link-43', 'XASCII', 'link-43');">XASCII</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">17</tt><tt class="py-op">)</tt>  <tt class="py-comment"># extended ascii character set</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"><tt id="link-44" class="py-name" targets="Variable ctools.cTelnet.LOGOUT=ctools.cTelnet-module.html#LOGOUT"><a title="ctools.cTelnet.LOGOUT" class="py-name" href="#" onclick="return doclink('link-44', 'LOGOUT', 'link-44');">LOGOUT</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">18</tt><tt class="py-op">)</tt>  <tt class="py-comment"># force logout</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"><tt id="link-45" class="py-name" targets="Variable ctools.cTelnet.BM=ctools.cTelnet-module.html#BM"><a title="ctools.cTelnet.BM" class="py-name" href="#" onclick="return doclink('link-45', 'BM', 'link-45');">BM</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">19</tt><tt class="py-op">)</tt>  <tt class="py-comment"># byte macro</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"><tt id="link-46" class="py-name" targets="Variable ctools.cTelnet.DET=ctools.cTelnet-module.html#DET"><a title="ctools.cTelnet.DET" class="py-name" href="#" onclick="return doclink('link-46', 'DET', 'link-46');">DET</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">20</tt><tt class="py-op">)</tt>  <tt class="py-comment"># data entry terminal</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"><tt id="link-47" class="py-name" targets="Variable ctools.cTelnet.SUPDUP=ctools.cTelnet-module.html#SUPDUP"><a title="ctools.cTelnet.SUPDUP" class="py-name" href="#" onclick="return doclink('link-47', 'SUPDUP', 'link-47');">SUPDUP</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">21</tt><tt class="py-op">)</tt>  <tt class="py-comment"># supdup protocol</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"><tt id="link-48" class="py-name" targets="Variable ctools.cTelnet.SUPDUPOUTPUT=ctools.cTelnet-module.html#SUPDUPOUTPUT"><a title="ctools.cTelnet.SUPDUPOUTPUT" class="py-name" href="#" onclick="return doclink('link-48', 'SUPDUPOUTPUT', 'link-48');">SUPDUPOUTPUT</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">22</tt><tt class="py-op">)</tt>  <tt class="py-comment"># supdup output</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"><tt id="link-49" class="py-name" targets="Variable ctools.cTelnet.SNDLOC=ctools.cTelnet-module.html#SNDLOC"><a title="ctools.cTelnet.SNDLOC" class="py-name" href="#" onclick="return doclink('link-49', 'SNDLOC', 'link-49');">SNDLOC</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">23</tt><tt class="py-op">)</tt>  <tt class="py-comment"># send location</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"><tt id="link-50" class="py-name" targets="Variable ctools.cTelnet.TTYPE=ctools.cTelnet-module.html#TTYPE,Class ctools.cUtil.TTYPE=ctools.cUtil.TTYPE-class.html"><a title="ctools.cTelnet.TTYPE
+ctools.cUtil.TTYPE" class="py-name" href="#" onclick="return doclink('link-50', 'TTYPE', 'link-50');">TTYPE</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">24</tt><tt class="py-op">)</tt>  <tt class="py-comment"># terminal type</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"><tt id="link-51" class="py-name" targets="Variable ctools.cTelnet.EOR=ctools.cTelnet-module.html#EOR"><a title="ctools.cTelnet.EOR" class="py-name" href="#" onclick="return doclink('link-51', 'EOR', 'link-51');">EOR</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">25</tt><tt class="py-op">)</tt>  <tt class="py-comment"># end or record</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"><tt id="link-52" class="py-name" targets="Variable ctools.cTelnet.TUID=ctools.cTelnet-module.html#TUID"><a title="ctools.cTelnet.TUID" class="py-name" href="#" onclick="return doclink('link-52', 'TUID', 'link-52');">TUID</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">26</tt><tt class="py-op">)</tt>  <tt class="py-comment"># TACACS user identification</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"><tt id="link-53" class="py-name" targets="Variable ctools.cTelnet.OUTMRK=ctools.cTelnet-module.html#OUTMRK"><a title="ctools.cTelnet.OUTMRK" class="py-name" href="#" onclick="return doclink('link-53', 'OUTMRK', 'link-53');">OUTMRK</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">27</tt><tt class="py-op">)</tt>  <tt class="py-comment"># output marking</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"><tt id="link-54" class="py-name" targets="Variable ctools.cTelnet.TTYLOC=ctools.cTelnet-module.html#TTYLOC"><a title="ctools.cTelnet.TTYLOC" class="py-name" href="#" onclick="return doclink('link-54', 'TTYLOC', 'link-54');">TTYLOC</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">28</tt><tt class="py-op">)</tt>  <tt class="py-comment"># terminal location number</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"><tt id="link-55" class="py-name" targets="Variable ctools.cTelnet.VT3270REGIME=ctools.cTelnet-module.html#VT3270REGIME"><a title="ctools.cTelnet.VT3270REGIME" class="py-name" href="#" onclick="return doclink('link-55', 'VT3270REGIME', 'link-55');">VT3270REGIME</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">29</tt><tt class="py-op">)</tt>  <tt class="py-comment"># 3270 regime</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"><tt id="link-56" class="py-name" targets="Variable ctools.cTelnet.X3PAD=ctools.cTelnet-module.html#X3PAD"><a title="ctools.cTelnet.X3PAD" class="py-name" href="#" onclick="return doclink('link-56', 'X3PAD', 'link-56');">X3PAD</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">30</tt><tt class="py-op">)</tt>  <tt class="py-comment"># X.3 PAD</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"><tt id="link-57" class="py-name" targets="Variable ctools.cTelnet.NAWS=ctools.cTelnet-module.html#NAWS"><a title="ctools.cTelnet.NAWS" class="py-name" href="#" onclick="return doclink('link-57', 'NAWS', 'link-57');">NAWS</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">31</tt><tt class="py-op">)</tt>  <tt class="py-comment"># window size</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"><tt id="link-58" class="py-name" targets="Variable ctools.cTelnet.TSPEED=ctools.cTelnet-module.html#TSPEED"><a title="ctools.cTelnet.TSPEED" class="py-name" href="#" onclick="return doclink('link-58', 'TSPEED', 'link-58');">TSPEED</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">32</tt><tt class="py-op">)</tt>  <tt class="py-comment"># terminal speed</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"><tt id="link-59" class="py-name" targets="Variable ctools.cTelnet.LFLOW=ctools.cTelnet-module.html#LFLOW"><a title="ctools.cTelnet.LFLOW" class="py-name" href="#" onclick="return doclink('link-59', 'LFLOW', 'link-59');">LFLOW</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">33</tt><tt class="py-op">)</tt>  <tt class="py-comment"># remote flow control</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"><tt id="link-60" class="py-name" targets="Variable ctools.cTelnet.LINEMODE=ctools.cTelnet-module.html#LINEMODE"><a title="ctools.cTelnet.LINEMODE" class="py-name" href="#" onclick="return doclink('link-60', 'LINEMODE', 'link-60');">LINEMODE</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">34</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Linemode option</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"><tt id="link-61" class="py-name" targets="Variable ctools.cTelnet.XDISPLOC=ctools.cTelnet-module.html#XDISPLOC"><a title="ctools.cTelnet.XDISPLOC" class="py-name" href="#" onclick="return doclink('link-61', 'XDISPLOC', 'link-61');">XDISPLOC</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">35</tt><tt class="py-op">)</tt>  <tt class="py-comment"># X Display Location</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"><tt id="link-62" class="py-name" targets="Variable ctools.cTelnet.OLD_ENVIRON=ctools.cTelnet-module.html#OLD_ENVIRON"><a title="ctools.cTelnet.OLD_ENVIRON" class="py-name" href="#" onclick="return doclink('link-62', 'OLD_ENVIRON', 'link-62');">OLD_ENVIRON</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">36</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Old - Environment variables</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"><tt id="link-63" class="py-name" targets="Variable ctools.cTelnet.AUTHENTICATION=ctools.cTelnet-module.html#AUTHENTICATION"><a title="ctools.cTelnet.AUTHENTICATION" class="py-name" href="#" onclick="return doclink('link-63', 'AUTHENTICATION', 'link-63');">AUTHENTICATION</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">37</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Authenticate</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"><tt id="link-64" class="py-name" targets="Variable ctools.cTelnet.ENCRYPT=ctools.cTelnet-module.html#ENCRYPT"><a title="ctools.cTelnet.ENCRYPT" class="py-name" href="#" onclick="return doclink('link-64', 'ENCRYPT', 'link-64');">ENCRYPT</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">38</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Encryption option</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"><tt id="link-65" class="py-name" targets="Variable ctools.cTelnet.NEW_ENVIRON=ctools.cTelnet-module.html#NEW_ENVIRON"><a title="ctools.cTelnet.NEW_ENVIRON" class="py-name" href="#" onclick="return doclink('link-65', 'NEW_ENVIRON', 'link-65');">NEW_ENVIRON</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">39</tt><tt class="py-op">)</tt>  <tt class="py-comment"># New - Environment variables</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"><tt class="py-comment"># the following ones come from</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"><tt class="py-comment"># http://www.iana.org/assignments/telnet-options</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"><tt class="py-comment"># Unfortunately, that document does not assign identifiers</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"><tt class="py-comment"># to all of them, so we are making them up</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"><tt id="link-66" class="py-name" targets="Variable ctools.cTelnet.TN3270E=ctools.cTelnet-module.html#TN3270E"><a title="ctools.cTelnet.TN3270E" class="py-name" href="#" onclick="return doclink('link-66', 'TN3270E', 'link-66');">TN3270E</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">40</tt><tt class="py-op">)</tt>  <tt class="py-comment"># TN3270E</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"><tt id="link-67" class="py-name" targets="Variable ctools.cTelnet.XAUTH=ctools.cTelnet-module.html#XAUTH"><a title="ctools.cTelnet.XAUTH" class="py-name" href="#" onclick="return doclink('link-67', 'XAUTH', 'link-67');">XAUTH</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">41</tt><tt class="py-op">)</tt>  <tt class="py-comment"># XAUTH</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"><tt id="link-68" class="py-name" targets="Variable ctools.cTelnet.CHARSET=ctools.cTelnet-module.html#CHARSET"><a title="ctools.cTelnet.CHARSET" class="py-name" href="#" onclick="return doclink('link-68', 'CHARSET', 'link-68');">CHARSET</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">42</tt><tt class="py-op">)</tt>  <tt class="py-comment"># CHARSET</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"><tt id="link-69" class="py-name" targets="Variable ctools.cTelnet.RSP=ctools.cTelnet-module.html#RSP"><a title="ctools.cTelnet.RSP" class="py-name" href="#" onclick="return doclink('link-69', 'RSP', 'link-69');">RSP</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">43</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Telnet Remote Serial Port</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"><tt id="link-70" class="py-name" targets="Variable ctools.cTelnet.COM_PORT_OPTION=ctools.cTelnet-module.html#COM_PORT_OPTION"><a title="ctools.cTelnet.COM_PORT_OPTION" class="py-name" href="#" onclick="return doclink('link-70', 'COM_PORT_OPTION', 'link-70');">COM_PORT_OPTION</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">44</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Com Port Control Option</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"><tt id="link-71" class="py-name" targets="Variable ctools.cTelnet.SUPPRESS_LOCAL_ECHO=ctools.cTelnet-module.html#SUPPRESS_LOCAL_ECHO"><a title="ctools.cTelnet.SUPPRESS_LOCAL_ECHO" class="py-name" href="#" onclick="return doclink('link-71', 'SUPPRESS_LOCAL_ECHO', 'link-71');">SUPPRESS_LOCAL_ECHO</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">45</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Telnet Suppress Local Echo</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"><tt id="link-72" class="py-name" targets="Variable ctools.cTelnet.TLS=ctools.cTelnet-module.html#TLS"><a title="ctools.cTelnet.TLS" class="py-name" href="#" onclick="return doclink('link-72', 'TLS', 'link-72');">TLS</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">46</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Telnet Start TLS</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line"><tt id="link-73" class="py-name" targets="Variable ctools.cTelnet.KERMIT=ctools.cTelnet-module.html#KERMIT"><a title="ctools.cTelnet.KERMIT" class="py-name" href="#" onclick="return doclink('link-73', 'KERMIT', 'link-73');">KERMIT</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">47</tt><tt class="py-op">)</tt>  <tt class="py-comment"># KERMIT</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"><tt id="link-74" class="py-name" targets="Variable ctools.cTelnet.SEND_URL=ctools.cTelnet-module.html#SEND_URL"><a title="ctools.cTelnet.SEND_URL" class="py-name" href="#" onclick="return doclink('link-74', 'SEND_URL', 'link-74');">SEND_URL</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">48</tt><tt class="py-op">)</tt>  <tt class="py-comment"># SEND-URL</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"><tt id="link-75" class="py-name" targets="Variable ctools.cTelnet.FORWARD_X=ctools.cTelnet-module.html#FORWARD_X"><a title="ctools.cTelnet.FORWARD_X" class="py-name" href="#" onclick="return doclink('link-75', 'FORWARD_X', 'link-75');">FORWARD_X</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">49</tt><tt class="py-op">)</tt>  <tt class="py-comment"># FORWARD_X</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line"><tt id="link-76" class="py-name" targets="Variable ctools.cTelnet.PRAGMA_LOGON=ctools.cTelnet-module.html#PRAGMA_LOGON"><a title="ctools.cTelnet.PRAGMA_LOGON" class="py-name" href="#" onclick="return doclink('link-76', 'PRAGMA_LOGON', 'link-76');">PRAGMA_LOGON</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">138</tt><tt class="py-op">)</tt>  <tt class="py-comment"># TELOPT PRAGMA LOGON</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"><tt id="link-77" class="py-name" targets="Variable ctools.cTelnet.SSPI_LOGON=ctools.cTelnet-module.html#SSPI_LOGON"><a title="ctools.cTelnet.SSPI_LOGON" class="py-name" href="#" onclick="return doclink('link-77', 'SSPI_LOGON', 'link-77');">SSPI_LOGON</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">139</tt><tt class="py-op">)</tt>  <tt class="py-comment"># TELOPT SSPI LOGON</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line"><tt id="link-78" class="py-name" targets="Variable ctools.cTelnet.PRAGMA_HEARTBEAT=ctools.cTelnet-module.html#PRAGMA_HEARTBEAT"><a title="ctools.cTelnet.PRAGMA_HEARTBEAT" class="py-name" href="#" onclick="return doclink('link-78', 'PRAGMA_HEARTBEAT', 'link-78');">PRAGMA_HEARTBEAT</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">140</tt><tt class="py-op">)</tt>  <tt class="py-comment"># TELOPT PRAGMA HEARTBEAT</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"><tt id="link-79" class="py-name" targets="Variable ctools.cTelnet.EXOPL=ctools.cTelnet-module.html#EXOPL"><a title="ctools.cTelnet.EXOPL" class="py-name" href="#" onclick="return doclink('link-79', 'EXOPL', 'link-79');">EXOPL</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">255</tt><tt class="py-op">)</tt>  <tt class="py-comment"># Extended-Options-List</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"><tt id="link-80" class="py-name" targets="Variable ctools.cTelnet.NOOPT=ctools.cTelnet-module.html#NOOPT"><a title="ctools.cTelnet.NOOPT" class="py-name" href="#" onclick="return doclink('link-80', 'NOOPT', 'link-80');">NOOPT</a></tt> <tt class="py-op">=</tt> <tt class="py-name">chr</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line"> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"> </tt>
+<a name="Listener"></a><div id="Listener-def"><a name="L145"></a><tt class="py-lineno">145</tt> <a class="py-toggle" href="#" id="Listener-toggle" onclick="return toggle('Listener');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="ctools.cTelnet.Listener-class.html">Listener</a><tt class="py-op">(</tt><tt class="py-base-class">mp</tt><tt class="py-op">.</tt><tt class="py-base-class">Process</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Listener-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Listener-expanded"><a name="Listener.__init__"></a><div id="Listener.__init__-def"><a name="L146"></a><tt class="py-lineno">146</tt> <a class="py-toggle" href="#" id="Listener.__init__-toggle" onclick="return toggle('Listener.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cTelnet.Listener-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">ip</tt><tt class="py-op">,</tt> <tt class="py-param">port</tt><tt class="py-op">,</tt> <tt class="py-param">conn_s</tt><tt class="py-op">,</tt> <tt class="py-param">conn_r</tt><tt class="py-op">,</tt> <tt class="py-param">a</tt><tt class="py-op">,</tt> <tt class="py-param">b</tt><tt class="py-op">,</tt> <tt class="py-param">stopEvent</tt><tt class="py-op">,</tt> <tt class="py-param">use_ssl</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-param">timeout</tt><tt class="py-op">=</tt><tt class="py-number">3</tt><tt class="py-op">,</tt> <tt class="py-param">verbose</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Listener.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Listener.__init__-expanded"><a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line"> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line"><tt class="py-docstring">        Handles communication with telnet server.</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line"><tt class="py-docstring">        All commands are answered with WONT.</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line"><tt class="py-docstring">        Data is passed to the client via pipe.</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line"><tt class="py-docstring">        Data from the client is read through a pipe and forwarded to the server.</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line"> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">        <tt id="link-81" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-81', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Init Listener for %s:%d'</tt><tt class="py-op">,</tt> <tt class="py-name">ip</tt><tt class="py-op">,</tt> <tt id="link-82" class="py-name" targets="Method ctools.cComm.Mark.port()=ctools.cComm.Mark-class.html#port"><a title="ctools.cComm.Mark.port" class="py-name" href="#" onclick="return doclink('link-82', 'port', 'link-82');">port</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">        <tt class="py-name">super</tt><tt class="py-op">(</tt><tt id="link-83" class="py-name" targets="Class ctools.cTelnet.Listener=ctools.cTelnet.Listener-class.html"><a title="ctools.cTelnet.Listener" class="py-name" href="#" onclick="return doclink('link-83', 'Listener', 'link-83');">Listener</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-84" class="py-name" targets="Method ctools.bloomfilter.BloomFilter.__init__()=ctools.bloomfilter.BloomFilter-class.html#__init__,Method ctools.cBing.bing.BingQuery.__init__()=ctools.cBing.bing.BingQuery-class.html#__init__,Method ctools.cBing.socks4.Socks4Socket.__init__()=ctools.cBing.socks4.Socks4Socket-class.html#__init__,Method ctools.cCircCash.EInvalidThreshold.__init__()=ctools.cCircCash.EInvalidThreshold-class.html#__init__,Method ctools.cCircCash._circ_cash.__init__()=ctools.cCircCash._circ_cash-class.html#__init__,Method ctools.cComm.Mark.__init__()=ctools.cComm.Mark-class.html#__init__,Method ctools.cDns.DNSQuery.__init__()=ctools.cDns.DNSQuery-class.html#__init__,Method ctools.cDns.DNSparam.__init__()=ctools.cDns.DNSparam-class.html#__init__,Method ctools.cDns.EInvalidDNS.__init__()=ctools.cDns.EInvalidDNS-class.html#__init__,Method ctools.cMon.MonitorCPU.__init__()=ctools.cMon.MonitorCPU-class.html#__init__,Method ctools.cMon.MonitorRAM.__init__()=ctools.cMon.MonitorRAM-class.html#__init__,Method ctools.cMssql.Mssql.__init__()=ctools.cMssql.Mssql-class.html#__init__,Method ctools.cMysql.MysqlClient.__init__()=ctools.cMysql.MysqlClient-class.html#__init__,Method ctools.cProbeparse.Probeparser.__init__()=ctools.cProbeparse.Probeparser-class.html#__init__,Method ctools.cRpc.Rpc.__init__()=ctools.cRpc.Rpc-class.html#__init__,Method ctools.cScanner.cScanner.__init__()=ctools.cScanner.cScanner-class.html#__init__,Method ctools.cTargets.TargetGenerator.__init__()=ctools.cTargets.TargetGenerator-class.html#__init__,Method ctools.cTelnet.Listener.__init__()=ctools.cTelnet.Listener-class.html#__init__,Method ctools.cTelnet.Telnet.__init__()=ctools.cTelnet.Telnet-class.html#__init__,Method ctools.cTuples.ENoInput.__init__()=ctools.cTuples.ENoInput-class.html#__init__,Method ctools.cTuples.cInputGenerator.__init__()=ctools.cTuples.cInputGenerator-class.html#__init__,Method ctools.cTuples.cTHQueue.__init__()=ctools.cTuples.cTHQueue-class.html#__init__,Method ctools.cTuples.cTuples.__init__()=ctools.cTuples.cTuples-class.html#__init__,Method ctools.cUtil.cTimer.__init__()=ctools.cUtil.cTimer-class.html#__init__,Method ctools.cWorkerThreads._cWorker.__init__()=ctools.cWorkerThreads._cWorker-class.html#__init__,Method ctools.cWorkerThreads.cWork.__init__()=ctools.cWorkerThreads.cWork-class.html#__init__,Method ctools.dns.exceptions.BadUrl.__init__()=ctools.dns.exceptions.BadUrl-class.html#__init__,Method ctools.dns.exceptions.DomainNotFound.__init__()=ctools.dns.exceptions.DomainNotFound-class.html#__init__,Method ctools.imapccd.CCDIMAP4.__init__()=ctools.imapccd.CCDIMAP4-class.html#__init__,Method ctools.popccd.CCDPOP3.__init__()=ctools.popccd.CCDPOP3-class.html#__init__,Method ctools.sshlib.sftpClass.__init__()=ctools.sshlib.sftpClass-class.html#__init__,Method ctools.sshlib.socketClass.__init__()=ctools.sshlib.socketClass-class.html#__init__,Method ctools.sshlib.sshClass.__init__()=ctools.sshlib.sshClass-class.html#__init__,Method ctools.tee.tee.__init__()=ctools.tee.tee-class.html#__init__"><a title="ctools.bloomfilter.BloomFilter.__init__
+ctools.cBing.bing.BingQuery.__init__
+ctools.cBing.socks4.Socks4Socket.__init__
+ctools.cCircCash.EInvalidThreshold.__init__
+ctools.cCircCash._circ_cash.__init__
+ctools.cComm.Mark.__init__
+ctools.cDns.DNSQuery.__init__
+ctools.cDns.DNSparam.__init__
+ctools.cDns.EInvalidDNS.__init__
+ctools.cMon.MonitorCPU.__init__
+ctools.cMon.MonitorRAM.__init__
+ctools.cMssql.Mssql.__init__
+ctools.cMysql.MysqlClient.__init__
+ctools.cProbeparse.Probeparser.__init__
+ctools.cRpc.Rpc.__init__
+ctools.cScanner.cScanner.__init__
+ctools.cTargets.TargetGenerator.__init__
+ctools.cTelnet.Listener.__init__
+ctools.cTelnet.Telnet.__init__
+ctools.cTuples.ENoInput.__init__
+ctools.cTuples.cInputGenerator.__init__
+ctools.cTuples.cTHQueue.__init__
+ctools.cTuples.cTuples.__init__
+ctools.cUtil.cTimer.__init__
+ctools.cWorkerThreads._cWorker.__init__
+ctools.cWorkerThreads.cWork.__init__
+ctools.dns.exceptions.BadUrl.__init__
+ctools.dns.exceptions.DomainNotFound.__init__
+ctools.imapccd.CCDIMAP4.__init__
+ctools.popccd.CCDPOP3.__init__
+ctools.sshlib.sftpClass.__init__
+ctools.sshlib.socketClass.__init__
+ctools.sshlib.sshClass.__init__
+ctools.tee.tee.__init__" class="py-name" href="#" onclick="return doclink('link-84', '__init__', 'link-84');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">        <tt class="py-comment">#a.close()</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">        <tt class="py-comment">#b.close()</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">a</tt> <tt class="py-op">=</tt> <tt class="py-name">a</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">b</tt> <tt class="py-op">=</tt> <tt class="py-name">b</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line"> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ip</tt> <tt class="py-op">=</tt> <tt class="py-name">ip</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-85" class="py-name"><a title="ctools.cComm.Mark.port" class="py-name" href="#" onclick="return doclink('link-85', 'port', 'link-82');">port</a></tt> <tt class="py-op">=</tt> <tt id="link-86" class="py-name"><a title="ctools.cComm.Mark.port" class="py-name" href="#" onclick="return doclink('link-86', 'port', 'link-82');">port</a></tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sock</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">            <tt class="py-comment"># connect to server</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sock</tt> <tt class="py-op">=</tt> <tt class="py-name">socket</tt><tt class="py-op">.</tt><tt class="py-name">socket</tt><tt class="py-op">(</tt><tt class="py-name">socket</tt><tt class="py-op">.</tt><tt class="py-name">AF_INET</tt><tt class="py-op">,</tt> <tt class="py-name">socket</tt><tt class="py-op">.</tt><tt class="py-name">SOCK_STREAM</tt><tt class="py-op">)</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sock</tt><tt class="py-op">.</tt><tt id="link-87" class="py-name" targets="Method ctools.cBing.socks4.Socks4Socket.connect()=ctools.cBing.socks4.Socks4Socket-class.html#connect,Method ctools.cMssql.Mssql.connect()=ctools.cMssql.Mssql-class.html#connect,Method ctools.cTelnet.Telnet.connect()=ctools.cTelnet.Telnet-class.html#connect"><a title="ctools.cBing.socks4.Socks4Socket.connect
+ctools.cMssql.Mssql.connect
+ctools.cTelnet.Telnet.connect" class="py-name" href="#" onclick="return doclink('link-87', 'connect', 'link-87');">connect</a></tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">ip</tt><tt class="py-op">,</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt id="link-88" class="py-name"><a title="ctools.cComm.Mark.port" class="py-name" href="#" onclick="return doclink('link-88', 'port', 'link-82');">port</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">use_ssl</tt><tt class="py-op">:</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sock</tt> <tt class="py-op">=</tt> <tt class="py-name">ssl</tt><tt class="py-op">.</tt><tt class="py-name">wrap_socket</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sock</tt><tt class="py-op">)</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sock</tt><tt class="py-op">.</tt><tt class="py-name">setblocking</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">            <tt id="link-89" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-89', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">'Can\'t connect to %s:%d -&gt; %s'</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">ip</tt><tt class="py-op">,</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt id="link-90" class="py-name"><a title="ctools.cComm.Mark.port" class="py-name" href="#" onclick="return doclink('link-90', 'port', 'link-82');">port</a></tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sock</tt><tt class="py-op">:</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sock</tt><tt class="py-op">.</tt><tt id="link-91" class="py-name" targets="Method ctools.cCircCash._circ_cash.close()=ctools.cCircCash._circ_cash-class.html#close,Method ctools.cMysql.MysqlClient.close()=ctools.cMysql.MysqlClient-class.html#close,Method ctools.cRpc.Rpc.close()=ctools.cRpc.Rpc-class.html#close,Method ctools.cTelnet.Telnet.close()=ctools.cTelnet.Telnet-class.html#close,Method ctools.cTuples.cTHQueue.close()=ctools.cTuples.cTHQueue-class.html#close,Method ctools.tee.tee.close()=ctools.tee.tee-class.html#close"><a title="ctools.cCircCash._circ_cash.close
+ctools.cMysql.MysqlClient.close
+ctools.cRpc.Rpc.close
+ctools.cTelnet.Telnet.close
+ctools.cTuples.cTHQueue.close
+ctools.tee.tee.close" class="py-name" href="#" onclick="return doclink('link-91', 'close', 'link-91');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">a</tt><tt class="py-op">.</tt><tt id="link-92" class="py-name"><a title="ctools.cCircCash._circ_cash.close
+ctools.cMysql.MysqlClient.close
+ctools.cRpc.Rpc.close
+ctools.cTelnet.Telnet.close
+ctools.cTuples.cTHQueue.close
+ctools.tee.tee.close" class="py-name" href="#" onclick="return doclink('link-92', 'close', 'link-91');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">b</tt><tt class="py-op">.</tt><tt id="link-93" class="py-name"><a title="ctools.cCircCash._circ_cash.close
+ctools.cMysql.MysqlClient.close
+ctools.cRpc.Rpc.close
+ctools.cTelnet.Telnet.close
+ctools.cTuples.cTHQueue.close
+ctools.tee.tee.close" class="py-name" href="#" onclick="return doclink('link-93', 'close', 'link-91');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">conn_r</tt><tt class="py-op">.</tt><tt id="link-94" class="py-name"><a title="ctools.cCircCash._circ_cash.close
+ctools.cMysql.MysqlClient.close
+ctools.cRpc.Rpc.close
+ctools.cTelnet.Telnet.close
+ctools.cTuples.cTHQueue.close
+ctools.tee.tee.close" class="py-name" href="#" onclick="return doclink('link-94', 'close', 'link-91');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">conn_s</tt><tt class="py-op">.</tt><tt id="link-95" class="py-name"><a title="ctools.cCircCash._circ_cash.close
+ctools.cMysql.MysqlClient.close
+ctools.cRpc.Rpc.close
+ctools.cTelnet.Telnet.close
+ctools.cTuples.cTHQueue.close
+ctools.tee.tee.close" class="py-name" href="#" onclick="return doclink('link-95', 'close', 'link-91');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line"> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">        <tt class="py-comment"># communication with client</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">conn_r</tt> <tt class="py-op">=</tt> <tt class="py-name">conn_r</tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">conn_s</tt> <tt class="py-op">=</tt> <tt class="py-name">conn_s</tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">verbose</tt> <tt class="py-op">=</tt> <tt class="py-name">verbose</tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">stopEvent</tt> <tt class="py-op">=</tt> <tt class="py-name">stopEvent</tt> </tt>
+</div><a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line"> </tt>
+<a name="Listener.join"></a><div id="Listener.join-def"><a name="L188"></a><tt class="py-lineno">188</tt> <a class="py-toggle" href="#" id="Listener.join-toggle" onclick="return toggle('Listener.join');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cTelnet.Listener-class.html#join">join</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Listener.join-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Listener.join-expanded"><a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line">        <tt class="py-name">super</tt><tt class="py-op">(</tt><tt id="link-96" class="py-name"><a title="ctools.cTelnet.Listener" class="py-name" href="#" onclick="return doclink('link-96', 'Listener', 'link-83');">Listener</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-97" class="py-name" targets="Method ctools.cTelnet.Listener.join()=ctools.cTelnet.Listener-class.html#join,Method ctools.cWorkerThreads._cWorker.join()=ctools.cWorkerThreads._cWorker-class.html#join"><a title="ctools.cTelnet.Listener.join
+ctools.cWorkerThreads._cWorker.join" class="py-name" href="#" onclick="return doclink('link-97', 'join', 'link-97');">join</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sock</tt><tt class="py-op">.</tt><tt id="link-98" class="py-name"><a title="ctools.cCircCash._circ_cash.close
+ctools.cMysql.MysqlClient.close
+ctools.cRpc.Rpc.close
+ctools.cTelnet.Telnet.close
+ctools.cTuples.cTHQueue.close
+ctools.tee.tee.close" class="py-name" href="#" onclick="return doclink('link-98', 'close', 'link-91');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">a</tt><tt class="py-op">.</tt><tt id="link-99" class="py-name"><a title="ctools.cCircCash._circ_cash.close
+ctools.cMysql.MysqlClient.close
+ctools.cRpc.Rpc.close
+ctools.cTelnet.Telnet.close
+ctools.cTuples.cTHQueue.close
+ctools.tee.tee.close" class="py-name" href="#" onclick="return doclink('link-99', 'close', 'link-91');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">b</tt><tt class="py-op">.</tt><tt id="link-100" class="py-name"><a title="ctools.cCircCash._circ_cash.close
+ctools.cMysql.MysqlClient.close
+ctools.cRpc.Rpc.close
+ctools.cTelnet.Telnet.close
+ctools.cTuples.cTHQueue.close
+ctools.tee.tee.close" class="py-name" href="#" onclick="return doclink('link-100', 'close', 'link-91');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">conn_r</tt><tt class="py-op">.</tt><tt id="link-101" class="py-name"><a title="ctools.cCircCash._circ_cash.close
+ctools.cMysql.MysqlClient.close
+ctools.cRpc.Rpc.close
+ctools.cTelnet.Telnet.close
+ctools.cTuples.cTHQueue.close
+ctools.tee.tee.close" class="py-name" href="#" onclick="return doclink('link-101', 'close', 'link-91');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">conn_s</tt><tt class="py-op">.</tt><tt id="link-102" class="py-name"><a title="ctools.cCircCash._circ_cash.close
+ctools.cMysql.MysqlClient.close
+ctools.cRpc.Rpc.close
+ctools.cTelnet.Telnet.close
+ctools.cTuples.cTHQueue.close
+ctools.tee.tee.close" class="py-name" href="#" onclick="return doclink('link-102', 'close', 'link-91');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">stopEvent</tt><tt class="py-op">.</tt><tt class="py-name">set</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line"> </tt>
+<a name="Listener.run"></a><div id="Listener.run-def"><a name="L197"></a><tt class="py-lineno">197</tt> <a class="py-toggle" href="#" id="Listener.run-toggle" onclick="return toggle('Listener.run');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cTelnet.Listener-class.html#run">run</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Listener.run-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Listener.run-expanded"><a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line">        <tt id="link-103" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-103', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Started Listener for %s:%d'</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ip</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-104" class="py-name"><a title="ctools.cComm.Mark.port" class="py-name" href="#" onclick="return doclink('link-104', 'port', 'link-82');">port</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line">        <tt id="link-105" class="py-name" targets="Static Method ctools.cTls.ClientHello.data()=ctools.cTls.ClientHello-class.html#data,Static Method ctools.cTls.RenegotiationInfo.data()=ctools.cTls.RenegotiationInfo-class.html#data,Static Method ctools.cTls.Signature.data()=ctools.cTls.Signature-class.html#data"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-105', 'data', 'link-105');">data</a></tt> <tt class="py-op">=</tt> <tt class="py-string">''</tt> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line">        <tt class="py-name">inp</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sock</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">conn_r</tt><tt class="py-op">]</tt> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line">            <tt class="py-keyword">while</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">stopEvent</tt><tt class="py-op">.</tt><tt class="py-name">is_set</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line">                <tt class="py-comment">#self.conn_s.send('')</tt> </tt>
+<a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line">                <tt class="py-name">r</tt><tt class="py-op">,</tt> <tt class="py-name">w</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt> <tt class="py-op">=</tt> <tt id="link-106" class="py-name"><a title="ctools.imapccd.CCDIMAP4.select" class="py-name" href="#" onclick="return doclink('link-106', 'select', 'link-0');">select</a></tt><tt class="py-op">.</tt><tt id="link-107" class="py-name"><a title="ctools.imapccd.CCDIMAP4.select" class="py-name" href="#" onclick="return doclink('link-107', 'select', 'link-0');">select</a></tt><tt class="py-op">(</tt><tt class="py-name">inp</tt><tt class="py-op">,</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt id="link-108" class="py-name"><a title="ctools.cTelnet.SELECT_TIMEOUT" class="py-name" href="#" onclick="return doclink('link-108', 'SELECT_TIMEOUT', 'link-8');">SELECT_TIMEOUT</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">fd</tt> <tt class="py-keyword">in</tt> <tt class="py-name">r</tt><tt class="py-op">:</tt> </tt>
+<a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line">                    <tt class="py-keyword">if</tt> <tt class="py-name">fd</tt> <tt class="py-op">==</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sock</tt><tt class="py-op">:</tt> </tt>
+<a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line">                        <tt class="py-name">buf</tt> <tt class="py-op">=</tt> <tt class="py-string">''</tt> </tt>
+<a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line">                        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line">                            <tt class="py-name">buf</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sock</tt><tt class="py-op">.</tt><tt class="py-name">recv</tt><tt class="py-op">(</tt><tt class="py-number">64</tt><tt class="py-op">)</tt> </tt>
+<a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line">                        <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line">                            <tt id="link-109" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-109', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">'Error while recving from %s:%d -&gt; %s'</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ip</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-110" class="py-name"><a title="ctools.cComm.Mark.port" class="py-name" href="#" onclick="return doclink('link-110', 'port', 'link-82');">port</a></tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">)</tt> </tt>
+<a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line">                        <tt id="link-111" class="py-name"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-111', 'data', 'link-105');">data</a></tt> <tt class="py-op">+=</tt> <tt class="py-name">buf</tt> </tt>
+<a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line">                        <tt class="py-name">remain</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-112" class="py-name" targets="Method ctools.cTelnet.Listener.process()=ctools.cTelnet.Listener-class.html#process"><a title="ctools.cTelnet.Listener.process" class="py-name" href="#" onclick="return doclink('link-112', 'process', 'link-112');">process</a></tt><tt class="py-op">(</tt><tt id="link-113" class="py-name"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-113', 'data', 'link-105');">data</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L214"></a><tt class="py-lineno">214</tt>  <tt class="py-line">                        <tt class="py-comment"># remember remaining data for next round</tt> </tt>
+<a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line">                        <tt class="py-comment"># there might be a problem if the server never sends</tt> </tt>
+<a name="L216"></a><tt class="py-lineno">216</tt>  <tt class="py-line">                        <tt class="py-comment"># anything again ever</tt> </tt>
+<a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line">                        <tt class="py-comment"># but assuming that we only have remaining data if it was</tt> </tt>
+<a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line">                        <tt class="py-comment"># incomlete to begin with, the server will probalbly send the rest at</tt> </tt>
+<a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line">                        <tt class="py-comment"># some point</tt> </tt>
+<a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line">                        <tt id="link-114" class="py-name"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-114', 'data', 'link-105');">data</a></tt> <tt class="py-op">=</tt> <tt class="py-name">remain</tt> </tt>
+<a name="L221"></a><tt class="py-lineno">221</tt>  <tt class="py-line">                    <tt class="py-keyword">elif</tt> <tt class="py-name">fd</tt> <tt class="py-op">==</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">conn_r</tt><tt class="py-op">:</tt> </tt>
+<a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line">                        <tt class="py-comment"># get data from client in order to forward it to the server</tt> </tt>
+<a name="L223"></a><tt class="py-lineno">223</tt>  <tt class="py-line">                        <tt class="py-name">buf</tt> <tt class="py-op">=</tt> <tt class="py-string">''</tt> </tt>
+<a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line">                        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L225"></a><tt class="py-lineno">225</tt>  <tt class="py-line">                            <tt class="py-name">buf</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">conn_r</tt><tt class="py-op">.</tt><tt class="py-name">recv</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L226"></a><tt class="py-lineno">226</tt>  <tt class="py-line">                        <tt class="py-keyword">except</tt> <tt class="py-name">EOFError</tt><tt class="py-op">:</tt> </tt>
+<a name="L227"></a><tt class="py-lineno">227</tt>  <tt class="py-line">                            <tt class="py-comment"># wtf, this should not happen, since select just told</tt> </tt>
+<a name="L228"></a><tt class="py-lineno">228</tt>  <tt class="py-line">                            <tt class="py-comment"># us that there is sth to read</tt> </tt>
+<a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line">                            <tt class="py-keyword">continue</tt> </tt>
+<a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line">                        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">verbose</tt><tt class="py-op">:</tt> </tt>
+<a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line">                            <tt class="py-keyword">print</tt> <tt class="py-string">'to server: \''</tt> <tt class="py-op">+</tt> <tt class="py-name">buf</tt> <tt class="py-op">+</tt> <tt class="py-string">'\''</tt> </tt>
+<a name="L232"></a><tt class="py-lineno">232</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sock</tt><tt class="py-op">.</tt><tt class="py-name">send</tt><tt class="py-op">(</tt><tt class="py-name">buf</tt><tt class="py-op">)</tt> </tt>
+<a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">EOFError</tt> <tt class="py-keyword">as</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line">            <tt class="py-keyword">pass</tt> </tt>
+<a name="L235"></a><tt class="py-lineno">235</tt>  <tt class="py-line">        <tt id="link-115" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-115', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Stopped Listener for %s:%d'</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ip</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-116" class="py-name"><a title="ctools.cComm.Mark.port" class="py-name" href="#" onclick="return doclink('link-116', 'port', 'link-82');">port</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L236"></a><tt class="py-lineno">236</tt>  <tt class="py-line"> </tt>
+<a name="Listener.process"></a><div id="Listener.process-def"><a name="L237"></a><tt class="py-lineno">237</tt> <a class="py-toggle" href="#" id="Listener.process-toggle" onclick="return toggle('Listener.process');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cTelnet.Listener-class.html#process">process</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">buf</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Listener.process-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Listener.process-expanded"><a name="L238"></a><tt class="py-lineno">238</tt>  <tt class="py-line"> </tt>
+<a name="L239"></a><tt class="py-lineno">239</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L240"></a><tt class="py-lineno">240</tt>  <tt class="py-line"><tt class="py-docstring">        Process incoming data.</tt> </tt>
+<a name="L241"></a><tt class="py-lineno">241</tt>  <tt class="py-line"><tt class="py-docstring">        Commands are immediatly answered with WONT do that.</tt> </tt>
+<a name="L242"></a><tt class="py-lineno">242</tt>  <tt class="py-line"><tt class="py-docstring">        Data is send to the client via pipe.</tt> </tt>
+<a name="L243"></a><tt class="py-lineno">243</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L244"></a><tt class="py-lineno">244</tt>  <tt class="py-line"> </tt>
+<a name="L245"></a><tt class="py-lineno">245</tt>  <tt class="py-line">        <tt class="py-comment"># see what we have</tt> </tt>
+<a name="L246"></a><tt class="py-lineno">246</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">buf</tt><tt class="py-op">)</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">2</tt><tt class="py-op">:</tt> </tt>
+<a name="L247"></a><tt class="py-lineno">247</tt>  <tt class="py-line">            <tt class="py-name">mark</tt> <tt class="py-op">=</tt> <tt class="py-name">buf</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L248"></a><tt class="py-lineno">248</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">mark</tt> <tt class="py-op">==</tt> <tt id="link-117" class="py-name"><a title="ctools.cTelnet.IAC" class="py-name" href="#" onclick="return doclink('link-117', 'IAC', 'link-9');">IAC</a></tt><tt class="py-op">:</tt>  <tt class="py-comment"># interpret as command</tt> </tt>
+<a name="L249"></a><tt class="py-lineno">249</tt>  <tt class="py-line">                <tt class="py-comment"># we need at least 3 bytes for a cmd</tt> </tt>
+<a name="L250"></a><tt class="py-lineno">250</tt>  <tt class="py-line">                <tt class="py-comment"># if we don't have enough, return the remainder and wait for</tt> </tt>
+<a name="L251"></a><tt class="py-lineno">251</tt>  <tt class="py-line">                <tt class="py-comment"># more</tt> </tt>
+<a name="L252"></a><tt class="py-lineno">252</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">buf</tt><tt class="py-op">)</tt> <tt class="py-op">&gt;=</tt> <tt class="py-number">3</tt><tt class="py-op">:</tt> </tt>
+<a name="L253"></a><tt class="py-lineno">253</tt>  <tt class="py-line">                    <tt class="py-name">cmd</tt> <tt class="py-op">=</tt> <tt class="py-name">buf</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L254"></a><tt class="py-lineno">254</tt>  <tt class="py-line">                    <tt class="py-name">what</tt> <tt class="py-op">=</tt> <tt class="py-name">buf</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt> </tt>
+<a name="L255"></a><tt class="py-lineno">255</tt>  <tt class="py-line">                    <tt class="py-comment"># throw away the processed bytes</tt> </tt>
+<a name="L256"></a><tt class="py-lineno">256</tt>  <tt class="py-line">                    <tt class="py-name">buf</tt> <tt class="py-op">=</tt> <tt class="py-name">buf</tt><tt class="py-op">[</tt><tt class="py-number">3</tt><tt class="py-op">:</tt><tt class="py-op">]</tt> </tt>
+<a name="L257"></a><tt class="py-lineno">257</tt>  <tt class="py-line">                    <tt class="py-comment"># just answer no ... we don't care</tt> </tt>
+<a name="L258"></a><tt class="py-lineno">258</tt>  <tt class="py-line">                    <tt class="py-keyword">if</tt> <tt class="py-name">cmd</tt> <tt class="py-op">==</tt> <tt id="link-118" class="py-name"><a title="ctools.cTelnet.DO" class="py-name" href="#" onclick="return doclink('link-118', 'DO', 'link-11');">DO</a></tt> <tt class="py-keyword">or</tt> <tt class="py-name">cmd</tt> <tt class="py-op">==</tt> <tt id="link-119" class="py-name"><a title="ctools.cTelnet.WILL" class="py-name" href="#" onclick="return doclink('link-119', 'WILL', 'link-13');">WILL</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L259"></a><tt class="py-lineno">259</tt>  <tt class="py-line">                        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">verbose</tt><tt class="py-op">:</tt> </tt>
+<a name="L260"></a><tt class="py-lineno">260</tt>  <tt class="py-line">                            <tt class="py-keyword">print</tt> <tt class="py-string">'WONT %x'</tt> <tt class="py-op">%</tt> <tt class="py-name">ord</tt><tt class="py-op">(</tt><tt class="py-name">what</tt><tt class="py-op">)</tt> </tt>
+<a name="L261"></a><tt class="py-lineno">261</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sock</tt><tt class="py-op">.</tt><tt class="py-name">send</tt><tt class="py-op">(</tt><tt id="link-120" class="py-name"><a title="ctools.cTelnet.IAC" class="py-name" href="#" onclick="return doclink('link-120', 'IAC', 'link-9');">IAC</a></tt> <tt class="py-op">+</tt> <tt id="link-121" class="py-name"><a title="ctools.cTelnet.WONT" class="py-name" href="#" onclick="return doclink('link-121', 'WONT', 'link-12');">WONT</a></tt> <tt class="py-op">+</tt> <tt class="py-name">what</tt><tt class="py-op">)</tt> </tt>
+<a name="L262"></a><tt class="py-lineno">262</tt>  <tt class="py-line">                    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L263"></a><tt class="py-lineno">263</tt>  <tt class="py-line">                        <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">'Unexpected command: %s'</tt> <tt class="py-op">%</tt> <tt class="py-name">binascii</tt><tt class="py-op">.</tt><tt class="py-name">hexlify</tt><tt class="py-op">(</tt><tt class="py-name">buf</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L264"></a><tt class="py-lineno">264</tt>  <tt class="py-line">            <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L265"></a><tt class="py-lineno">265</tt>  <tt class="py-line">                <tt class="py-comment"># find next cmd byte, if there is one</tt> </tt>
+<a name="L266"></a><tt class="py-lineno">266</tt>  <tt class="py-line">                <tt class="py-name">idx</tt> <tt class="py-op">=</tt> <tt class="py-name">buf</tt><tt class="py-op">.</tt><tt class="py-name">find</tt><tt class="py-op">(</tt><tt id="link-122" class="py-name"><a title="ctools.cTelnet.IAC" class="py-name" href="#" onclick="return doclink('link-122', 'IAC', 'link-9');">IAC</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L267"></a><tt class="py-lineno">267</tt>  <tt class="py-line">                <tt class="py-comment"># return the data via pipe</tt> </tt>
+<a name="L268"></a><tt class="py-lineno">268</tt>  <tt class="py-line">                <tt class="py-name">l</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">idx</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> <tt class="py-keyword">and</tt> <tt class="py-name">idx</tt> <tt class="py-keyword">or</tt> <tt class="py-op">(</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">buf</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L269"></a><tt class="py-lineno">269</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">verbose</tt><tt class="py-op">:</tt> </tt>
+<a name="L270"></a><tt class="py-lineno">270</tt>  <tt class="py-line">                    <tt class="py-keyword">print</tt> <tt class="py-string">'to client: \''</tt> <tt class="py-op">+</tt> <tt class="py-name">buf</tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-name">l</tt><tt class="py-op">]</tt> <tt class="py-op">+</tt> <tt class="py-string">'\''</tt> </tt>
+<a name="L271"></a><tt class="py-lineno">271</tt>  <tt class="py-line">                <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L272"></a><tt class="py-lineno">272</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">conn_s</tt><tt class="py-op">.</tt><tt class="py-name">send</tt><tt class="py-op">(</tt><tt class="py-name">buf</tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-name">l</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L273"></a><tt class="py-lineno">273</tt>  <tt class="py-line">                <tt class="py-keyword">except</tt> <tt class="py-name">IOError</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L274"></a><tt class="py-lineno">274</tt>  <tt class="py-line">                    <tt id="link-123" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-123', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">'remote end closed -&gt; '</tt> <tt class="py-op">+</tt> <tt class="py-name">repr</tt><tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L275"></a><tt class="py-lineno">275</tt>  <tt class="py-line">                <tt class="py-name">buf</tt> <tt class="py-op">=</tt> <tt class="py-name">buf</tt><tt class="py-op">[</tt><tt class="py-name">l</tt><tt class="py-op">:</tt><tt class="py-op">]</tt> </tt>
+<a name="L276"></a><tt class="py-lineno">276</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">buf</tt> </tt>
+</div></div><a name="L277"></a><tt class="py-lineno">277</tt>  <tt class="py-line"> </tt>
+<a name="L278"></a><tt class="py-lineno">278</tt>  <tt class="py-line"> </tt>
+<a name="Telnet"></a><div id="Telnet-def"><a name="L279"></a><tt class="py-lineno">279</tt> <a class="py-toggle" href="#" id="Telnet-toggle" onclick="return toggle('Telnet');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="ctools.cTelnet.Telnet-class.html">Telnet</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Telnet-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Telnet-expanded"><a name="Telnet.__init__"></a><div id="Telnet.__init__-def"><a name="L280"></a><tt class="py-lineno">280</tt> <a class="py-toggle" href="#" id="Telnet.__init__-toggle" onclick="return toggle('Telnet.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cTelnet.Telnet-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">ip</tt><tt class="py-op">,</tt> <tt class="py-param">port</tt><tt class="py-op">=</tt><tt class="py-number">23</tt><tt class="py-op">,</tt> <tt class="py-param">timeout</tt><tt class="py-op">=</tt><tt class="py-number">2</tt><tt class="py-op">,</tt> <tt class="py-param">use_ssl</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-param">verbose</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-param">out</tt><tt class="py-op">=</tt><tt class="py-string">''</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Telnet.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Telnet.__init__-expanded"><a name="L281"></a><tt class="py-lineno">281</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ip</tt> <tt class="py-op">=</tt> <tt class="py-name">ip</tt> </tt>
+<a name="L282"></a><tt class="py-lineno">282</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-124" class="py-name"><a title="ctools.cComm.Mark.port" class="py-name" href="#" onclick="return doclink('link-124', 'port', 'link-82');">port</a></tt> <tt class="py-op">=</tt> <tt id="link-125" class="py-name"><a title="ctools.cComm.Mark.port" class="py-name" href="#" onclick="return doclink('link-125', 'port', 'link-82');">port</a></tt> </tt>
+<a name="L283"></a><tt class="py-lineno">283</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">timeout</tt> <tt class="py-op">=</tt> <tt class="py-name">timeout</tt> </tt>
+<a name="L284"></a><tt class="py-lineno">284</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sock</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L285"></a><tt class="py-lineno">285</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">wonts</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L286"></a><tt class="py-lineno">286</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">donts</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L287"></a><tt class="py-lineno">287</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-126" class="py-name"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-126', 'data', 'link-105');">data</a></tt> <tt class="py-op">=</tt> <tt class="py-string">''</tt> </tt>
+<a name="L288"></a><tt class="py-lineno">288</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">use_ssl</tt> <tt class="py-op">=</tt> <tt class="py-name">use_ssl</tt> </tt>
+<a name="L289"></a><tt class="py-lineno">289</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cmd_q</tt> <tt class="py-op">=</tt> <tt class="py-name">Queue</tt><tt class="py-op">.</tt><tt class="py-name">Queue</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L290"></a><tt class="py-lineno">290</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">verbose</tt> <tt class="py-op">=</tt> <tt class="py-name">verbose</tt> </tt>
+<a name="L291"></a><tt class="py-lineno">291</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd_out</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L292"></a><tt class="py-lineno">292</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">out</tt><tt class="py-op">:</tt> </tt>
+<a name="L293"></a><tt class="py-lineno">293</tt>  <tt class="py-line">            <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L294"></a><tt class="py-lineno">294</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd_out</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">out</tt><tt class="py-op">,</tt> <tt class="py-string">'w'</tt><tt class="py-op">)</tt> </tt>
+<a name="L295"></a><tt class="py-lineno">295</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd_out</tt><tt class="py-op">.</tt><tt id="link-127" class="py-name" targets="Method ctools.cTelnet.Telnet.write()=ctools.cTelnet.Telnet-class.html#write,Method ctools.tee.tee.write()=ctools.tee.tee-class.html#write"><a title="ctools.cTelnet.Telnet.write
+ctools.tee.tee.write" class="py-name" href="#" onclick="return doclink('link-127', 'write', 'link-127');">write</a></tt><tt class="py-op">(</tt><tt class="py-string">'communication to/from %s:%d\n'</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">ip</tt><tt class="py-op">,</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt id="link-128" class="py-name"><a title="ctools.cComm.Mark.port" class="py-name" href="#" onclick="return doclink('link-128', 'port', 'link-82');">port</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L296"></a><tt class="py-lineno">296</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd_out</tt><tt class="py-op">.</tt><tt id="link-129" class="py-name" targets="Method ctools.tee.tee.flush()=ctools.tee.tee-class.html#flush"><a title="ctools.tee.tee.flush" class="py-name" href="#" onclick="return doclink('link-129', 'flush', 'link-129');">flush</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L297"></a><tt class="py-lineno">297</tt>  <tt class="py-line">            <tt class="py-keyword">except</tt> <tt class="py-name">IOError</tt> <tt class="py-keyword">as</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L298"></a><tt class="py-lineno">298</tt>  <tt class="py-line">                <tt id="link-130" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-130', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">'Error opening %s -&gt; %s'</tt><tt class="py-op">,</tt> <tt class="py-name">out</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L299"></a><tt class="py-lineno">299</tt>  <tt class="py-line"> </tt>
+<a name="Telnet.connect"></a><div id="Telnet.connect-def"><a name="L300"></a><tt class="py-lineno">300</tt> <a class="py-toggle" href="#" id="Telnet.connect-toggle" onclick="return toggle('Telnet.connect');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cTelnet.Telnet-class.html#connect">connect</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Telnet.connect-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Telnet.connect-expanded"><a name="L301"></a><tt class="py-lineno">301</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">parent_conn_r</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">child_conn_s</tt> <tt class="py-op">=</tt> <tt class="py-name">mp</tt><tt class="py-op">.</tt><tt class="py-name">Pipe</tt><tt class="py-op">(</tt><tt class="py-name">False</tt><tt class="py-op">)</tt> </tt>
+<a name="L302"></a><tt class="py-lineno">302</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">child_conn_r</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">parent_conn_s</tt>  <tt class="py-op">=</tt> <tt class="py-name">mp</tt><tt class="py-op">.</tt><tt class="py-name">Pipe</tt><tt class="py-op">(</tt><tt class="py-name">False</tt><tt class="py-op">)</tt> </tt>
+<a name="L303"></a><tt class="py-lineno">303</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">stopEvent</tt> <tt class="py-op">=</tt> <tt class="py-name">mp</tt><tt class="py-op">.</tt><tt class="py-name">Event</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L304"></a><tt class="py-lineno">304</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listener</tt> <tt class="py-op">=</tt> <tt id="link-131" class="py-name"><a title="ctools.cTelnet.Listener" class="py-name" href="#" onclick="return doclink('link-131', 'Listener', 'link-83');">Listener</a></tt><tt class="py-op">(</tt> </tt>
+<a name="L305"></a><tt class="py-lineno">305</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ip</tt><tt class="py-op">,</tt> </tt>
+<a name="L306"></a><tt class="py-lineno">306</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-132" class="py-name"><a title="ctools.cComm.Mark.port" class="py-name" href="#" onclick="return doclink('link-132', 'port', 'link-82');">port</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L307"></a><tt class="py-lineno">307</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">child_conn_s</tt><tt class="py-op">,</tt> </tt>
+<a name="L308"></a><tt class="py-lineno">308</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">child_conn_r</tt><tt class="py-op">,</tt> </tt>
+<a name="L309"></a><tt class="py-lineno">309</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">parent_conn_s</tt><tt class="py-op">,</tt> </tt>
+<a name="L310"></a><tt class="py-lineno">310</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">parent_conn_r</tt><tt class="py-op">,</tt> </tt>
+<a name="L311"></a><tt class="py-lineno">311</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">stopEvent</tt><tt class="py-op">,</tt> </tt>
+<a name="L312"></a><tt class="py-lineno">312</tt>  <tt class="py-line">            <tt class="py-comment">#use_ssl=use_ssl,</tt> </tt>
+<a name="L313"></a><tt class="py-lineno">313</tt>  <tt class="py-line">            <tt class="py-comment">#timeout=self.timeout,</tt> </tt>
+<a name="L314"></a><tt class="py-lineno">314</tt>  <tt class="py-line">            <tt class="py-comment">#verbose=self.verbose,</tt> </tt>
+<a name="L315"></a><tt class="py-lineno">315</tt>  <tt class="py-line">        <tt class="py-op">)</tt> </tt>
+<a name="L316"></a><tt class="py-lineno">316</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listener</tt><tt class="py-op">.</tt><tt id="link-133" class="py-name" targets="Method ctools.cWorkerThreads.cWork.start()=ctools.cWorkerThreads.cWork-class.html#start"><a title="ctools.cWorkerThreads.cWork.start" class="py-name" href="#" onclick="return doclink('link-133', 'start', 'link-133');">start</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L317"></a><tt class="py-lineno">317</tt>  <tt class="py-line"> </tt>
+<a name="Telnet.expect"></a><div id="Telnet.expect-def"><a name="L318"></a><tt class="py-lineno">318</tt> <a class="py-toggle" href="#" id="Telnet.expect-toggle" onclick="return toggle('Telnet.expect');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cTelnet.Telnet-class.html#expect">expect</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">patterns</tt><tt class="py-op">,</tt> <tt class="py-param">timeout</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Telnet.expect-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Telnet.expect-expanded"><a name="L319"></a><tt class="py-lineno">319</tt>  <tt class="py-line">        <tt class="py-comment"># just read all we have until now</tt> </tt>
+<a name="L320"></a><tt class="py-lineno">320</tt>  <tt class="py-line">        <tt class="py-comment"># if it's not enough we have a problem here ...</tt> </tt>
+<a name="L321"></a><tt class="py-lineno">321</tt>  <tt class="py-line">        <tt class="py-name">endtime</tt> <tt class="py-op">=</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">time</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-name">timeout</tt> </tt>
+<a name="L322"></a><tt class="py-lineno">322</tt>  <tt class="py-line">        <tt id="link-134" class="py-name"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-134', 'data', 'link-105');">data</a></tt> <tt class="py-op">=</tt> <tt class="py-string">''</tt> </tt>
+<a name="L323"></a><tt class="py-lineno">323</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-name">True</tt><tt class="py-op">:</tt> </tt>
+<a name="L324"></a><tt class="py-lineno">324</tt>  <tt class="py-line">            <tt class="py-name">rtime</tt> <tt class="py-op">=</tt> <tt class="py-name">endtime</tt> <tt class="py-op">-</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">time</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L325"></a><tt class="py-lineno">325</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">rtime</tt> <tt class="py-op">&lt;</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L326"></a><tt class="py-lineno">326</tt>  <tt class="py-line">                <tt class="py-keyword">break</tt> </tt>
+<a name="L327"></a><tt class="py-lineno">327</tt>  <tt class="py-line">            <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L328"></a><tt class="py-lineno">328</tt>  <tt class="py-line">                <tt class="py-name">buf</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">parent_conn_r</tt><tt class="py-op">.</tt><tt class="py-name">recv</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L329"></a><tt class="py-lineno">329</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd_out</tt><tt class="py-op">:</tt> </tt>
+<a name="L330"></a><tt class="py-lineno">330</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd_out</tt><tt class="py-op">.</tt><tt id="link-135" class="py-name"><a title="ctools.cTelnet.Telnet.write
+ctools.tee.tee.write" class="py-name" href="#" onclick="return doclink('link-135', 'write', 'link-127');">write</a></tt><tt class="py-op">(</tt><tt class="py-string">'-----&gt;\n'</tt><tt class="py-op">)</tt> </tt>
+<a name="L331"></a><tt class="py-lineno">331</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd_out</tt><tt class="py-op">.</tt><tt id="link-136" class="py-name"><a title="ctools.cTelnet.Telnet.write
+ctools.tee.tee.write" class="py-name" href="#" onclick="return doclink('link-136', 'write', 'link-127');">write</a></tt><tt class="py-op">(</tt><tt class="py-name">buf</tt><tt class="py-op">)</tt> </tt>
+<a name="L332"></a><tt class="py-lineno">332</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd_out</tt><tt class="py-op">.</tt><tt id="link-137" class="py-name"><a title="ctools.cTelnet.Telnet.write
+ctools.tee.tee.write" class="py-name" href="#" onclick="return doclink('link-137', 'write', 'link-127');">write</a></tt><tt class="py-op">(</tt><tt class="py-string">'\n'</tt><tt class="py-op">)</tt> </tt>
+<a name="L333"></a><tt class="py-lineno">333</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd_out</tt><tt class="py-op">.</tt><tt id="link-138" class="py-name"><a title="ctools.tee.tee.flush" class="py-name" href="#" onclick="return doclink('link-138', 'flush', 'link-129');">flush</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L334"></a><tt class="py-lineno">334</tt>  <tt class="py-line">                <tt id="link-139" class="py-name"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-139', 'data', 'link-105');">data</a></tt> <tt class="py-op">+=</tt> <tt class="py-name">buf</tt> </tt>
+<a name="L335"></a><tt class="py-lineno">335</tt>  <tt class="py-line">            <tt class="py-keyword">except</tt> <tt class="py-name">EOFError</tt><tt class="py-op">:</tt> </tt>
+<a name="L336"></a><tt class="py-lineno">336</tt>  <tt class="py-line">                <tt id="link-140" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-140', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">error</tt><tt class="py-op">(</tt><tt class="py-string">'Remote end closed (%s:%d)'</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ip</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-141" class="py-name"><a title="ctools.cComm.Mark.port" class="py-name" href="#" onclick="return doclink('link-141', 'port', 'link-82');">port</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L337"></a><tt class="py-lineno">337</tt>  <tt class="py-line">                <tt class="py-keyword">break</tt> </tt>
+<a name="L338"></a><tt class="py-lineno">338</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt id="link-142" class="py-name"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-142', 'data', 'link-105');">data</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L339"></a><tt class="py-lineno">339</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">patterns</tt><tt class="py-op">:</tt> </tt>
+<a name="L340"></a><tt class="py-lineno">340</tt>  <tt class="py-line">                    <tt class="py-name">m</tt> <tt class="py-op">=</tt> <tt class="py-name">p</tt><tt class="py-op">.</tt><tt id="link-143" class="py-name" targets="Method ctools.cBing.bing.BingQuery.search()=ctools.cBing.bing.BingQuery-class.html#search,Method ctools.imapccd.CCDIMAP4.search()=ctools.imapccd.CCDIMAP4-class.html#search"><a title="ctools.cBing.bing.BingQuery.search
+ctools.imapccd.CCDIMAP4.search" class="py-name" href="#" onclick="return doclink('link-143', 'search', 'link-143');">search</a></tt><tt class="py-op">(</tt><tt id="link-144" class="py-name"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-144', 'data', 'link-105');">data</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L341"></a><tt class="py-lineno">341</tt>  <tt class="py-line">                    <tt class="py-keyword">if</tt> <tt class="py-name">m</tt><tt class="py-op">:</tt> </tt>
+<a name="L342"></a><tt class="py-lineno">342</tt>  <tt class="py-line">                        <tt class="py-keyword">return</tt> <tt class="py-name">m</tt> </tt>
+<a name="L343"></a><tt class="py-lineno">343</tt>  <tt class="py-line">        <tt id="link-145" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-145', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'expectations not met on %s:%d'</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ip</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-146" class="py-name"><a title="ctools.cComm.Mark.port" class="py-name" href="#" onclick="return doclink('link-146', 'port', 'link-82');">port</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L344"></a><tt class="py-lineno">344</tt>  <tt class="py-line"> </tt>
+<a name="Telnet.write"></a><div id="Telnet.write-def"><a name="L345"></a><tt class="py-lineno">345</tt> <a class="py-toggle" href="#" id="Telnet.write-toggle" onclick="return toggle('Telnet.write');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cTelnet.Telnet-class.html#write">write</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">data</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Telnet.write-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Telnet.write-expanded"><a name="L346"></a><tt class="py-lineno">346</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd_out</tt><tt class="py-op">:</tt> </tt>
+<a name="L347"></a><tt class="py-lineno">347</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd_out</tt><tt class="py-op">.</tt><tt id="link-147" class="py-name"><a title="ctools.cTelnet.Telnet.write
+ctools.tee.tee.write" class="py-name" href="#" onclick="return doclink('link-147', 'write', 'link-127');">write</a></tt><tt class="py-op">(</tt><tt class="py-string">'&lt;-----\n'</tt><tt class="py-op">)</tt> </tt>
+<a name="L348"></a><tt class="py-lineno">348</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd_out</tt><tt class="py-op">.</tt><tt id="link-148" class="py-name"><a title="ctools.cTelnet.Telnet.write
+ctools.tee.tee.write" class="py-name" href="#" onclick="return doclink('link-148', 'write', 'link-127');">write</a></tt><tt class="py-op">(</tt><tt id="link-149" class="py-name"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-149', 'data', 'link-105');">data</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L349"></a><tt class="py-lineno">349</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd_out</tt><tt class="py-op">.</tt><tt id="link-150" class="py-name"><a title="ctools.cTelnet.Telnet.write
+ctools.tee.tee.write" class="py-name" href="#" onclick="return doclink('link-150', 'write', 'link-127');">write</a></tt><tt class="py-op">(</tt><tt class="py-string">'\n'</tt><tt class="py-op">)</tt> </tt>
+<a name="L350"></a><tt class="py-lineno">350</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd_out</tt><tt class="py-op">.</tt><tt id="link-151" class="py-name"><a title="ctools.tee.tee.flush" class="py-name" href="#" onclick="return doclink('link-151', 'flush', 'link-129');">flush</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L351"></a><tt class="py-lineno">351</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">parent_conn_s</tt><tt class="py-op">.</tt><tt class="py-name">send</tt><tt class="py-op">(</tt><tt id="link-152" class="py-name"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-152', 'data', 'link-105');">data</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L352"></a><tt class="py-lineno">352</tt>  <tt class="py-line"> </tt>
+<a name="Telnet.close"></a><div id="Telnet.close-def"><a name="L353"></a><tt class="py-lineno">353</tt> <a class="py-toggle" href="#" id="Telnet.close-toggle" onclick="return toggle('Telnet.close');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cTelnet.Telnet-class.html#close">close</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Telnet.close-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Telnet.close-expanded"><a name="L354"></a><tt class="py-lineno">354</tt>  <tt class="py-line">        <tt id="link-153" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-153', 'logger', 'link-3');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'joining Listener on %s:%d'</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">ip</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-154" class="py-name"><a title="ctools.cComm.Mark.port" class="py-name" href="#" onclick="return doclink('link-154', 'port', 'link-82');">port</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L355"></a><tt class="py-lineno">355</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">child_conn_s</tt><tt class="py-op">.</tt><tt id="link-155" class="py-name"><a title="ctools.cCircCash._circ_cash.close
+ctools.cMysql.MysqlClient.close
+ctools.cRpc.Rpc.close
+ctools.cTelnet.Telnet.close
+ctools.cTuples.cTHQueue.close
+ctools.tee.tee.close" class="py-name" href="#" onclick="return doclink('link-155', 'close', 'link-91');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L356"></a><tt class="py-lineno">356</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">child_conn_r</tt><tt class="py-op">.</tt><tt id="link-156" class="py-name"><a title="ctools.cCircCash._circ_cash.close
+ctools.cMysql.MysqlClient.close
+ctools.cRpc.Rpc.close
+ctools.cTelnet.Telnet.close
+ctools.cTuples.cTHQueue.close
+ctools.tee.tee.close" class="py-name" href="#" onclick="return doclink('link-156', 'close', 'link-91');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L357"></a><tt class="py-lineno">357</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd_out</tt><tt class="py-op">:</tt> </tt>
+<a name="L358"></a><tt class="py-lineno">358</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd_out</tt><tt class="py-op">.</tt><tt id="link-157" class="py-name"><a title="ctools.cCircCash._circ_cash.close
+ctools.cMysql.MysqlClient.close
+ctools.cRpc.Rpc.close
+ctools.cTelnet.Telnet.close
+ctools.cTuples.cTHQueue.close
+ctools.tee.tee.close" class="py-name" href="#" onclick="return doclink('link-157', 'close', 'link-91');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L359"></a><tt class="py-lineno">359</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">fd_out</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L360"></a><tt class="py-lineno">360</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">stopEvent</tt><tt class="py-op">.</tt><tt class="py-name">set</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L361"></a><tt class="py-lineno">361</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listener</tt><tt class="py-op">.</tt><tt id="link-158" class="py-name"><a title="ctools.cTelnet.Listener.join
+ctools.cWorkerThreads._cWorker.join" class="py-name" href="#" onclick="return doclink('link-158', 'join', 'link-97');">join</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L362"></a><tt class="py-lineno">362</tt>  <tt class="py-line"> </tt>
+<a name="L363"></a><tt class="py-lineno">363</tt>  <tt class="py-line"><tt class="py-keyword">if</tt> <tt class="py-name">__name__</tt> <tt class="py-op">==</tt> <tt class="py-string">'__main__'</tt><tt class="py-op">:</tt> </tt>
+<a name="L364"></a><tt class="py-lineno">364</tt>  <tt class="py-line">    <tt class="py-keyword">import</tt> <tt class="py-name">sys</tt> </tt>
+<a name="L365"></a><tt class="py-lineno">365</tt>  <tt class="py-line">    <tt class="py-name">ip</tt><tt class="py-op">,</tt> <tt id="link-159" class="py-name" targets="Method ctools.popccd.CCDPOP3.user()=ctools.popccd.CCDPOP3-class.html#user"><a title="ctools.popccd.CCDPOP3.user" class="py-name" href="#" onclick="return doclink('link-159', 'user', 'link-159');">user</a></tt><tt class="py-op">,</tt> <tt class="py-name">passw</tt> <tt class="py-op">=</tt> <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">argv</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">:</tt><tt class="py-number">4</tt><tt class="py-op">]</tt> </tt>
+<a name="L366"></a><tt class="py-lineno">366</tt>  <tt class="py-line">    <tt class="py-name">telnet</tt> <tt class="py-op">=</tt> <tt id="link-160" class="py-name" targets="Class ctools.cTelnet.Telnet=ctools.cTelnet.Telnet-class.html"><a title="ctools.cTelnet.Telnet" class="py-name" href="#" onclick="return doclink('link-160', 'Telnet', 'link-160');">Telnet</a></tt><tt class="py-op">(</tt><tt class="py-name">ip</tt><tt class="py-op">,</tt> <tt id="link-161" class="py-name"><a title="ctools.cComm.Mark.port" class="py-name" href="#" onclick="return doclink('link-161', 'port', 'link-82');">port</a></tt><tt class="py-op">=</tt><tt class="py-number">23</tt><tt class="py-op">,</tt> <tt class="py-name">timeout</tt><tt class="py-op">=</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L367"></a><tt class="py-lineno">367</tt>  <tt class="py-line">    <tt class="py-name">telnet</tt><tt class="py-op">.</tt><tt id="link-162" class="py-name"><a title="ctools.cBing.socks4.Socks4Socket.connect
+ctools.cMssql.Mssql.connect
+ctools.cTelnet.Telnet.connect" class="py-name" href="#" onclick="return doclink('link-162', 'connect', 'link-87');">connect</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L368"></a><tt class="py-lineno">368</tt>  <tt class="py-line">    <tt class="py-name">telnet</tt><tt class="py-op">.</tt><tt id="link-163" class="py-name" targets="Method ctools.cTelnet.Telnet.expect()=ctools.cTelnet.Telnet-class.html#expect"><a title="ctools.cTelnet.Telnet.expect" class="py-name" href="#" onclick="return doclink('link-163', 'expect', 'link-163');">expect</a></tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">compile</tt><tt class="py-op">(</tt><tt class="py-string">'login'</tt><tt class="py-op">,</tt> <tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">IGNORECASE</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L369"></a><tt class="py-lineno">369</tt>  <tt class="py-line">                   <tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">compile</tt><tt class="py-op">(</tt><tt class="py-string">'username'</tt><tt class="py-op">,</tt> <tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">IGNORECASE</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L370"></a><tt class="py-lineno">370</tt>  <tt class="py-line">    <tt class="py-name">telnet</tt><tt class="py-op">.</tt><tt id="link-164" class="py-name"><a title="ctools.cTelnet.Telnet.write
+ctools.tee.tee.write" class="py-name" href="#" onclick="return doclink('link-164', 'write', 'link-127');">write</a></tt><tt class="py-op">(</tt><tt id="link-165" class="py-name"><a title="ctools.popccd.CCDPOP3.user" class="py-name" href="#" onclick="return doclink('link-165', 'user', 'link-159');">user</a></tt> <tt class="py-op">+</tt> <tt id="link-166" class="py-name"><a title="ctools.cTelnet.CRLF
+ctools.imapccd.CRLF
+ctools.popccd.CRLF" class="py-name" href="#" onclick="return doclink('link-166', 'CRLF', 'link-7');">CRLF</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L371"></a><tt class="py-lineno">371</tt>  <tt class="py-line">    <tt class="py-name">m</tt> <tt class="py-op">=</tt> <tt class="py-name">telnet</tt><tt class="py-op">.</tt><tt id="link-167" class="py-name"><a title="ctools.cTelnet.Telnet.expect" class="py-name" href="#" onclick="return doclink('link-167', 'expect', 'link-163');">expect</a></tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">compile</tt><tt class="py-op">(</tt><tt class="py-string">'password'</tt><tt class="py-op">,</tt> <tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">IGNORECASE</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L372"></a><tt class="py-lineno">372</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-string">'matched: '</tt> <tt class="py-op">+</tt> <tt class="py-name">m</tt><tt class="py-op">.</tt><tt class="py-name">group</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L373"></a><tt class="py-lineno">373</tt>  <tt class="py-line">    <tt class="py-name">telnet</tt><tt class="py-op">.</tt><tt id="link-168" class="py-name"><a title="ctools.cTelnet.Telnet.write
+ctools.tee.tee.write" class="py-name" href="#" onclick="return doclink('link-168', 'write', 'link-127');">write</a></tt><tt class="py-op">(</tt><tt class="py-name">passw</tt> <tt class="py-op">+</tt> <tt id="link-169" class="py-name"><a title="ctools.cTelnet.CRLF
+ctools.imapccd.CRLF
+ctools.popccd.CRLF" class="py-name" href="#" onclick="return doclink('link-169', 'CRLF', 'link-7');">CRLF</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L374"></a><tt class="py-lineno">374</tt>  <tt class="py-line">    <tt class="py-name">m</tt> <tt class="py-op">=</tt> <tt class="py-name">telnet</tt><tt class="py-op">.</tt><tt id="link-170" class="py-name"><a title="ctools.cTelnet.Telnet.expect" class="py-name" href="#" onclick="return doclink('link-170', 'expect', 'link-163');">expect</a></tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">compile</tt><tt class="py-op">(</tt><tt class="py-string">'last login'</tt><tt class="py-op">,</tt> <tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">IGNORECASE</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L375"></a><tt class="py-lineno">375</tt>  <tt class="py-line">                       <tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">compile</tt><tt class="py-op">(</tt><tt class="py-string">'incorrect'</tt><tt class="py-op">,</tt> <tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">IGNORECASE</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L376"></a><tt class="py-lineno">376</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-string">'matched: '</tt> <tt class="py-op">+</tt> <tt class="py-name">m</tt><tt class="py-op">.</tt><tt class="py-name">group</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L377"></a><tt class="py-lineno">377</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">m</tt><tt class="py-op">:</tt> </tt>
+<a name="L378"></a><tt class="py-lineno">378</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'matched: '</tt> <tt class="py-op">+</tt> <tt class="py-name">m</tt><tt class="py-op">.</tt><tt class="py-name">group</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L379"></a><tt class="py-lineno">379</tt>  <tt class="py-line">    <tt class="py-name">telnet</tt><tt class="py-op">.</tt><tt id="link-171" class="py-name"><a title="ctools.cCircCash._circ_cash.close
+ctools.cMysql.MysqlClient.close
+ctools.cRpc.Rpc.close
+ctools.cTelnet.Telnet.close
+ctools.cTuples.cTHQueue.close
+ctools.tee.tee.close" class="py-name" href="#" onclick="return doclink('link-171', 'close', 'link-91');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L380"></a><tt class="py-lineno">380</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="ctools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >ctools</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:41 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

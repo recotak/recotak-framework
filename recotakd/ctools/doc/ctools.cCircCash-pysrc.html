@@ -1,0 +1,897 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>ctools.cCircCash</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="ctools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >ctools</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="ctools-module.html">Package&nbsp;ctools</a> ::
+        Module&nbsp;cCircCash
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="ctools.cCircCash-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="ctools.cCircCash-module.html">Module ctools.cCircCash</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">__future__</tt> <tt class="py-keyword">import</tt> <tt class="py-name">with_statement</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">multiprocessing</tt> <tt class="py-keyword">as</tt> <tt class="py-name">mp</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2014, curesec GmbH</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># All rights reserved.</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># Redistribution and use in source and binary forms, with or without modification, </tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># are permitted provided that the following conditions are met:</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"># 1. Redistributions of source code must retain the above copyright notice, this list of </tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"># conditions and the following disclaimer.</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"># 2. Redistributions in binary form must reproduce the above copyright notice, this list </tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># of conditions and the following disclaimer in the documentation and/or other materials </tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># provided with the distribution.</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"># 3. Neither the name of the copyright holder nor the names of its contributors may be used </tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"># to endorse or promote products derived from this software without specific prior written </tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># permission.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-comment"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS </tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-comment"># OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF </tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE </tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-comment"># COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, </tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-comment"># EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF </tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-comment"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) </tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-comment"># HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR </tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-comment"># TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, </tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-comment"># EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">threading</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">tempfile</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">time</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-comment">#LOG = "/tmp/data.log"</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-comment">#FORMAT = '%(asctime)s - %(name)s - ' + \</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-comment">#    '%(levelname)s - %(threadName)s - %(message)s'</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-comment">#logging.basicConfig(filename=LOG,</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-comment">#                    filemode="w",</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-comment">#                    format=FORMAT,</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-comment">#                    level=logging.DEBUG)</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt id="link-0" class="py-name" targets="Variable ctools.cCircCash.logger=ctools.cCircCash-module.html#logger,Variable ctools.cComm.logger=ctools.cComm-module.html#logger,Variable ctools.cDns.logger=ctools.cDns-module.html#logger,Variable ctools.cMon.logger=ctools.cMon-module.html#logger,Variable ctools.cMysql.logger=ctools.cMysql-module.html#logger,Variable ctools.cTargets.logger=ctools.cTargets-module.html#logger,Variable ctools.cTelnet.logger=ctools.cTelnet-module.html#logger,Variable ctools.cTuples.logger=ctools.cTuples-module.html#logger,Variable ctools.cUtil.logger=ctools.cUtil-module.html#logger,Variable ctools.cWorkerThreads.logger=ctools.cWorkerThreads-module.html#logger,Variable ctools.csockslib.logger=ctools.csockslib-module.html#logger,Variable ctools.sshlib.logger=ctools.sshlib-module.html#logger"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-0', 'logger', 'link-0');">logger</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-name">__name__</tt><tt class="py-op">)</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt id="link-1" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-1', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">setLevel</tt><tt class="py-op">(</tt><tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">WARNING</tt><tt class="py-op">)</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt id="link-2" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-2', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">addHandler</tt><tt class="py-op">(</tt><tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">NullHandler</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt id="link-3" class="py-name" targets="Variable ctools.cCircCash.RECACHE_THRESH=ctools.cCircCash-module.html#RECACHE_THRESH"><a title="ctools.cCircCash.RECACHE_THRESH" class="py-name" href="#" onclick="return doclink('link-3', 'RECACHE_THRESH', 'link-3');">RECACHE_THRESH</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0.25</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-comment">#####################################################</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-comment">## Exceptions</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt class="py-comment">#####################################################</tt> </tt>
+<a name="EInvalidThreshold"></a><div id="EInvalidThreshold-def"><a name="L53"></a><tt class="py-lineno"> 53</tt> <a class="py-toggle" href="#" id="EInvalidThreshold-toggle" onclick="return toggle('EInvalidThreshold');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="ctools.cCircCash.EInvalidThreshold-class.html">EInvalidThreshold</a><tt class="py-op">(</tt><tt class="py-base-class">Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EInvalidThreshold-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="EInvalidThreshold-expanded"><a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">    <tt class="py-docstring">""" ENoInput is raised when input is provided neither via file not list """</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"> </tt>
+<a name="EInvalidThreshold.__init__"></a><div id="EInvalidThreshold.__init__-def"><a name="L56"></a><tt class="py-lineno"> 56</tt> <a class="py-toggle" href="#" id="EInvalidThreshold.__init__-toggle" onclick="return toggle('EInvalidThreshold.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cCircCash.EInvalidThreshold-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">=</tt><tt class="py-string">''</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EInvalidThreshold.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="EInvalidThreshold.__init__-expanded"><a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">=</tt> <tt class="py-name">value</tt> </tt>
+</div><a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"> </tt>
+<a name="EInvalidThreshold.__str__"></a><div id="EInvalidThreshold.__str__-def"><a name="L59"></a><tt class="py-lineno"> 59</tt> <a class="py-toggle" href="#" id="EInvalidThreshold.__str__-toggle" onclick="return toggle('EInvalidThreshold.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cCircCash.EInvalidThreshold-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EInvalidThreshold.__str__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="EInvalidThreshold.__str__-expanded"><a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">repr</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">value</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="_read_worker"></a><div id="_read_worker-def"><a name="L63"></a><tt class="py-lineno"> 63</tt> <a class="py-toggle" href="#" id="_read_worker-toggle" onclick="return toggle('_read_worker');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cCircCash-module.html#_read_worker">_read_worker</a><tt class="py-op">(</tt><tt class="py-param">fd</tt><tt class="py-op">,</tt> <tt class="py-param">data</tt><tt class="py-op">,</tt> <tt class="py-param">stop_ev</tt><tt class="py-op">,</tt> <tt class="py-param">re_read</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_read_worker-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="_read_worker-expanded"><a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-docstring">    Read a file and place the lines into a circular buffer.</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">    Input:</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-docstring">        fd              file descriptor to be read</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-docstring">        data            Cash providing method put (e.g. cCircCash._circ_cash instance)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring">        stop_ev         Event to stop the reading process</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring">        re_read         Boolean: restart reading the file if finished</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">    <tt id="link-4" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-4', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'read_worker started'</tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">    <tt class="py-keyword">while</tt> <tt class="py-keyword">not</tt> <tt class="py-name">stop_ev</tt><tt class="py-op">.</tt><tt class="py-name">is_set</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">            <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">                <tt id="link-5" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-5', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'Starting/continuing read'</tt><tt class="py-op">)</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">item</tt> <tt class="py-keyword">in</tt> <tt class="py-name">fd</tt><tt class="py-op">.</tt><tt class="py-name">readlines</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">                    <tt class="py-name">item</tt> <tt class="py-op">=</tt> <tt class="py-name">item</tt><tt class="py-op">.</tt><tt class="py-name">rstrip</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">                    <tt class="py-comment"># skip empties</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">                    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">item</tt><tt class="py-op">:</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">                        <tt class="py-keyword">continue</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">                    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">                        <tt id="link-6" class="py-name" targets="Static Method ctools.cTls.ClientHello.data()=ctools.cTls.ClientHello-class.html#data,Static Method ctools.cTls.RenegotiationInfo.data()=ctools.cTls.RenegotiationInfo-class.html#data,Static Method ctools.cTls.Signature.data()=ctools.cTls.Signature-class.html#data"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-6', 'data', 'link-6');">data</a></tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Method ctools.cCircCash._circ_cash.put()=ctools.cCircCash._circ_cash-class.html#put,Method ctools.cTuples.cTHQueue.put()=ctools.cTuples.cTHQueue-class.html#put"><a title="ctools.cCircCash._circ_cash.put
+ctools.cTuples.cTHQueue.put" class="py-name" href="#" onclick="return doclink('link-7', 'put', 'link-7');">put</a></tt><tt class="py-op">(</tt><tt class="py-name">tuple</tt><tt class="py-op">(</tt><tt class="py-name">item</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt id="link-8" class="py-name" targets="Class ctools.cCircCash._circ_cash=ctools.cCircCash._circ_cash-class.html"><a title="ctools.cCircCash._circ_cash" class="py-name" href="#" onclick="return doclink('link-8', '_circ_cash', 'link-8');">_circ_cash</a></tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Variable ctools.cCircCash._circ_cash.seperator=ctools.cCircCash._circ_cash-class.html#seperator"><a title="ctools.cCircCash._circ_cash.seperator" class="py-name" href="#" onclick="return doclink('link-9', 'seperator', 'link-9');">seperator</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">                    <tt class="py-keyword">except</tt><tt class="py-op">:</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">                        <tt id="link-10" class="py-name"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-10', 'data', 'link-6');">data</a></tt><tt class="py-op">.</tt><tt id="link-11" class="py-name"><a title="ctools.cCircCash._circ_cash.put
+ctools.cTuples.cTHQueue.put" class="py-name" href="#" onclick="return doclink('link-11', 'put', 'link-7');">put</a></tt><tt class="py-op">(</tt><tt class="py-name">item</tt><tt class="py-op">)</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">            <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">                <tt class="py-comment"># sth went wrong, lets quit this reader</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">                <tt id="link-12" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-12', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">error</tt><tt class="py-op">(</tt><tt class="py-string">'Error on read -&gt; %s'</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">                <tt class="py-keyword">break</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">            <tt id="link-13" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-13', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Finished reading file'</tt><tt class="py-op">)</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">            <tt id="link-14" class="py-name"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-14', 'data', 'link-6');">data</a></tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method ctools.cCircCash._circ_cash.close()=ctools.cCircCash._circ_cash-class.html#close,Method ctools.cMysql.MysqlClient.close()=ctools.cMysql.MysqlClient-class.html#close,Method ctools.cRpc.Rpc.close()=ctools.cRpc.Rpc-class.html#close,Method ctools.cTelnet.Telnet.close()=ctools.cTelnet.Telnet-class.html#close,Method ctools.cTuples.cTHQueue.close()=ctools.cTuples.cTHQueue-class.html#close,Method ctools.tee.tee.close()=ctools.tee.tee-class.html#close"><a title="ctools.cCircCash._circ_cash.close
+ctools.cMysql.MysqlClient.close
+ctools.cRpc.Rpc.close
+ctools.cTelnet.Telnet.close
+ctools.cTuples.cTHQueue.close
+ctools.tee.tee.close" class="py-name" href="#" onclick="return doclink('link-15', 'close', 'link-15');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">re_read</tt><tt class="py-op">:</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">                <tt class="py-comment"># we are done</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">                <tt class="py-keyword">break</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">            <tt class="py-comment"># start reading again from the top</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">            <tt class="py-name">fd</tt><tt class="py-op">.</tt><tt class="py-name">seek</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">            <tt id="link-16" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-16', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">error</tt><tt class="py-op">(</tt><tt class="py-string">'Error on open -&gt; %s'</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">            <tt class="py-keyword">break</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">    <tt id="link-17" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-17', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'read_worker done'</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"> </tt>
+<a name="_circ_cash"></a><div id="_circ_cash-def"><a name="L106"></a><tt class="py-lineno">106</tt> <a class="py-toggle" href="#" id="_circ_cash-toggle" onclick="return toggle('_circ_cash');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="ctools.cCircCash._circ_cash-class.html">_circ_cash</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_circ_cash-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="_circ_cash-expanded"><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">    <tt id="link-18" class="py-name" targets="Variable ctools.cCircCash._circ_cash.SENTINEL=ctools.cCircCash._circ_cash-class.html#SENTINEL,Variable ctools.cTuples.cInputGenerator.SENTINEL=ctools.cTuples.cInputGenerator-class.html#SENTINEL,Variable ctools.cTuples.cTHQueue.SENTINEL=ctools.cTuples.cTHQueue-class.html#SENTINEL"><a title="ctools.cCircCash._circ_cash.SENTINEL
+ctools.cTuples.cInputGenerator.SENTINEL
+ctools.cTuples.cTHQueue.SENTINEL" class="py-name" href="#" onclick="return doclink('link-18', 'SENTINEL', 'link-18');">SENTINEL</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'xxxxxx'</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">    <tt id="link-19" class="py-name"><a title="ctools.cCircCash._circ_cash.seperator" class="py-name" href="#" onclick="return doclink('link-19', 'seperator', 'link-9');">seperator</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'::'</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"> </tt>
+<a name="_circ_cash.__init__"></a><div id="_circ_cash.__init__-def"><a name="L111"></a><tt class="py-lineno">111</tt> <a class="py-toggle" href="#" id="_circ_cash.__init__-toggle" onclick="return toggle('_circ_cash.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cCircCash._circ_cash-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">threshold</tt><tt class="py-op">=</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-param">maxsize</tt><tt class="py-op">=</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-param">circle</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-param">SENTINEL</tt><tt class="py-op">=</tt><tt id="link-20" class="py-name"><a title="ctools.cCircCash._circ_cash.SENTINEL
+ctools.cTuples.cInputGenerator.SENTINEL
+ctools.cTuples.cTHQueue.SENTINEL" class="py-name" href="#" onclick="return doclink('link-20', 'SENTINEL', 'link-18');">SENTINEL</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_circ_cash.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_circ_cash.__init__-expanded"><a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"><tt class="py-docstring">        This class provides a size limited buffer.</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"><tt class="py-docstring">        If maxsize is reached, attempts to place new elements inside the buffer will</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"><tt class="py-docstring">        block until the number of elements falls below threshold.</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"><tt class="py-docstring">        If the circle option is set, buffer contents will be cached inside a file, which</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"><tt class="py-docstring">        is read on subsequent iterations.</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"><tt class="py-docstring">        Input:</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"><tt class="py-docstring">            threshold       If the number of buffered items falls below threshold, new items can</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"><tt class="py-docstring">                            be inserted until capacity is reached again.</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"><tt class="py-docstring">            maxsize         Capacity of the buffer. If reached put method will block.</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"><tt class="py-docstring">            circle          Set to True if you want the buffer to be re-readable.</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"><tt class="py-docstring">                            In which case, buffer contents will be cached on disk.</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"><tt class="py-docstring">            SENTINEL        Marks end of data, just ignore</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">        <tt id="link-21" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-21', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Init circ_cache maxsize: %d, threshold: %d, circle: %s'</tt><tt class="py-op">,</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">                    <tt class="py-name">maxsize</tt><tt class="py-op">,</tt> <tt class="py-name">threshold</tt><tt class="py-op">,</tt> <tt class="py-name">circle</tt><tt class="py-op">)</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">        <tt class="py-comment"># cache size</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">size</tt> <tt class="py-op">=</tt> <tt class="py-name">maxsize</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">        <tt class="py-comment"># indicates if cache is over capacity, i.e. n items &gt; maxsize</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">over_cap</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">        <tt class="py-comment"># read index, one way (increases steadily)</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">r_idx</tt> <tt class="py-op">=</tt> <tt class="py-name">mp</tt><tt class="py-op">.</tt><tt class="py-name">Value</tt><tt class="py-op">(</tt><tt class="py-string">'l'</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">        <tt class="py-comment"># write index, one way (increases steadily)</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">w_idx</tt> <tt class="py-op">=</tt> <tt class="py-name">mp</tt><tt class="py-op">.</tt><tt class="py-name">Value</tt><tt class="py-op">(</tt><tt class="py-string">'l'</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">        <tt class="py-comment"># conditions indicating, that data has be read/written</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_cond</tt> <tt class="py-op">=</tt> <tt class="py-name">mp</tt><tt class="py-op">.</tt><tt class="py-name">Condition</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">write_cond</tt> <tt class="py-op">=</tt> <tt class="py-name">mp</tt><tt class="py-op">.</tt><tt class="py-name">Condition</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line"> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">threshold</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">threshold</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt id="link-22" class="py-name"><a title="ctools.cCircCash.RECACHE_THRESH" class="py-name" href="#" onclick="return doclink('link-22', 'RECACHE_THRESH', 'link-3');">RECACHE_THRESH</a></tt> <tt class="py-op">*</tt> <tt class="py-name">maxsize</tt><tt class="py-op">)</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">        <tt class="py-keyword">elif</tt> <tt class="py-name">threshold</tt> <tt class="py-op">&gt;</tt> <tt class="py-name">maxsize</tt><tt class="py-op">:</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt id="link-23" class="py-name" targets="Class ctools.cCircCash.EInvalidThreshold=ctools.cCircCash.EInvalidThreshold-class.html"><a title="ctools.cCircCash.EInvalidThreshold" class="py-name" href="#" onclick="return doclink('link-23', 'EInvalidThreshold', 'link-23');">EInvalidThreshold</a></tt><tt class="py-op">(</tt><tt class="py-string">'Threshold %d is over buffer capacity %d'</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">threshold</tt><tt class="py-op">,</tt> <tt class="py-name">maxsize</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">threshold</tt> <tt class="py-op">=</tt> <tt class="py-name">threshold</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line"> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">        <tt id="link-24" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-24', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Recache threshold set to %d'</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">threshold</tt><tt class="py-op">)</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line"> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">        <tt class="py-comment"># write lock (we need this, because several threads will try to put</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">        <tt class="py-comment"># items into the buffer concurrently)</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">write_lock</tt> <tt class="py-op">=</tt> <tt class="py-name">mp</tt><tt class="py-op">.</tt><tt class="py-name">Lock</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">        <tt class="py-comment"># read lock (we need this, because several threads will try to get</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">        <tt class="py-comment"># items from the buffer concurrently)</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">        <tt class="py-comment"># even though we do have the conditions confirming, that there is at</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">        <tt class="py-comment"># least one item to be read for each thread that passes it,</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">        <tt class="py-comment"># items could be doubled</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_lock</tt> <tt class="py-op">=</tt> <tt class="py-name">mp</tt><tt class="py-op">.</tt><tt class="py-name">Lock</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line"> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">        <tt class="py-comment"># buffer holding the actual data</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-25', 'data', 'link-6');">data</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line"> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line">        <tt class="py-comment"># if we want to re-read the data, we need a disk cache</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">circle</tt> <tt class="py-op">=</tt> <tt class="py-name">circle</tt> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">circle</tt><tt class="py-op">:</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">            <tt id="link-26" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-26', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Creating temp file cache'</tt><tt class="py-op">)</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">disk_cache</tt> <tt class="py-op">=</tt> <tt class="py-name">tempfile</tt><tt class="py-op">.</tt><tt class="py-name">TemporaryFile</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_worker</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_worker_stop_ev</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">buffer_open</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">disk_cache</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line"> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">        <tt id="link-27" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-27', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'%d item cache initialized'</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">size</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line"> </tt>
+<a name="_circ_cash.rewind"></a><div id="_circ_cash.rewind-def"><a name="L183"></a><tt class="py-lineno">183</tt> <a class="py-toggle" href="#" id="_circ_cash.rewind-toggle" onclick="return toggle('_circ_cash.rewind');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cCircCash._circ_cash-class.html#rewind">rewind</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_circ_cash.rewind-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_circ_cash.rewind-expanded"><a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line"> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line">        <tt class="py-docstring">""" Rewind the buffer (start reading again from the start) """</tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line"> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">circle</tt><tt class="py-op">:</tt> </tt>
+<a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line">            <tt class="py-comment"># sorry but you should have said so, if you wanted rewindable</tt> </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line">            <tt class="py-comment"># buffers</tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line"> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">r_idx</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">&lt;</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">size</tt><tt class="py-op">:</tt> </tt>
+<a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line">            <tt class="py-comment"># if the read index is below capacity, we can just set it back to</tt> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line">            <tt class="py-comment"># zero</tt> </tt>
+<a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line">            <tt id="link-28" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-28', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'rewind'</tt><tt class="py-op">)</tt> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">r_idx</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line"> </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line">            <tt class="py-comment"># Know we know, that we don't need this anymore</tt> </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">disk_cache</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="ctools.cCircCash._circ_cash.close
+ctools.cMysql.MysqlClient.close
+ctools.cRpc.Rpc.close
+ctools.cTelnet.Telnet.close
+ctools.cTuples.cTHQueue.close
+ctools.tee.tee.close" class="py-name" href="#" onclick="return doclink('link-29', 'close', 'link-15');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line"> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line">            <tt class="py-comment"># tell the readers(!), that they can start reading again</tt> </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">write_cond</tt><tt class="py-op">.</tt><tt class="py-name">acquire</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">write_cond</tt><tt class="py-op">.</tt><tt class="py-name">notify</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">write_cond</tt><tt class="py-op">.</tt><tt class="py-name">release</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line">            <tt class="py-comment"># if its above the capacity, that means, that the buffer is "to</tt> </tt>
+<a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line">            <tt class="py-comment"># small", i.e. it can not hold all the data at once.</tt> </tt>
+<a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line">            <tt class="py-comment"># Which means we have to use the disk for storing the items,</tt> </tt>
+<a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line">            <tt class="py-comment"># which currently dont fit in the RAM.</tt> </tt>
+<a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line"> </tt>
+<a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_worker</tt><tt class="py-op">:</tt> </tt>
+<a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line">                <tt class="py-comment"># if the read worker is already running ... we have a minor</tt> </tt>
+<a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line">                <tt class="py-comment"># problem i guess ... not sure TODO</tt> </tt>
+<a name="L214"></a><tt class="py-lineno">214</tt>  <tt class="py-line">                <tt id="link-30" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-30', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">'not rewinding'</tt><tt class="py-op">)</tt> </tt>
+<a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> </tt>
+<a name="L216"></a><tt class="py-lineno">216</tt>  <tt class="py-line"> </tt>
+<a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">r_idx</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">w_idx</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line"> </tt>
+<a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">write_cond</tt><tt class="py-op">.</tt><tt class="py-name">acquire</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L221"></a><tt class="py-lineno">221</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">write_cond</tt><tt class="py-op">.</tt><tt class="py-name">notify</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">write_cond</tt><tt class="py-op">.</tt><tt class="py-name">release</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L223"></a><tt class="py-lineno">223</tt>  <tt class="py-line"> </tt>
+<a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_cond</tt><tt class="py-op">.</tt><tt class="py-name">acquire</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L225"></a><tt class="py-lineno">225</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_cond</tt><tt class="py-op">.</tt><tt class="py-name">notify</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L226"></a><tt class="py-lineno">226</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_cond</tt><tt class="py-op">.</tt><tt class="py-name">release</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L227"></a><tt class="py-lineno">227</tt>  <tt class="py-line"> </tt>
+<a name="L228"></a><tt class="py-lineno">228</tt>  <tt class="py-line">            <tt class="py-comment"># start the reader thread</tt> </tt>
+<a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_worker_stop_ev</tt> <tt class="py-op">=</tt> <tt class="py-name">mp</tt><tt class="py-op">.</tt><tt class="py-name">Event</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_worker</tt> <tt class="py-op">=</tt> <tt class="py-name">threading</tt><tt class="py-op">.</tt><tt class="py-name">Thread</tt><tt class="py-op">(</tt> </tt>
+<a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line">                <tt class="py-name">target</tt><tt class="py-op">=</tt><tt id="link-31" class="py-name" targets="Function ctools.cCircCash._read_worker()=ctools.cCircCash-module.html#_read_worker"><a title="ctools.cCircCash._read_worker" class="py-name" href="#" onclick="return doclink('link-31', '_read_worker', 'link-31');">_read_worker</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L232"></a><tt class="py-lineno">232</tt>  <tt class="py-line">                <tt class="py-name">args</tt><tt class="py-op">=</tt><tt class="py-op">(</tt> </tt>
+<a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">disk_cache</tt><tt class="py-op">,</tt> </tt>
+<a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">,</tt> </tt>
+<a name="L235"></a><tt class="py-lineno">235</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_worker_stop_ev</tt><tt class="py-op">,</tt> </tt>
+<a name="L236"></a><tt class="py-lineno">236</tt>  <tt class="py-line">                    <tt class="py-name">True</tt> </tt>
+<a name="L237"></a><tt class="py-lineno">237</tt>  <tt class="py-line">                <tt class="py-op">)</tt> </tt>
+<a name="L238"></a><tt class="py-lineno">238</tt>  <tt class="py-line">            <tt class="py-op">)</tt> </tt>
+<a name="L239"></a><tt class="py-lineno">239</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_worker</tt><tt class="py-op">.</tt><tt class="py-name">setDaemon</tt><tt class="py-op">(</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L240"></a><tt class="py-lineno">240</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_worker</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name" targets="Method ctools.cWorkerThreads.cWork.start()=ctools.cWorkerThreads.cWork-class.html#start"><a title="ctools.cWorkerThreads.cWork.start" class="py-name" href="#" onclick="return doclink('link-32', 'start', 'link-32');">start</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L241"></a><tt class="py-lineno">241</tt>  <tt class="py-line">            <tt id="link-33" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-33', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Startet reading from disk'</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L242"></a><tt class="py-lineno">242</tt>  <tt class="py-line"> </tt>
+<a name="_circ_cash.close"></a><div id="_circ_cash.close-def"><a name="L243"></a><tt class="py-lineno">243</tt> <a class="py-toggle" href="#" id="_circ_cash.close-toggle" onclick="return toggle('_circ_cash.close');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cCircCash._circ_cash-class.html#close">close</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_circ_cash.close-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_circ_cash.close-expanded"><a name="L244"></a><tt class="py-lineno">244</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-34" class="py-name"><a title="ctools.cCircCash._circ_cash.put
+ctools.cTuples.cTHQueue.put" class="py-name" href="#" onclick="return doclink('link-34', 'put', 'link-7');">put</a></tt><tt class="py-op">(</tt><tt id="link-35" class="py-name"><a title="ctools.cCircCash._circ_cash" class="py-name" href="#" onclick="return doclink('link-35', '_circ_cash', 'link-8');">_circ_cash</a></tt><tt class="py-op">.</tt><tt id="link-36" class="py-name"><a title="ctools.cCircCash._circ_cash.SENTINEL
+ctools.cTuples.cInputGenerator.SENTINEL
+ctools.cTuples.cTHQueue.SENTINEL" class="py-name" href="#" onclick="return doclink('link-36', 'SENTINEL', 'link-18');">SENTINEL</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L245"></a><tt class="py-lineno">245</tt>  <tt class="py-line"> </tt>
+<a name="L246"></a><tt class="py-lineno">246</tt>  <tt class="py-line">    <tt class="py-comment"># TODO: where to call this?</tt> </tt>
+<a name="_circ_cash.clean"></a><div id="_circ_cash.clean-def"><a name="L247"></a><tt class="py-lineno">247</tt> <a class="py-toggle" href="#" id="_circ_cash.clean-toggle" onclick="return toggle('_circ_cash.clean');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cCircCash._circ_cash-class.html#clean">clean</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_circ_cash.clean-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_circ_cash.clean-expanded"><a name="L248"></a><tt class="py-lineno">248</tt>  <tt class="py-line"> </tt>
+<a name="L249"></a><tt class="py-lineno">249</tt>  <tt class="py-line">        <tt class="py-docstring">""" close open file handles """</tt> </tt>
+<a name="L250"></a><tt class="py-lineno">250</tt>  <tt class="py-line"> </tt>
+<a name="L251"></a><tt class="py-lineno">251</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_worker</tt><tt class="py-op">:</tt> </tt>
+<a name="L252"></a><tt class="py-lineno">252</tt>  <tt class="py-line">            <tt class="py-comment"># stop read worker thread</tt> </tt>
+<a name="L253"></a><tt class="py-lineno">253</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_worker_stop_ev</tt><tt class="py-op">.</tt><tt class="py-name">set</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L254"></a><tt class="py-lineno">254</tt>  <tt class="py-line"> </tt>
+<a name="L255"></a><tt class="py-lineno">255</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">disk_cache</tt><tt class="py-op">:</tt> </tt>
+<a name="L256"></a><tt class="py-lineno">256</tt>  <tt class="py-line">            <tt class="py-comment"># close disk cache file handle</tt> </tt>
+<a name="L257"></a><tt class="py-lineno">257</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">disk_cache</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="ctools.cCircCash._circ_cash.close
+ctools.cMysql.MysqlClient.close
+ctools.cRpc.Rpc.close
+ctools.cTelnet.Telnet.close
+ctools.cTuples.cTHQueue.close
+ctools.tee.tee.close" class="py-name" href="#" onclick="return doclink('link-37', 'close', 'link-15');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L258"></a><tt class="py-lineno">258</tt>  <tt class="py-line"> </tt>
+<a name="_circ_cash.put"></a><div id="_circ_cash.put-def"><a name="L259"></a><tt class="py-lineno">259</tt> <a class="py-toggle" href="#" id="_circ_cash.put-toggle" onclick="return toggle('_circ_cash.put');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cCircCash._circ_cash-class.html#put">put</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">item</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_circ_cash.put-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_circ_cash.put-expanded"><a name="L260"></a><tt class="py-lineno">260</tt>  <tt class="py-line"> </tt>
+<a name="L261"></a><tt class="py-lineno">261</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L262"></a><tt class="py-lineno">262</tt>  <tt class="py-line"><tt class="py-docstring">        Place item in buffer.</tt> </tt>
+<a name="L263"></a><tt class="py-lineno">263</tt>  <tt class="py-line"><tt class="py-docstring">        If the buffer is full (maxsize), put blocks until the recache threshold is passed.</tt> </tt>
+<a name="L264"></a><tt class="py-lineno">264</tt>  <tt class="py-line"><tt class="py-docstring">        If item == None, it is not inserted.</tt> </tt>
+<a name="L265"></a><tt class="py-lineno">265</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L266"></a><tt class="py-lineno">266</tt>  <tt class="py-line"><tt class="py-docstring">        Input:</tt> </tt>
+<a name="L267"></a><tt class="py-lineno">267</tt>  <tt class="py-line"><tt class="py-docstring">            item        Item to be stored</tt> </tt>
+<a name="L268"></a><tt class="py-lineno">268</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L269"></a><tt class="py-lineno">269</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L270"></a><tt class="py-lineno">270</tt>  <tt class="py-line"> </tt>
+<a name="L271"></a><tt class="py-lineno">271</tt>  <tt class="py-line">        <tt class="py-comment"># skip empties</tt> </tt>
+<a name="L272"></a><tt class="py-lineno">272</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">item</tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L273"></a><tt class="py-lineno">273</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> </tt>
+<a name="L274"></a><tt class="py-lineno">274</tt>  <tt class="py-line"> </tt>
+<a name="L275"></a><tt class="py-lineno">275</tt>  <tt class="py-line">        <tt id="link-38" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-38', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'Put '</tt> <tt class="py-op">+</tt> <tt class="py-name">repr</tt><tt class="py-op">(</tt><tt class="py-name">item</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L276"></a><tt class="py-lineno">276</tt>  <tt class="py-line"> </tt>
+<a name="L277"></a><tt class="py-lineno">277</tt>  <tt class="py-line">        <tt class="py-comment"># check if we have space to write</tt> </tt>
+<a name="L278"></a><tt class="py-lineno">278</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_cond</tt><tt class="py-op">.</tt><tt class="py-name">acquire</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L279"></a><tt class="py-lineno">279</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">w_idx</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">r_idx</tt><tt class="py-op">.</tt><tt class="py-name">value</tt><tt class="py-op">)</tt> <tt class="py-op">&gt;=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">size</tt><tt class="py-op">:</tt> </tt>
+<a name="L280"></a><tt class="py-lineno">280</tt>  <tt class="py-line">            <tt id="link-39" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-39', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'Buffer is full, waiting for read'</tt><tt class="py-op">)</tt> </tt>
+<a name="L281"></a><tt class="py-lineno">281</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_cond</tt><tt class="py-op">.</tt><tt id="link-40" class="py-name" targets="Method ctools.cWorkerThreads.cWork.wait()=ctools.cWorkerThreads.cWork-class.html#wait"><a title="ctools.cWorkerThreads.cWork.wait" class="py-name" href="#" onclick="return doclink('link-40', 'wait', 'link-40');">wait</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L282"></a><tt class="py-lineno">282</tt>  <tt class="py-line">            <tt id="link-41" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-41', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'can write now'</tt><tt class="py-op">)</tt> </tt>
+<a name="L283"></a><tt class="py-lineno">283</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_cond</tt><tt class="py-op">.</tt><tt class="py-name">release</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L284"></a><tt class="py-lineno">284</tt>  <tt class="py-line"> </tt>
+<a name="L285"></a><tt class="py-lineno">285</tt>  <tt class="py-line">        <tt class="py-comment"># sync because concurrency</tt> </tt>
+<a name="L286"></a><tt class="py-lineno">286</tt>  <tt class="py-line">        <tt class="py-keyword">with</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">write_lock</tt><tt class="py-op">:</tt> </tt>
+<a name="L287"></a><tt class="py-lineno">287</tt>  <tt class="py-line">            <tt class="py-comment"># now we can write new data at index i</tt> </tt>
+<a name="L288"></a><tt class="py-lineno">288</tt>  <tt class="py-line">            <tt class="py-name">i</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">w_idx</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">size</tt><tt class="py-op">)</tt> </tt>
+<a name="L289"></a><tt class="py-lineno">289</tt>  <tt class="py-line">            <tt class="py-comment">#logger.debug('write index: %d (%d)' % (i, self.w_idx.value))</tt> </tt>
+<a name="L290"></a><tt class="py-lineno">290</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-42" class="py-name"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-42', 'data', 'link-6');">data</a></tt><tt class="py-op">)</tt> <tt class="py-op">&lt;=</tt> <tt class="py-name">i</tt><tt class="py-op">:</tt> </tt>
+<a name="L291"></a><tt class="py-lineno">291</tt>  <tt class="py-line">                <tt class="py-comment"># append if we still have the space</tt> </tt>
+<a name="L292"></a><tt class="py-lineno">292</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-43" class="py-name"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-43', 'data', 'link-6');">data</a></tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">item</tt><tt class="py-op">)</tt> </tt>
+<a name="L293"></a><tt class="py-lineno">293</tt>  <tt class="py-line">            <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L294"></a><tt class="py-lineno">294</tt>  <tt class="py-line">                <tt class="py-comment"># otherwise replace an "old" item (which we already processed,</tt> </tt>
+<a name="L295"></a><tt class="py-lineno">295</tt>  <tt class="py-line">                <tt class="py-comment"># so it can be discarded)</tt> </tt>
+<a name="L296"></a><tt class="py-lineno">296</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-44" class="py-name"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-44', 'data', 'link-6');">data</a></tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">item</tt> </tt>
+<a name="L297"></a><tt class="py-lineno">297</tt>  <tt class="py-line"> </tt>
+<a name="L298"></a><tt class="py-lineno">298</tt>  <tt class="py-line">            <tt class="py-comment"># up the write index</tt> </tt>
+<a name="L299"></a><tt class="py-lineno">299</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">w_idx</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">+=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L300"></a><tt class="py-lineno">300</tt>  <tt class="py-line"> </tt>
+<a name="L301"></a><tt class="py-lineno">301</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">w_idx</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">==</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">size</tt><tt class="py-op">:</tt> </tt>
+<a name="L302"></a><tt class="py-lineno">302</tt>  <tt class="py-line">                <tt id="link-45" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-45', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Capacity exceeded, writing data to disk'</tt><tt class="py-op">)</tt> </tt>
+<a name="L303"></a><tt class="py-lineno">303</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">over_cap</tt><tt class="py-op">:</tt> </tt>
+<a name="L304"></a><tt class="py-lineno">304</tt>  <tt class="py-line">                    <tt class="py-comment"># write all previous data into disk cache</tt> </tt>
+<a name="L305"></a><tt class="py-lineno">305</tt>  <tt class="py-line">                    <tt class="py-keyword">for</tt> <tt class="py-name">x</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-46" class="py-name"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-46', 'data', 'link-6');">data</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L306"></a><tt class="py-lineno">306</tt>  <tt class="py-line">                        <tt class="py-name">stritem</tt> <tt class="py-op">=</tt> <tt id="link-47" class="py-name"><a title="ctools.cCircCash._circ_cash" class="py-name" href="#" onclick="return doclink('link-47', '_circ_cash', 'link-8');">_circ_cash</a></tt><tt class="py-op">.</tt><tt id="link-48" class="py-name"><a title="ctools.cCircCash._circ_cash.seperator" class="py-name" href="#" onclick="return doclink('link-48', 'seperator', 'link-9');">seperator</a></tt><tt class="py-op">.</tt><tt id="link-49" class="py-name" targets="Method ctools.cTelnet.Listener.join()=ctools.cTelnet.Listener-class.html#join,Method ctools.cWorkerThreads._cWorker.join()=ctools.cWorkerThreads._cWorker-class.html#join"><a title="ctools.cTelnet.Listener.join
+ctools.cWorkerThreads._cWorker.join" class="py-name" href="#" onclick="return doclink('link-49', 'join', 'link-49');">join</a></tt><tt class="py-op">(</tt><tt class="py-name">map</tt><tt class="py-op">(</tt><tt class="py-name">str</tt><tt class="py-op">,</tt> <tt class="py-op">[</tt><tt class="py-name">x</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L307"></a><tt class="py-lineno">307</tt>  <tt class="py-line">                        <tt id="link-50" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-50', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'Writing (all) %s'</tt> <tt class="py-op">%</tt> <tt class="py-name">stritem</tt><tt class="py-op">)</tt> </tt>
+<a name="L308"></a><tt class="py-lineno">308</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">disk_cache</tt><tt class="py-op">.</tt><tt id="link-51" class="py-name" targets="Method ctools.cTelnet.Telnet.write()=ctools.cTelnet.Telnet-class.html#write,Method ctools.tee.tee.write()=ctools.tee.tee-class.html#write"><a title="ctools.cTelnet.Telnet.write
+ctools.tee.tee.write" class="py-name" href="#" onclick="return doclink('link-51', 'write', 'link-51');">write</a></tt><tt class="py-op">(</tt><tt class="py-name">stritem</tt> <tt class="py-op">+</tt> <tt class="py-string">'\n'</tt><tt class="py-op">)</tt> </tt>
+<a name="L309"></a><tt class="py-lineno">309</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">over_cap</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L310"></a><tt class="py-lineno">310</tt>  <tt class="py-line"> </tt>
+<a name="L311"></a><tt class="py-lineno">311</tt>  <tt class="py-line">            <tt class="py-comment"># tell the other guys that there is new stuff to be read</tt> </tt>
+<a name="L312"></a><tt class="py-lineno">312</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">write_cond</tt><tt class="py-op">.</tt><tt class="py-name">acquire</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L313"></a><tt class="py-lineno">313</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">write_cond</tt><tt class="py-op">.</tt><tt class="py-name">notify</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L314"></a><tt class="py-lineno">314</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">write_cond</tt><tt class="py-op">.</tt><tt class="py-name">release</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L315"></a><tt class="py-lineno">315</tt>  <tt class="py-line"> </tt>
+<a name="L316"></a><tt class="py-lineno">316</tt>  <tt class="py-line">            <tt class="py-comment"># so if we have a disk cache and the buffer is still open and the</tt> </tt>
+<a name="L317"></a><tt class="py-lineno">317</tt>  <tt class="py-line">            <tt class="py-comment"># current item does not indicate the end of the data stream</tt> </tt>
+<a name="L318"></a><tt class="py-lineno">318</tt>  <tt class="py-line">            <tt class="py-comment"># cache it</tt> </tt>
+<a name="L319"></a><tt class="py-lineno">319</tt>  <tt class="py-line">            <tt class="py-comment">#if self.disk_cache and self.buffer_open and item != _circ_cash.SENTINEL:</tt> </tt>
+<a name="L320"></a><tt class="py-lineno">320</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">over_cap</tt> <tt class="py-keyword">and</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">buffer_open</tt> <tt class="py-keyword">and</tt> <tt class="py-name">item</tt> <tt class="py-op">!=</tt> <tt id="link-52" class="py-name"><a title="ctools.cCircCash._circ_cash" class="py-name" href="#" onclick="return doclink('link-52', '_circ_cash', 'link-8');">_circ_cash</a></tt><tt class="py-op">.</tt><tt id="link-53" class="py-name"><a title="ctools.cCircCash._circ_cash.SENTINEL
+ctools.cTuples.cInputGenerator.SENTINEL
+ctools.cTuples.cTHQueue.SENTINEL" class="py-name" href="#" onclick="return doclink('link-53', 'SENTINEL', 'link-18');">SENTINEL</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L321"></a><tt class="py-lineno">321</tt>  <tt class="py-line">                <tt class="py-name">stritem</tt> <tt class="py-op">=</tt> <tt id="link-54" class="py-name"><a title="ctools.cCircCash._circ_cash" class="py-name" href="#" onclick="return doclink('link-54', '_circ_cash', 'link-8');">_circ_cash</a></tt><tt class="py-op">.</tt><tt id="link-55" class="py-name"><a title="ctools.cCircCash._circ_cash.seperator" class="py-name" href="#" onclick="return doclink('link-55', 'seperator', 'link-9');">seperator</a></tt><tt class="py-op">.</tt><tt id="link-56" class="py-name"><a title="ctools.cTelnet.Listener.join
+ctools.cWorkerThreads._cWorker.join" class="py-name" href="#" onclick="return doclink('link-56', 'join', 'link-49');">join</a></tt><tt class="py-op">(</tt><tt class="py-name">map</tt><tt class="py-op">(</tt><tt class="py-name">str</tt><tt class="py-op">,</tt> <tt class="py-op">[</tt><tt class="py-name">item</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L322"></a><tt class="py-lineno">322</tt>  <tt class="py-line">                <tt id="link-57" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-57', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'Writing %s'</tt> <tt class="py-op">%</tt> <tt class="py-name">stritem</tt><tt class="py-op">)</tt> </tt>
+<a name="L323"></a><tt class="py-lineno">323</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">disk_cache</tt><tt class="py-op">.</tt><tt id="link-58" class="py-name"><a title="ctools.cTelnet.Telnet.write
+ctools.tee.tee.write" class="py-name" href="#" onclick="return doclink('link-58', 'write', 'link-51');">write</a></tt><tt class="py-op">(</tt><tt class="py-name">stritem</tt> <tt class="py-op">+</tt> <tt class="py-string">'\n'</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L324"></a><tt class="py-lineno">324</tt>  <tt class="py-line"> </tt>
+<a name="_circ_cash.__iter__"></a><div id="_circ_cash.__iter__-def"><a name="L325"></a><tt class="py-lineno">325</tt> <a class="py-toggle" href="#" id="_circ_cash.__iter__-toggle" onclick="return toggle('_circ_cash.__iter__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cCircCash._circ_cash-class.html#__iter__">__iter__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_circ_cash.__iter__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_circ_cash.__iter__-expanded"><a name="L326"></a><tt class="py-lineno">326</tt>  <tt class="py-line"> </tt>
+<a name="L327"></a><tt class="py-lineno">327</tt>  <tt class="py-line">        <tt class="py-docstring">""" blubb, its an iterator """</tt> </tt>
+<a name="L328"></a><tt class="py-lineno">328</tt>  <tt class="py-line"> </tt>
+<a name="L329"></a><tt class="py-lineno">329</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">iter</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-59" class="py-name" targets="Method ctools.cCircCash._circ_cash.get()=ctools.cCircCash._circ_cash-class.html#get,Method ctools.cTargets.TargetGenerator.get()=ctools.cTargets.TargetGenerator-class.html#get,Method ctools.cTuples.cTHQueue.get()=ctools.cTuples.cTHQueue-class.html#get"><a title="ctools.cCircCash._circ_cash.get
+ctools.cTargets.TargetGenerator.get
+ctools.cTuples.cTHQueue.get" class="py-name" href="#" onclick="return doclink('link-59', 'get', 'link-59');">get</a></tt><tt class="py-op">,</tt> <tt id="link-60" class="py-name"><a title="ctools.cCircCash._circ_cash" class="py-name" href="#" onclick="return doclink('link-60', '_circ_cash', 'link-8');">_circ_cash</a></tt><tt class="py-op">.</tt><tt id="link-61" class="py-name"><a title="ctools.cCircCash._circ_cash.SENTINEL
+ctools.cTuples.cInputGenerator.SENTINEL
+ctools.cTuples.cTHQueue.SENTINEL" class="py-name" href="#" onclick="return doclink('link-61', 'SENTINEL', 'link-18');">SENTINEL</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L330"></a><tt class="py-lineno">330</tt>  <tt class="py-line"> </tt>
+<a name="_circ_cash.get"></a><div id="_circ_cash.get-def"><a name="L331"></a><tt class="py-lineno">331</tt> <a class="py-toggle" href="#" id="_circ_cash.get-toggle" onclick="return toggle('_circ_cash.get');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cCircCash._circ_cash-class.html#get">get</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_circ_cash.get-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_circ_cash.get-expanded"><a name="L332"></a><tt class="py-lineno">332</tt>  <tt class="py-line"> </tt>
+<a name="L333"></a><tt class="py-lineno">333</tt>  <tt class="py-line">        <tt class="py-docstring">""" Get one item from buffer, blocks infinetly if there is nothing to be read """</tt> </tt>
+<a name="L334"></a><tt class="py-lineno">334</tt>  <tt class="py-line"> </tt>
+<a name="L335"></a><tt class="py-lineno">335</tt>  <tt class="py-line">        <tt class="py-comment"># do we have sth to read?</tt> </tt>
+<a name="L336"></a><tt class="py-lineno">336</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">write_cond</tt><tt class="py-op">.</tt><tt class="py-name">acquire</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L337"></a><tt class="py-lineno">337</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">r_idx</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">&gt;=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">w_idx</tt><tt class="py-op">.</tt><tt class="py-name">value</tt><tt class="py-op">:</tt> </tt>
+<a name="L338"></a><tt class="py-lineno">338</tt>  <tt class="py-line">            <tt id="link-62" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-62', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'Buffer is empty, waiting for write'</tt><tt class="py-op">)</tt> </tt>
+<a name="L339"></a><tt class="py-lineno">339</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">write_cond</tt><tt class="py-op">.</tt><tt id="link-63" class="py-name"><a title="ctools.cWorkerThreads.cWork.wait" class="py-name" href="#" onclick="return doclink('link-63', 'wait', 'link-40');">wait</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L340"></a><tt class="py-lineno">340</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">write_cond</tt><tt class="py-op">.</tt><tt class="py-name">release</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L341"></a><tt class="py-lineno">341</tt>  <tt class="py-line"> </tt>
+<a name="L342"></a><tt class="py-lineno">342</tt>  <tt class="py-line">        <tt class="py-keyword">with</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_lock</tt><tt class="py-op">:</tt> </tt>
+<a name="L343"></a><tt class="py-lineno">343</tt>  <tt class="py-line">            <tt class="py-comment"># lets read it from i</tt> </tt>
+<a name="L344"></a><tt class="py-lineno">344</tt>  <tt class="py-line">            <tt class="py-name">i</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">r_idx</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">size</tt><tt class="py-op">)</tt> </tt>
+<a name="L345"></a><tt class="py-lineno">345</tt>  <tt class="py-line">            <tt class="py-comment">#logger.debug('read index: %d (%d)' % (i, self.r_idx.value))</tt> </tt>
+<a name="L346"></a><tt class="py-lineno">346</tt>  <tt class="py-line">            <tt class="py-name">item</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-64" class="py-name"><a title="ctools.cTls.ClientHello.data
+ctools.cTls.RenegotiationInfo.data
+ctools.cTls.Signature.data" class="py-name" href="#" onclick="return doclink('link-64', 'data', 'link-6');">data</a></tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt> </tt>
+<a name="L347"></a><tt class="py-lineno">347</tt>  <tt class="py-line">            <tt id="link-65" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-65', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'get called '</tt> <tt class="py-op">+</tt> <tt class="py-name">repr</tt><tt class="py-op">(</tt><tt class="py-name">item</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L348"></a><tt class="py-lineno">348</tt>  <tt class="py-line"> </tt>
+<a name="L349"></a><tt class="py-lineno">349</tt>  <tt class="py-line">            <tt class="py-comment"># up the read index</tt> </tt>
+<a name="L350"></a><tt class="py-lineno">350</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">r_idx</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">+=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L351"></a><tt class="py-lineno">351</tt>  <tt class="py-line"> </tt>
+<a name="L352"></a><tt class="py-lineno">352</tt>  <tt class="py-line">            <tt class="py-comment"># tell the other guys, that they can overwrite the old stuff</tt> </tt>
+<a name="L353"></a><tt class="py-lineno">353</tt>  <tt class="py-line">            <tt class="py-comment"># but only if the threshold is passed</tt> </tt>
+<a name="L354"></a><tt class="py-lineno">354</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">abs</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">r_idx</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">size</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">w_idx</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">size</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> <tt class="py-op">&gt;=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">threshold</tt><tt class="py-op">:</tt> </tt>
+<a name="L355"></a><tt class="py-lineno">355</tt>  <tt class="py-line">                <tt id="link-66" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-66', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Cash emptied enough, resuming ...'</tt><tt class="py-op">)</tt> </tt>
+<a name="L356"></a><tt class="py-lineno">356</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_cond</tt><tt class="py-op">.</tt><tt class="py-name">acquire</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L357"></a><tt class="py-lineno">357</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_cond</tt><tt class="py-op">.</tt><tt class="py-name">notify</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L358"></a><tt class="py-lineno">358</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">read_cond</tt><tt class="py-op">.</tt><tt class="py-name">release</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L359"></a><tt class="py-lineno">359</tt>  <tt class="py-line"> </tt>
+<a name="L360"></a><tt class="py-lineno">360</tt>  <tt class="py-line">            <tt class="py-comment"># if the current item is the SENTINEL, we are done</tt> </tt>
+<a name="L361"></a><tt class="py-lineno">361</tt>  <tt class="py-line">            <tt class="py-comment"># we can close the buffer (if not closed already) and</tt> </tt>
+<a name="L362"></a><tt class="py-lineno">362</tt>  <tt class="py-line">            <tt class="py-comment"># reset the disk cache (wait what: TODO)</tt> </tt>
+<a name="L363"></a><tt class="py-lineno">363</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">item</tt> <tt class="py-op">==</tt> <tt id="link-67" class="py-name"><a title="ctools.cCircCash._circ_cash" class="py-name" href="#" onclick="return doclink('link-67', '_circ_cash', 'link-8');">_circ_cash</a></tt><tt class="py-op">.</tt><tt id="link-68" class="py-name"><a title="ctools.cCircCash._circ_cash.SENTINEL
+ctools.cTuples.cInputGenerator.SENTINEL
+ctools.cTuples.cTHQueue.SENTINEL" class="py-name" href="#" onclick="return doclink('link-68', 'SENTINEL', 'link-18');">SENTINEL</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L364"></a><tt class="py-lineno">364</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">disk_cache</tt> <tt class="py-keyword">and</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">buffer_open</tt><tt class="py-op">:</tt> </tt>
+<a name="L365"></a><tt class="py-lineno">365</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">buffer_open</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L366"></a><tt class="py-lineno">366</tt>  <tt class="py-line">                    <tt class="py-comment">#self.disk_cache.seek(0)</tt> </tt>
+<a name="L367"></a><tt class="py-lineno">367</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-69" class="py-name" targets="Method ctools.cCircCash._circ_cash.rewind()=ctools.cCircCash._circ_cash-class.html#rewind"><a title="ctools.cCircCash._circ_cash.rewind" class="py-name" href="#" onclick="return doclink('link-69', 'rewind', 'link-69');">rewind</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L368"></a><tt class="py-lineno">368</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">item</tt> </tt>
+</div></div><a name="L369"></a><tt class="py-lineno">369</tt>  <tt class="py-line"> </tt>
+<a name="L370"></a><tt class="py-lineno">370</tt>  <tt class="py-line"> </tt>
+<a name="L371"></a><tt class="py-lineno">371</tt>  <tt class="py-line"><tt class="py-comment">############################################################################</tt> </tt>
+<a name="L372"></a><tt class="py-lineno">372</tt>  <tt class="py-line"><tt class="py-comment">## TEST THQueue ############################################################</tt> </tt>
+<a name="L373"></a><tt class="py-lineno">373</tt>  <tt class="py-line"><tt class="py-comment">############################################################################</tt> </tt>
+<a name="L374"></a><tt class="py-lineno">374</tt>  <tt class="py-line"> </tt>
+<a name="take_from_cache"></a><div id="take_from_cache-def"><a name="L375"></a><tt class="py-lineno">375</tt> <a class="py-toggle" href="#" id="take_from_cache-toggle" onclick="return toggle('take_from_cache');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cCircCash-module.html#take_from_cache">take_from_cache</a><tt class="py-op">(</tt><tt class="py-param">c</tt><tt class="py-op">,</tt> <tt class="py-param">wait</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="take_from_cache-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="take_from_cache-expanded"><a name="L376"></a><tt class="py-lineno">376</tt>  <tt class="py-line">    <tt id="link-70" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-70', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'take_from_cache thread started'</tt><tt class="py-op">)</tt> </tt>
+<a name="L377"></a><tt class="py-lineno">377</tt>  <tt class="py-line">    <tt class="py-keyword">while</tt> <tt class="py-name">True</tt><tt class="py-op">:</tt> </tt>
+<a name="L378"></a><tt class="py-lineno">378</tt>  <tt class="py-line">        <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">sleep</tt><tt class="py-op">(</tt><tt id="link-71" class="py-name"><a title="ctools.cWorkerThreads.cWork.wait" class="py-name" href="#" onclick="return doclink('link-71', 'wait', 'link-40');">wait</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L379"></a><tt class="py-lineno">379</tt>  <tt class="py-line">        <tt id="link-72" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-72', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Taking one element from Q'</tt><tt class="py-op">)</tt> </tt>
+<a name="L380"></a><tt class="py-lineno">380</tt>  <tt class="py-line">        <tt class="py-name">e</tt> <tt class="py-op">=</tt> <tt class="py-name">c</tt><tt class="py-op">.</tt><tt id="link-73" class="py-name"><a title="ctools.cCircCash._circ_cash.get
+ctools.cTargets.TargetGenerator.get
+ctools.cTuples.cTHQueue.get" class="py-name" href="#" onclick="return doclink('link-73', 'get', 'link-59');">get</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L381"></a><tt class="py-lineno">381</tt>  <tt class="py-line">        <tt id="link-74" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-74', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Got %s'</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L382"></a><tt class="py-lineno">382</tt>  <tt class="py-line"> </tt>
+<a name="L383"></a><tt class="py-lineno">383</tt>  <tt class="py-line"> </tt>
+<a name="_test_cCircCash"></a><div id="_test_cCircCash-def"><a name="L384"></a><tt class="py-lineno">384</tt> <a class="py-toggle" href="#" id="_test_cCircCash-toggle" onclick="return toggle('_test_cCircCash');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cCircCash-module.html#_test_cCircCash">_test_cCircCash</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_test_cCircCash-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="_test_cCircCash-expanded"><a name="L385"></a><tt class="py-lineno">385</tt>  <tt class="py-line">    <tt id="link-75" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-75', 'logger', 'link-0');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">setLevel</tt><tt class="py-op">(</tt><tt class="py-name">logging</tt><tt class="py-op">.</tt><tt id="link-76" class="py-name" targets="Variable ctools.cDns.DEBUG=ctools.cDns-module.html#DEBUG"><a title="ctools.cDns.DEBUG" class="py-name" href="#" onclick="return doclink('link-76', 'DEBUG', 'link-76');">DEBUG</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L386"></a><tt class="py-lineno">386</tt>  <tt class="py-line">    <tt class="py-name">s</tt> <tt class="py-op">=</tt> <tt class="py-number">10</tt> </tt>
+<a name="L387"></a><tt class="py-lineno">387</tt>  <tt class="py-line">    <tt class="py-name">th</tt> <tt class="py-op">=</tt> <tt class="py-number">4</tt> </tt>
+<a name="L388"></a><tt class="py-lineno">388</tt>  <tt class="py-line">    <tt class="py-name">c</tt> <tt class="py-op">=</tt> <tt id="link-77" class="py-name"><a title="ctools.cCircCash._circ_cash" class="py-name" href="#" onclick="return doclink('link-77', '_circ_cash', 'link-8');">_circ_cash</a></tt><tt class="py-op">(</tt><tt class="py-name">maxsize</tt><tt class="py-op">=</tt><tt class="py-name">s</tt> <tt class="py-op">+</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-name">threshold</tt><tt class="py-op">=</tt><tt class="py-name">th</tt><tt class="py-op">,</tt> <tt class="py-name">circle</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L389"></a><tt class="py-lineno">389</tt>  <tt class="py-line">    <tt class="py-name">i</tt> <tt class="py-op">=</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-name">s</tt><tt class="py-op">)</tt> </tt>
+<a name="L390"></a><tt class="py-lineno">390</tt>  <tt class="py-line">    <tt class="py-name">map</tt><tt class="py-op">(</tt><tt class="py-name">c</tt><tt class="py-op">.</tt><tt id="link-78" class="py-name"><a title="ctools.cCircCash._circ_cash.put
+ctools.cTuples.cTHQueue.put" class="py-name" href="#" onclick="return doclink('link-78', 'put', 'link-7');">put</a></tt><tt class="py-op">,</tt> <tt class="py-name">i</tt><tt class="py-op">)</tt> </tt>
+<a name="L391"></a><tt class="py-lineno">391</tt>  <tt class="py-line">    <tt class="py-name">t</tt> <tt class="py-op">=</tt> <tt class="py-name">threading</tt><tt class="py-op">.</tt><tt class="py-name">Thread</tt><tt class="py-op">(</tt><tt class="py-name">target</tt><tt class="py-op">=</tt><tt id="link-79" class="py-name" targets="Function ctools.cCircCash.take_from_cache()=ctools.cCircCash-module.html#take_from_cache"><a title="ctools.cCircCash.take_from_cache" class="py-name" href="#" onclick="return doclink('link-79', 'take_from_cache', 'link-79');">take_from_cache</a></tt><tt class="py-op">,</tt> <tt class="py-name">args</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-name">c</tt><tt class="py-op">,</tt> <tt class="py-number">5</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L392"></a><tt class="py-lineno">392</tt>  <tt class="py-line">    <tt class="py-name">t</tt><tt class="py-op">.</tt><tt class="py-name">setDaemon</tt><tt class="py-op">(</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L393"></a><tt class="py-lineno">393</tt>  <tt class="py-line">    <tt class="py-name">t</tt><tt class="py-op">.</tt><tt id="link-80" class="py-name"><a title="ctools.cWorkerThreads.cWork.start" class="py-name" href="#" onclick="return doclink('link-80', 'start', 'link-32');">start</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L394"></a><tt class="py-lineno">394</tt>  <tt class="py-line">    <tt class="py-name">map</tt><tt class="py-op">(</tt><tt class="py-name">c</tt><tt class="py-op">.</tt><tt id="link-81" class="py-name"><a title="ctools.cCircCash._circ_cash.put
+ctools.cTuples.cTHQueue.put" class="py-name" href="#" onclick="return doclink('link-81', 'put', 'link-7');">put</a></tt><tt class="py-op">,</tt> <tt class="py-name">i</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L395"></a><tt class="py-lineno">395</tt>  <tt class="py-line"> </tt>
+<a name="L396"></a><tt class="py-lineno">396</tt>  <tt class="py-line"><tt class="py-comment">############################################################################</tt> </tt>
+<a name="L397"></a><tt class="py-lineno">397</tt>  <tt class="py-line"> </tt>
+<a name="L398"></a><tt class="py-lineno">398</tt>  <tt class="py-line"><tt class="py-keyword">if</tt> <tt class="py-name">__name__</tt> <tt class="py-op">==</tt> <tt class="py-string">"__main__"</tt><tt class="py-op">:</tt> </tt>
+<a name="L399"></a><tt class="py-lineno">399</tt>  <tt class="py-line">    <tt id="link-82" class="py-name" targets="Function ctools.cCircCash._test_cCircCash()=ctools.cCircCash-module.html#_test_cCircCash"><a title="ctools.cCircCash._test_cCircCash" class="py-name" href="#" onclick="return doclink('link-82', '_test_cCircCash', 'link-82');">_test_cCircCash</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L400"></a><tt class="py-lineno">400</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="ctools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >ctools</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:41 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

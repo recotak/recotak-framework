@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>search-bing.socks4'</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd plugin documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="search-bing-module.html">Package&nbsp;search-bing</a> ::
+        Module&nbsp;socks4'
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="search-bing.socks4%27-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="search-bing.socks4%27-module.html">Module search-bing.socks4'</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/env python</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-docstring">"""this module uses csocklib to connect to a socks4a proxy and</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-docstring">send a request"""</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Module socket=socket-module.html"><a title="socket" class="py-name" href="#" onclick="return doclink('link-0', 'socket', 'link-0');">socket</a></tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Class cureto.cureto.config=cureto.cureto.config-class.html,Module search-bing.config=search-bing.config-module.html,Module search-duckgo.config=search-duckgo.config-module.html,Module search-google.config=search-google.config-module.html"><a title="cureto.cureto.config
+search-bing.config
+search-duckgo.config
+search-google.config" class="py-name" href="#" onclick="return doclink('link-1', 'config', 'link-1');">config</a></tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">ctools</tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Module ctools.csockslib=ctools.csockslib-module.html"><a title="ctools.csockslib" class="py-name" href="#" onclick="return doclink('link-2', 'csockslib', 'link-2');">csockslib</a></tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-name">__author__</tt> <tt class="py-op">=</tt> <tt class="py-string">"curesec"</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-name">__version__</tt> <tt class="py-op">=</tt> <tt class="py-string">"0.0.1"</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-name">_orig_socket</tt> <tt class="py-op">=</tt> <tt id="link-3" class="py-name"><a title="socket" class="py-name" href="#" onclick="return doclink('link-3', 'socket', 'link-0');">socket</a></tt><tt class="py-op">.</tt><tt id="link-4" class="py-name"><a title="socket" class="py-name" href="#" onclick="return doclink('link-4', 'socket', 'link-0');">socket</a></tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"> </tt>
+<a name="Socks4Socket"></a><div id="Socks4Socket-def"><a name="L16"></a><tt class="py-lineno">16</tt> <a class="py-toggle" href="#" id="Socks4Socket-toggle" onclick="return toggle('Socks4Socket');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="search-bing.socks4'.Socks4Socket-class.html">Socks4Socket</a><tt class="py-op">(</tt><tt class="py-base-class">socket</tt><tt class="py-op">.</tt><tt class="py-base-class">socket</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Socks4Socket-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="Socks4Socket-expanded"><a name="Socks4Socket.__init__"></a><div id="Socks4Socket.__init__-def"><a name="L17"></a><tt class="py-lineno">17</tt> <a class="py-toggle" href="#" id="Socks4Socket.__init__-toggle" onclick="return toggle('Socks4Socket.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="search-bing.socks4'.Socks4Socket-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">family</tt><tt class="py-op">=</tt><tt id="link-5" class="py-name"><a title="socket" class="py-name" href="#" onclick="return doclink('link-5', 'socket', 'link-0');">socket</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Variable socket.AF_INET=socket-module.html#AF_INET"><a title="socket.AF_INET" class="py-name" href="#" onclick="return doclink('link-6', 'AF_INET', 'link-6');">AF_INET</a></tt><tt class="py-op">,</tt> <tt class="py-param">socket_type</tt><tt class="py-op">=</tt><tt id="link-7" class="py-name"><a title="socket" class="py-name" href="#" onclick="return doclink('link-7', 'socket', 'link-0');">socket</a></tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Variable socket.SOCK_STREAM=socket-module.html#SOCK_STREAM"><a title="socket.SOCK_STREAM" class="py-name" href="#" onclick="return doclink('link-8', 'SOCK_STREAM', 'link-8');">SOCK_STREAM</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line">                 <tt class="py-param">proto</tt><tt class="py-op">=</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-param">_sock</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Socks4Socket.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Socks4Socket.__init__-expanded"><a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line">        <tt class="py-name">_orig_socket</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Method cureto.comm.Mark.__init__()=cureto.comm.Mark-class.html#__init__,Method cureto.cureto.config.__init__()=cureto.cureto.config-class.html#__init__,Method cureto.cureto.cureto.__init__()=cureto.cureto.cureto-class.html#__init__,Method cureto.cureto.dbparser.__init__()=cureto.cureto.dbparser-class.html#__init__,Method dir_bruteforce.dir_bruteforce.DirBruteforce.__init__()=dir_bruteforce.dir_bruteforce.DirBruteforce-class.html#__init__,Method dir_bruteforce.dir_bruteforce.DirWorker.__init__()=dir_bruteforce.dir_bruteforce.DirWorker-class.html#__init__,Method dns2ip.dns2ip.Dns2Ip.__init__()=dns2ip.dns2ip.Dns2Ip-class.html#__init__,Method dns2ip.tcpdns.ThreadedUDPServer.__init__()=dns2ip.tcpdns.ThreadedUDPServer-class.html#__init__,Method dnsversion.dnsversion.DnsVersion.__init__()=dnsversion.dnsversion.DnsVersion-class.html#__init__,Method dnszone.dnszone.DnsZone.__init__()=dnszone.dnszone.DnsZone-class.html#__init__,Method dnszone.pydig.DNSparam.__init__()=dnszone.pydig.DNSparam-class.html#__init__,Method dnszone.pydig.Tsig.__init__()=dnszone.pydig.Tsig-class.html#__init__,Method ftp_bruteforce.ftp_bruteforce.FtpBruteforce.__init__()=ftp_bruteforce.ftp_bruteforce.FtpBruteforce-class.html#__init__,Method heartbleed.heartbleed.Heartbleed.__init__()=heartbleed.heartbleed.Heartbleed-class.html#__init__,Method http_basic_bruteforce.http_basic_bruteforce.HTTPBasicBruteforcer.__init__()=http_basic_bruteforce.http_basic_bruteforce.HTTPBasicBruteforcer-class.html#__init__,Method imapbruteforce.imapbruteforce.ImapBruteForce.__init__()=imapbruteforce.imapbruteforce.ImapBruteForce-class.html#__init__,Method imapbruteforce.imapccd.CCDIMAP4.__init__()=imapbruteforce.imapccd.CCDIMAP4-class.html#__init__,Method imapget.imapccd.CCDIMAP4.__init__()=imapget.imapccd.CCDIMAP4-class.html#__init__,Method imapget.imapget.ImapGet.__init__()=imapget.imapget.ImapGet-class.html#__init__,Method ip2dns.ip2dns.Ip2Dns.__init__()=ip2dns.ip2dns.Ip2Dns-class.html#__init__,Method ip2dns_bing.ip2dns_bing.Ip2Dns_Bing.__init__()=ip2dns_bing.ip2dns_bing.Ip2Dns_Bing-class.html#__init__,Method massdns2ip.massdns2ip.Dns2Ip.__init__()=massdns2ip.massdns2ip.Dns2Ip-class.html#__init__,Method massdns2ip.tcpdns.ThreadedUDPServer.__init__()=massdns2ip.tcpdns.ThreadedUDPServer-class.html#__init__,Method mysql_bruteforce.mysql_bruteforce.MysqlBruteforce.__init__()=mysql_bruteforce.mysql_bruteforce.MysqlBruteforce-class.html#__init__,Method popbruteforce.popbruteforce.POPBruteForce.__init__()=popbruteforce.popbruteforce.POPBruteForce-class.html#__init__,Method popbruteforce.popccd.CCDPOP3.__init__()=popbruteforce.popccd.CCDPOP3-class.html#__init__,Method ripe_db_extractor.ripe_db_extractor.RIPEDBExtractor.__init__()=ripe_db_extractor.ripe_db_extractor.RIPEDBExtractor-class.html#__init__,Method rlogin_bruteforce.rlogin_bruteforce.RLoginBruteForcer.__init__()=rlogin_bruteforce.rlogin_bruteforce.RLoginBruteForcer-class.html#__init__,Method rlogin_bruteforce.rlogin_bruteforce.testrlogin.__init__()=rlogin_bruteforce.rlogin_bruteforce.testrlogin-class.html#__init__,Method rpcinfo.rpcinfo.RpcScanner.__init__()=rpcinfo.rpcinfo.RpcScanner-class.html#__init__,Method rsh_bruteforce.rsh_bruteforce.RSHBruteForcer.__init__()=rsh_bruteforce.rsh_bruteforce.RSHBruteForcer-class.html#__init__,Method rsh_bruteforce.rsh_bruteforce.testrsh.__init__()=rsh_bruteforce.rsh_bruteforce.testrsh-class.html#__init__,Method search-bing.bing.BingQuery.__init__()=search-bing.bing.BingQuery-class.html#__init__,Method search-duckgo.duckgo.DuckQuery.__init__()=search-duckgo.duckgo.DuckQuery-class.html#__init__,Method search-google.google.GoogleQuery.__init__()=search-google.google.GoogleQuery-class.html#__init__,Method search-google.socks4.Socks4Socket.__init__()=search-google.socks4.Socks4Socket-class.html#__init__,Method showmount.showmount.Showmount.__init__()=showmount.showmount.Showmount-class.html#__init__,Method smtp_user_enum.smtp_user_enum.SmtpUserEnum.__init__()=smtp_user_enum.smtp_user_enum.SmtpUserEnum-class.html#__init__,Method smtp_user_enum.smtp_user_enum.SmtpWorker.__init__()=smtp_user_enum.smtp_user_enum.SmtpWorker-class.html#__init__,Method ssh_bruteforce.ssh_bruteforce.SshBruteforce.__init__()=ssh_bruteforce.ssh_bruteforce.SshBruteforce-class.html#__init__,Method ssh_user_enum.ssh_user_enum.SshUserEnum.__init__()=ssh_user_enum.ssh_user_enum.SshUserEnum-class.html#__init__,Method subdns.dnsscan.DNSscanner.__init__()=subdns.dnsscan.DNSscanner-class.html#__init__,Method subdns.dnsxml.Xml.__init__()=subdns.dnsxml.Xml-class.html#__init__,Method tcp_traceroute.tcptraceroute.Listener.__init__()=tcp_traceroute.tcptraceroute.Listener-class.html#__init__,Method tcp_traceroute.tcptraceroute.Sender.__init__()=tcp_traceroute.tcptraceroute.Sender-class.html#__init__,Method telnet_bruteforce.telnet_bruteforce.TelnetBruteforce.__init__()=telnet_bruteforce.telnet_bruteforce.TelnetBruteforce-class.html#__init__,Method whois.resultworker.Worker.__init__()=whois.resultworker.Worker-class.html#__init__,Method whois.whois.Whois.__init__()=whois.whois.Whois-class.html#__init__,Method whois.whoisparser.Parser.__init__()=whois.whoisparser.Parser-class.html#__init__,Method whois.whoisworker.FoundBetterWhoisServerException.__init__()=whois.whoisworker.FoundBetterWhoisServerException-class.html#__init__,Method whois.whoisworker.LeaveTryBlockException.__init__()=whois.whoisworker.LeaveTryBlockException-class.html#__init__,Method whois.whoisworker.MultipleRequestException.__init__()=whois.whoisworker.MultipleRequestException-class.html#__init__,Method whois.whoisworker.UnsexyResponseException.__init__()=whois.whoisworker.UnsexyResponseException-class.html#__init__,Method whois.whoisworker.WhoisWorker.__init__()=whois.whoisworker.WhoisWorker-class.html#__init__,Method whois.whoisxml.Xml.__init__()=whois.whoisxml.Xml-class.html#__init__"><a title="cureto.comm.Mark.__init__
+cureto.cureto.config.__init__
+cureto.cureto.cureto.__init__
+cureto.cureto.dbparser.__init__
+dir_bruteforce.dir_bruteforce.DirBruteforce.__init__
+dir_bruteforce.dir_bruteforce.DirWorker.__init__
+dns2ip.dns2ip.Dns2Ip.__init__
+dns2ip.tcpdns.ThreadedUDPServer.__init__
+dnsversion.dnsversion.DnsVersion.__init__
+dnszone.dnszone.DnsZone.__init__
+dnszone.pydig.DNSparam.__init__
+dnszone.pydig.Tsig.__init__
+ftp_bruteforce.ftp_bruteforce.FtpBruteforce.__init__
+heartbleed.heartbleed.Heartbleed.__init__
+http_basic_bruteforce.http_basic_bruteforce.HTTPBasicBruteforcer.__init__
+imapbruteforce.imapbruteforce.ImapBruteForce.__init__
+imapbruteforce.imapccd.CCDIMAP4.__init__
+imapget.imapccd.CCDIMAP4.__init__
+imapget.imapget.ImapGet.__init__
+ip2dns.ip2dns.Ip2Dns.__init__
+ip2dns_bing.ip2dns_bing.Ip2Dns_Bing.__init__
+massdns2ip.massdns2ip.Dns2Ip.__init__
+massdns2ip.tcpdns.ThreadedUDPServer.__init__
+mysql_bruteforce.mysql_bruteforce.MysqlBruteforce.__init__
+popbruteforce.popbruteforce.POPBruteForce.__init__
+popbruteforce.popccd.CCDPOP3.__init__
+ripe_db_extractor.ripe_db_extractor.RIPEDBExtractor.__init__
+rlogin_bruteforce.rlogin_bruteforce.RLoginBruteForcer.__init__
+rlogin_bruteforce.rlogin_bruteforce.testrlogin.__init__
+rpcinfo.rpcinfo.RpcScanner.__init__
+rsh_bruteforce.rsh_bruteforce.RSHBruteForcer.__init__
+rsh_bruteforce.rsh_bruteforce.testrsh.__init__
+search-bing.bing.BingQuery.__init__
+search-duckgo.duckgo.DuckQuery.__init__
+search-google.google.GoogleQuery.__init__
+search-google.socks4.Socks4Socket.__init__
+showmount.showmount.Showmount.__init__
+smtp_user_enum.smtp_user_enum.SmtpUserEnum.__init__
+smtp_user_enum.smtp_user_enum.SmtpWorker.__init__
+ssh_bruteforce.ssh_bruteforce.SshBruteforce.__init__
+ssh_user_enum.ssh_user_enum.SshUserEnum.__init__
+subdns.dnsscan.DNSscanner.__init__
+subdns.dnsxml.Xml.__init__
+tcp_traceroute.tcptraceroute.Listener.__init__
+tcp_traceroute.tcptraceroute.Sender.__init__
+telnet_bruteforce.telnet_bruteforce.TelnetBruteforce.__init__
+whois.resultworker.Worker.__init__
+whois.whois.Whois.__init__
+whois.whoisparser.Parser.__init__
+whois.whoisworker.FoundBetterWhoisServerException.__init__
+whois.whoisworker.LeaveTryBlockException.__init__
+whois.whoisworker.MultipleRequestException.__init__
+whois.whoisworker.UnsexyResponseException.__init__
+whois.whoisworker.WhoisWorker.__init__
+whois.whoisxml.Xml.__init__" class="py-name" href="#" onclick="return doclink('link-9', '__init__', 'link-9');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">family</tt><tt class="py-op">,</tt> <tt class="py-name">socket_type</tt><tt class="py-op">,</tt> <tt class="py-name">proto</tt><tt class="py-op">,</tt> <tt class="py-name">_sock</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"> </tt>
+<a name="Socks4Socket.connect"></a><div id="Socks4Socket.connect-def"><a name="L21"></a><tt class="py-lineno">21</tt> <a class="py-toggle" href="#" id="Socks4Socket.connect-toggle" onclick="return toggle('Socks4Socket.connect');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="search-bing.socks4'.Socks4Socket-class.html#connect">connect</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">addr</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Socks4Socket.connect-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Socks4Socket.connect-expanded"><a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line">        <tt class="py-name">_orig_socket</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Method search-google.socks4.Socks4Socket.connect()=search-google.socks4.Socks4Socket-class.html#connect"><a title="search-google.socks4.Socks4Socket.connect" class="py-name" href="#" onclick="return doclink('link-10', 'connect', 'link-10');">connect</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-op">(</tt><tt id="link-11" class="py-name"><a title="cureto.cureto.config
+search-bing.config
+search-duckgo.config
+search-google.config" class="py-name" href="#" onclick="return doclink('link-11', 'config', 'link-1');">config</a></tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Variable search-bing.config.socksserver=search-bing.config-module.html#socksserver,Variable search-duckgo.config.socksserver=search-duckgo.config-module.html#socksserver,Variable search-google.config.socksserver=search-google.config-module.html#socksserver"><a title="search-bing.config.socksserver
+search-duckgo.config.socksserver
+search-google.config.socksserver" class="py-name" href="#" onclick="return doclink('link-12', 'socksserver', 'link-12');">socksserver</a></tt><tt class="py-op">,</tt> <tt id="link-13" class="py-name"><a title="cureto.cureto.config
+search-bing.config
+search-duckgo.config
+search-google.config" class="py-name" href="#" onclick="return doclink('link-13', 'config', 'link-1');">config</a></tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Variable search-bing.config.socksport=search-bing.config-module.html#socksport,Variable search-duckgo.config.socksport=search-duckgo.config-module.html#socksport,Variable search-google.config.socksport=search-google.config-module.html#socksport"><a title="search-bing.config.socksport
+search-duckgo.config.socksport
+search-google.config.socksport" class="py-name" href="#" onclick="return doclink('link-14', 'socksport', 'link-14');">socksport</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line">        <tt class="py-name">request</tt> <tt class="py-op">=</tt> <tt id="link-15" class="py-name"><a title="ctools.csockslib" class="py-name" href="#" onclick="return doclink('link-15', 'csockslib', 'link-2');">csockslib</a></tt><tt class="py-op">.</tt><tt class="py-name">_socks4a_buildRequest</tt><tt class="py-op">(</tt><tt class="py-name">addr</tt><tt class="py-op">)</tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line">        <tt class="py-name">suc</tt><tt class="py-op">,</tt> <tt class="py-name">_</tt> <tt class="py-op">=</tt> <tt id="link-16" class="py-name"><a title="ctools.csockslib" class="py-name" href="#" onclick="return doclink('link-16', 'csockslib', 'link-2');">csockslib</a></tt><tt class="py-op">.</tt><tt class="py-name">_socks4a_sendRequest</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">request</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd plugin documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Mon Sep 29 17:38:57 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>ctools.ctools</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="ctools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >ctools</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="ctools-module.html">Package&nbsp;ctools</a> ::
+        Module&nbsp;ctools
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="ctools.ctools-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="ctools.ctools-module.html">Module ctools.ctools</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">thread</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2014, curesec GmbH</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># All rights reserved.</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># Redistribution and use in source and binary forms, with or without modification, </tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># are permitted provided that the following conditions are met:</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"># 1. Redistributions of source code must retain the above copyright notice, this list of </tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"># conditions and the following disclaimer.</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"># 2. Redistributions in binary form must reproduce the above copyright notice, this list </tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># of conditions and the following disclaimer in the documentation and/or other materials </tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># provided with the distribution.</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"># 3. Neither the name of the copyright holder nor the names of its contributors may be used </tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"># to endorse or promote products derived from this software without specific prior written </tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># permission.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-comment"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS </tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-comment"># OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF </tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE </tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-comment"># COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, </tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-comment"># EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF </tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-comment"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) </tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-comment"># HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR </tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-comment"># TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, </tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-comment"># EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">re</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">struct</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">socket</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Module ctools.csockslib=ctools.csockslib-module.html"><a title="ctools.csockslib" class="py-name" href="#" onclick="return doclink('link-0', 'csockslib', 'link-0');">csockslib</a></tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"> </tt>
+<a name="add_rotat_logger"></a><div id="add_rotat_logger-def"><a name="L35"></a><tt class="py-lineno"> 35</tt> <a class="py-toggle" href="#" id="add_rotat_logger-toggle" onclick="return toggle('add_rotat_logger');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.ctools-module.html#add_rotat_logger">add_rotat_logger</a><tt class="py-op">(</tt><tt class="py-param">fn</tt><tt class="py-op">,</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">                    <tt class="py-param">level</tt><tt class="py-op">,</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">                    <tt class="py-param">maxBytes</tt><tt class="py-op">=</tt><tt class="py-number">20000000</tt><tt class="py-op">,</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">                    <tt class="py-param">backupCount</tt><tt class="py-op">=</tt><tt class="py-number">10</tt><tt class="py-op">,</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">                    <tt class="py-param">formatter</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="add_rotat_logger-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="add_rotat_logger-expanded"><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">    <tt class="py-docstring">""" returns a logging handler.</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring">        input:</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring">            fn              filename to log to</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">            level           logging level to log</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-docstring">            maxBytes(o)     bytes written to file before rotating</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt class="py-docstring">            backupCount(o)  amount of file rotations</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-docstring">            formatter(o)    formatter object to added to ratation logger</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-docstring">        output:</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-docstring">            handler         RotatingFileHandler</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"ctools.add_rotat_logger is depricated. Please user "</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">          <tt class="py-string">"cUtil.add_rotot_logger"</tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">    <tt class="py-name">handler</tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">handlers</tt><tt class="py-op">.</tt><tt class="py-name">RotatingFileHandler</tt><tt class="py-op">(</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">                    <tt class="py-name">fn</tt><tt class="py-op">,</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">                    <tt class="py-name">maxBytes</tt><tt class="py-op">=</tt><tt class="py-name">maxBytes</tt><tt class="py-op">,</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">                    <tt class="py-name">backupCount</tt><tt class="py-op">=</tt><tt class="py-name">backupCount</tt><tt class="py-op">)</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">    <tt class="py-name">handler</tt><tt class="py-op">.</tt><tt class="py-name">setLevel</tt><tt class="py-op">(</tt><tt class="py-name">level</tt><tt class="py-op">)</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">formatter</tt><tt class="py-op">:</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt class="py-name">fmt_str</tt> <tt class="py-op">=</tt> <tt class="py-string">"%(asctime)s,p:%(process)s %(threadName)s, %(name)s"</tt><tt class="py-op">+</tt>\ </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">                    <tt class="py-string">"(%(funcName)s) [%(levelname)s]: %(message)s"</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-name">formatter</tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">Formatter</tt><tt class="py-op">(</tt><tt class="py-name">fmt_str</tt><tt class="py-op">)</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">    <tt class="py-name">handler</tt><tt class="py-op">.</tt><tt class="py-name">setFormatter</tt><tt class="py-op">(</tt><tt class="py-name">formatter</tt><tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">handler</tt> </tt>
+</div><a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"> </tt>
+<a name="getNetmask"></a><div id="getNetmask-def"><a name="L69"></a><tt class="py-lineno"> 69</tt> <a class="py-toggle" href="#" id="getNetmask-toggle" onclick="return toggle('getNetmask');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.ctools-module.html#getNetmask">getNetmask</a><tt class="py-op">(</tt><tt class="py-param">prefix</tt><tt class="py-op">,</tt> <tt class="py-param">bit</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="getNetmask-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="getNetmask-expanded"><a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">    <tt class="py-docstring">""" gets a prefix in dotted notation and a bit to indicated netmask.</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring">        returns start and end ip of netrange as long(!)</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">    <tt class="py-name">prefix</tt> <tt class="py-op">=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">unpack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;I"</tt><tt class="py-op">,</tt><tt class="py-name">socket</tt><tt class="py-op">.</tt><tt class="py-name">inet_aton</tt><tt class="py-op">(</tt><tt class="py-name">prefix</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">    <tt class="py-name">shift</tt> <tt class="py-op">=</tt> <tt class="py-number">32</tt><tt class="py-op">-</tt><tt class="py-name">bit</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">    <tt id="link-1" class="py-name" targets="Method ctools.cWorkerThreads.cWork.start()=ctools.cWorkerThreads.cWork-class.html#start"><a title="ctools.cWorkerThreads.cWork.start" class="py-name" href="#" onclick="return doclink('link-1', 'start', 'link-1');">start</a></tt> <tt class="py-op">=</tt> <tt class="py-name">prefix</tt> <tt class="py-op">&gt;&gt;</tt> <tt class="py-name">shift</tt> <tt class="py-op">&lt;&lt;</tt> <tt class="py-name">shift</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">    <tt class="py-name">mask</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-number">1</tt> <tt class="py-op">&lt;&lt;</tt> <tt class="py-name">shift</tt><tt class="py-op">)</tt> <tt class="py-op">-</tt> <tt class="py-number">1</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">    <tt class="py-name">end</tt> <tt class="py-op">=</tt> <tt id="link-2" class="py-name"><a title="ctools.cWorkerThreads.cWork.start" class="py-name" href="#" onclick="return doclink('link-2', 'start', 'link-1');">start</a></tt> <tt class="py-op">|</tt> <tt class="py-name">mask</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-3" class="py-name"><a title="ctools.cWorkerThreads.cWork.start" class="py-name" href="#" onclick="return doclink('link-3', 'start', 'link-1');">start</a></tt><tt class="py-op">,</tt><tt class="py-name">end</tt> </tt>
+</div><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="isIP"></a><div id="isIP-def"><a name="L83"></a><tt class="py-lineno"> 83</tt> <a class="py-toggle" href="#" id="isIP-toggle" onclick="return toggle('isIP');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.ctools-module.html#isIP">isIP</a><tt class="py-op">(</tt><tt class="py-param">totest</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="isIP-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="isIP-expanded"><a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">    <tt class="py-docstring">""" returns whether input is an ip """</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"ctools.isIP() is deprecated. Please use cUtil.isIP()!"</tt><tt class="py-op">)</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">    <tt class="py-name">m</tt> <tt class="py-op">=</tt> <tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">match</tt><tt class="py-op">(</tt><tt class="py-string">"^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}"</tt>\ </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">                    <tt class="py-string">"([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"</tt><tt class="py-op">,</tt><tt class="py-name">totest</tt><tt class="py-op">)</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">m</tt> </tt>
+</div><a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"> </tt>
+<a name="isDomain"></a><div id="isDomain-def"><a name="L90"></a><tt class="py-lineno"> 90</tt> <a class="py-toggle" href="#" id="isDomain-toggle" onclick="return toggle('isDomain');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.ctools-module.html#isDomain">isDomain</a><tt class="py-op">(</tt><tt class="py-param">totest</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="isDomain-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="isDomain-expanded"><a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">    <tt class="py-docstring">""" returns whethter input is a domain """</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"ctools.isDomain() is deprecated. Please use cUtil.isDomain()!"</tt><tt class="py-op">)</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">True</tt> <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">match</tt><tt class="py-op">(</tt><tt class="py-string">r"^([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$"</tt><tt class="py-op">,</tt>\ </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">                        <tt class="py-name">totest</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-name">None</tt> <tt class="py-keyword">else</tt> <tt class="py-name">False</tt> </tt>
+</div><a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"> </tt>
+<a name="printStatus"></a><div id="printStatus-def"><a name="L96"></a><tt class="py-lineno"> 96</tt> <a class="py-toggle" href="#" id="printStatus-toggle" onclick="return toggle('printStatus');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.ctools-module.html#printStatus">printStatus</a><tt class="py-op">(</tt><tt class="py-param">queue</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="printStatus-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="printStatus-expanded"><a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">    <tt class="py-docstring">""" prints queue progress in percentag style """</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">    <tt class="py-keyword">def</tt> <tt class="py-def-name">refresh</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-name">totalamount</tt> <tt class="py-op">=</tt> <tt class="py-name">queue</tt><tt class="py-op">.</tt><tt class="py-name">qsize</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-name">step</tt> <tt class="py-op">=</tt> <tt class="py-number">100.0</tt><tt class="py-op">/</tt><tt class="py-name">float</tt><tt class="py-op">(</tt><tt class="py-name">totalamount</tt><tt class="py-op">)</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">        <tt class="py-name">old</tt> <tt class="py-op">=</tt> <tt class="py-name">totalamount</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">        <tt class="py-name">progress</tt> <tt class="py-op">=</tt> <tt class="py-number">0.0</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-op">(</tt><tt class="py-name">queue</tt><tt class="py-op">.</tt><tt class="py-name">qsize</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">&gt;</tt><tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">            <tt class="py-name">new</tt> <tt class="py-op">=</tt> <tt class="py-name">queue</tt><tt class="py-op">.</tt><tt class="py-name">qsize</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">            <tt class="py-name">diff</tt> <tt class="py-op">=</tt> <tt class="py-name">old</tt><tt class="py-op">-</tt><tt class="py-name">new</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">diff</tt><tt class="py-op">&gt;</tt><tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">                <tt class="py-name">progress</tt> <tt class="py-op">+=</tt> <tt class="py-name">step</tt><tt class="py-op">*</tt><tt class="py-name">diff</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">                <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">stdout</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method ctools.cTelnet.Telnet.write()=ctools.cTelnet.Telnet-class.html#write,Method ctools.tee.tee.write()=ctools.tee.tee-class.html#write"><a title="ctools.cTelnet.Telnet.write
+ctools.tee.tee.write" class="py-name" href="#" onclick="return doclink('link-4', 'write', 'link-4');">write</a></tt><tt class="py-op">(</tt><tt class="py-string">"\r%d%%"</tt> <tt class="py-op">%</tt> <tt class="py-name">round</tt><tt class="py-op">(</tt><tt class="py-name">progress</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">                <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">stdout</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Method ctools.tee.tee.flush()=ctools.tee.tee-class.html#flush"><a title="ctools.tee.tee.flush" class="py-name" href="#" onclick="return doclink('link-5', 'flush', 'link-5');">flush</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">                <tt class="py-name">old</tt> <tt class="py-op">=</tt> <tt class="py-name">new</tt> </tt>
+</div><a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">    <tt class="py-name">thread</tt><tt class="py-op">.</tt><tt class="py-name">start_new_thread</tt><tt class="py-op">(</tt><tt class="py-name">refresh</tt><tt class="py-op">,</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">    <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">stdout</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name"><a title="ctools.cTelnet.Telnet.write
+ctools.tee.tee.write" class="py-name" href="#" onclick="return doclink('link-6', 'write', 'link-4');">write</a></tt><tt class="py-op">(</tt><tt class="py-string">"\n"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"> </tt>
+<a name="getRandomBytes"></a><div id="getRandomBytes-def"><a name="L117"></a><tt class="py-lineno">117</tt> <a class="py-toggle" href="#" id="getRandomBytes-toggle" onclick="return toggle('getRandomBytes');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.ctools-module.html#getRandomBytes">getRandomBytes</a><tt class="py-op">(</tt><tt class="py-param">n</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="getRandomBytes-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="getRandomBytes-expanded"><a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">    <tt class="py-docstring">""" returns n randrom bytes """</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">    <tt class="py-keyword">with</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-string">"/dev/urandom"</tt><tt class="py-op">)</tt> <tt class="py-keyword">as</tt> <tt class="py-name">f</tt><tt class="py-op">:</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">read</tt><tt class="py-op">(</tt><tt class="py-name">n</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"> </tt>
+<a name="resolveIP"></a><div id="resolveIP-def"><a name="L123"></a><tt class="py-lineno">123</tt> <a class="py-toggle" href="#" id="resolveIP-toggle" onclick="return toggle('resolveIP');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.ctools-module.html#resolveIP">resolveIP</a><tt class="py-op">(</tt><tt class="py-param">useSocks</tt><tt class="py-op">,</tt> <tt class="py-param">socksserver</tt><tt class="py-op">,</tt> <tt class="py-param">ip</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="resolveIP-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="resolveIP-expanded"><a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">    <tt class="py-docstring">""" resolve an IP """</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">    <tt id="link-7" class="py-name" targets="Package ctools.dns=ctools.dns-module.html"><a title="ctools.dns" class="py-name" href="#" onclick="return doclink('link-7', 'dns', 'link-7');">dns</a></tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">useSocks</tt><tt class="py-op">:</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">            <tt class="py-name">suc</tt><tt class="py-op">,</tt> <tt id="link-8" class="py-name"><a title="ctools.dns" class="py-name" href="#" onclick="return doclink('link-8', 'dns', 'link-7');">dns</a></tt> <tt class="py-op">=</tt> <tt id="link-9" class="py-name"><a title="ctools.csockslib" class="py-name" href="#" onclick="return doclink('link-9', 'csockslib', 'link-0');">csockslib</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Function ctools.csockslib.socks4a_resolveHostByAddr()=ctools.csockslib-module.html#socks4a_resolveHostByAddr"><a title="ctools.csockslib.socks4a_resolveHostByAddr" class="py-name" href="#" onclick="return doclink('link-10', 'socks4a_resolveHostByAddr', 'link-10');">socks4a_resolveHostByAddr</a></tt><tt class="py-op">(</tt><tt class="py-name">ip</tt><tt class="py-op">,</tt> <tt class="py-name">saddr</tt><tt class="py-op">=</tt><tt id="link-11" class="py-name" targets="Variable ctools.cBing.config.socksserver=ctools.cBing.config-module.html#socksserver"><a title="ctools.cBing.config.socksserver" class="py-name" href="#" onclick="return doclink('link-11', 'socksserver', 'link-11');">socksserver</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">suc</tt> <tt class="py-op">==</tt> <tt id="link-12" class="py-name"><a title="ctools.csockslib" class="py-name" href="#" onclick="return doclink('link-12', 'csockslib', 'link-0');">csockslib</a></tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Variable ctools.csockslib.SOCKS4_ESTABLISHED=ctools.csockslib-module.html#SOCKS4_ESTABLISHED"><a title="ctools.csockslib.SOCKS4_ESTABLISHED" class="py-name" href="#" onclick="return doclink('link-13', 'SOCKS4_ESTABLISHED', 'link-13');">SOCKS4_ESTABLISHED</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">                <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"Socksserver failed to resolve ip!"</tt><tt class="py-op">)</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">socket</tt><tt class="py-op">.</tt><tt class="py-name">error</tt><tt class="py-op">:</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"Failed to connect to socksserver."</tt><tt class="py-op">)</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">        <tt id="link-14" class="py-name"><a title="ctools.dns" class="py-name" href="#" onclick="return doclink('link-14', 'dns', 'link-7');">dns</a></tt> <tt class="py-op">=</tt> <tt class="py-name">socket</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method ctools.cDns.DNSQuery.gethostbyaddr()=ctools.cDns.DNSQuery-class.html#gethostbyaddr,Function ctools.cDns.gethostbyaddr()=ctools.cDns-module.html#gethostbyaddr"><a title="ctools.cDns.DNSQuery.gethostbyaddr
+ctools.cDns.gethostbyaddr" class="py-name" href="#" onclick="return doclink('link-15', 'gethostbyaddr', 'link-15');">gethostbyaddr</a></tt><tt class="py-op">(</tt><tt class="py-name">ip</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-16" class="py-name"><a title="ctools.dns" class="py-name" href="#" onclick="return doclink('link-16', 'dns', 'link-7');">dns</a></tt> </tt>
+</div><a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"> </tt>
+<a name="resolveDomain"></a><div id="resolveDomain-def"><a name="L142"></a><tt class="py-lineno">142</tt> <a class="py-toggle" href="#" id="resolveDomain-toggle" onclick="return toggle('resolveDomain');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.ctools-module.html#resolveDomain">resolveDomain</a><tt class="py-op">(</tt><tt class="py-param">useSocks</tt><tt class="py-op">,</tt> <tt class="py-param">socksserver</tt><tt class="py-op">,</tt> <tt class="py-param">dns</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="resolveDomain-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="resolveDomain-expanded"><a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">    <tt class="py-docstring">""" resolve domain to ip """</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">    <tt class="py-name">ip</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line"> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">useSocks</tt><tt class="py-op">:</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">            <tt class="py-name">ip</tt> <tt class="py-op">=</tt> <tt id="link-17" class="py-name"><a title="ctools.csockslib" class="py-name" href="#" onclick="return doclink('link-17', 'csockslib', 'link-0');">csockslib</a></tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Function ctools.csockslib.socks4a_resolveHost()=ctools.csockslib-module.html#socks4a_resolveHost"><a title="ctools.csockslib.socks4a_resolveHost" class="py-name" href="#" onclick="return doclink('link-18', 'socks4a_resolveHost', 'link-18');">socks4a_resolveHost</a></tt><tt class="py-op">(</tt><tt id="link-19" class="py-name"><a title="ctools.cBing.config.socksserver" class="py-name" href="#" onclick="return doclink('link-19', 'socksserver', 'link-11');">socksserver</a></tt><tt class="py-op">,</tt> <tt class="py-op">(</tt><tt id="link-20" class="py-name"><a title="ctools.dns" class="py-name" href="#" onclick="return doclink('link-20', 'dns', 'link-7');">dns</a></tt><tt class="py-op">,</tt> <tt class="py-number">80</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line"> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">suc</tt> <tt class="py-op">==</tt> <tt id="link-21" class="py-name"><a title="ctools.csockslib" class="py-name" href="#" onclick="return doclink('link-21', 'csockslib', 'link-0');">csockslib</a></tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="ctools.csockslib.SOCKS4_ESTABLISHED" class="py-name" href="#" onclick="return doclink('link-22', 'SOCKS4_ESTABLISHED', 'link-13');">SOCKS4_ESTABLISHED</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">                <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"Socksserver failed to resolve domain!"</tt><tt class="py-op">)</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line"> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">socket</tt><tt class="py-op">.</tt><tt class="py-name">error</tt><tt class="py-op">:</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"Failed to connect to socksserver."</tt><tt class="py-op">)</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line"> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">        <tt class="py-name">ip</tt> <tt class="py-op">=</tt> <tt class="py-name">socket</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Method ctools.cDns.DNSQuery.gethostbyname()=ctools.cDns.DNSQuery-class.html#gethostbyname,Function ctools.cDns.gethostbyname()=ctools.cDns-module.html#gethostbyname"><a title="ctools.cDns.DNSQuery.gethostbyname
+ctools.cDns.gethostbyname" class="py-name" href="#" onclick="return doclink('link-23', 'gethostbyname', 'link-23');">gethostbyname</a></tt><tt class="py-op">(</tt><tt id="link-24" class="py-name"><a title="ctools.dns" class="py-name" href="#" onclick="return doclink('link-24', 'dns', 'link-7');">dns</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line"> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">ip</tt> </tt>
+</div><a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="ctools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >ctools</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:41 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

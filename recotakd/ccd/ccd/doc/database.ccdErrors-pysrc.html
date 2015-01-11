@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>database.ccdErrors</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="database-module.html">Package&nbsp;database</a> ::
+        Module&nbsp;ccdErrors
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="database.ccdErrors-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="database.ccdErrors-module.html">Module database.ccdErrors</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-docstring">This module contains basic ccd errors. The general idea behind error catching</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-docstring"># Copyright (c) 2014, curesec GmbH</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-docstring"># All rights reserved.</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-docstring"># Redistribution and use in source and binary forms, with or without modification, </tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-docstring"># are permitted provided that the following conditions are met:</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-docstring"># 1. Redistributions of source code must retain the above copyright notice, this list of </tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-docstring"># conditions and the following disclaimer.</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-docstring"># 2. Redistributions in binary form must reproduce the above copyright notice, this list </tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-docstring"># of conditions and the following disclaimer in the documentation and/or other materials </tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-docstring"># provided with the distribution.</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-docstring"># 3. Neither the name of the copyright holder nor the names of its contributors may be used </tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-docstring"># to endorse or promote products derived from this software without specific prior written </tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-docstring"># permission.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"><tt class="py-docstring"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS </tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-docstring"># OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF </tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt class="py-docstring"># MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE </tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"><tt class="py-docstring"># COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, </tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-docstring"># EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF </tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"><tt class="py-docstring"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) </tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt class="py-docstring"># HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR </tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt class="py-docstring"># TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, </tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt class="py-docstring"># EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"><tt class="py-docstring">is, to enable the application to react in an appriopriate way. Avoid catching</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"><tt class="py-docstring">exceptions just for raise changing the exception message:</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"><tt class="py-docstring">    try:</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"><tt class="py-docstring">        foo()</tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"><tt class="py-docstring">    except:</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"><tt class="py-docstring">        raise Exception("something went wrong during foo()")</tt> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"><tt class="py-docstring">This information is already encoded in the stack trace and therefore it is</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line"><tt class="py-docstring">redunant. Besides that, it breaks the stack trace and makes debugging harder.</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line"><tt class="py-docstring">There are more or less precise descriptions that indicate which exception is</tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line"><tt class="py-docstring">for which use case.</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line"> </tt>
+<a name="CcdError"></a><div id="CcdError-def"><a name="L45"></a><tt class="py-lineno">45</tt> <a class="py-toggle" href="#" id="CcdError-toggle" onclick="return toggle('CcdError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="database.ccdErrors.CcdError-class.html">CcdError</a><tt class="py-op">(</tt><tt class="py-base-class">Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="CcdError-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="CcdError-expanded"><a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line"> </tt>
+<a name="EClosed"></a><div id="EClosed-def"><a name="L48"></a><tt class="py-lineno">48</tt> <a class="py-toggle" href="#" id="EClosed-toggle" onclick="return toggle('EClosed');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="database.ccdErrors.EClosed-class.html">EClosed</a><tt class="py-op">(</tt><tt class="py-base-class">IOError</tt><tt class="py-op">,</tt> <tt class="py-base-class">CcdError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EClosed-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="EClosed-expanded"><a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">    <tt class="py-docstring">""" Pipe has already been closed """</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line"> </tt>
+<a name="EClosed.__init__"></a><div id="EClosed.__init__-def"><a name="L51"></a><tt class="py-lineno">51</tt> <a class="py-toggle" href="#" id="EClosed.__init__-toggle" onclick="return toggle('EClosed.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="database.ccdErrors.EClosed-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EClosed.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="EClosed.__init__-expanded"><a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">=</tt> <tt class="py-name">value</tt> </tt>
+</div><a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line"> </tt>
+<a name="EClosed.__str__"></a><div id="EClosed.__str__-def"><a name="L54"></a><tt class="py-lineno">54</tt> <a class="py-toggle" href="#" id="EClosed.__str__-toggle" onclick="return toggle('EClosed.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="database.ccdErrors.EClosed-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EClosed.__str__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="EClosed.__str__-expanded"><a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">repr</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">value</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line"> </tt>
+<a name="SessionError"></a><div id="SessionError-def"><a name="L57"></a><tt class="py-lineno">57</tt> <a class="py-toggle" href="#" id="SessionError-toggle" onclick="return toggle('SessionError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="database.ccdErrors.SessionError-class.html">SessionError</a><tt class="py-op">(</tt><tt class="py-base-class">CcdError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SessionError-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="SessionError-expanded"><a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line"><tt class="py-docstring">    A session exception might be raised if one of the session authentication</tt> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line"><tt class="py-docstring">    stages fail.</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line"> </tt>
+<a name="SessionEnd"></a><div id="SessionEnd-def"><a name="L65"></a><tt class="py-lineno">65</tt> <a class="py-toggle" href="#" id="SessionEnd-toggle" onclick="return toggle('SessionEnd');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="database.ccdErrors.SessionEnd-class.html">SessionEnd</a><tt class="py-op">(</tt><tt class="py-base-class">SessionError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SessionEnd-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="SessionEnd-expanded"><a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">    <tt class="py-docstring">""" if a OP_LOGOUT is received throw a SessionEnd error"""</tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line"> </tt>
+<a name="InvalidSessionID"></a><div id="InvalidSessionID-def"><a name="L69"></a><tt class="py-lineno">69</tt> <a class="py-toggle" href="#" id="InvalidSessionID-toggle" onclick="return toggle('InvalidSessionID');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="database.ccdErrors.InvalidSessionID-class.html">InvalidSessionID</a><tt class="py-op">(</tt><tt class="py-base-class">SessionError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InvalidSessionID-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="InvalidSessionID-expanded"><a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line"><tt class="py-docstring">    raised if an invalid session id encounters</tt> </tt>
+<a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="InvalidSessionID.__init__"></a><div id="InvalidSessionID.__init__-def"><a name="L74"></a><tt class="py-lineno">74</tt> <a class="py-toggle" href="#" id="InvalidSessionID.__init__-toggle" onclick="return toggle('InvalidSessionID.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="database.ccdErrors.InvalidSessionID-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">sid</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InvalidSessionID.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="InvalidSessionID.__init__-expanded"><a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line">        <tt id="link-0" class="py-name" targets="Class database.ccdErrors.CcdError=database.ccdErrors.CcdError-class.html"><a title="database.ccdErrors.CcdError" class="py-name" href="#" onclick="return doclink('link-0', 'CcdError', 'link-0');">CcdError</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Method ccd.Ccd.__init__()=ccd.Ccd-class.html#__init__,Method connection.ccdGroup.ConnectionGroup.__init__()=connection.ccdGroup.ConnectionGroup-class.html#__init__,Method connection.ccdProxy.Proxy.__init__()=connection.ccdProxy.Proxy-class.html#__init__,Method connection.ccdProxyChain.ProxyChain.__init__()=connection.ccdProxyChain.ProxyChain-class.html#__init__,Method connection.ccdProxyChain.ProxyChainSocket.__init__()=connection.ccdProxyChain.ProxyChainSocket-class.html#__init__,Method connection.ccdSession.ForwarderThread.__init__()=connection.ccdSession.ForwarderThread-class.html#__init__,Method connection.ccdSession.ResendThread.__init__()=connection.ccdSession.ResendThread-class.html#__init__,Method connection.ccdSession.Session.__init__()=connection.ccdSession.Session-class.html#__init__,Method connection.ccdlib.InvalidPacketError.__init__()=connection.ccdlib.InvalidPacketError-class.html#__init__,Method database.ccdErrors.EClosed.__init__()=database.ccdErrors.EClosed-class.html#__init__,Method database.ccdErrors.InvalidSessionID.__init__()=database.ccdErrors.InvalidSessionID-class.html#__init__,Method database.ccdErrors.PermissionDenied.__init__()=database.ccdErrors.PermissionDenied-class.html#__init__,Method database.ccdProject.Project.__init__()=database.ccdProject.Project-class.html#__init__,Method database.ccdUser.User.__init__()=database.ccdUser.User-class.html#__init__,Method database.ccdWorkgroup.Workgroup.__init__()=database.ccdWorkgroup.Workgroup-class.html#__init__,Method database.project.db.DatabaseHandler.__init__()=database.project.db.DatabaseHandler-class.html#__init__,Method database.project.tables.__ProjectTable.__init__()=database.project.tables.__ProjectTable-class.html#__init__,Method genreport.creport.doc.chart.PieChart.__init__()=genreport.creport.doc.chart.PieChart-class.html#__init__,Method genreport.creport.doc.datatable.DataTable.__init__()=genreport.creport.doc.datatable.DataTable-class.html#__init__,Method genreport.creport.doc.document.Doc.__init__()=genreport.creport.doc.document.Doc-class.html#__init__,Method genreport.creport.doc.styles.DocumentStyle.__init__()=genreport.creport.doc.styles.DocumentStyle-class.html#__init__,Method plugins.localCategory.LocalCategory.__init__()=plugins.localCategory.LocalCategory-class.html#__init__"><a title="ccd.Ccd.__init__
+connection.ccdGroup.ConnectionGroup.__init__
+connection.ccdProxy.Proxy.__init__
+connection.ccdProxyChain.ProxyChain.__init__
+connection.ccdProxyChain.ProxyChainSocket.__init__
+connection.ccdSession.ForwarderThread.__init__
+connection.ccdSession.ResendThread.__init__
+connection.ccdSession.Session.__init__
+connection.ccdlib.InvalidPacketError.__init__
+database.ccdErrors.EClosed.__init__
+database.ccdErrors.InvalidSessionID.__init__
+database.ccdErrors.PermissionDenied.__init__
+database.ccdProject.Project.__init__
+database.ccdUser.User.__init__
+database.ccdWorkgroup.Workgroup.__init__
+database.project.db.DatabaseHandler.__init__
+database.project.tables.__ProjectTable.__init__
+genreport.creport.doc.chart.PieChart.__init__
+genreport.creport.doc.datatable.DataTable.__init__
+genreport.creport.doc.document.Doc.__init__
+genreport.creport.doc.styles.DocumentStyle.__init__
+plugins.localCategory.LocalCategory.__init__" class="py-name" href="#" onclick="return doclink('link-1', '__init__', 'link-1');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-string">"Invalid session id(%s)"</tt> <tt class="py-op">%</tt> <tt class="py-name">sid</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line"> </tt>
+<a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line"> </tt>
+<a name="InputError"></a><div id="InputError-def"><a name="L78"></a><tt class="py-lineno">78</tt> <a class="py-toggle" href="#" id="InputError-toggle" onclick="return toggle('InputError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="database.ccdErrors.InputError-class.html">InputError</a><tt class="py-op">(</tt><tt class="py-base-class">CcdError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InputError-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="InputError-expanded"><a name="L79"></a><tt class="py-lineno">79</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L80"></a><tt class="py-lineno">80</tt>  <tt class="py-line"><tt class="py-docstring">    used for invalid json formats or input that arrives via ccd protocol</tt> </tt>
+<a name="L81"></a><tt class="py-lineno">81</tt>  <tt class="py-line"><tt class="py-docstring">    and is illegal</tt> </tt>
+<a name="L82"></a><tt class="py-lineno">82</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L83"></a><tt class="py-lineno">83</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L84"></a><tt class="py-lineno">84</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L85"></a><tt class="py-lineno">85</tt>  <tt class="py-line"> </tt>
+<a name="PermissionDenied"></a><div id="PermissionDenied-def"><a name="L86"></a><tt class="py-lineno">86</tt> <a class="py-toggle" href="#" id="PermissionDenied-toggle" onclick="return toggle('PermissionDenied');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="database.ccdErrors.PermissionDenied-class.html">PermissionDenied</a><tt class="py-op">(</tt><tt class="py-base-class">CcdError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PermissionDenied-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="PermissionDenied-expanded"><a name="L87"></a><tt class="py-lineno">87</tt>  <tt class="py-line">    <tt class="py-docstring">""" used in case of illegal access """</tt> </tt>
+<a name="PermissionDenied.__init__"></a><div id="PermissionDenied.__init__-def"><a name="L88"></a><tt class="py-lineno">88</tt> <a class="py-toggle" href="#" id="PermissionDenied.__init__-toggle" onclick="return toggle('PermissionDenied.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="database.ccdErrors.PermissionDenied-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PermissionDenied.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="PermissionDenied.__init__-expanded"><a name="L89"></a><tt class="py-lineno">89</tt>  <tt class="py-line">        <tt id="link-2" class="py-name"><a title="database.ccdErrors.CcdError" class="py-name" href="#" onclick="return doclink('link-2', 'CcdError', 'link-0');">CcdError</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name"><a title="ccd.Ccd.__init__
+connection.ccdGroup.ConnectionGroup.__init__
+connection.ccdProxy.Proxy.__init__
+connection.ccdProxyChain.ProxyChain.__init__
+connection.ccdProxyChain.ProxyChainSocket.__init__
+connection.ccdSession.ForwarderThread.__init__
+connection.ccdSession.ResendThread.__init__
+connection.ccdSession.Session.__init__
+connection.ccdlib.InvalidPacketError.__init__
+database.ccdErrors.EClosed.__init__
+database.ccdErrors.InvalidSessionID.__init__
+database.ccdErrors.PermissionDenied.__init__
+database.ccdProject.Project.__init__
+database.ccdUser.User.__init__
+database.ccdWorkgroup.Workgroup.__init__
+database.project.db.DatabaseHandler.__init__
+database.project.tables.__ProjectTable.__init__
+genreport.creport.doc.chart.PieChart.__init__
+genreport.creport.doc.datatable.DataTable.__init__
+genreport.creport.doc.document.Doc.__init__
+genreport.creport.doc.styles.DocumentStyle.__init__
+plugins.localCategory.LocalCategory.__init__" class="py-name" href="#" onclick="return doclink('link-3', '__init__', 'link-1');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-string">"Permission denied for %s"</tt> <tt class="py-op">%</tt> <tt class="py-name">name</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L90"></a><tt class="py-lineno">90</tt>  <tt class="py-line"> </tt>
+<a name="NotFoundError"></a><div id="NotFoundError-def"><a name="L91"></a><tt class="py-lineno">91</tt> <a class="py-toggle" href="#" id="NotFoundError-toggle" onclick="return toggle('NotFoundError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="database.ccdErrors.NotFoundError-class.html">NotFoundError</a><tt class="py-op">(</tt><tt class="py-base-class">CcdError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NotFoundError-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="NotFoundError-expanded"><a name="L92"></a><tt class="py-lineno">92</tt>  <tt class="py-line">    <tt class="py-docstring">""" if wgroup, user, project, .. not found """</tt> </tt>
+<a name="L93"></a><tt class="py-lineno">93</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L94"></a><tt class="py-lineno">94</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:39 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

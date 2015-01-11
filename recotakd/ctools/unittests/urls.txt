@@ -1,0 +1,7 @@
+github.com,github.com
+asldkfjlkasdlkfjkasldjf,DomainNotFound
+https://docs.python.org/2/library/subprocess.html,python.org
+http://legacy.python.org/dev/peps/pep-0257/,python.org
+http://beta.slashdot.org/,slashdot.org
+foobar.foobar,DomainNotFound
+www.postgresql.org/docs/current/static/datatype.html,postgresql.org

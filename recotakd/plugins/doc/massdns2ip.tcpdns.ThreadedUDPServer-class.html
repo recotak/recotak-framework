@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>massdns2ip.tcpdns.ThreadedUDPServer</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd plugin documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="massdns2ip-module.html">Package&nbsp;massdns2ip</a> ::
+        <a href="massdns2ip.tcpdns-module.html">Module&nbsp;tcpdns</a> ::
+        Class&nbsp;ThreadedUDPServer
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="massdns2ip.tcpdns.ThreadedUDPServer-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class ThreadedUDPServer</h1><p class="nomargin-top"><span class="codelink"><a href="massdns2ip.tcpdns-pysrc.html#ThreadedUDPServer">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_massdns2_2" name="uml_class_diagram_for_massdns2_2">
+<area shape="rect" id="node1_24" href="massdns2ip.tcpdns.ThreadedUDPServer-class.html#__init__" title="Constructor." alt="" coords="289,593,422,613"/>
+<area shape="rect" id="node1" href="massdns2ip.tcpdns.ThreadedUDPServer-class.html" title="massdns2ip.tcpdns.ThreadedUDPServer" alt="" coords="277,561,434,620"/>
+<area shape="rect" id="node2_25" href="javascript:void(0);" title="SocketServer.ThreadingMixIn.daemon_threads" alt="" coords="18,433,363,453"/>
+<area shape="rect" id="node2_26" href="javascript:void(0);" title="Same as in BaseServer but as a thread." alt="" coords="18,456,363,476"/>
+<area shape="rect" id="node2_27" href="javascript:void(0);" title="Start a new thread to process the request." alt="" coords="18,476,363,496"/>
+<area shape="rect" id="node2" href="javascript:void(0);" title="Mix&#45;in class to handle each request in a new thread." alt="" coords="5,409,375,503"/>
+<area shape="rect" id="node3_28" href="javascript:void(0);" title="SocketServer.UDPServer.allow_reuse_address" alt="" coords="417,393,623,413"/>
+<area shape="rect" id="node3_29" href="javascript:void(0);" title="SocketServer.UDPServer.socket_type" alt="" coords="417,413,623,433"/>
+<area shape="rect" id="node3_30" href="javascript:void(0);" title="SocketServer.UDPServer.max_packet_size" alt="" coords="417,433,623,453"/>
+<area shape="rect" id="node3_31" href="javascript:void(0);" title="Get the request and client address from the socket." alt="" coords="417,456,623,476"/>
+<area shape="rect" id="node3_32" href="javascript:void(0);" title="Called by constructor to activate the server." alt="" coords="417,476,623,496"/>
+<area shape="rect" id="node3_33" href="javascript:void(0);" title="Called to shutdown and close an individual request." alt="" coords="417,496,623,516"/>
+<area shape="rect" id="node3_34" href="javascript:void(0);" title="Called to clean up an individual request." alt="" coords="417,516,623,536"/>
+<area shape="rect" id="node3" href="javascript:void(0);" title="UDP server class." alt="" coords="404,369,635,543"/>
+<area shape="rect" id="node4_35" href="javascript:void(0);" title="SocketServer.TCPServer.address_family" alt="" coords="441,241,599,261"/>
+<area shape="rect" id="node4_36" href="javascript:void(0);" title="SocketServer.TCPServer.request_queue_size" alt="" coords="441,261,599,281"/>
+<area shape="rect" id="node4_37" href="javascript:void(0);" title="Called by constructor to bind the socket." alt="" coords="441,284,599,304"/>
+<area shape="rect" id="node4_38" href="javascript:void(0);" title="Called to clean&#45;up the server." alt="" coords="441,304,599,324"/>
+<area shape="rect" id="node4_39" href="javascript:void(0);" title="Return socket file number." alt="" coords="441,324,599,344"/>
+<area shape="rect" id="node4" href="javascript:void(0);" title="Base class for various socket&#45;based server classes." alt="" coords="428,217,611,351"/>
+<area shape="rect" id="node5_40" href="javascript:void(0);" title="SocketServer.BaseServer.timeout" alt="" coords="381,30,661,50"/>
+<area shape="rect" id="node5_41" href="javascript:void(0);" title="Handle one request at a time until shutdown." alt="" coords="381,53,661,73"/>
+<area shape="rect" id="node5_42" href="javascript:void(0);" title="Stops the serve_forever loop." alt="" coords="381,73,661,93"/>
+<area shape="rect" id="node5_43" href="javascript:void(0);" title="Handle one request, possibly blocking." alt="" coords="381,93,661,113"/>
+<area shape="rect" id="node5_44" href="javascript:void(0);" title="Called if no new request arrives within self.timeout." alt="" coords="381,113,661,133"/>
+<area shape="rect" id="node5_45" href="javascript:void(0);" title="Verify the request." alt="" coords="381,133,661,153"/>
+<area shape="rect" id="node5_46" href="javascript:void(0);" title="Finish one request by instantiating RequestHandlerClass." alt="" coords="381,153,661,173"/>
+<area shape="rect" id="node5_47" href="javascript:void(0);" title="Handle an error gracefully." alt="" coords="381,173,661,193"/>
+<area shape="rect" id="node5" href="javascript:void(0);" title="Base class for server classes." alt="" coords="369,5,673,199"/>
+</map>
+  <img src="uml_class_diagram_for_massdns2_2.gif" alt='' usemap="#uml_class_diagram_for_massdns2_2" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="massdns2ip.tcpdns.ThreadedUDPServer-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">s</span>,
+        <span class="summary-sig-arg">t</span>)</span><br />
+      Constructor.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="massdns2ip.tcpdns-pysrc.html#ThreadedUDPServer.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SocketServer.ThreadingMixIn</code></b>:
+      <code>process_request</code>,
+      <code>process_request_thread</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SocketServer.UDPServer</code></b>:
+      <code>close_request</code>,
+      <code>get_request</code>,
+      <code>server_activate</code>,
+      <code>shutdown_request</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SocketServer.TCPServer</code></b>:
+      <code>fileno</code>,
+      <code>server_bind</code>,
+      <code>server_close</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SocketServer.BaseServer</code></b>:
+      <code>finish_request</code>,
+      <code>handle_error</code>,
+      <code>handle_request</code>,
+      <code>handle_timeout</code>,
+      <code>serve_forever</code>,
+      <code>shutdown</code>,
+      <code>verify_request</code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code>SocketServer.BaseServer</code></b> (private):
+      <code>_handle_request_noblock</code>
+      </p></div>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SocketServer.ThreadingMixIn</code></b>:
+      <code>daemon_threads</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SocketServer.UDPServer</code></b>:
+      <code>allow_reuse_address</code>,
+      <code>max_packet_size</code>,
+      <code>socket_type</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SocketServer.TCPServer</code></b>:
+      <code>address_family</code>,
+      <code>request_queue_size</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>SocketServer.BaseServer</code></b>:
+      <code>timeout</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">s</span>,
+        <span class="sig-arg">t</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="massdns2ip.tcpdns-pysrc.html#ThreadedUDPServer.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Constructor.  May be extended, do not override.</p>
+  <dl class="fields">
+    <dt>Overrides:
+        SocketServer.BaseServer.__init__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd plugin documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Mon Sep 29 17:38:53 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

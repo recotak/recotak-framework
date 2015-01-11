@@ -1,0 +1,11 @@
+[Unit]
+Description=Start ccd as a daemon
+
+[Service]
+User=root
+PIDFile=/var/run/ccd.pid
+Type=forking
+ExecStart={python_interpreter} {ccd_location} --daemon --config {config_file} {venv_option}
+
+[Install]
+WantedBy=multi-user.target

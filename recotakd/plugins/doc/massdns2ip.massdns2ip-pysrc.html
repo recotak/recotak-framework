@@ -1,0 +1,1039 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>massdns2ip.massdns2ip</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd plugin documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="massdns2ip-module.html">Package&nbsp;massdns2ip</a> ::
+        Module&nbsp;massdns2ip
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="massdns2ip.massdns2ip-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="massdns2ip.massdns2ip-module.html">Module massdns2ip.massdns2ip</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/env python2</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2014, curesec GmbH</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># All rights reserved.</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># Redistribution and use in source and binary forms, with or without modification, </tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># are permitted provided that the following conditions are met:</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"># 1. Redistributions of source code must retain the above copyright notice, this list of </tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"># conditions and the following disclaimer.</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"># 2. Redistributions in binary form must reproduce the above copyright notice, this list </tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># of conditions and the following disclaimer in the documentation and/or other materials </tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># provided with the distribution.</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"># 3. Neither the name of the copyright holder nor the names of its contributors may be used </tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"># to endorse or promote products derived from this software without specific prior written </tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># permission.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-comment"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS </tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-comment"># OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF </tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE </tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-comment"># COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, </tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-comment"># EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF </tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-comment"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) </tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-comment"># HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR </tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-comment"># TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, </tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-comment"># EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">__future__</tt> <tt class="py-keyword">import</tt> <tt class="py-name">with_statement</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">argparse</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">socket</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Variable search-duckgo.duckgo.logging=search-duckgo.duckgo-module.html#logging"><a title="search-duckgo.duckgo.logging" class="py-name" href="#" onclick="return doclink('link-0', 'logging', 'link-0');">logging</a></tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">datetime</tt> <tt class="py-keyword">import</tt> <tt class="py-name">datetime</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">ctools</tt> <tt class="py-keyword">import</tt> <tt class="py-name">cUtil</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">ctools</tt> <tt class="py-keyword">import</tt> <tt class="py-name">cTuples</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">ccdClasses</tt> <tt class="py-keyword">as</tt> <tt class="py-name">ccd</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-name">__version__</tt> <tt class="py-op">=</tt> <tt class="py-number">0.1</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-name">__author__</tt> <tt class="py-op">=</tt> <tt class="py-string">"curesec"</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt id="link-1" class="py-name" targets="Variable dns2ip.dns2ip.__email__=dns2ip.dns2ip-module.html#__email__,Variable ftp_bruteforce.ftp_bruteforce.__email__=ftp_bruteforce.ftp_bruteforce-module.html#__email__,Variable ip2dns.ip2dns.__email__=ip2dns.ip2dns-module.html#__email__,Variable ip2dns_bing.ip2dns_bing.__email__=ip2dns_bing.ip2dns_bing-module.html#__email__,Variable irc.interactive.__email__=irc.interactive-module.html#__email__,Variable massdns2ip.massdns2ip.__email__=massdns2ip.massdns2ip-module.html#__email__,Variable mysql_client.interactive.__email__=mysql_client.interactive-module.html#__email__,Variable subdns.dnsscan.__email__=subdns.dnsscan-module.html#__email__,Variable whois.whois.__email__=whois.whois-module.html#__email__"><a title="dns2ip.dns2ip.__email__
+ftp_bruteforce.ftp_bruteforce.__email__
+ip2dns.ip2dns.__email__
+ip2dns_bing.ip2dns_bing.__email__
+irc.interactive.__email__
+massdns2ip.massdns2ip.__email__
+mysql_client.interactive.__email__
+subdns.dnsscan.__email__
+whois.whois.__email__" class="py-name" href="#" onclick="return doclink('link-1', '__email__', 'link-1');">__email__</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"curesec"</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt id="link-2" class="py-name" targets="Variable cureto.cureto.__plgname__=cureto.cureto-module.html#__plgname__,Variable dir_bruteforce.dir_bruteforce.__plgname__=dir_bruteforce.dir_bruteforce-module.html#__plgname__,Variable dns2ip.dns2ip.__plgname__=dns2ip.dns2ip-module.html#__plgname__,Variable dnsversion.dnsversion.__plgname__=dnsversion.dnsversion-module.html#__plgname__,Variable dnszone.dnszone.__plgname__=dnszone.dnszone-module.html#__plgname__,Variable ftp_bruteforce.ftp_bruteforce.__plgname__=ftp_bruteforce.ftp_bruteforce-module.html#__plgname__,Variable heartbleed.heartbleed.__plgname__=heartbleed.heartbleed-module.html#__plgname__,Variable http_basic_bruteforce.http_basic_bruteforce.__plgname__=http_basic_bruteforce.http_basic_bruteforce-module.html#__plgname__,Variable imapbruteforce.imapbruteforce.__plgname__=imapbruteforce.imapbruteforce-module.html#__plgname__,Variable ip2dns.ip2dns.__plgname__=ip2dns.ip2dns-module.html#__plgname__,Variable ip2dns_bing.ip2dns_bing.__plgname__=ip2dns_bing.ip2dns_bing-module.html#__plgname__,Variable irc.interactive.__plgname__=irc.interactive-module.html#__plgname__,Variable massdns2ip.massdns2ip.__plgname__=massdns2ip.massdns2ip-module.html#__plgname__,Variable mysql_bruteforce.mysql_bruteforce.__plgname__=mysql_bruteforce.mysql_bruteforce-module.html#__plgname__,Variable mysql_client.interactive.__plgname__=mysql_client.interactive-module.html#__plgname__,Variable popbruteforce.popbruteforce.__plgname__=popbruteforce.popbruteforce-module.html#__plgname__,Variable ripe_db_extractor.ripe_db_extractor.__plgname__=ripe_db_extractor.ripe_db_extractor-module.html#__plgname__,Variable rlogin_bruteforce.rlogin_bruteforce.__plgname__=rlogin_bruteforce.rlogin_bruteforce-module.html#__plgname__,Variable rpcinfo.rpcinfo.__plgname__=rpcinfo.rpcinfo-module.html#__plgname__,Variable search-duckgo.duckgo.__plgname__=search-duckgo.duckgo-module.html#__plgname__,Variable showmount.showmount.__plgname__=showmount.showmount-module.html#__plgname__,Variable ssh_bruteforce.ssh_bruteforce.__plgname__=ssh_bruteforce.ssh_bruteforce-module.html#__plgname__,Variable ssh_user_enum.ssh_user_enum.__plgname__=ssh_user_enum.ssh_user_enum-module.html#__plgname__,Variable ssl_tester.ssl_tester.__plgname__=ssl_tester.ssl_tester-module.html#__plgname__,Variable tcp_traceroute.tcptraceroute.__plgname__=tcp_traceroute.tcptraceroute-module.html#__plgname__,Variable telnet_bruteforce.telnet_bruteforce.__plgname__=telnet_bruteforce.telnet_bruteforce-module.html#__plgname__"><a title="cureto.cureto.__plgname__
+dir_bruteforce.dir_bruteforce.__plgname__
+dns2ip.dns2ip.__plgname__
+dnsversion.dnsversion.__plgname__
+dnszone.dnszone.__plgname__
+ftp_bruteforce.ftp_bruteforce.__plgname__
+heartbleed.heartbleed.__plgname__
+http_basic_bruteforce.http_basic_bruteforce.__plgname__
+imapbruteforce.imapbruteforce.__plgname__
+ip2dns.ip2dns.__plgname__
+ip2dns_bing.ip2dns_bing.__plgname__
+irc.interactive.__plgname__
+massdns2ip.massdns2ip.__plgname__
+mysql_bruteforce.mysql_bruteforce.__plgname__
+mysql_client.interactive.__plgname__
+popbruteforce.popbruteforce.__plgname__
+ripe_db_extractor.ripe_db_extractor.__plgname__
+rlogin_bruteforce.rlogin_bruteforce.__plgname__
+rpcinfo.rpcinfo.__plgname__
+search-duckgo.duckgo.__plgname__
+showmount.showmount.__plgname__
+ssh_bruteforce.ssh_bruteforce.__plgname__
+ssh_user_enum.ssh_user_enum.__plgname__
+ssl_tester.ssl_tester.__plgname__
+tcp_traceroute.tcptraceroute.__plgname__
+telnet_bruteforce.telnet_bruteforce.__plgname__" class="py-name" href="#" onclick="return doclink('link-2', '__plgname__', 'link-2');">__plgname__</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"massdns2ip"</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-comment"># logging</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt id="link-3" class="py-name" targets="Variable cureto.comm.LOG=cureto.comm-module.html#LOG,Variable cureto.cureto.LOG=cureto.cureto-module.html#LOG,Variable cureto.db_test.LOG=cureto.db_test-module.html#LOG,Variable dir_bruteforce.dir_bruteforce.LOG=dir_bruteforce.dir_bruteforce-module.html#LOG,Variable dns2ip.dns2ip.LOG=dns2ip.dns2ip-module.html#LOG,Variable dnsversion.dnsversion.LOG=dnsversion.dnsversion-module.html#LOG,Variable ftp_bruteforce.ftp_bruteforce.LOG=ftp_bruteforce.ftp_bruteforce-module.html#LOG,Variable heartbleed.heartbleed.LOG=heartbleed.heartbleed-module.html#LOG,Variable http_basic_bruteforce.http_basic_bruteforce.LOG=http_basic_bruteforce.http_basic_bruteforce-module.html#LOG,Variable imapbruteforce.imapbruteforce.LOG=imapbruteforce.imapbruteforce-module.html#LOG,Variable ip2dns.ip2dns.LOG=ip2dns.ip2dns-module.html#LOG,Variable ip2dns_bing.ip2dns_bing.LOG=ip2dns_bing.ip2dns_bing-module.html#LOG,Variable irc.interactive.LOG=irc.interactive-module.html#LOG,Variable massdns2ip.massdns2ip.LOG=massdns2ip.massdns2ip-module.html#LOG,Variable mysql_bruteforce.mysql_bruteforce.LOG=mysql_bruteforce.mysql_bruteforce-module.html#LOG,Variable mysql_client.interactive.LOG=mysql_client.interactive-module.html#LOG,Variable popbruteforce.popbruteforce.LOG=popbruteforce.popbruteforce-module.html#LOG,Variable ripe_db_extractor.ripe_db_extractor.LOG=ripe_db_extractor.ripe_db_extractor-module.html#LOG,Variable rlogin_bruteforce.rlogin_bruteforce.LOG=rlogin_bruteforce.rlogin_bruteforce-module.html#LOG,Variable rpcinfo.rpcinfo.LOG=rpcinfo.rpcinfo-module.html#LOG,Variable rsh_bruteforce.rsh_bruteforce.LOG=rsh_bruteforce.rsh_bruteforce-module.html#LOG,Variable showmount.showmount.LOG=showmount.showmount-module.html#LOG,Variable smtp_user_enum.smtp_user_enum.LOG=smtp_user_enum.smtp_user_enum-module.html#LOG,Variable ssh_bruteforce.ssh_bruteforce.LOG=ssh_bruteforce.ssh_bruteforce-module.html#LOG,Variable ssh_user_enum.ssh_user_enum.LOG=ssh_user_enum.ssh_user_enum-module.html#LOG,Variable subdns.dnsscan.LOG=subdns.dnsscan-module.html#LOG"><a title="cureto.comm.LOG
+cureto.cureto.LOG
+cureto.db_test.LOG
+dir_bruteforce.dir_bruteforce.LOG
+dns2ip.dns2ip.LOG
+dnsversion.dnsversion.LOG
+ftp_bruteforce.ftp_bruteforce.LOG
+heartbleed.heartbleed.LOG
+http_basic_bruteforce.http_basic_bruteforce.LOG
+imapbruteforce.imapbruteforce.LOG
+ip2dns.ip2dns.LOG
+ip2dns_bing.ip2dns_bing.LOG
+irc.interactive.LOG
+massdns2ip.massdns2ip.LOG
+mysql_bruteforce.mysql_bruteforce.LOG
+mysql_client.interactive.LOG
+popbruteforce.popbruteforce.LOG
+ripe_db_extractor.ripe_db_extractor.LOG
+rlogin_bruteforce.rlogin_bruteforce.LOG
+rpcinfo.rpcinfo.LOG
+rsh_bruteforce.rsh_bruteforce.LOG
+showmount.showmount.LOG
+smtp_user_enum.smtp_user_enum.LOG
+ssh_bruteforce.ssh_bruteforce.LOG
+ssh_user_enum.ssh_user_enum.LOG
+subdns.dnsscan.LOG" class="py-name" href="#" onclick="return doclink('link-3', 'LOG', 'link-3');">LOG</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"/tmp/"</tt> <tt class="py-op">+</tt> <tt id="link-4" class="py-name"><a title="cureto.cureto.__plgname__
+dir_bruteforce.dir_bruteforce.__plgname__
+dns2ip.dns2ip.__plgname__
+dnsversion.dnsversion.__plgname__
+dnszone.dnszone.__plgname__
+ftp_bruteforce.ftp_bruteforce.__plgname__
+heartbleed.heartbleed.__plgname__
+http_basic_bruteforce.http_basic_bruteforce.__plgname__
+imapbruteforce.imapbruteforce.__plgname__
+ip2dns.ip2dns.__plgname__
+ip2dns_bing.ip2dns_bing.__plgname__
+irc.interactive.__plgname__
+massdns2ip.massdns2ip.__plgname__
+mysql_bruteforce.mysql_bruteforce.__plgname__
+mysql_client.interactive.__plgname__
+popbruteforce.popbruteforce.__plgname__
+ripe_db_extractor.ripe_db_extractor.__plgname__
+rlogin_bruteforce.rlogin_bruteforce.__plgname__
+rpcinfo.rpcinfo.__plgname__
+search-duckgo.duckgo.__plgname__
+showmount.showmount.__plgname__
+ssh_bruteforce.ssh_bruteforce.__plgname__
+ssh_user_enum.ssh_user_enum.__plgname__
+ssl_tester.ssl_tester.__plgname__
+tcp_traceroute.tcptraceroute.__plgname__
+telnet_bruteforce.telnet_bruteforce.__plgname__" class="py-name" href="#" onclick="return doclink('link-4', '__plgname__', 'link-2');">__plgname__</a></tt> <tt class="py-op">+</tt> <tt class="py-string">".log"</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt id="link-5" class="py-name" targets="Variable cureto.comm.FORMAT=cureto.comm-module.html#FORMAT,Variable cureto.cureto.FORMAT=cureto.cureto-module.html#FORMAT,Variable cureto.db_test.FORMAT=cureto.db_test-module.html#FORMAT,Variable dir_bruteforce.dir_bruteforce.FORMAT=dir_bruteforce.dir_bruteforce-module.html#FORMAT,Variable dns2ip.dns2ip.FORMAT=dns2ip.dns2ip-module.html#FORMAT,Variable dnsversion.dnsversion.FORMAT=dnsversion.dnsversion-module.html#FORMAT,Variable ftp_bruteforce.ftp_bruteforce.FORMAT=ftp_bruteforce.ftp_bruteforce-module.html#FORMAT,Variable heartbleed.heartbleed.FORMAT=heartbleed.heartbleed-module.html#FORMAT,Variable http_basic_bruteforce.http_basic_bruteforce.FORMAT=http_basic_bruteforce.http_basic_bruteforce-module.html#FORMAT,Variable imapbruteforce.imapbruteforce.FORMAT=imapbruteforce.imapbruteforce-module.html#FORMAT,Variable ip2dns.ip2dns.FORMAT=ip2dns.ip2dns-module.html#FORMAT,Variable ip2dns_bing.ip2dns_bing.FORMAT=ip2dns_bing.ip2dns_bing-module.html#FORMAT,Variable irc.interactive.FORMAT=irc.interactive-module.html#FORMAT,Variable massdns2ip.massdns2ip.FORMAT=massdns2ip.massdns2ip-module.html#FORMAT,Variable mysql_bruteforce.mysql_bruteforce.FORMAT=mysql_bruteforce.mysql_bruteforce-module.html#FORMAT,Variable mysql_client.interactive.FORMAT=mysql_client.interactive-module.html#FORMAT,Variable popbruteforce.popbruteforce.FORMAT=popbruteforce.popbruteforce-module.html#FORMAT,Variable ripe_db_extractor.ripe_db_extractor.FORMAT=ripe_db_extractor.ripe_db_extractor-module.html#FORMAT,Variable rlogin_bruteforce.rlogin_bruteforce.FORMAT=rlogin_bruteforce.rlogin_bruteforce-module.html#FORMAT,Variable rpcinfo.rpcinfo.FORMAT=rpcinfo.rpcinfo-module.html#FORMAT,Variable rsh_bruteforce.rsh_bruteforce.FORMAT=rsh_bruteforce.rsh_bruteforce-module.html#FORMAT,Variable showmount.showmount.FORMAT=showmount.showmount-module.html#FORMAT,Variable smtp_user_enum.smtp_user_enum.FORMAT=smtp_user_enum.smtp_user_enum-module.html#FORMAT,Variable ssh_bruteforce.ssh_bruteforce.FORMAT=ssh_bruteforce.ssh_bruteforce-module.html#FORMAT,Variable ssh_user_enum.ssh_user_enum.FORMAT=ssh_user_enum.ssh_user_enum-module.html#FORMAT,Variable subdns.dnsscan.FORMAT=subdns.dnsscan-module.html#FORMAT"><a title="cureto.comm.FORMAT
+cureto.cureto.FORMAT
+cureto.db_test.FORMAT
+dir_bruteforce.dir_bruteforce.FORMAT
+dns2ip.dns2ip.FORMAT
+dnsversion.dnsversion.FORMAT
+ftp_bruteforce.ftp_bruteforce.FORMAT
+heartbleed.heartbleed.FORMAT
+http_basic_bruteforce.http_basic_bruteforce.FORMAT
+imapbruteforce.imapbruteforce.FORMAT
+ip2dns.ip2dns.FORMAT
+ip2dns_bing.ip2dns_bing.FORMAT
+irc.interactive.FORMAT
+massdns2ip.massdns2ip.FORMAT
+mysql_bruteforce.mysql_bruteforce.FORMAT
+mysql_client.interactive.FORMAT
+popbruteforce.popbruteforce.FORMAT
+ripe_db_extractor.ripe_db_extractor.FORMAT
+rlogin_bruteforce.rlogin_bruteforce.FORMAT
+rpcinfo.rpcinfo.FORMAT
+rsh_bruteforce.rsh_bruteforce.FORMAT
+showmount.showmount.FORMAT
+smtp_user_enum.smtp_user_enum.FORMAT
+ssh_bruteforce.ssh_bruteforce.FORMAT
+ssh_user_enum.ssh_user_enum.FORMAT
+subdns.dnsscan.FORMAT" class="py-name" href="#" onclick="return doclink('link-5', 'FORMAT', 'link-5');">FORMAT</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'%(asctime)s - %(name)s - %(levelname)s'</tt> <tt class="py-op">+</tt> \ </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">    <tt class="py-string">'- %(threadName)s - %(message)s'</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt id="link-6" class="py-name"><a title="search-duckgo.duckgo.logging" class="py-name" href="#" onclick="return doclink('link-6', 'logging', 'link-0');">logging</a></tt><tt class="py-op">.</tt><tt class="py-name">basicConfig</tt><tt class="py-op">(</tt><tt class="py-name">filename</tt><tt class="py-op">=</tt><tt id="link-7" class="py-name"><a title="cureto.comm.LOG
+cureto.cureto.LOG
+cureto.db_test.LOG
+dir_bruteforce.dir_bruteforce.LOG
+dns2ip.dns2ip.LOG
+dnsversion.dnsversion.LOG
+ftp_bruteforce.ftp_bruteforce.LOG
+heartbleed.heartbleed.LOG
+http_basic_bruteforce.http_basic_bruteforce.LOG
+imapbruteforce.imapbruteforce.LOG
+ip2dns.ip2dns.LOG
+ip2dns_bing.ip2dns_bing.LOG
+irc.interactive.LOG
+massdns2ip.massdns2ip.LOG
+mysql_bruteforce.mysql_bruteforce.LOG
+mysql_client.interactive.LOG
+popbruteforce.popbruteforce.LOG
+ripe_db_extractor.ripe_db_extractor.LOG
+rlogin_bruteforce.rlogin_bruteforce.LOG
+rpcinfo.rpcinfo.LOG
+rsh_bruteforce.rsh_bruteforce.LOG
+showmount.showmount.LOG
+smtp_user_enum.smtp_user_enum.LOG
+ssh_bruteforce.ssh_bruteforce.LOG
+ssh_user_enum.ssh_user_enum.LOG
+subdns.dnsscan.LOG" class="py-name" href="#" onclick="return doclink('link-7', 'LOG', 'link-3');">LOG</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">                    <tt class="py-name">filemode</tt><tt class="py-op">=</tt><tt class="py-string">"w"</tt><tt class="py-op">,</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">                    <tt class="py-name">format</tt><tt class="py-op">=</tt><tt id="link-8" class="py-name"><a title="cureto.comm.FORMAT
+cureto.cureto.FORMAT
+cureto.db_test.FORMAT
+dir_bruteforce.dir_bruteforce.FORMAT
+dns2ip.dns2ip.FORMAT
+dnsversion.dnsversion.FORMAT
+ftp_bruteforce.ftp_bruteforce.FORMAT
+heartbleed.heartbleed.FORMAT
+http_basic_bruteforce.http_basic_bruteforce.FORMAT
+imapbruteforce.imapbruteforce.FORMAT
+ip2dns.ip2dns.FORMAT
+ip2dns_bing.ip2dns_bing.FORMAT
+irc.interactive.FORMAT
+massdns2ip.massdns2ip.FORMAT
+mysql_bruteforce.mysql_bruteforce.FORMAT
+mysql_client.interactive.FORMAT
+popbruteforce.popbruteforce.FORMAT
+ripe_db_extractor.ripe_db_extractor.FORMAT
+rlogin_bruteforce.rlogin_bruteforce.FORMAT
+rpcinfo.rpcinfo.FORMAT
+rsh_bruteforce.rsh_bruteforce.FORMAT
+showmount.showmount.FORMAT
+smtp_user_enum.smtp_user_enum.FORMAT
+ssh_bruteforce.ssh_bruteforce.FORMAT
+ssh_user_enum.ssh_user_enum.FORMAT
+subdns.dnsscan.FORMAT" class="py-name" href="#" onclick="return doclink('link-8', 'FORMAT', 'link-5');">FORMAT</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">                    <tt class="py-name">level</tt><tt class="py-op">=</tt><tt id="link-9" class="py-name"><a title="search-duckgo.duckgo.logging" class="py-name" href="#" onclick="return doclink('link-9', 'logging', 'link-0');">logging</a></tt><tt class="py-op">.</tt><tt class="py-name">DEBUG</tt><tt class="py-op">)</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt id="link-10" class="py-name" targets="Variable cureto.comm.logger=cureto.comm-module.html#logger,Variable cureto.cureto.logger=cureto.cureto-module.html#logger,Variable cureto.db_test.logger=cureto.db_test-module.html#logger,Variable cureto.main.logger=cureto.main-module.html#logger,Variable dir_bruteforce.dir_bruteforce.logger=dir_bruteforce.dir_bruteforce-module.html#logger,Variable dir_bruteforce.main.logger=dir_bruteforce.main-module.html#logger,Variable dns2ip.dns2ip.logger=dns2ip.dns2ip-module.html#logger,Variable dns2ip.main.logger=dns2ip.main-module.html#logger,Variable dnsversion.dnsversion.logger=dnsversion.dnsversion-module.html#logger,Variable dnsversion.main.logger=dnsversion.main-module.html#logger,Variable dnszone.dnszone.logger=dnszone.dnszone-module.html#logger,Variable dnszone.main.logger=dnszone.main-module.html#logger,Variable ftp_bruteforce.ftp_bruteforce.logger=ftp_bruteforce.ftp_bruteforce-module.html#logger,Variable ftp_bruteforce.main.logger=ftp_bruteforce.main-module.html#logger,Variable geoip.main.logger=geoip.main-module.html#logger,Variable heartbleed.heartbleed.logger=heartbleed.heartbleed-module.html#logger,Variable heartbleed.main.logger=heartbleed.main-module.html#logger,Variable http_basic_bruteforce.http_basic_bruteforce.logger=http_basic_bruteforce.http_basic_bruteforce-module.html#logger,Variable http_basic_bruteforce.main.logger=http_basic_bruteforce.main-module.html#logger,Variable imapbruteforce.imapbruteforce.logger=imapbruteforce.imapbruteforce-module.html#logger,Variable imapbruteforce.main.logger=imapbruteforce.main-module.html#logger,Variable imapget.main.logger=imapget.main-module.html#logger,Variable ip2dns.ip2dns.logger=ip2dns.ip2dns-module.html#logger,Variable ip2dns.main.logger=ip2dns.main-module.html#logger,Variable ip2dns_bing.ip2dns_bing.logger=ip2dns_bing.ip2dns_bing-module.html#logger,Variable irc.interactive.logger=irc.interactive-module.html#logger,Variable irc.main.logger=irc.main-module.html#logger,Variable massdns2ip.main.logger=massdns2ip.main-module.html#logger,Variable massdns2ip.massdns2ip.logger=massdns2ip.massdns2ip-module.html#logger,Variable mysql_bruteforce.main.logger=mysql_bruteforce.main-module.html#logger,Variable mysql_bruteforce.mysql_bruteforce.logger=mysql_bruteforce.mysql_bruteforce-module.html#logger,Variable mysql_client.interactive.logger=mysql_client.interactive-module.html#logger,Variable mysql_client.main.logger=mysql_client.main-module.html#logger,Variable popbruteforce.main.logger=popbruteforce.main-module.html#logger,Variable popbruteforce.popbruteforce.logger=popbruteforce.popbruteforce-module.html#logger,Variable popget.main.logger=popget.main-module.html#logger,Variable ripe_db_extractor.main.logger=ripe_db_extractor.main-module.html#logger,Variable ripe_db_extractor.ripe_db_extractor.logger=ripe_db_extractor.ripe_db_extractor-module.html#logger,Variable rlogin_bruteforce.main.logger=rlogin_bruteforce.main-module.html#logger,Variable rlogin_bruteforce.rlogin_bruteforce.logger=rlogin_bruteforce.rlogin_bruteforce-module.html#logger,Variable rpcinfo.main.logger=rpcinfo.main-module.html#logger,Variable rpcinfo.rpcinfo.logger=rpcinfo.rpcinfo-module.html#logger,Variable rsh_bruteforce.main.logger=rsh_bruteforce.main-module.html#logger,Variable rsh_bruteforce.rsh_bruteforce.logger=rsh_bruteforce.rsh_bruteforce-module.html#logger,Variable search-bing.main.logger=search-bing.main-module.html#logger,Variable search-duckgo.main.logger=search-duckgo.main-module.html#logger,Variable search-google.main.logger=search-google.main-module.html#logger,Variable sftpclient.main.logger=sftpclient.main-module.html#logger,Variable showmount.main.logger=showmount.main-module.html#logger,Variable showmount.showmount.logger=showmount.showmount-module.html#logger,Variable smtp_user_enum.main.logger=smtp_user_enum.main-module.html#logger,Variable smtp_user_enum.smtp_user_enum.logger=smtp_user_enum.smtp_user_enum-module.html#logger,Variable ssh_bruteforce.main.logger=ssh_bruteforce.main-module.html#logger,Variable ssh_bruteforce.ssh_bruteforce.logger=ssh_bruteforce.ssh_bruteforce-module.html#logger,Variable ssh_user_enum.main.logger=ssh_user_enum.main-module.html#logger,Variable ssh_user_enum.ssh_user_enum.logger=ssh_user_enum.ssh_user_enum-module.html#logger,Variable ssl_tester.main.logger=ssl_tester.main-module.html#logger,Variable ssl_tester.ssl_tester.logger=ssl_tester.ssl_tester-module.html#logger,Variable subdns.dnsscan.logger=subdns.dnsscan-module.html#logger,Variable subdns.main.logger=subdns.main-module.html#logger,Variable tcp_traceroute.main.logger=tcp_traceroute.main-module.html#logger,Variable telnet_bruteforce.main.logger=telnet_bruteforce.main-module.html#logger,Variable telnet_bruteforce.telnet_bruteforce.logger=telnet_bruteforce.telnet_bruteforce-module.html#logger,Variable whois.main.logger=whois.main-module.html#logger,Variable whois.resultworker.logger=whois.resultworker-module.html#logger,Variable whois.whois.logger=whois.whois-module.html#logger,Variable whois.whoisworker.WhoisWorker.logger=whois.whoisworker.WhoisWorker-class.html#logger,Variable whois.whoisworker.logger=whois.whoisworker-module.html#logger"><a title="cureto.comm.logger
+cureto.cureto.logger
+cureto.db_test.logger
+cureto.main.logger
+dir_bruteforce.dir_bruteforce.logger
+dir_bruteforce.main.logger
+dns2ip.dns2ip.logger
+dns2ip.main.logger
+dnsversion.dnsversion.logger
+dnsversion.main.logger
+dnszone.dnszone.logger
+dnszone.main.logger
+ftp_bruteforce.ftp_bruteforce.logger
+ftp_bruteforce.main.logger
+geoip.main.logger
+heartbleed.heartbleed.logger
+heartbleed.main.logger
+http_basic_bruteforce.http_basic_bruteforce.logger
+http_basic_bruteforce.main.logger
+imapbruteforce.imapbruteforce.logger
+imapbruteforce.main.logger
+imapget.main.logger
+ip2dns.ip2dns.logger
+ip2dns.main.logger
+ip2dns_bing.ip2dns_bing.logger
+irc.interactive.logger
+irc.main.logger
+massdns2ip.main.logger
+massdns2ip.massdns2ip.logger
+mysql_bruteforce.main.logger
+mysql_bruteforce.mysql_bruteforce.logger
+mysql_client.interactive.logger
+mysql_client.main.logger
+popbruteforce.main.logger
+popbruteforce.popbruteforce.logger
+popget.main.logger
+ripe_db_extractor.main.logger
+ripe_db_extractor.ripe_db_extractor.logger
+rlogin_bruteforce.main.logger
+rlogin_bruteforce.rlogin_bruteforce.logger
+rpcinfo.main.logger
+rpcinfo.rpcinfo.logger
+rsh_bruteforce.main.logger
+rsh_bruteforce.rsh_bruteforce.logger
+search-bing.main.logger
+search-duckgo.main.logger
+search-google.main.logger
+sftpclient.main.logger
+showmount.main.logger
+showmount.showmount.logger
+smtp_user_enum.main.logger
+smtp_user_enum.smtp_user_enum.logger
+ssh_bruteforce.main.logger
+ssh_bruteforce.ssh_bruteforce.logger
+ssh_user_enum.main.logger
+ssh_user_enum.ssh_user_enum.logger
+ssl_tester.main.logger
+ssl_tester.ssl_tester.logger
+subdns.dnsscan.logger
+subdns.main.logger
+tcp_traceroute.main.logger
+telnet_bruteforce.main.logger
+telnet_bruteforce.telnet_bruteforce.logger
+whois.main.logger
+whois.resultworker.logger
+whois.whois.logger
+whois.whoisworker.WhoisWorker.logger
+whois.whoisworker.logger" class="py-name" href="#" onclick="return doclink('link-10', 'logger', 'link-10');">logger</a></tt> <tt class="py-op">=</tt> <tt id="link-11" class="py-name"><a title="search-duckgo.duckgo.logging" class="py-name" href="#" onclick="return doclink('link-11', 'logging', 'link-0');">logging</a></tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-name">__name__</tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt id="link-12" class="py-name"><a title="cureto.comm.logger
+cureto.cureto.logger
+cureto.db_test.logger
+cureto.main.logger
+dir_bruteforce.dir_bruteforce.logger
+dir_bruteforce.main.logger
+dns2ip.dns2ip.logger
+dns2ip.main.logger
+dnsversion.dnsversion.logger
+dnsversion.main.logger
+dnszone.dnszone.logger
+dnszone.main.logger
+ftp_bruteforce.ftp_bruteforce.logger
+ftp_bruteforce.main.logger
+geoip.main.logger
+heartbleed.heartbleed.logger
+heartbleed.main.logger
+http_basic_bruteforce.http_basic_bruteforce.logger
+http_basic_bruteforce.main.logger
+imapbruteforce.imapbruteforce.logger
+imapbruteforce.main.logger
+imapget.main.logger
+ip2dns.ip2dns.logger
+ip2dns.main.logger
+ip2dns_bing.ip2dns_bing.logger
+irc.interactive.logger
+irc.main.logger
+massdns2ip.main.logger
+massdns2ip.massdns2ip.logger
+mysql_bruteforce.main.logger
+mysql_bruteforce.mysql_bruteforce.logger
+mysql_client.interactive.logger
+mysql_client.main.logger
+popbruteforce.main.logger
+popbruteforce.popbruteforce.logger
+popget.main.logger
+ripe_db_extractor.main.logger
+ripe_db_extractor.ripe_db_extractor.logger
+rlogin_bruteforce.main.logger
+rlogin_bruteforce.rlogin_bruteforce.logger
+rpcinfo.main.logger
+rpcinfo.rpcinfo.logger
+rsh_bruteforce.main.logger
+rsh_bruteforce.rsh_bruteforce.logger
+search-bing.main.logger
+search-duckgo.main.logger
+search-google.main.logger
+sftpclient.main.logger
+showmount.main.logger
+showmount.showmount.logger
+smtp_user_enum.main.logger
+smtp_user_enum.smtp_user_enum.logger
+ssh_bruteforce.main.logger
+ssh_bruteforce.ssh_bruteforce.logger
+ssh_user_enum.main.logger
+ssh_user_enum.ssh_user_enum.logger
+ssl_tester.main.logger
+ssl_tester.ssl_tester.logger
+subdns.dnsscan.logger
+subdns.main.logger
+tcp_traceroute.main.logger
+telnet_bruteforce.main.logger
+telnet_bruteforce.telnet_bruteforce.logger
+whois.main.logger
+whois.resultworker.logger
+whois.whois.logger
+whois.whoisworker.WhoisWorker.logger
+whois.whoisworker.logger" class="py-name" href="#" onclick="return doclink('link-12', 'logger', 'link-10');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">setLevel</tt><tt class="py-op">(</tt><tt id="link-13" class="py-name"><a title="search-duckgo.duckgo.logging" class="py-name" href="#" onclick="return doclink('link-13', 'logging', 'link-0');">logging</a></tt><tt class="py-op">.</tt><tt class="py-name">DEBUG</tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-comment"># default list of all tlds to try</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt id="link-14" class="py-name" targets="Variable massdns2ip.massdns2ip.ALL_TLDS=massdns2ip.massdns2ip-module.html#ALL_TLDS"><a title="massdns2ip.massdns2ip.ALL_TLDS" class="py-name" href="#" onclick="return doclink('link-14', 'ALL_TLDS', 'link-14');">ALL_TLDS</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-string">'com'</tt><tt class="py-op">,</tt> <tt class="py-string">'org'</tt><tt class="py-op">,</tt> <tt class="py-string">'de'</tt><tt class="py-op">,</tt> <tt class="py-string">'net'</tt><tt class="py-op">]</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"> </tt>
+<a name="resolve"></a><div id="resolve-def"><a name="L61"></a><tt class="py-lineno"> 61</tt> <a class="py-toggle" href="#" id="resolve-toggle" onclick="return toggle('resolve');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="massdns2ip.massdns2ip-module.html#resolve">resolve</a><tt class="py-op">(</tt><tt class="py-param">word</tt><tt class="py-op">,</tt> <tt class="py-param">tld</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="resolve-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="resolve-expanded"><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"><tt class="py-docstring">    resolve callback.</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt class="py-docstring">    Concatenates a word with a list of top level domains.</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-docstring">    The concatenated hostname is tried to be resolved.</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">    input:</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-docstring">        word        domain part</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-docstring">        tld         tld part</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring">    output:</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt class="py-docstring">        (success, hostname, ip)</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring">        success         indicates wether resolve was successful</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-docstring">        hostname        word.tld attempted to resolve</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt class="py-docstring">        ip              resolved ip for word.tld or '' on failure</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">    <tt class="py-comment"># get argument from tuple (word, )</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">    <tt class="py-name">word</tt> <tt class="py-op">=</tt> <tt class="py-name">word</tt><tt class="py-op">.</tt><tt class="py-name">strip</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">    <tt class="py-name">tld</tt> <tt class="py-op">=</tt> <tt class="py-name">tld</tt><tt class="py-op">.</tt><tt class="py-name">strip</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">    <tt class="py-name">hostname</tt> <tt class="py-op">=</tt> <tt class="py-name">word</tt> <tt class="py-op">+</tt> <tt class="py-string">'.'</tt> <tt class="py-op">+</tt> <tt class="py-name">tld</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">    <tt class="py-name">ip4</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">    <tt class="py-comment"># reset success flag</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">    <tt class="py-name">success</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-name">ip4</tt> <tt class="py-op">=</tt> <tt class="py-name">socket</tt><tt class="py-op">.</tt><tt class="py-name">gethostbyname</tt><tt class="py-op">(</tt><tt class="py-name">hostname</tt><tt class="py-op">)</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">ip4</tt><tt class="py-op">:</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">            <tt class="py-comment"># it worked, we got an ip</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">            <tt class="py-name">success</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-op">(</tt><tt class="py-name">socket</tt><tt class="py-op">.</tt><tt class="py-name">gaierror</tt><tt class="py-op">,</tt> <tt class="py-name">socket</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Variable portscanner.main.timeout=portscanner.main-module.html#timeout"><a title="portscanner.main.timeout" class="py-name" href="#" onclick="return doclink('link-15', 'timeout', 'link-15');">timeout</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">        <tt class="py-comment"># could not resolve</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt id="link-16" class="py-name"><a title="cureto.comm.logger
+cureto.cureto.logger
+cureto.db_test.logger
+cureto.main.logger
+dir_bruteforce.dir_bruteforce.logger
+dir_bruteforce.main.logger
+dns2ip.dns2ip.logger
+dns2ip.main.logger
+dnsversion.dnsversion.logger
+dnsversion.main.logger
+dnszone.dnszone.logger
+dnszone.main.logger
+ftp_bruteforce.ftp_bruteforce.logger
+ftp_bruteforce.main.logger
+geoip.main.logger
+heartbleed.heartbleed.logger
+heartbleed.main.logger
+http_basic_bruteforce.http_basic_bruteforce.logger
+http_basic_bruteforce.main.logger
+imapbruteforce.imapbruteforce.logger
+imapbruteforce.main.logger
+imapget.main.logger
+ip2dns.ip2dns.logger
+ip2dns.main.logger
+ip2dns_bing.ip2dns_bing.logger
+irc.interactive.logger
+irc.main.logger
+massdns2ip.main.logger
+massdns2ip.massdns2ip.logger
+mysql_bruteforce.main.logger
+mysql_bruteforce.mysql_bruteforce.logger
+mysql_client.interactive.logger
+mysql_client.main.logger
+popbruteforce.main.logger
+popbruteforce.popbruteforce.logger
+popget.main.logger
+ripe_db_extractor.main.logger
+ripe_db_extractor.ripe_db_extractor.logger
+rlogin_bruteforce.main.logger
+rlogin_bruteforce.rlogin_bruteforce.logger
+rpcinfo.main.logger
+rpcinfo.rpcinfo.logger
+rsh_bruteforce.main.logger
+rsh_bruteforce.rsh_bruteforce.logger
+search-bing.main.logger
+search-duckgo.main.logger
+search-google.main.logger
+sftpclient.main.logger
+showmount.main.logger
+showmount.showmount.logger
+smtp_user_enum.main.logger
+smtp_user_enum.smtp_user_enum.logger
+ssh_bruteforce.main.logger
+ssh_bruteforce.ssh_bruteforce.logger
+ssh_user_enum.main.logger
+ssh_user_enum.ssh_user_enum.logger
+ssl_tester.main.logger
+ssl_tester.ssl_tester.logger
+subdns.dnsscan.logger
+subdns.main.logger
+tcp_traceroute.main.logger
+telnet_bruteforce.main.logger
+telnet_bruteforce.telnet_bruteforce.logger
+whois.main.logger
+whois.resultworker.logger
+whois.whois.logger
+whois.whoisworker.WhoisWorker.logger
+whois.whoisworker.logger" class="py-name" href="#" onclick="return doclink('link-16', 'logger', 'link-10');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">"Failed to resolve domain name %s"</tt><tt class="py-op">,</tt> <tt class="py-name">hostname</tt><tt class="py-op">)</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt> <tt class="py-keyword">as</tt> <tt class="py-name">err</tt><tt class="py-op">:</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-comment"># sth else went wrong</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt id="link-17" class="py-name"><a title="cureto.comm.logger
+cureto.cureto.logger
+cureto.db_test.logger
+cureto.main.logger
+dir_bruteforce.dir_bruteforce.logger
+dir_bruteforce.main.logger
+dns2ip.dns2ip.logger
+dns2ip.main.logger
+dnsversion.dnsversion.logger
+dnsversion.main.logger
+dnszone.dnszone.logger
+dnszone.main.logger
+ftp_bruteforce.ftp_bruteforce.logger
+ftp_bruteforce.main.logger
+geoip.main.logger
+heartbleed.heartbleed.logger
+heartbleed.main.logger
+http_basic_bruteforce.http_basic_bruteforce.logger
+http_basic_bruteforce.main.logger
+imapbruteforce.imapbruteforce.logger
+imapbruteforce.main.logger
+imapget.main.logger
+ip2dns.ip2dns.logger
+ip2dns.main.logger
+ip2dns_bing.ip2dns_bing.logger
+irc.interactive.logger
+irc.main.logger
+massdns2ip.main.logger
+massdns2ip.massdns2ip.logger
+mysql_bruteforce.main.logger
+mysql_bruteforce.mysql_bruteforce.logger
+mysql_client.interactive.logger
+mysql_client.main.logger
+popbruteforce.main.logger
+popbruteforce.popbruteforce.logger
+popget.main.logger
+ripe_db_extractor.main.logger
+ripe_db_extractor.ripe_db_extractor.logger
+rlogin_bruteforce.main.logger
+rlogin_bruteforce.rlogin_bruteforce.logger
+rpcinfo.main.logger
+rpcinfo.rpcinfo.logger
+rsh_bruteforce.main.logger
+rsh_bruteforce.rsh_bruteforce.logger
+search-bing.main.logger
+search-duckgo.main.logger
+search-google.main.logger
+sftpclient.main.logger
+showmount.main.logger
+showmount.showmount.logger
+smtp_user_enum.main.logger
+smtp_user_enum.smtp_user_enum.logger
+ssh_bruteforce.main.logger
+ssh_bruteforce.ssh_bruteforce.logger
+ssh_user_enum.main.logger
+ssh_user_enum.ssh_user_enum.logger
+ssl_tester.main.logger
+ssl_tester.ssl_tester.logger
+subdns.dnsscan.logger
+subdns.main.logger
+tcp_traceroute.main.logger
+telnet_bruteforce.main.logger
+telnet_bruteforce.telnet_bruteforce.logger
+whois.main.logger
+whois.resultworker.logger
+whois.whois.logger
+whois.whoisworker.WhoisWorker.logger
+whois.whoisworker.logger" class="py-name" href="#" onclick="return doclink('link-17', 'logger', 'link-10');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-name">err</tt><tt class="py-op">)</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">    <tt class="py-keyword">yield</tt> <tt class="py-op">(</tt><tt class="py-name">success</tt><tt class="py-op">,</tt> <tt class="py-name">hostname</tt><tt class="py-op">,</tt> <tt class="py-name">ip4</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line"> </tt>
+<a name="Dns2Ip"></a><div id="Dns2Ip-def"><a name="L101"></a><tt class="py-lineno">101</tt> <a class="py-toggle" href="#" id="Dns2Ip-toggle" onclick="return toggle('Dns2Ip');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="massdns2ip.massdns2ip.Dns2Ip-class.html">Dns2Ip</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Dns2Ip-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Dns2Ip-expanded"><a name="Dns2Ip.__init__"></a><div id="Dns2Ip.__init__-def"><a name="L102"></a><tt class="py-lineno">102</tt> <a class="py-toggle" href="#" id="Dns2Ip.__init__-toggle" onclick="return toggle('Dns2Ip.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="massdns2ip.massdns2ip.Dns2Ip-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">                 <tt class="py-param">args</tt><tt class="py-op">,</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">                 <tt class="py-param">dbhandler</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Dns2Ip.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Dns2Ip.__init__-expanded"><a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"><tt class="py-docstring">        Dns2IP concatenates words from a wordlist file with top level domains</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"><tt class="py-docstring">        and tries to resove the resulting hostnames.</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"><tt class="py-docstring">        input:</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"><tt class="py-docstring">            args            cmdline arguments without argv[0]</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"><tt class="py-docstring">            dbhandler       database handler</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">        <tt id="link-18" class="py-name"><a title="cureto.comm.logger
+cureto.cureto.logger
+cureto.db_test.logger
+cureto.main.logger
+dir_bruteforce.dir_bruteforce.logger
+dir_bruteforce.main.logger
+dns2ip.dns2ip.logger
+dns2ip.main.logger
+dnsversion.dnsversion.logger
+dnsversion.main.logger
+dnszone.dnszone.logger
+dnszone.main.logger
+ftp_bruteforce.ftp_bruteforce.logger
+ftp_bruteforce.main.logger
+geoip.main.logger
+heartbleed.heartbleed.logger
+heartbleed.main.logger
+http_basic_bruteforce.http_basic_bruteforce.logger
+http_basic_bruteforce.main.logger
+imapbruteforce.imapbruteforce.logger
+imapbruteforce.main.logger
+imapget.main.logger
+ip2dns.ip2dns.logger
+ip2dns.main.logger
+ip2dns_bing.ip2dns_bing.logger
+irc.interactive.logger
+irc.main.logger
+massdns2ip.main.logger
+massdns2ip.massdns2ip.logger
+mysql_bruteforce.main.logger
+mysql_bruteforce.mysql_bruteforce.logger
+mysql_client.interactive.logger
+mysql_client.main.logger
+popbruteforce.main.logger
+popbruteforce.popbruteforce.logger
+popget.main.logger
+ripe_db_extractor.main.logger
+ripe_db_extractor.ripe_db_extractor.logger
+rlogin_bruteforce.main.logger
+rlogin_bruteforce.rlogin_bruteforce.logger
+rpcinfo.main.logger
+rpcinfo.rpcinfo.logger
+rsh_bruteforce.main.logger
+rsh_bruteforce.rsh_bruteforce.logger
+search-bing.main.logger
+search-duckgo.main.logger
+search-google.main.logger
+sftpclient.main.logger
+showmount.main.logger
+showmount.showmount.logger
+smtp_user_enum.main.logger
+smtp_user_enum.smtp_user_enum.logger
+ssh_bruteforce.main.logger
+ssh_bruteforce.ssh_bruteforce.logger
+ssh_user_enum.main.logger
+ssh_user_enum.ssh_user_enum.logger
+ssl_tester.main.logger
+ssl_tester.ssl_tester.logger
+subdns.dnsscan.logger
+subdns.main.logger
+tcp_traceroute.main.logger
+telnet_bruteforce.main.logger
+telnet_bruteforce.telnet_bruteforce.logger
+whois.main.logger
+whois.resultworker.logger
+whois.whois.logger
+whois.whoisworker.WhoisWorker.logger
+whois.whoisworker.logger" class="py-name" href="#" onclick="return doclink('link-18', 'logger', 'link-10');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">"Initialising Dns2Ip ..."</tt><tt class="py-op">)</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">        <tt class="py-name">opt</tt> <tt class="py-op">=</tt> <tt id="link-19" class="py-name" targets="Function cureto.cureto.parse()=cureto.cureto-module.html#parse,Function dir_bruteforce.dir_bruteforce.parse()=dir_bruteforce.dir_bruteforce-module.html#parse,Function dns2ip.dns2ip.parse()=dns2ip.dns2ip-module.html#parse,Function dnsversion.dnsversion.parse()=dnsversion.dnsversion-module.html#parse,Function dnszone.dnszone.parse()=dnszone.dnszone-module.html#parse,Function ftp_bruteforce.ftp_bruteforce.parse()=ftp_bruteforce.ftp_bruteforce-module.html#parse,Function geoip.geoip.parse()=geoip.geoip-module.html#parse,Function heartbleed.heartbleed.parse()=heartbleed.heartbleed-module.html#parse,Method http_basic_bruteforce.http_basic_bruteforce.HTTPBasicBruteforcer.parse()=http_basic_bruteforce.http_basic_bruteforce.HTTPBasicBruteforcer-class.html#parse,Function ip2dns.ip2dns.parse()=ip2dns.ip2dns-module.html#parse,Function ip2dns_bing.ip2dns_bing.parse()=ip2dns_bing.ip2dns_bing-module.html#parse,Function massdns2ip.massdns2ip.parse()=massdns2ip.massdns2ip-module.html#parse,Function mysql_bruteforce.mysql_bruteforce.parse()=mysql_bruteforce.mysql_bruteforce-module.html#parse,Function ripe_db_extractor.options.parse()=ripe_db_extractor.options-module.html#parse,Function ripe_db_extractor.ripe_db_extractor.parse()=ripe_db_extractor.ripe_db_extractor-module.html#parse,Function rlogin_bruteforce.options.parse()=rlogin_bruteforce.options-module.html#parse,Function rpcinfo.rpcinfo.parse()=rpcinfo.rpcinfo-module.html#parse,Function rsh_bruteforce.options.parse()=rsh_bruteforce.options-module.html#parse,Method showmount.showmount.Showmount.parse()=showmount.showmount.Showmount-class.html#parse,Function smtp_user_enum.options.parse()=smtp_user_enum.options-module.html#parse,Method smtp_user_enum.smtp_user_enum.SmtpUserEnum.parse()=smtp_user_enum.smtp_user_enum.SmtpUserEnum-class.html#parse,Function ssh_bruteforce.ssh_bruteforce.parse()=ssh_bruteforce.ssh_bruteforce-module.html#parse,Function ssh_user_enum.ssh_user_enum.parse()=ssh_user_enum.ssh_user_enum-module.html#parse,Function subdns.dnsscan.parse()=subdns.dnsscan-module.html#parse,Function telnet_bruteforce.telnet_bruteforce.parse()=telnet_bruteforce.telnet_bruteforce-module.html#parse,Function whois.whois.parse()=whois.whois-module.html#parse"><a title="cureto.cureto.parse
+dir_bruteforce.dir_bruteforce.parse
+dns2ip.dns2ip.parse
+dnsversion.dnsversion.parse
+dnszone.dnszone.parse
+ftp_bruteforce.ftp_bruteforce.parse
+geoip.geoip.parse
+heartbleed.heartbleed.parse
+http_basic_bruteforce.http_basic_bruteforce.HTTPBasicBruteforcer.parse
+ip2dns.ip2dns.parse
+ip2dns_bing.ip2dns_bing.parse
+massdns2ip.massdns2ip.parse
+mysql_bruteforce.mysql_bruteforce.parse
+ripe_db_extractor.options.parse
+ripe_db_extractor.ripe_db_extractor.parse
+rlogin_bruteforce.options.parse
+rpcinfo.rpcinfo.parse
+rsh_bruteforce.options.parse
+showmount.showmount.Showmount.parse
+smtp_user_enum.options.parse
+smtp_user_enum.smtp_user_enum.SmtpUserEnum.parse
+ssh_bruteforce.ssh_bruteforce.parse
+ssh_user_enum.ssh_user_enum.parse
+subdns.dnsscan.parse
+telnet_bruteforce.telnet_bruteforce.parse
+whois.whois.parse" class="py-name" href="#" onclick="return doclink('link-19', 'parse', 'link-19');">parse</a></tt><tt class="py-op">(</tt><tt class="py-name">args</tt><tt class="py-op">)</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">        <tt id="link-20" class="py-name" targets="Static Method cureto.comm.Comm.resolve()=cureto.comm.Comm-class.html#resolve,Method dns2ip.dns2ip.Dns2Ip.resolve()=dns2ip.dns2ip.Dns2Ip-class.html#resolve,Function dns2ip.dns2ip.resolve()=dns2ip.dns2ip-module.html#resolve,Method ip2dns.ip2dns.Ip2Dns.resolve()=ip2dns.ip2dns.Ip2Dns-class.html#resolve,Method ip2dns_bing.ip2dns_bing.Ip2Dns_Bing.resolve()=ip2dns_bing.ip2dns_bing.Ip2Dns_Bing-class.html#resolve,Function ip2dns_bing.ip2dns_bing.resolve()=ip2dns_bing.ip2dns_bing-module.html#resolve,Method massdns2ip.massdns2ip.Dns2Ip.resolve()=massdns2ip.massdns2ip.Dns2Ip-class.html#resolve,Function massdns2ip.massdns2ip.resolve()=massdns2ip.massdns2ip-module.html#resolve,Method subdns.dnsscan.DNSscanner.resolve()=subdns.dnsscan.DNSscanner-class.html#resolve,Function subdns.dnsscan.resolve()=subdns.dnsscan-module.html#resolve"><a title="cureto.comm.Comm.resolve
+dns2ip.dns2ip.Dns2Ip.resolve
+dns2ip.dns2ip.resolve
+ip2dns.ip2dns.Ip2Dns.resolve
+ip2dns_bing.ip2dns_bing.Ip2Dns_Bing.resolve
+ip2dns_bing.ip2dns_bing.resolve
+massdns2ip.massdns2ip.Dns2Ip.resolve
+massdns2ip.massdns2ip.resolve
+subdns.dnsscan.DNSscanner.resolve
+subdns.dnsscan.resolve" class="py-name" href="#" onclick="return doclink('link-20', 'resolve', 'link-20');">resolve</a></tt><tt class="py-op">.</tt><tt class="py-name">tlds</tt> <tt class="py-op">=</tt> <tt class="py-name">opt</tt><tt class="py-op">.</tt><tt class="py-name">tld</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dbh</tt> <tt class="py-op">=</tt> <tt id="link-21" class="py-name" targets="Variable portscanner.main.dbhandler=portscanner.main-module.html#dbhandler"><a title="portscanner.main.dbhandler" class="py-name" href="#" onclick="return doclink('link-21', 'dbhandler', 'link-21');">dbhandler</a></tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">            <tt class="py-name">ig_words</tt> <tt class="py-op">=</tt> <tt class="py-name">cTuples</tt><tt class="py-op">.</tt><tt class="py-name">cInputGenerator</tt><tt class="py-op">(</tt><tt class="py-name">filename</tt><tt class="py-op">=</tt><tt class="py-name">opt</tt><tt class="py-op">.</tt><tt class="py-name">wordlist_fn</tt><tt class="py-op">,</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">                                               <tt class="py-name">data</tt><tt class="py-op">=</tt><tt class="py-name">opt</tt><tt class="py-op">.</tt><tt class="py-name">wordlist</tt><tt class="py-op">,</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">                                               <tt class="py-name">maxthreads</tt><tt class="py-op">=</tt><tt class="py-name">opt</tt><tt class="py-op">.</tt><tt class="py-name">nthreads</tt><tt class="py-op">,</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">                                               <tt class="py-name">circle</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">,</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">                                               <tt class="py-op">)</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">            <tt class="py-name">ig_words</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Method ftp_bruteforce.ftp_bruteforce.FtpBruteforce.start()=ftp_bruteforce.ftp_bruteforce.FtpBruteforce-class.html#start,Method http_basic_bruteforce.http_basic_bruteforce.HTTPBasicBruteforcer.start()=http_basic_bruteforce.http_basic_bruteforce.HTTPBasicBruteforcer-class.html#start,Method imapbruteforce.imapbruteforce.ImapBruteForce.start()=imapbruteforce.imapbruteforce.ImapBruteForce-class.html#start,Method mysql_bruteforce.mysql_bruteforce.MysqlBruteforce.start()=mysql_bruteforce.mysql_bruteforce.MysqlBruteforce-class.html#start,Method popbruteforce.popbruteforce.POPBruteForce.start()=popbruteforce.popbruteforce.POPBruteForce-class.html#start,Method rpcinfo.rpcinfo.RpcScanner.start()=rpcinfo.rpcinfo.RpcScanner-class.html#start,Method showmount.showmount.Showmount.start()=showmount.showmount.Showmount-class.html#start,Method smtp_user_enum.smtp_user_enum.SmtpUserEnum.start()=smtp_user_enum.smtp_user_enum.SmtpUserEnum-class.html#start,Method ssh_bruteforce.ssh_bruteforce.SshBruteforce.start()=ssh_bruteforce.ssh_bruteforce.SshBruteforce-class.html#start,Method ssh_user_enum.ssh_user_enum.SshUserEnum.start()=ssh_user_enum.ssh_user_enum.SshUserEnum-class.html#start,Method telnet_bruteforce.telnet_bruteforce.TelnetBruteforce.start()=telnet_bruteforce.telnet_bruteforce.TelnetBruteforce-class.html#start"><a title="ftp_bruteforce.ftp_bruteforce.FtpBruteforce.start
+http_basic_bruteforce.http_basic_bruteforce.HTTPBasicBruteforcer.start
+imapbruteforce.imapbruteforce.ImapBruteForce.start
+mysql_bruteforce.mysql_bruteforce.MysqlBruteforce.start
+popbruteforce.popbruteforce.POPBruteForce.start
+rpcinfo.rpcinfo.RpcScanner.start
+showmount.showmount.Showmount.start
+smtp_user_enum.smtp_user_enum.SmtpUserEnum.start
+ssh_bruteforce.ssh_bruteforce.SshBruteforce.start
+ssh_user_enum.ssh_user_enum.SshUserEnum.start
+telnet_bruteforce.telnet_bruteforce.TelnetBruteforce.start" class="py-name" href="#" onclick="return doclink('link-22', 'start', 'link-22');">start</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">cTuples</tt><tt class="py-op">.</tt><tt class="py-name">ENoInput</tt><tt class="py-op">:</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">            <tt class="py-keyword">print</tt> <tt class="py-string">'Please specify a set of words or a filename containing a wordlist'</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">            <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">exit</tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">            <tt class="py-name">ig_tlds</tt> <tt class="py-op">=</tt> <tt class="py-name">cTuples</tt><tt class="py-op">.</tt><tt class="py-name">cInputGenerator</tt><tt class="py-op">(</tt><tt class="py-name">filename</tt><tt class="py-op">=</tt><tt class="py-name">opt</tt><tt class="py-op">.</tt><tt class="py-name">tld_fn</tt><tt class="py-op">,</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">                                              <tt class="py-name">data</tt><tt class="py-op">=</tt><tt class="py-name">opt</tt><tt class="py-op">.</tt><tt class="py-name">tld</tt><tt class="py-op">,</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">                                              <tt class="py-name">maxthreads</tt><tt class="py-op">=</tt><tt class="py-name">opt</tt><tt class="py-op">.</tt><tt class="py-name">nthreads</tt><tt class="py-op">,</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">                                              <tt class="py-name">circle</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">                                              <tt class="py-op">)</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">            <tt class="py-name">ig_tlds</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="ftp_bruteforce.ftp_bruteforce.FtpBruteforce.start
+http_basic_bruteforce.http_basic_bruteforce.HTTPBasicBruteforcer.start
+imapbruteforce.imapbruteforce.ImapBruteForce.start
+mysql_bruteforce.mysql_bruteforce.MysqlBruteforce.start
+popbruteforce.popbruteforce.POPBruteForce.start
+rpcinfo.rpcinfo.RpcScanner.start
+showmount.showmount.Showmount.start
+smtp_user_enum.smtp_user_enum.SmtpUserEnum.start
+ssh_bruteforce.ssh_bruteforce.SshBruteforce.start
+ssh_user_enum.ssh_user_enum.SshUserEnum.start
+telnet_bruteforce.telnet_bruteforce.TelnetBruteforce.start" class="py-name" href="#" onclick="return doclink('link-23', 'start', 'link-22');">start</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">cTuples</tt><tt class="py-op">.</tt><tt class="py-name">ENoInput</tt><tt class="py-op">:</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">            <tt class="py-keyword">print</tt> <tt class="py-string">'Please specify a set of tlds or a filename containing a tldlist'</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">            <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">exit</tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">tuples</tt> <tt class="py-op">=</tt> <tt class="py-name">cTuples</tt><tt class="py-op">.</tt><tt class="py-name">cTuples</tt><tt class="py-op">(</tt><tt class="py-name">inputs</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-name">ig_words</tt><tt class="py-op">,</tt> <tt class="py-name">ig_tlds</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">                                      <tt class="py-name">prep_callback</tt><tt class="py-op">=</tt><tt id="link-24" class="py-name"><a title="cureto.comm.Comm.resolve
+dns2ip.dns2ip.Dns2Ip.resolve
+dns2ip.dns2ip.resolve
+ip2dns.ip2dns.Ip2Dns.resolve
+ip2dns_bing.ip2dns_bing.Ip2Dns_Bing.resolve
+ip2dns_bing.ip2dns_bing.resolve
+massdns2ip.massdns2ip.Dns2Ip.resolve
+massdns2ip.massdns2ip.resolve
+subdns.dnsscan.DNSscanner.resolve
+subdns.dnsscan.resolve" class="py-name" href="#" onclick="return doclink('link-24', 'resolve', 'link-20');">resolve</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">                                      <tt class="py-name">maxthreads</tt><tt class="py-op">=</tt><tt class="py-name">opt</tt><tt class="py-op">.</tt><tt class="py-name">nthreads</tt><tt class="py-op">,</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">                                      <tt class="py-name">delay</tt><tt class="py-op">=</tt><tt class="py-name">opt</tt><tt class="py-op">.</tt><tt class="py-name">delay</tt><tt class="py-op">)</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">tuples</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="ftp_bruteforce.ftp_bruteforce.FtpBruteforce.start
+http_basic_bruteforce.http_basic_bruteforce.HTTPBasicBruteforcer.start
+imapbruteforce.imapbruteforce.ImapBruteForce.start
+mysql_bruteforce.mysql_bruteforce.MysqlBruteforce.start
+popbruteforce.popbruteforce.POPBruteForce.start
+rpcinfo.rpcinfo.RpcScanner.start
+showmount.showmount.Showmount.start
+smtp_user_enum.smtp_user_enum.SmtpUserEnum.start
+ssh_bruteforce.ssh_bruteforce.SshBruteforce.start
+ssh_user_enum.ssh_user_enum.SshUserEnum.start
+telnet_bruteforce.telnet_bruteforce.TelnetBruteforce.start" class="py-name" href="#" onclick="return doclink('link-25', 'start', 'link-22');">start</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line"> </tt>
+<a name="Dns2Ip.resolve"></a><div id="Dns2Ip.resolve-def"><a name="L148"></a><tt class="py-lineno">148</tt> <a class="py-toggle" href="#" id="Dns2Ip.resolve-toggle" onclick="return toggle('Dns2Ip.resolve');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="massdns2ip.massdns2ip.Dns2Ip-class.html#resolve">resolve</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Dns2Ip.resolve-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Dns2Ip.resolve-expanded"><a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line"> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">        <tt class="py-docstring">""" start resolve """</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line"> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">        <tt id="link-26" class="py-name"><a title="cureto.comm.logger
+cureto.cureto.logger
+cureto.db_test.logger
+cureto.main.logger
+dir_bruteforce.dir_bruteforce.logger
+dir_bruteforce.main.logger
+dns2ip.dns2ip.logger
+dns2ip.main.logger
+dnsversion.dnsversion.logger
+dnsversion.main.logger
+dnszone.dnszone.logger
+dnszone.main.logger
+ftp_bruteforce.ftp_bruteforce.logger
+ftp_bruteforce.main.logger
+geoip.main.logger
+heartbleed.heartbleed.logger
+heartbleed.main.logger
+http_basic_bruteforce.http_basic_bruteforce.logger
+http_basic_bruteforce.main.logger
+imapbruteforce.imapbruteforce.logger
+imapbruteforce.main.logger
+imapget.main.logger
+ip2dns.ip2dns.logger
+ip2dns.main.logger
+ip2dns_bing.ip2dns_bing.logger
+irc.interactive.logger
+irc.main.logger
+massdns2ip.main.logger
+massdns2ip.massdns2ip.logger
+mysql_bruteforce.main.logger
+mysql_bruteforce.mysql_bruteforce.logger
+mysql_client.interactive.logger
+mysql_client.main.logger
+popbruteforce.main.logger
+popbruteforce.popbruteforce.logger
+popget.main.logger
+ripe_db_extractor.main.logger
+ripe_db_extractor.ripe_db_extractor.logger
+rlogin_bruteforce.main.logger
+rlogin_bruteforce.rlogin_bruteforce.logger
+rpcinfo.main.logger
+rpcinfo.rpcinfo.logger
+rsh_bruteforce.main.logger
+rsh_bruteforce.rsh_bruteforce.logger
+search-bing.main.logger
+search-duckgo.main.logger
+search-google.main.logger
+sftpclient.main.logger
+showmount.main.logger
+showmount.showmount.logger
+smtp_user_enum.main.logger
+smtp_user_enum.smtp_user_enum.logger
+ssh_bruteforce.main.logger
+ssh_bruteforce.ssh_bruteforce.logger
+ssh_user_enum.main.logger
+ssh_user_enum.ssh_user_enum.logger
+ssl_tester.main.logger
+ssl_tester.ssl_tester.logger
+subdns.dnsscan.logger
+subdns.main.logger
+tcp_traceroute.main.logger
+telnet_bruteforce.main.logger
+telnet_bruteforce.telnet_bruteforce.logger
+whois.main.logger
+whois.resultworker.logger
+whois.whois.logger
+whois.whoisworker.WhoisWorker.logger
+whois.whoisworker.logger" class="py-name" href="#" onclick="return doclink('link-26', 'logger', 'link-10');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">"Starting %s"</tt><tt class="py-op">,</tt> <tt id="link-27" class="py-name"><a title="cureto.cureto.__plgname__
+dir_bruteforce.dir_bruteforce.__plgname__
+dns2ip.dns2ip.__plgname__
+dnsversion.dnsversion.__plgname__
+dnszone.dnszone.__plgname__
+ftp_bruteforce.ftp_bruteforce.__plgname__
+heartbleed.heartbleed.__plgname__
+http_basic_bruteforce.http_basic_bruteforce.__plgname__
+imapbruteforce.imapbruteforce.__plgname__
+ip2dns.ip2dns.__plgname__
+ip2dns_bing.ip2dns_bing.__plgname__
+irc.interactive.__plgname__
+massdns2ip.massdns2ip.__plgname__
+mysql_bruteforce.mysql_bruteforce.__plgname__
+mysql_client.interactive.__plgname__
+popbruteforce.popbruteforce.__plgname__
+ripe_db_extractor.ripe_db_extractor.__plgname__
+rlogin_bruteforce.rlogin_bruteforce.__plgname__
+rpcinfo.rpcinfo.__plgname__
+search-duckgo.duckgo.__plgname__
+showmount.showmount.__plgname__
+ssh_bruteforce.ssh_bruteforce.__plgname__
+ssh_user_enum.ssh_user_enum.__plgname__
+ssl_tester.ssl_tester.__plgname__
+tcp_traceroute.tcptraceroute.__plgname__
+telnet_bruteforce.telnet_bruteforce.__plgname__" class="py-name" href="#" onclick="return doclink('link-27', '__plgname__', 'link-2');">__plgname__</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line"> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'Starting mass dns resolve'</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">        <tt class="py-name">start_time</tt> <tt class="py-op">=</tt> <tt class="py-name">datetime</tt><tt class="py-op">.</tt><tt class="py-name">now</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line"> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">        <tt class="py-name">fmt</tt> <tt class="py-op">=</tt> <tt class="py-string">"{:60}{:20}"</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">success</tt><tt class="py-op">,</tt> <tt class="py-name">hostname</tt><tt class="py-op">,</tt> <tt class="py-name">ip</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">tuples</tt><tt class="py-op">.</tt><tt class="py-name">tuple_q</tt><tt class="py-op">:</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">success</tt><tt class="py-op">:</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt> <tt class="py-name">fmt</tt><tt class="py-op">.</tt><tt class="py-name">format</tt><tt class="py-op">(</tt><tt class="py-name">hostname</tt><tt class="py-op">,</tt> <tt class="py-name">ip</tt><tt class="py-op">)</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dbh</tt><tt class="py-op">:</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dbh</tt><tt class="py-op">.</tt><tt class="py-name">add</tt><tt class="py-op">(</tt><tt class="py-name">ccd</tt><tt class="py-op">.</tt><tt class="py-name">DnsscanResult</tt><tt class="py-op">(</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">                        <tt class="py-name">ip</tt><tt class="py-op">=</tt><tt class="py-name">ip</tt><tt class="py-op">,</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">                        <tt class="py-name">fqdn</tt><tt class="py-op">=</tt><tt class="py-name">hostname</tt><tt class="py-op">)</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">                    <tt class="py-op">)</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line"> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">tuples</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name" targets="Method dir_bruteforce.dir_bruteforce.DirWorker.join()=dir_bruteforce.dir_bruteforce.DirWorker-class.html#join,Method smtp_user_enum.smtp_user_enum.SmtpWorker.join()=smtp_user_enum.smtp_user_enum.SmtpWorker-class.html#join"><a title="dir_bruteforce.dir_bruteforce.DirWorker.join
+smtp_user_enum.smtp_user_enum.SmtpWorker.join" class="py-name" href="#" onclick="return doclink('link-28', 'join', 'link-28');">join</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"\nfinished in %fs"</tt> <tt class="py-op">%</tt> <tt class="py-name">cUtil</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name" targets="Function ripe_db_extractor.ripe_db_extractor.secs()=ripe_db_extractor.ripe_db_extractor-module.html#secs"><a title="ripe_db_extractor.ripe_db_extractor.secs" class="py-name" href="#" onclick="return doclink('link-29', 'secs', 'link-29');">secs</a></tt><tt class="py-op">(</tt><tt class="py-name">start_time</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line"> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line"> </tt>
+<a name="parse"></a><div id="parse-def"><a name="L171"></a><tt class="py-lineno">171</tt> <a class="py-toggle" href="#" id="parse-toggle" onclick="return toggle('parse');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="massdns2ip.massdns2ip-module.html#parse">parse</a><tt class="py-op">(</tt><tt class="py-param">args</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="parse-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="parse-expanded"><a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line"> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">    <tt class="py-docstring">""" parse cmd line options sys.argv[1:].</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line"><tt class="py-docstring">        Input:</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line"><tt class="py-docstring">            args        cmd line without argv[0]</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line"><tt class="py-docstring">        Output:</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line"><tt class="py-docstring">            parsed args</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line"> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">    <tt class="py-name">parser</tt> <tt class="py-op">=</tt> <tt class="py-name">argparse</tt><tt class="py-op">.</tt><tt class="py-name">ArgumentParser</tt><tt class="py-op">(</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line">        <tt class="py-name">prog</tt><tt class="py-op">=</tt><tt id="link-30" class="py-name"><a title="cureto.cureto.__plgname__
+dir_bruteforce.dir_bruteforce.__plgname__
+dns2ip.dns2ip.__plgname__
+dnsversion.dnsversion.__plgname__
+dnszone.dnszone.__plgname__
+ftp_bruteforce.ftp_bruteforce.__plgname__
+heartbleed.heartbleed.__plgname__
+http_basic_bruteforce.http_basic_bruteforce.__plgname__
+imapbruteforce.imapbruteforce.__plgname__
+ip2dns.ip2dns.__plgname__
+ip2dns_bing.ip2dns_bing.__plgname__
+irc.interactive.__plgname__
+massdns2ip.massdns2ip.__plgname__
+mysql_bruteforce.mysql_bruteforce.__plgname__
+mysql_client.interactive.__plgname__
+popbruteforce.popbruteforce.__plgname__
+ripe_db_extractor.ripe_db_extractor.__plgname__
+rlogin_bruteforce.rlogin_bruteforce.__plgname__
+rpcinfo.rpcinfo.__plgname__
+search-duckgo.duckgo.__plgname__
+showmount.showmount.__plgname__
+ssh_bruteforce.ssh_bruteforce.__plgname__
+ssh_user_enum.ssh_user_enum.__plgname__
+ssl_tester.ssl_tester.__plgname__
+tcp_traceroute.tcptraceroute.__plgname__
+telnet_bruteforce.telnet_bruteforce.__plgname__" class="py-name" href="#" onclick="return doclink('link-30', '__plgname__', 'link-2');">__plgname__</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">        <tt class="py-name">description</tt><tt class="py-op">=</tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line">        <tt class="py-string">"""</tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line"><tt class="py-string">        mass dns resolve %f</tt> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line"><tt class="py-string">        This plugin combines a wordlist with a set of top level domains and tries to revolve the</tt> </tt>
+<a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line"><tt class="py-string">        thereby concatenated hostnames.</tt> </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line"><tt class="py-string">        """</tt> <tt class="py-op">%</tt> <tt class="py-name">__version__</tt><tt class="py-op">,</tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line">        <tt class="py-name">epilog</tt><tt class="py-op">=</tt> </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line">        <tt class="py-string">"""  Examples:</tt> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line"><tt class="py-string">            massdns2ip.plg -t blubb -l com -nt 1</tt> </tt>
+<a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line"><tt class="py-string">            massdns2ip.plg -T e_wordlist -L tlds-alpha-by-domain.txt -nt 400</tt> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line"><tt class="py-string">        """</tt><tt class="py-op">,</tt> </tt>
+<a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line">        <tt class="py-name">formatter_class</tt><tt class="py-op">=</tt><tt class="py-name">argparse</tt><tt class="py-op">.</tt><tt class="py-name">RawTextHelpFormatter</tt> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line">    <tt class="py-op">)</tt> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line">    <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">"-t"</tt><tt class="py-op">,</tt> </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line">                        <tt class="py-name">dest</tt><tt class="py-op">=</tt><tt class="py-string">'wordlist'</tt><tt class="py-op">,</tt> </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line">                        <tt class="py-name">nargs</tt><tt class="py-op">=</tt><tt class="py-string">'+'</tt><tt class="py-op">,</tt> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line">                        <tt class="py-name">default</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line">                        <tt id="link-31" class="py-name" targets="Function irc.interactive.help()=irc.interactive-module.html#help"><a title="irc.interactive.help" class="py-name" href="#" onclick="return doclink('link-31', 'help', 'link-31');">help</a></tt><tt class="py-op">=</tt><tt class="py-string">"wordlist"</tt><tt class="py-op">)</tt> </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line">    <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">"-T"</tt><tt class="py-op">,</tt> </tt>
+<a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line">                        <tt class="py-name">dest</tt><tt class="py-op">=</tt><tt class="py-string">'wordlist_fn'</tt><tt class="py-op">,</tt> </tt>
+<a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line">                        <tt class="py-name">default</tt><tt class="py-op">=</tt><tt class="py-string">''</tt><tt class="py-op">,</tt> </tt>
+<a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line">                        <tt id="link-32" class="py-name"><a title="irc.interactive.help" class="py-name" href="#" onclick="return doclink('link-32', 'help', 'link-31');">help</a></tt><tt class="py-op">=</tt><tt class="py-string">"wordlist file"</tt><tt class="py-op">)</tt> </tt>
+<a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line">    <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">'-delay'</tt><tt class="py-op">,</tt> </tt>
+<a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line">                        <tt id="link-33" class="py-name"><a title="irc.interactive.help" class="py-name" href="#" onclick="return doclink('link-33', 'help', 'link-31');">help</a></tt><tt class="py-op">=</tt><tt class="py-string">'delay in between requests'</tt><tt class="py-op">,</tt> </tt>
+<a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line">                        <tt class="py-name">dest</tt><tt class="py-op">=</tt><tt class="py-string">'delay'</tt><tt class="py-op">,</tt> </tt>
+<a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line">                        <tt class="py-name">default</tt><tt class="py-op">=</tt><tt class="py-number">0.0</tt><tt class="py-op">,</tt> </tt>
+<a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line">                        <tt class="py-name">type</tt><tt class="py-op">=</tt><tt class="py-name">float</tt> </tt>
+<a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line">                        <tt class="py-op">)</tt> </tt>
+<a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line">    <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">"-l"</tt><tt class="py-op">,</tt> </tt>
+<a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line">                        <tt class="py-name">dest</tt><tt class="py-op">=</tt><tt class="py-string">'tld'</tt><tt class="py-op">,</tt> </tt>
+<a name="L214"></a><tt class="py-lineno">214</tt>  <tt class="py-line">                        <tt class="py-name">nargs</tt><tt class="py-op">=</tt><tt class="py-string">'+'</tt><tt class="py-op">,</tt> </tt>
+<a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line">                        <tt class="py-name">default</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L216"></a><tt class="py-lineno">216</tt>  <tt class="py-line">                        <tt id="link-34" class="py-name"><a title="irc.interactive.help" class="py-name" href="#" onclick="return doclink('link-34', 'help', 'link-31');">help</a></tt><tt class="py-op">=</tt><tt class="py-string">"List of top level domain names (without the dot)."</tt> <tt class="py-op">+</tt> </tt>
+<a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line">                             <tt class="py-string">"Keyword \'ALL\' defaults to: %s"</tt> <tt class="py-op">%</tt> <tt class="py-string">', '</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="dir_bruteforce.dir_bruteforce.DirWorker.join
+smtp_user_enum.smtp_user_enum.SmtpWorker.join" class="py-name" href="#" onclick="return doclink('link-35', 'join', 'link-28');">join</a></tt><tt class="py-op">(</tt><tt id="link-36" class="py-name"><a title="massdns2ip.massdns2ip.ALL_TLDS" class="py-name" href="#" onclick="return doclink('link-36', 'ALL_TLDS', 'link-14');">ALL_TLDS</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line">    <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">"-L"</tt><tt class="py-op">,</tt> </tt>
+<a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line">                        <tt class="py-name">dest</tt><tt class="py-op">=</tt><tt class="py-string">'tld_fn'</tt><tt class="py-op">,</tt> </tt>
+<a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line">                        <tt class="py-name">default</tt><tt class="py-op">=</tt><tt class="py-string">''</tt><tt class="py-op">,</tt> </tt>
+<a name="L221"></a><tt class="py-lineno">221</tt>  <tt class="py-line">                        <tt id="link-37" class="py-name"><a title="irc.interactive.help" class="py-name" href="#" onclick="return doclink('link-37', 'help', 'link-31');">help</a></tt><tt class="py-op">=</tt><tt class="py-string">"Path to file containing list of top level domain names (without the dot)"</tt><tt class="py-op">)</tt> </tt>
+<a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line">    <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">"-nt"</tt><tt class="py-op">,</tt> </tt>
+<a name="L223"></a><tt class="py-lineno">223</tt>  <tt class="py-line">                        <tt class="py-name">dest</tt><tt class="py-op">=</tt><tt class="py-string">'nthreads'</tt><tt class="py-op">,</tt> </tt>
+<a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line">                        <tt id="link-38" class="py-name"><a title="irc.interactive.help" class="py-name" href="#" onclick="return doclink('link-38', 'help', 'link-31');">help</a></tt><tt class="py-op">=</tt><tt class="py-string">"number of threads (default 100)"</tt><tt class="py-op">,</tt> </tt>
+<a name="L225"></a><tt class="py-lineno">225</tt>  <tt class="py-line">                        <tt class="py-name">type</tt><tt class="py-op">=</tt><tt class="py-name">int</tt><tt class="py-op">,</tt> </tt>
+<a name="L226"></a><tt class="py-lineno">226</tt>  <tt class="py-line">                        <tt class="py-name">default</tt><tt class="py-op">=</tt><tt class="py-number">100</tt><tt class="py-op">)</tt> </tt>
+<a name="L227"></a><tt class="py-lineno">227</tt>  <tt class="py-line"> </tt>
+<a name="L228"></a><tt class="py-lineno">228</tt>  <tt class="py-line">    <tt class="py-comment"># print help if no cmd line parameters are provided</tt> </tt>
+<a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">args</tt> <tt class="py-keyword">or</tt> <tt class="py-keyword">not</tt> <tt class="py-name">args</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line">        <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">print_help</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line">        <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">exit</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L232"></a><tt class="py-lineno">232</tt>  <tt class="py-line"> </tt>
+<a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line">    <tt class="py-comment"># parse arguments</tt> </tt>
+<a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line">    <tt class="py-name">opt</tt> <tt class="py-op">=</tt> <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">parse_args</tt><tt class="py-op">(</tt><tt class="py-name">args</tt><tt class="py-op">)</tt> </tt>
+<a name="L235"></a><tt class="py-lineno">235</tt>  <tt class="py-line"> </tt>
+<a name="L236"></a><tt class="py-lineno">236</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-string">'ALL'</tt> <tt class="py-keyword">in</tt> <tt class="py-name">opt</tt><tt class="py-op">.</tt><tt class="py-name">tld</tt><tt class="py-op">:</tt> </tt>
+<a name="L237"></a><tt class="py-lineno">237</tt>  <tt class="py-line">        <tt class="py-name">opt</tt><tt class="py-op">.</tt><tt class="py-name">tld</tt> <tt class="py-op">=</tt> <tt id="link-39" class="py-name"><a title="massdns2ip.massdns2ip.ALL_TLDS" class="py-name" href="#" onclick="return doclink('link-39', 'ALL_TLDS', 'link-14');">ALL_TLDS</a></tt> </tt>
+<a name="L238"></a><tt class="py-lineno">238</tt>  <tt class="py-line"> </tt>
+<a name="L239"></a><tt class="py-lineno">239</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">opt</tt> </tt>
+</div><a name="L240"></a><tt class="py-lineno">240</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd plugin documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:45 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

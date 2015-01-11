@@ -1,0 +1,28 @@
+v0.652
+- minor bug fixes
+
+v0.65
+- timeout in config configurable
+
+v0.64
+- [issue 194] socksy now catches ^C
+
+v0.6.3
+- new socks-method: reverse dns
+
+v0.6.2
+- minor fixes
+- socksy now resolves domain names of allowedClients
+
+v0.6.1
+- minor fixes
+- socksy now processes hostnames in allowedClients and deniedRemotes, too (e.g. 'localhost')
+- socksy is now able to whitelist/blacklist netranges (e.g. '127.0.0.1/24')
+
+v0.6.0
+- added the possibility in socksy.conf to whitelist ips that are able to talk to socksy 
+- added the possibility to blacklist remote urls that socksy does not talk to (e.g. 127.0.0.1)
+
+v0.5.0
+- replaced SOCKS4 with SOCKS4A
+- better exception handling

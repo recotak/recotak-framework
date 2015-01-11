@@ -1,0 +1,1496 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>dnszone.pydig</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd plugin documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="dnszone-module.html">Package&nbsp;dnszone</a> ::
+        Module&nbsp;pydig
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="dnszone.pydig-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module pydig</h1><p class="nomargin-top"><span class="codelink"><a href="dnszone.pydig-pysrc.html">source&nbsp;code</a></span></p>
+<!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dnszone.pydig.ErrorMessage-class.html" class="summary-name">ErrorMessage</a><br />
+      A friendly error message.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dnszone.pydig.UsageError-class.html" class="summary-name">UsageError</a><br />
+      A command-line usage error.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dnszone.pydig.DNSparam-class.html" class="summary-name">DNSparam</a><br />
+      Class to encapsulate some DNS parameter types (type, class etc)
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dnszone.pydig.Struct-class.html" class="summary-name">Struct</a><br />
+      Just to emulate C struct or record ...
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dnszone.pydig.Tsig-class.html" class="summary-name">Tsig</a><br />
+      TSIG Object Class: encapsulates TSIG related methods and data
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="dprint"></a><span class="summary-sig-name">dprint</span>(<span class="summary-sig-arg">input</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#dprint">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="excepthook"></a><span class="summary-sig-name">excepthook</span>(<span class="summary-sig-arg">exc_type</span>,
+        <span class="summary-sig-arg">exc_value</span>,
+        <span class="summary-sig-arg">exc_traceback</span>)</span><br />
+      Print tracebacks only for unexpected exceptions, not friendly errors.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#excepthook">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dnszone.pydig-module.html#parse_args" class="summary-sig-name">parse_args</a>(<span class="summary-sig-arg">arglist</span>)</span><br />
+      Parse command line arguments.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#parse_args">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="hexdump"></a><span class="summary-sig-name">hexdump</span>(<span class="summary-sig-arg">input</span>,
+        <span class="summary-sig-arg">separator</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"> </code><code class="variable-quote">'</code></span>)</span><br />
+      return a hexadecimal representation of the given string</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#hexdump">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="packed2int"></a><span class="summary-sig-name">packed2int</span>(<span class="summary-sig-arg">input</span>)</span><br />
+      convert arbitrary sized bigendian packed string into an integer</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#packed2int">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="randomize_case"></a><span class="summary-sig-name">randomize_case</span>(<span class="summary-sig-arg">input</span>)</span><br />
+      randomize case of input string; using the bit 0x20 hack to improve 
+      input entropy: see draft-vixie-dns-0x20-00</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#randomize_case">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="domain_name_match"></a><span class="summary-sig-name">domain_name_match</span>(<span class="summary-sig-arg">s1</span>,
+        <span class="summary-sig-arg">s2</span>,
+        <span class="summary-sig-arg">case_sensitive</span>=<span class="summary-sig-default">False</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#domain_name_match">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="mk_id"></a><span class="summary-sig-name">mk_id</span>()</span><br />
+      Return a 16-bit ID number to be used by the DNS request packet</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#mk_id">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="ip2ptr"></a><span class="summary-sig-name">ip2ptr</span>(<span class="summary-sig-arg">address</span>)</span><br />
+      return PTR owner name of an IPv4 or IPv6 address (for -x option)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#ip2ptr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dnszone.pydig-module.html#get_socketparams" class="summary-sig-name">get_socketparams</a>(<span class="summary-sig-arg">server</span>,
+        <span class="summary-sig-arg">port</span>,
+        <span class="summary-sig-arg">af</span>,
+        <span class="summary-sig-arg">type</span>)</span><br />
+      Only the first set of parameters is used.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#get_socketparams">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="send_request_udp"></a><span class="summary-sig-name">send_request_udp</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">host</span>,
+        <span class="summary-sig-arg">port</span>,
+        <span class="summary-sig-arg">family</span>,
+        <span class="summary-sig-arg">itimeout</span>,
+        <span class="summary-sig-arg">retries</span>)</span><br />
+      Send the request via UDP, with retries using exponential backoff</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#send_request_udp">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="send_request_tcp"></a><span class="summary-sig-name">send_request_tcp</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">host</span>,
+        <span class="summary-sig-arg">port</span>,
+        <span class="summary-sig-arg">family</span>)</span><br />
+      Send the request packet via TCP</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#send_request_tcp">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="do_axfr"></a><span class="summary-sig-name">do_axfr</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">host</span>,
+        <span class="summary-sig-arg">port</span>,
+        <span class="summary-sig-arg">family</span>)</span><br />
+      AXFR uses TCP, and is answered by a sequence of response messages.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#do_axfr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_axfr"></a><span class="summary-sig-name">decode_axfr</span>(<span class="summary-sig-arg">response</span>,
+        <span class="summary-sig-arg">resplen</span>)</span><br />
+      given a string containing a sequence of response messages from an 
+      AXFR request, decode and print only the answer RRs</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_axfr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="mk_optrr"></a><span class="summary-sig-name">mk_optrr</span>(<span class="summary-sig-arg">edns_version</span>,
+        <span class="summary-sig-arg">udp_payload</span>,
+        <span class="summary-sig-arg">dnssec_ok</span>)</span><br />
+      Create EDNS0 OPT RR with udp_payload advertisement; see RFC 2671</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#mk_optrr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="print_optrr"></a><span class="summary-sig-name">print_optrr</span>(<span class="summary-sig-arg">rrclass</span>,
+        <span class="summary-sig-arg">ttl</span>,
+        <span class="summary-sig-arg">rdata</span>)</span><br />
+      decode and print EDNS0 OPT pseudo RR; see RFC 2671</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#print_optrr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="mk_request"></a><span class="summary-sig-name">mk_request</span>(<span class="summary-sig-arg">qname</span>,
+        <span class="summary-sig-arg">qtype_val</span>,
+        <span class="summary-sig-arg">qclass</span>,
+        <span class="summary-sig-arg">id</span>,
+        <span class="summary-sig-arg">options</span>)</span><br />
+      Construct DNS query packet, given various parameters</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#mk_request">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="read_tsig_params"></a><span class="summary-sig-name">read_tsig_params</span>(<span class="summary-sig-arg">filename</span>)</span><br />
+      Read TSIG key parameters from file containing a single KEY record</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#read_tsig_params">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="mk_tsig_sigtime"></a><span class="summary-sig-name">mk_tsig_sigtime</span>(<span class="summary-sig-arg">sigtime</span>)</span><br />
+      make 48-bit TSIG signature time field; see RFC 2845</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#mk_tsig_sigtime">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="xor_string"></a><span class="summary-sig-name">xor_string</span>(<span class="summary-sig-arg">a</span>,
+        <span class="summary-sig-arg">b</span>)</span><br />
+      bitwise XOR bytes in a and b and return concatenated result</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#xor_string">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="hmac_md5"></a><span class="summary-sig-name">hmac_md5</span>(<span class="summary-sig-arg">key</span>,
+        <span class="summary-sig-arg">data</span>)</span><br />
+      HMAC-MD5 algorithm; see RFC 2104</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#hmac_md5">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_header"></a><span class="summary-sig-name">decode_header</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">sentid</span>,
+        <span class="summary-sig-arg">checkid</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Decode a DNS protocol header</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_header">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="txt2domainname"></a><span class="summary-sig-name">txt2domainname</span>(<span class="summary-sig-arg">input</span>,
+        <span class="summary-sig-arg">canonical_form</span>=<span class="summary-sig-default">False</span>)</span><br />
+      turn textual representation of a domain name into its wire format</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#txt2domainname">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_domainname"></a><span class="summary-sig-name">get_domainname</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>)</span><br />
+      decode a domainname at the given packet offset; see RFC 1035</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#get_domainname">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="pdomainname"></a><span class="summary-sig-name">pdomainname</span>(<span class="summary-sig-arg">labels</span>)</span><br />
+      given a sequence of domainname labels, return a printable string</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#pdomainname">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_question"></a><span class="summary-sig-name">decode_question</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>)</span><br />
+      decode question section of a DNS message</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_question">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="generic_rdata_encoding"></a><span class="summary-sig-name">generic_rdata_encoding</span>(<span class="summary-sig-arg">rdata</span>,
+        <span class="summary-sig-arg">rdlen</span>)</span><br />
+      return generic encoding of rdata for unknown types; see RFC 3597</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#generic_rdata_encoding">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_txt_rdata"></a><span class="summary-sig-name">decode_txt_rdata</span>(<span class="summary-sig-arg">rdata</span>,
+        <span class="summary-sig-arg">rdlen</span>)</span><br />
+      decode TXT RR rdata into a string of quoted text strings, escaping 
+      any embedded double quotes</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_txt_rdata">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_soa_rdata"></a><span class="summary-sig-name">decode_soa_rdata</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>,
+        <span class="summary-sig-arg">rdlen</span>)</span><br />
+      decode SOA rdata: mname, rname, serial, refresh, retry, expire, min</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_soa_rdata">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_srv_rdata"></a><span class="summary-sig-name">decode_srv_rdata</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>)</span><br />
+      decode SRV rdata: priority (2), weight (2), port, target; RFC 2782</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_srv_rdata">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_sshfp_rdata"></a><span class="summary-sig-name">decode_sshfp_rdata</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>,
+        <span class="summary-sig-arg">rdlen</span>)</span><br />
+      decode SSHFP rdata: alg, fp_type, fingerprint; see RFC 4255</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_sshfp_rdata">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_naptr_rdata"></a><span class="summary-sig-name">decode_naptr_rdata</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>,
+        <span class="summary-sig-arg">rdlen</span>)</span><br />
+      decode NAPTR: order, pref, flags, svc, regexp, replacement; RFC 2915</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_naptr_rdata">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_ipseckey_rdata"></a><span class="summary-sig-name">decode_ipseckey_rdata</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>,
+        <span class="summary-sig-arg">rdlen</span>)</span><br />
+      decode IPSECKEY rdata; see RFC 4025</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_ipseckey_rdata">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_tlsa_rdata"></a><span class="summary-sig-name">decode_tlsa_rdata</span>(<span class="summary-sig-arg">rdata</span>)</span><br />
+      decode TLSA rdata: usage(1) selector(1) mtype(1) cadata; see 
+      draft-ietf-dane-protocol-23</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_tlsa_rdata">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_dnskey_rdata"></a><span class="summary-sig-name">decode_dnskey_rdata</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>,
+        <span class="summary-sig-arg">rdlen</span>)</span><br />
+      decode DNSKEY rdata: flags, proto, alg, pubkey; see RFC 4034</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_dnskey_rdata">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_ds_rdata"></a><span class="summary-sig-name">decode_ds_rdata</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>,
+        <span class="summary-sig-arg">rdlen</span>)</span><br />
+      decode DS rdata: keytag, alg, digesttype, digest; see RFC 4034</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_ds_rdata">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_rrsig_rdata"></a><span class="summary-sig-name">decode_rrsig_rdata</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>,
+        <span class="summary-sig-arg">rdlen</span>)</span><br />
+      decode RRSIG rdata; see RFC 4034</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_rrsig_rdata">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_typebitmap"></a><span class="summary-sig-name">decode_typebitmap</span>(<span class="summary-sig-arg">windownum</span>,
+        <span class="summary-sig-arg">bitmap</span>)</span><br />
+      decode NSEC style type bitmap into list of RR types; see RFC 4034</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_typebitmap">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_nsec_rdata"></a><span class="summary-sig-name">decode_nsec_rdata</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>,
+        <span class="summary-sig-arg">rdlen</span>)</span><br />
+      decode NSEC rdata: nextrr, type-bitmap; see RFC 4034</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_nsec_rdata">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_nsec3param_rdata"></a><span class="summary-sig-name">decode_nsec3param_rdata</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>,
+        <span class="summary-sig-arg">rdlen</span>)</span><br />
+      decode NSEC3PARAM rdata: hash, flags, iterations, salt len, salt; see
+      RFC 5155 Section 4.2</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_nsec3param_rdata">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_nsec3_rdata"></a><span class="summary-sig-name">decode_nsec3_rdata</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>,
+        <span class="summary-sig-arg">rdlen</span>)</span><br />
+      decode NSEC3 rdata; see RFC 5155 Section 3</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_nsec3_rdata">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_rr"></a><span class="summary-sig-name">decode_rr</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>,
+        <span class="summary-sig-arg">hexrdata</span>)</span><br />
+      Decode a resource record, given DNS packet and offset</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_rr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="decode_nsec_rr"></a><span class="summary-sig-name">decode_nsec_rr</span>(<span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">offset</span>)</span><br />
+      Decode an NSEC resource record; used by zonewalk() routine</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#decode_nsec_rr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="print_answer_rr"></a><span class="summary-sig-name">print_answer_rr</span>(<span class="summary-sig-arg">server_addr</span>,
+        <span class="summary-sig-arg">port</span>,
+        <span class="summary-sig-arg">family</span>,
+        <span class="summary-sig-arg">qname</span>,
+        <span class="summary-sig-arg">qtype</span>,
+        <span class="summary-sig-arg">options</span>)</span><br />
+      Only print the answer RRs; used by zonewalk() routine</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#print_answer_rr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="zonewalk"></a><span class="summary-sig-name">zonewalk</span>(<span class="summary-sig-arg">server_addr</span>,
+        <span class="summary-sig-arg">port</span>,
+        <span class="summary-sig-arg">family</span>,
+        <span class="summary-sig-arg">qname</span>,
+        <span class="summary-sig-arg">options</span>)</span><br />
+      perform zone walk of zone containing the specified qname</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dnszone.pydig-pysrc.html#zonewalk">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="PROGNAME"></a><span class="summary-name">PROGNAME</span> = <code title="'(imported)'"><code class="variable-quote">'</code><code class="variable-string">(imported)</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="PROGDESC"></a><span class="summary-name">PROGDESC</span> = <code title="'a DNS query tool written in Python'"><code class="variable-quote">'</code><code class="variable-string">a DNS query tool written in Python</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="VERSION"></a><span class="summary-name">VERSION</span> = <code title="'0.7'"><code class="variable-quote">'</code><code class="variable-string">0.7</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="RESOLV_CONF"></a><span class="summary-name">RESOLV_CONF</span> = <code title="'/etc/resolv.conf'"><code class="variable-quote">'</code><code class="variable-string">/etc/resolv.conf</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="DEFAULT_PORT"></a><span class="summary-name">DEFAULT_PORT</span> = <code title="53">53</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ITIMEOUT"></a><span class="summary-name">ITIMEOUT</span> = <code title="0.5">0.5</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="RETRIES"></a><span class="summary-name">RETRIES</span> = <code title="3">3</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="BUFSIZE"></a><span class="summary-name">BUFSIZE</span> = <code title="4096">4096</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="EDNS0_UDPSIZE"></a><span class="summary-name">EDNS0_UDPSIZE</span> = <code title="4096">4096</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="DEBUG"></a><span class="summary-name">DEBUG</span> = <code title="False">False</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="count_compression"></a><span class="summary-name">count_compression</span> = <code title="0">0</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="size_query"></a><span class="summary-name">size_query</span> = <code title="0">0</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="size_response"></a><span class="summary-name">size_response</span> = <code title="0">0</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dnszone.pydig-module.html#USAGE_STRING" class="summary-name">USAGE_STRING</a> = <code title="'''(imported) (a DNS query tool written in Python), version 0.7
+
+Usage: (imported) [list of options] &lt;qname&gt; [&lt;qtype&gt;] [&lt;qclass&gt;]
+       (imported) @server +walk &lt;zone&gt;
+Options:
+        -h                        print program usage information
+        @server                   server to query
+        -pNN                      use port NN
+..."><code class="variable-quote">'</code><code class="variable-string">(imported) (a DNS query tool written in Python</code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dnszone.pydig-module.html#options" class="summary-name">options</a> = <code title="{'aa': 0,
+ 'af': 0,
+ 'cd': 0,
+ 'dnssec_ok': 0,
+ 'do_0x20': False,
+ 'do_tsig': False,
+ 'do_zonewalk': False,
+ 'hexrdata': False,
+..."><code class="variable-group">{</code><code class="variable-quote">'</code><code class="variable-string">aa</code><code class="variable-quote">'</code><code class="variable-op">: </code>0<code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">af</code><code class="variable-quote">'</code><code class="variable-op">: </code>0<code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">cd</code><code class="variable-quote">'</code><code class="variable-op">: </code>0<code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">dnssec_ok</code><code class="variable-quote">'</code><code class="variable-op">: </code>0<code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">do_0x20</code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dnszone.pydig-module.html#qt" class="summary-name">qt</a> = <code title="DNSparam(&quot;TYPE&quot;, dict(A= 1, NS= 2, CNAME= 5, SOA= 6, PTR= 12, MX= 15, \
+TXT= 16, SIG= 24, KEY= 25, AAAA= 28, NXT= 30, SRV= 33, NAPTR= 35, CERT\
+= 37, A6= 38, DNAME= 39, OPT= 41, DS= 43, SSHFP= 44, IPSECKEY= 45, RRS\
+IG= 46, NSEC= 47, DNSKEY= 48, DHCID= 49, NSEC3= 50, NSEC3PARAM= 51, TL\
+SA= 52, HIP= 55, SPF= 99, AXFR= 252, TKEY= 249, TSIG= 250, ANY= 255, T\
+A= 32768, DLV= 32769))">DNSparam(&quot;TYPE&quot;, dict(A= 1, NS= 2, CNAME= 5, SOA= 6, PTR=<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="qc"></a><span class="summary-name">qc</span> = <code title="DNSparam(&quot;CLASS&quot;, dict(IN= 1, CH= 3, HS= 4, ANY= 255))">DNSparam(&quot;CLASS&quot;, dict(IN= 1, CH= 3, HS= 4, ANY= 255))</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dnszone.pydig-module.html#rc" class="summary-name">rc</a> = <code title="DNSparam(&quot;RCODE&quot;, dict(NOERROR= 0, FORMERR= 1, SERVFAIL= 2, NXDOMAIN= \
+3, NOTIMPL= 4, REFUSED= 5, NOTAUTH= 9, BADVERS= 16, BADKEY= 17, BADTIM\
+E= 18, BADMODE= 19, BADNAME= 20, BADALG= 21, BADTRUNC= 22))">DNSparam(&quot;RCODE&quot;, dict(NOERROR= 0, FORMERR= 1, SERVFAIL= <code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dnszone.pydig-module.html#dnssec_proto" class="summary-name">dnssec_proto</a> = <code title="{0: 'Reserved', 1: 'TLS', 2: 'Email', 3: 'DNSSEC', 4: 'IPSEC'}"><code class="variable-group">{</code>0<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">Reserved</code><code class="variable-quote">'</code><code class="variable-op">, </code>1<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">TLS</code><code class="variable-quote">'</code><code class="variable-op">, </code>2<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">Email</code><code class="variable-quote">'</code><code class="variable-op">, </code>3<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">DNSSE</code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dnszone.pydig-module.html#dnssec_alg" class="summary-name">dnssec_alg</a> = <code title="{0: 'Reserved',
+ 1: 'RSAMD5',
+ 2: 'DH',
+ 3: 'DSA',
+ 4: 'ECC',
+ 5: 'RSASHA1',
+ 6: 'DSA-NSEC3-SHA1',
+ 7: 'RSASHA1-NSEC3-SHA1',
+..."><code class="variable-group">{</code>0<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">Reserved</code><code class="variable-quote">'</code><code class="variable-op">, </code>1<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">RSAMD5</code><code class="variable-quote">'</code><code class="variable-op">, </code>2<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">DH</code><code class="variable-quote">'</code><code class="variable-op">, </code>3<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">DSA</code><code class="variable-quote">'</code><code class="variable-op">, </code>4<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="dnssec_digest"></a><span class="summary-name">dnssec_digest</span> = <code title="{1: 'SHA-1', 2: 'SHA-256'}"><code class="variable-group">{</code>1<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">SHA-1</code><code class="variable-quote">'</code><code class="variable-op">, </code>2<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">SHA-256</code><code class="variable-quote">'</code><code class="variable-group">}</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="sshfp_alg"></a><span class="summary-name">sshfp_alg</span> = <code title="{1: 'RSA', 2: 'DSS'}"><code class="variable-group">{</code>1<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">RSA</code><code class="variable-quote">'</code><code class="variable-op">, </code>2<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">DSS</code><code class="variable-quote">'</code><code class="variable-group">}</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="sshfp_fptype"></a><span class="summary-name">sshfp_fptype</span> = <code title="{1: 'SHA-1'}"><code class="variable-group">{</code>1<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">SHA-1</code><code class="variable-quote">'</code><code class="variable-group">}</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dnszone.pydig-module.html#dns_tsig_alg" class="summary-name">dns_tsig_alg</a> = <code title="{'gss-tsig': 'gss-tsig.',
+ 'hmac-md5': 'hmac-md5.sig-alg.reg.int.',
+ 'hmac-sha1': 'hmac-sha1.',
+ 'hmac-sha224': 'hmac-sha224.',
+ 'hmac-sha256': 'hmac-sha256.',
+ 'hmac-sha384': 'hmac-sha384.',
+ 'hmac-sha512': 'hmac-sha512.'}"><code class="variable-group">{</code><code class="variable-quote">'</code><code class="variable-string">gss-tsig</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">gss-tsig.</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">hmac-md5</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">hmac-md5</code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="'dnszone'"><code class="variable-quote">'</code><code class="variable-string">dnszone</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="parse_args"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">parse_args</span>(<span class="sig-arg">arglist</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dnszone.pydig-pysrc.html#parse_args">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Parse command line arguments. Options must come first.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_socketparams"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_socketparams</span>(<span class="sig-arg">server</span>,
+        <span class="sig-arg">port</span>,
+        <span class="sig-arg">af</span>,
+        <span class="sig-arg">type</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dnszone.pydig-pysrc.html#get_socketparams">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Only the first set of parameters is used. Passing af=AF_UNSPEC prefers
+  IPv6 if possible.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== VARIABLES DETAILS ==================== -->
+<a name="section-VariablesDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-VariablesDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="USAGE_STRING"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">USAGE_STRING</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-quote">'''</code><code class="variable-string">(imported) (a DNS query tool written in Python), version 0.7</code>
+<code class="variable-string"></code>
+<code class="variable-string">Usage: (imported) [list of options] &lt;qname&gt; [&lt;qtype&gt;] [&lt;qclass&gt;]</code>
+<code class="variable-string">       (imported) @server +walk &lt;zone&gt;</code>
+<code class="variable-string">Options:</code>
+<code class="variable-string">        -h                        print program usage information</code>
+<code class="variable-string">        @server                   server to query</code>
+<code class="variable-string">        -pNN                      use port NN</code>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="options"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">options</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-group">{</code><code class="variable-quote">'</code><code class="variable-string">aa</code><code class="variable-quote">'</code><code class="variable-op">: </code>0<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">af</code><code class="variable-quote">'</code><code class="variable-op">: </code>0<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">cd</code><code class="variable-quote">'</code><code class="variable-op">: </code>0<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">dnssec_ok</code><code class="variable-quote">'</code><code class="variable-op">: </code>0<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">do_0x20</code><code class="variable-quote">'</code><code class="variable-op">: </code>False<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">do_tsig</code><code class="variable-quote">'</code><code class="variable-op">: </code>False<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">do_zonewalk</code><code class="variable-quote">'</code><code class="variable-op">: </code>False<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">hexrdata</code><code class="variable-quote">'</code><code class="variable-op">: </code>False<code class="variable-op">,</code>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="qt"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">qt</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+DNSparam(&quot;TYPE&quot;, dict(A= 1, NS= 2, CNAME= 5, SOA= 6, PTR= 12, MX= 15, <span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+TXT= 16, SIG= 24, KEY= 25, AAAA= 28, NXT= 30, SRV= 33, NAPTR= 35, CERT<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+= 37, A6= 38, DNAME= 39, OPT= 41, DS= 43, SSHFP= 44, IPSECKEY= 45, RRS<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+IG= 46, NSEC= 47, DNSKEY= 48, DHCID= 49, NSEC3= 50, NSEC3PARAM= 51, TL<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+SA= 52, HIP= 55, SPF= 99, AXFR= 252, TKEY= 249, TSIG= 250, ANY= 255, T<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+A= 32768, DLV= 32769))
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="rc"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">rc</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+DNSparam(&quot;RCODE&quot;, dict(NOERROR= 0, FORMERR= 1, SERVFAIL= 2, NXDOMAIN= <span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+3, NOTIMPL= 4, REFUSED= 5, NOTAUTH= 9, BADVERS= 16, BADKEY= 17, BADTIM<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+E= 18, BADMODE= 19, BADNAME= 20, BADALG= 21, BADTRUNC= 22))
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="dnssec_proto"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">dnssec_proto</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-group">{</code>0<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">Reserved</code><code class="variable-quote">'</code><code class="variable-op">, </code>1<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">TLS</code><code class="variable-quote">'</code><code class="variable-op">, </code>2<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">Email</code><code class="variable-quote">'</code><code class="variable-op">, </code>3<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">DNSSEC</code><code class="variable-quote">'</code><code class="variable-op">, </code>4<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">IPSEC</code><code class="variable-quote">'</code><code class="variable-group">}</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="dnssec_alg"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">dnssec_alg</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-group">{</code>0<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">Reserved</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ 1<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">RSAMD5</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ 2<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">DH</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ 3<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">DSA</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ 4<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">ECC</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ 5<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">RSASHA1</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ 6<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">DSA-NSEC3-SHA1</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ 7<code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">RSASHA1-NSEC3-SHA1</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="dns_tsig_alg"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">dns_tsig_alg</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-group">{</code><code class="variable-quote">'</code><code class="variable-string">gss-tsig</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">gss-tsig.</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">hmac-md5</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">hmac-md5.sig-alg.reg.int.</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">hmac-sha1</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">hmac-sha1.</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">hmac-sha224</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">hmac-sha224.</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">hmac-sha256</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">hmac-sha256.</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">hmac-sha384</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">hmac-sha384.</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">hmac-sha512</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">hmac-sha512.</code><code class="variable-quote">'</code><code class="variable-group">}</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd plugin documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Mon Sep 29 17:38:52 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

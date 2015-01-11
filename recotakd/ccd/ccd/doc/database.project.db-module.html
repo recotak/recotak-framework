@@ -1,0 +1,1208 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>database.project.db</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="database-module.html">Package&nbsp;database</a> ::
+        <a href="database.project-module.html">Package&nbsp;project</a> ::
+        Module&nbsp;db
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="database.project.db-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module db</h1><p class="nomargin-top"><span class="codelink"><a href="database.project.db-pysrc.html">source&nbsp;code</a></span></p>
+<p>This module contains database interactions that concern projects. 
+  Actual # Copyright (c) 2014, curesec GmbH # All rights reserved. # # 
+  Redistribution and use in source and binary forms, with or without 
+  modification, # are permitted provided that the following conditions are 
+  met: # # 1. Redistributions of source code must retain the above 
+  copyright notice, this list of # conditions and the following disclaimer.
+  # # 2. Redistributions in binary form must reproduce the above copyright 
+  notice, this list # of conditions and the following disclaimer in the 
+  documentation and/or other materials # provided with the distribution. # 
+  # 3. Neither the name of the copyright holder nor the names of its 
+  contributors may be used # to endorse or promote products derived from 
+  this software without specific prior written # permission. # # THIS 
+  SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS 
+  IS&quot; AND ANY EXPRESS # OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+  LIMITED TO, THE IMPLIED WARRANTIES OF # MERCHANTABILITY AND FITNESS FOR A
+  PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE # COPYRIGHT 
+  HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  SPECIAL, # EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+  LIMITED TO, PROCUREMENT OF # SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) # HOWEVER CAUSED AND ON ANY 
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR # TORT 
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF 
+  THIS SOFTWARE, # EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+  database transactions are done in database.project.tables. However, this 
+  module initialises the database and is responsible for converting a table
+  to a dictionary which can be used for report generation.</p>
+
+<!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="database.project.db.DatabaseHandler-class.html" class="summary-name">DatabaseHandler</a><br />
+      The database handler is used by the plugin to interact with the 
+        database.
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__get_real_table_name"></a><span class="summary-sig-name">__get_real_table_name</span>(<span class="summary-sig-arg">tablename</span>)</span><br />
+      extracts a table's real name by removing its prefix</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.project.db-pysrc.html#__get_real_table_name">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.project.db-module.html#init_project_db" class="summary-sig-name">init_project_db</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">dbh</span>,
+        <span class="summary-sig-arg">pid</span>,
+        <span class="summary-sig-arg">templates</span>,
+        <span class="summary-sig-arg">psql_url</span>,
+        <span class="summary-sig-arg">psql_db</span>,
+        <span class="summary-sig-arg">tid</span>,
+        <span class="summary-sig-arg">plg_id</span>)</span><br />
+      Create project database and its concerning templates and set up a
+connection the database.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.project.db-pysrc.html#init_project_db">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.project.db-module.html#__store_project_config" class="summary-sig-name" onclick="show_private();">__store_project_config</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pid</span>,
+        <span class="summary-sig-arg">psql_url</span>,
+        <span class="summary-sig-arg">username</span>,
+        <span class="summary-sig-arg">password</span>,
+        <span class="summary-sig-arg">dbname</span>)</span><br />
+      store the project db information in ccddb</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.project.db-pysrc.html#__store_project_config">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.project.db-module.html#__create_db" class="summary-sig-name" onclick="show_private();">__create_db</a>(<span class="summary-sig-arg">tmp_conn</span>,
+        <span class="summary-sig-arg">base_url</span>,
+        <span class="summary-sig-arg">dbname</span>)</span><br />
+      Create new database and connect to it.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.project.db-pysrc.html#__create_db">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__grant_project_db_priv"></a><span class="summary-sig-name">__grant_project_db_priv</span>(<span class="summary-sig-arg">dbconn</span>,
+        <span class="summary-sig-arg">username</span>,
+        <span class="summary-sig-arg">privilege</span>=<span class="summary-sig-default">&quot;SELECT&quot;</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.project.db-pysrc.html#__grant_project_db_priv">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.project.db-module.html#__get_project_db_creds" class="summary-sig-name" onclick="show_private();">__get_project_db_creds</a>(<span class="summary-sig-arg">dbconn</span>,
+        <span class="summary-sig-arg">dbname</span>,
+        <span class="summary-sig-arg">n</span>=<span class="summary-sig-default">10</span>,
+        <span class="summary-sig-arg">privilege</span>=<span class="summary-sig-default">&quot;SELECT&quot;</span>)</span><br />
+      Creates a new user for the project database.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.project.db-pysrc.html#__get_project_db_creds">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.project.db-module.html#__connect_to_projectdb" class="summary-sig-name" onclick="show_private();">__connect_to_projectdb</a>(<span class="summary-sig-arg">dbh_id</span>,
+        <span class="summary-sig-arg">url</span>,
+        <span class="summary-sig-arg">tid</span>)</span><br />
+      connect to project db and cache connection</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.project.db-pysrc.html#__connect_to_projectdb">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.project.db-module.html#close" class="summary-sig-name">close</a>(<span class="summary-sig-arg">dbh</span>)</span><br />
+      close a database transaction</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.project.db-pysrc.html#close">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.project.db-module.html#_DBTransaction_store" class="summary-sig-name" onclick="show_private();">_DBTransaction_store</a>(<span class="summary-sig-arg">dbh_id</span>,
+        <span class="summary-sig-arg">entry</span>)</span><br />
+      Execute a database transaction.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.project.db-pysrc.html#_DBTransaction_store">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.project.db-module.html#result_tables" class="summary-sig-name">result_tables</a>(<span class="summary-sig-arg">db_pid</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">meta</span>=<span class="summary-sig-default">None</span>)</span><br />
+      generator of result table object to be used for data view/show
+* table names are stripped of the result_ preceeding every
+* meta tables are excluded</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.project.db-pysrc.html#result_tables">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.project.db-module.html#get_table" class="summary-sig-name">get_table</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pid</span>,
+        <span class="summary-sig-arg">tname</span>)</span><br />
+      dump data from a table</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.project.db-pysrc.html#get_table">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.project.db-module.html#get_tables" class="summary-sig-name">get_tables</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pid</span>,
+        <span class="summary-sig-arg">columns_sel</span>=<span class="summary-sig-default">[]</span>)</span><br />
+      get all table names, which are currently in the project database</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.project.db-pysrc.html#get_tables">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.project.db-module.html#get_fields" class="summary-sig-name">get_fields</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pid</span>,
+        <span class="summary-sig-arg">table_sel</span>=<span class="summary-sig-default">[]</span>)</span><br />
+      get associative array of colum name -&gt; tables using that column</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.project.db-pysrc.html#get_fields">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.project.db-module.html#get_data" class="summary-sig-name">get_data</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pid</span>,
+        <span class="summary-sig-arg">column_sel</span>=<span class="summary-sig-default">[]</span>,
+        <span class="summary-sig-arg">table_sel</span>=<span class="summary-sig-default">[]</span>)</span><br />
+      get associative array of colum name -&gt; tables using that column</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.project.db-pysrc.html#get_data">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.project.db-module.html#get_tables_dict" class="summary-sig-name">get_tables_dict</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">pid</span>,
+        <span class="summary-sig-arg">skip_rows</span>=<span class="summary-sig-default">META_FIELDS</span>,
+        <span class="summary-sig-arg">tbl_names</span>=<span class="summary-sig-default">[]</span>,
+        <span class="summary-sig-arg">group_by</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">lang</span>=<span class="summary-sig-default">&quot;de&quot;</span>)</span><br />
+      return a database's tables as dictionary.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.project.db-pysrc.html#get_tables_dict">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.project.db-module.html#__get_table_dict" class="summary-sig-name" onclick="show_private();">__get_table_dict</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">table</span>,
+        <span class="summary-sig-arg">skip_rows</span>,
+        <span class="summary-sig-arg">lang</span>=<span class="summary-sig-default">&quot;de&quot;</span>)</span><br />
+      Requests a table's data from sql and returns it as dict entry.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.project.db-pysrc.html#__get_table_dict">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.project.db-module.html#__get_table_grouped_dict" class="summary-sig-name" onclick="show_private();">__get_table_grouped_dict</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">table</span>,
+        <span class="summary-sig-arg">group_by</span>,
+        <span class="summary-sig-arg">skip_rows</span>,
+        <span class="summary-sig-arg">lang</span>=<span class="summary-sig-default">&quot;de&quot;</span>)</span><br />
+      Requests a table's data from sql, groups it and returns every group as
+separate table dict entry.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.project.db-pysrc.html#__get_table_grouped_dict">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="logger"></a><span class="summary-name">logger</span> = <code title="logging.getLogger(&quot;ccd.%s&quot; % __name__)">logging.getLogger(&quot;ccd.%s&quot; % __name__)</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_cache"></a><span class="summary-name">_cache</span> = <code title="dict()">dict()</code><br />
+      locally cacha database connection
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="database.project.db-module.html#ENGINE_ARGS" class="summary-name">ENGINE_ARGS</a> = <code title="dict(encoding= &quot;utf-8&quot;, echo= False, pool_size= 500)">dict(encoding= &quot;utf-8&quot;, echo= False, pool_size= <code class="variable-ellipsis">...</code></code><br />
+      database engine options
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="META_FIELDS"></a><span class="summary-name">META_FIELDS</span> = <code title="['id', 'created', 'risk', 'scanid']">['id', 'created', 'risk', 'scanid']</code><br />
+      fields which hold meta information about the result data and should 
+      be excluded from reports and view requests
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="init_project_db"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">init_project_db</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">dbh</span>,
+        <span class="sig-arg">pid</span>,
+        <span class="sig-arg">templates</span>,
+        <span class="sig-arg">psql_url</span>,
+        <span class="sig-arg">psql_db</span>,
+        <span class="sig-arg">tid</span>,
+        <span class="sig-arg">plg_id</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.project.db-pysrc.html#init_project_db">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Create project database and its concerning templates and set up a
+connection the database.
+
+input:
+    dbh         database handler of whom we just need the python id
+    pid         project id
+    templates   templates the plugin riegisters for
+    psql_url    RFC-1738 conform url of the postgres server. To create
+                users and the database, without database
+    psql_db     database name to connect to create db and user. will be
+                concatenated with 'psql_url'
+    tid         task id
+    plg_id      plugin id
+
+output:
+    scanid
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__store_project_config"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__store_project_config</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">pid</span>,
+        <span class="sig-arg">psql_url</span>,
+        <span class="sig-arg">username</span>,
+        <span class="sig-arg">password</span>,
+        <span class="sig-arg">dbname</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.project.db-pysrc.html#__store_project_config">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+store the project db information in ccddb
+
+input:
+    psql_url    RFC-1738 conform url of the postgres server. To create
+                users and the database, connect to this database.
+    username    The new username to connect with.
+    password    The new password to connect with.
+    dbname        name of the database to create
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__create_db"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__create_db</span>(<span class="sig-arg">tmp_conn</span>,
+        <span class="sig-arg">base_url</span>,
+        <span class="sig-arg">dbname</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.project.db-pysrc.html#__create_db">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Create new database and connect to it. Return the new metadata and
+connection objects.
+
+input:
+    tmp_conn    sql database connection object that is used to
+                create the database with
+    base_url    RFC-1738 conform location postgresql is listing on (the
+                url must exclude the database!)
+    dbname      name of the database to create
+
+output:
+    meta    sql metadata object
+    conn    sql database connection
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__get_project_db_creds"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__get_project_db_creds</span>(<span class="sig-arg">dbconn</span>,
+        <span class="sig-arg">dbname</span>,
+        <span class="sig-arg">n</span>=<span class="sig-default">10</span>,
+        <span class="sig-arg">privilege</span>=<span class="sig-default">&quot;SELECT&quot;</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.project.db-pysrc.html#__get_project_db_creds">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Creates a new user for the project database. Grant set privileges
+to the new user..
+
+input:
+    dbconn      A database connection that is used to create the new
+                postgresl user.
+    dbname      Name of the project's database.
+    n           Length of the password.
+    privilege   Privileges to grant. Default is 'SELECT' (read).
+
+output:
+    username    The new username to connect with.
+    password    The new password to connect with.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__connect_to_projectdb"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__connect_to_projectdb</span>(<span class="sig-arg">dbh_id</span>,
+        <span class="sig-arg">url</span>,
+        <span class="sig-arg">tid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.project.db-pysrc.html#__connect_to_projectdb">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+connect to project db and cache connection
+
+input:
+    dbh_id  the python id of the database handler object
+    url     RFC-1738 conform database url
+    tid     task id
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="close"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">close</span>(<span class="sig-arg">dbh</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.project.db-pysrc.html#close">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+close a database transaction
+
+input:
+    dbh     database handler
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_DBTransaction_store"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_DBTransaction_store</span>(<span class="sig-arg">dbh_id</span>,
+        <span class="sig-arg">entry</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.project.db-pysrc.html#_DBTransaction_store">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Execute a database transaction. Verify that the transaction is
+executed on the correct table.
+
+input:
+    dbh_id  the python id of the database handler object
+    entry   entries to store in database
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="result_tables"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">result_tables</span>(<span class="sig-arg">db_pid</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">meta</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.project.db-pysrc.html#result_tables">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+generator of result table object to be used for data view/show
+* table names are stripped of the result_ preceeding every
+* meta tables are excluded
+
+Input (needs one of both):
+    db_pid  database, process id tuple (if specified, meta will be ignored)
+    meta    db connection
+
+Output:
+    Array of (table name, table object)
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_table"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_table</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">pid</span>,
+        <span class="sig-arg">tname</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.project.db-pysrc.html#get_table">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+dump data from a table
+
+Input:
+    db      database connection
+    pid     project id
+    tname   name of table to be dumped, without preceeding 'result_'
+
+output:
+    (cc, rs) columns' names and results
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_tables"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_tables</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">pid</span>,
+        <span class="sig-arg">columns_sel</span>=<span class="sig-default">[]</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.project.db-pysrc.html#get_tables">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+get all table names, which are currently in the project database
+
+input:
+    pid         project id
+    columns_sel only return some selected columns
+
+output:
+    tables      result as list
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_fields"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_fields</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">pid</span>,
+        <span class="sig-arg">table_sel</span>=<span class="sig-default">[]</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.project.db-pysrc.html#get_fields">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+get associative array of colum name -&gt; tables using that column
+
+Input:
+    pid        project id
+    table_sel  table_sel to be included (empty array == all)
+
+output:
+    tfields    dictionary
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_data"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_data</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">pid</span>,
+        <span class="sig-arg">column_sel</span>=<span class="sig-default">[]</span>,
+        <span class="sig-arg">table_sel</span>=<span class="sig-default">[]</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.project.db-pysrc.html#get_data">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+get associative array of colum name -&gt; tables using that column
+
+Input:
+    pid         project id
+    column_sel  column selection,
+                may include column names, e.g. [ip, fqdn, ...]
+                and/or condition for column values, e.g. [ip='127.0.0.1', fqdn, ...]
+    table_sel   table_sel to be included (empty array == all)
+
+output:
+    result
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_tables_dict"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_tables_dict</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">pid</span>,
+        <span class="sig-arg">skip_rows</span>=<span class="sig-default">META_FIELDS</span>,
+        <span class="sig-arg">tbl_names</span>=<span class="sig-default">[]</span>,
+        <span class="sig-arg">group_by</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">lang</span>=<span class="sig-default">&quot;de&quot;</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.project.db-pysrc.html#get_tables_dict">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+return a database's tables as dictionary. first, get the projectdb's
+configuration (location, login creds) and connect to database. then
+iterate over tables
+
+input:
+    db          database object
+    pid         id of the project to get tables from
+    skip_rows   rows that should be ignored
+    tbl_names   tables to export
+    grouped_by  a tuple that contains the table name and the column to
+                group by
+    lang        languages to get get tables in
+
+output:
+    tables      the dictionary containg the database's tables
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__get_table_dict"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__get_table_dict</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">name</span>,
+        <span class="sig-arg">table</span>,
+        <span class="sig-arg">skip_rows</span>,
+        <span class="sig-arg">lang</span>=<span class="sig-default">&quot;de&quot;</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.project.db-pysrc.html#__get_table_dict">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+Requests a table's data from sql and returns it as dict entry.
+In contrast to __get_table_grouped_dict() it does not group anything.
+
+example:
+        database grouped by col3:
+
+                col1 | col2 | col3
+                -----+------+-----
+                  1  | foo  | bar
+                  2  | bar  | bar
+                  3  | foo  | foo
+                  4  | foo3 | foo
+                  5  |foobar| bar
+
+        result:
+
+            database_bar = {
+                description: &quot;This plugins scans for open ports.&quot;,
+                solution: &quot;Disable unnecessary daemons and use a firewall&quot;
+                data: [[col1, col2, col3],
+                       [ 1  , foo , bar],
+                       [ 2  , bar , bar],
+                       [ 3  , foo , foo],
+                       [ 4  , foo3, foo],
+                       [ 5  , foobar, bar]
+                      ]
+            }
+
+
+input:
+    db          tuple containg database meta object and connection
+    name        name of the table to request.
+    table       sqlalchemy table object of the table to request
+    skip_rows   rows that should be ignored
+    lang        languages to get get meta information in
+
+output:
+    result_dict dictionary containg all virtual tables (see example above)
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__get_table_grouped_dict"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__get_table_grouped_dict</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">name</span>,
+        <span class="sig-arg">table</span>,
+        <span class="sig-arg">group_by</span>,
+        <span class="sig-arg">skip_rows</span>,
+        <span class="sig-arg">lang</span>=<span class="sig-default">&quot;de&quot;</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.project.db-pysrc.html#__get_table_grouped_dict">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+Requests a table's data from sql, groups it and returns every group as
+separate table dict entry. In contrast, __get_table_dict() returns all
+table's (ungrouped) as ONE dict entry. The name of these virtual tables is
+the table name concat. with the value that is grouped by.
+
+example:
+        database grouped by col3:
+
+                col1 | col2 | col3
+                -----+------+-----
+                  1  | foo  | bar
+                  2  | bar  | bar
+                  3  | foo  | foo
+                  4  | foo3 | foo
+                  5  |foobar| bar
+
+        result_dict:
+            {
+                database_bar: {
+                    solution: foobar,
+                    description: foobar,
+                    data: [[col1, col2],
+                           [ 1  , foo ],
+                           [ 2  , bar ],
+                           [ 5  , foobar]
+                           ]
+                    },
+                database_foo: {
+                    solution: foobar,
+                    description: foobar,
+                    data:[[col1, col2],
+                          [ 3  , foo ],
+                          [ 4  , foo3]
+                         ]
+                    }
+
+            }
+
+
+input:
+    db          tuple containg database meta object and connection
+    base_name   name of the table to request. this acts as the base name of
+                the newly created virtual tables
+    table       sqlalchemy table object of the table to request
+    group_by    name of the column to group by/split by
+    skip_rows   rows that should be ignored
+    lang        languages to get get meta information in
+
+output:
+    result_dict dictionary containg all virtual tables (see example above)
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== VARIABLES DETAILS ==================== -->
+<a name="section-VariablesDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-VariablesDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="ENGINE_ARGS"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">ENGINE_ARGS</h3>
+  <p>database engine options</p>
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+dict(encoding= &quot;utf-8&quot;, echo= False, pool_size= 500)
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:37 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

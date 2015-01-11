@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>plugins.plugin</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="plugins-module.html">Package&nbsp;plugins</a> ::
+        Module&nbsp;plugin
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="plugins.plugin-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module plugin</h1><p class="nomargin-top"><span class="codelink"><a href="plugins.plugin-pysrc.html">source&nbsp;code</a></span></p>
+<p>handles plugin execution</p>
+
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="validate_id"></a><span class="summary-sig-name">validate_id</span>(<span class="summary-sig-arg">plg_id</span>)</span><br />
+      returns True if plugin id is a valid hash otherwise False</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="plugins.plugin-pysrc.html#validate_id">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getplugin_byid"></a><span class="summary-sig-name">getplugin_byid</span>(<span class="summary-sig-arg">ccd</span>,
+        <span class="summary-sig-arg">plg_id</span>)</span><br />
+      searches plugin by id and returns it</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="plugins.plugin-pysrc.html#getplugin_byid">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="plugins.plugin-module.html#kill" class="summary-sig-name">kill</a>(<span class="summary-sig-arg">ccd</span>,
+        <span class="summary-sig-arg">sid</span>,
+        <span class="summary-sig-arg">plgid</span>,
+        <span class="summary-sig-arg">mth</span>,
+        <span class="summary-sig-arg">pld</span>)</span><br />
+      kills a plugin that was started using a passed request id (contained in
+payload)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="plugins.plugin-pysrc.html#kill">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="plugins.plugin-module.html#execute" class="summary-sig-name">execute</a>(<span class="summary-sig-arg">ccd</span>,
+        <span class="summary-sig-arg">project_id</span>,
+        <span class="summary-sig-arg">sock</span>,
+        <span class="summary-sig-arg">req_t</span>)</span><br />
+      Ccd executes plugin in a separate fork</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="plugins.plugin-pysrc.html#execute">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="plugins.plugin-module.html#wait" class="summary-sig-name">wait</a>(<span class="summary-sig-arg">ccd</span>,
+        <span class="summary-sig-arg">req_t</span>,
+        <span class="summary-sig-arg">pid</span>,
+        <span class="summary-sig-arg">fid</span>,
+        <span class="summary-sig-arg">plg_name</span>,
+        <span class="summary-sig-arg">sock</span>,
+        <span class="summary-sig-arg">dbh</span>)</span><br />
+      waits for a plugin to terminate via os.waitpid.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="plugins.plugin-pysrc.html#wait">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_forward_stderr"></a><span class="summary-sig-name">_forward_stderr</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">message</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="plugins.plugin-pysrc.html#_forward_stderr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_execute_plugin"></a><span class="summary-sig-name">_execute_plugin</span>(<span class="summary-sig-arg">ccd</span>,
+        <span class="summary-sig-arg">user</span>,
+        <span class="summary-sig-arg">plg</span>,
+        <span class="summary-sig-arg">fid</span>,
+        <span class="summary-sig-arg">fd_out</span>,
+        <span class="summary-sig-arg">fd_in</span>,
+        <span class="summary-sig-arg">project_id</span>,
+        <span class="summary-sig-arg">dbh</span>,
+        <span class="summary-sig-arg">args</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="plugins.plugin-pysrc.html#_execute_plugin">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_plugins"></a><span class="summary-sig-name">get_plugins</span>(<span class="summary-sig-arg">ccd</span>)</span><br />
+      return currently registered plugins</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="plugins.plugin-pysrc.html#get_plugins">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="logger"></a><span class="summary-name">logger</span> = <code title="logging.getLogger(&quot;ccd.%s&quot; % __name__)">logging.getLogger(&quot;ccd.%s&quot; % __name__)</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="IDLEN"></a><span class="summary-name">IDLEN</span> = <code title="32">32</code><br />
+      length of the plugin id hex string
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="kill"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">kill</span>(<span class="sig-arg">ccd</span>,
+        <span class="sig-arg">sid</span>,
+        <span class="sig-arg">plgid</span>,
+        <span class="sig-arg">mth</span>,
+        <span class="sig-arg">pld</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="plugins.plugin-pysrc.html#kill">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+kills a plugin that was started using a passed request id (contained in
+payload)
+
+input:
+    ccd     ccd instance to operate on
+    sid     session id of the user
+    plgid   plugin's id to kill
+    mth     operation method to indicate additional options
+    pld     payload of message which contains request id
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="execute"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">execute</span>(<span class="sig-arg">ccd</span>,
+        <span class="sig-arg">project_id</span>,
+        <span class="sig-arg">sock</span>,
+        <span class="sig-arg">req_t</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="plugins.plugin-pysrc.html#execute">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+Ccd executes plugin in a separate fork
+
+input:
+    ccd     ccd instance to operate on
+    sock    socket that receives the OP_EXEC message
+    req_t   the message in form of the request tuple
+
+output:
+    outputs a dictionary containing the fid, scan id and a flag that
+    indicates whether the plugin is interactive (e.g. a shell)
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="wait"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">wait</span>(<span class="sig-arg">ccd</span>,
+        <span class="sig-arg">req_t</span>,
+        <span class="sig-arg">pid</span>,
+        <span class="sig-arg">fid</span>,
+        <span class="sig-arg">plg_name</span>,
+        <span class="sig-arg">sock</span>,
+        <span class="sig-arg">dbh</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="plugins.plugin-pysrc.html#wait">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+waits for a plugin to terminate via os.waitpid. if a plugin terminates, the
+fd_state is updated and a MTH_TERMINATE is sent to the client.
+
+Note: this is not triggered, if ccd is killed via SIGKILL
+
+input:
+    req_t   request tuple which triggered execution of plugin
+    pid     id of the project in which context the plugin is executed
+    fid     id of the fd database entry which holds data about the plugin's
+            execution state
+    plg_name    name of the plugin which is executed
+    sock    socket that is used sent the MTH_TERMINATE message in order to
+            inform the client about termination
+    dbh     database handler in order to update plugin's execution state in
+            database
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:38 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

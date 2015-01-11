@@ -1,0 +1,1299 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>connection.ccdlib</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="connection-module.html">Package&nbsp;connection</a> ::
+        Module&nbsp;ccdlib
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="connection.ccdlib-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="connection.ccdlib-module.html">Module connection.ccdlib</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-docstring">ccd protocol implementation which is used for communication between ccd server</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-docstring"># Copyright (c) 2014, curesec GmbH</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-docstring"># All rights reserved.</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring"># Redistribution and use in source and binary forms, with or without modification, </tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring"># are permitted provided that the following conditions are met:</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring"># 1. Redistributions of source code must retain the above copyright notice, this list of </tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring"># conditions and the following disclaimer.</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-docstring"># 2. Redistributions in binary form must reproduce the above copyright notice, this list </tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring"># of conditions and the following disclaimer in the documentation and/or other materials </tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-docstring"># provided with the distribution.</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-docstring"># 3. Neither the name of the copyright holder nor the names of its contributors may be used </tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring"># to endorse or promote products derived from this software without specific prior written </tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring"># permission.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS </tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring"># OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF </tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-docstring"># MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE </tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-docstring"># COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, </tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring"># EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF </tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) </tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring"># HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR </tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring"># TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, </tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring"># EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring">and ccd client.</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">CHANGELOG:</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-docstring">v0.492</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-docstring">- base64 encoding of serialised payload</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring">v0.491</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">- added MTH_TERMINATE</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">- add OP_PERMISSION_DENIED</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">v0.490</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">- added OP_USEGROUP</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring">v0.480</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring">- added OP_NEWPROXY</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">- added OP_DELPROXY</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-docstring">- added OP_SHOWPROXY</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-docstring">v0.470</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-docstring">- added OP_DOWNLOAD</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-docstring">v0.460</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-docstring">- added OP_HOMEDIR</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt class="py-docstring">- added OP_REPORT</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-docstring">v0.450</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"><tt class="py-docstring">- added OP_PLUGIN and MTH_INPUT/OUTPUT to handle plugin io forwarding</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-docstring">v0.441</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-docstring">- empty messages, occuring if remote socket closes, raise InvalidPacketError</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-docstring">v0.440</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-docstring">- add plugin to workgroup</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"><tt class="py-docstring">- del plugin from workgroup</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"><tt class="py-docstring">v0.431</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt class="py-docstring">- minor fix due to payload length</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring">v0.43</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">- commands for user, project and workgroup management</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-docstring">- reassigning some byte of general and plugin commands</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring">v0.42</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring">- 4Byte length</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring">v0.41</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-docstring">- PLN now 2Bytes instead of 4B</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt class="py-docstring">- new operations: OP_REGISTER, OP_UNREGISTER, OP_GETSTATE</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt class="py-docstring">v0.40</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"><tt class="py-docstring">- replaced pickle with json</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"><tt class="py-docstring"> ----- ----- ---------------- ---------------- ------- ---------------- ------- -------  ----------- ------------...----------</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"><tt class="py-docstring">|  1B |  1B |      16B       |      16B       |  2B   |      16B       |   8B   |  2B   |    4B     |           nB            |</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-docstring"> ----- ----- ---------------- ---------------- ------- ---------------- ------- -------  ----------- ------------...----------</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-docstring">  V     OP        SID               RID          CAT        PID            GID      MTH     PLN              PLD</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-docstring">V:      Version</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"><tt class="py-docstring">OP:     Operation</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"><tt class="py-docstring">SID:    Session ID</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"><tt class="py-docstring">RID:    Request ID</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"><tt class="py-docstring">CAT:    Category ID</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"><tt class="py-docstring">PID:    Plugin ID</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt class="py-docstring">GID:    Group ID</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">MTH:    Method</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">PLN:    Payload length</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">PLD:    Payload</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">socket</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Function database.ccdProject.select()=database.ccdProject-module.html#select"><a title="database.ccdProject.select" class="py-name" href="#" onclick="return doclink('link-0', 'select', 'link-0');">select</a></tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">struct</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">base64</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">errno</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">json</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"><tt class="py-name">__version__</tt> <tt class="py-op">=</tt> <tt class="py-number">0.492</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"><tt id="link-1" class="py-name" targets="Variable ccd.logger=ccd-module.html#logger,Variable config.read.logger=config.read-module.html#logger,Variable connection.ccdGroup.logger=connection.ccdGroup-module.html#logger,Variable connection.ccdProxy.logger=connection.ccdProxy-module.html#logger,Variable connection.ccdProxyChain.logger=connection.ccdProxyChain-module.html#logger,Variable connection.ccdSession.logger=connection.ccdSession-module.html#logger,Variable connection.ccdlib.logger=connection.ccdlib-module.html#logger,Variable database.ccdProject.logger=database.ccdProject-module.html#logger,Variable database.ccdUser.logger=database.ccdUser-module.html#logger,Variable database.ccdWorkgroup.logger=database.ccdWorkgroup-module.html#logger,Variable database.ccddb.logger=database.ccddb-module.html#logger,Variable database.project.db.logger=database.project.db-module.html#logger,Variable database.project.tables.logger=database.project.tables-module.html#logger,Variable files.download.logger=files.download-module.html#logger,Variable files.open.logger=files.open-module.html#logger,Variable files.upload.logger=files.upload-module.html#logger,Variable genreport.cOdf.logger=genreport.cOdf-module.html#logger,Variable genreport.csv.logger=genreport.csv-module.html#logger,Variable genreport.latex.logger=genreport.latex-module.html#logger,Variable genreport.pdf.logger=genreport.pdf-module.html#logger,Variable plugins.comm.logger=plugins.comm-module.html#logger,Variable plugins.plugin.logger=plugins.plugin-module.html#logger,Variable plugins.setup.logger=plugins.setup-module.html#logger"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-1', 'logger', 'link-1');">logger</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-string">"ccd.%s"</tt> <tt class="py-op">%</tt> <tt class="py-name">__name__</tt><tt class="py-op">)</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"><tt id="link-2" class="py-name" targets="Variable connection.ccdlib.PROTOCOL_VERSION=connection.ccdlib-module.html#PROTOCOL_VERSION"><a title="connection.ccdlib.PROTOCOL_VERSION" class="py-name" href="#" onclick="return doclink('link-2', 'PROTOCOL_VERSION', 'link-2');">PROTOCOL_VERSION</a></tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"><tt class="py-comment"># 1 Byte Operation</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"><tt class="py-comment"># general commands</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"><tt id="link-3" class="py-name" targets="Variable connection.ccdlib.OP_NOP=connection.ccdlib-module.html#OP_NOP"><a title="connection.ccdlib.OP_NOP" class="py-name" href="#" onclick="return doclink('link-3', 'OP_NOP', 'link-3');">OP_NOP</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x00</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"><tt id="link-4" class="py-name" targets="Variable connection.ccdlib.OP_HELP=connection.ccdlib-module.html#OP_HELP"><a title="connection.ccdlib.OP_HELP" class="py-name" href="#" onclick="return doclink('link-4', 'OP_HELP', 'link-4');">OP_HELP</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x01</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"><tt id="link-5" class="py-name" targets="Variable connection.ccdlib.OP_STATUS=connection.ccdlib-module.html#OP_STATUS"><a title="connection.ccdlib.OP_STATUS" class="py-name" href="#" onclick="return doclink('link-5', 'OP_STATUS', 'link-5');">OP_STATUS</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x02</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"><tt id="link-6" class="py-name" targets="Variable connection.ccdlib.OP_LOGIN=connection.ccdlib-module.html#OP_LOGIN"><a title="connection.ccdlib.OP_LOGIN" class="py-name" href="#" onclick="return doclink('link-6', 'OP_LOGIN', 'link-6');">OP_LOGIN</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x03</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"><tt id="link-7" class="py-name" targets="Variable connection.ccdlib.OP_LOGOUT=connection.ccdlib-module.html#OP_LOGOUT"><a title="connection.ccdlib.OP_LOGOUT" class="py-name" href="#" onclick="return doclink('link-7', 'OP_LOGOUT', 'link-7');">OP_LOGOUT</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x04</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"><tt id="link-8" class="py-name" targets="Variable connection.ccdlib.OP_GETRID=connection.ccdlib-module.html#OP_GETRID"><a title="connection.ccdlib.OP_GETRID" class="py-name" href="#" onclick="return doclink('link-8', 'OP_GETRID', 'link-8');">OP_GETRID</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x05</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"><tt id="link-9" class="py-name" targets="Variable connection.ccdlib.OP_GETPLG=connection.ccdlib-module.html#OP_GETPLG"><a title="connection.ccdlib.OP_GETPLG" class="py-name" href="#" onclick="return doclink('link-9', 'OP_GETPLG', 'link-9');">OP_GETPLG</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x06</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"><tt id="link-10" class="py-name" targets="Variable connection.ccdlib.OP_GETCAT=connection.ccdlib-module.html#OP_GETCAT"><a title="connection.ccdlib.OP_GETCAT" class="py-name" href="#" onclick="return doclink('link-10', 'OP_GETCAT', 'link-10');">OP_GETCAT</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x07</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"><tt id="link-11" class="py-name" targets="Variable connection.ccdlib.OP_GETROOTCAT=connection.ccdlib-module.html#OP_GETROOTCAT"><a title="connection.ccdlib.OP_GETROOTCAT" class="py-name" href="#" onclick="return doclink('link-11', 'OP_GETROOTCAT', 'link-11');">OP_GETROOTCAT</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x8</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"><tt class="py-comment"># plugin operations</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"><tt id="link-12" class="py-name" targets="Variable connection.ccdlib.OP_EXEC=connection.ccdlib-module.html#OP_EXEC"><a title="connection.ccdlib.OP_EXEC" class="py-name" href="#" onclick="return doclink('link-12', 'OP_EXEC', 'link-12');">OP_EXEC</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x10</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"><tt id="link-13" class="py-name" targets="Variable connection.ccdlib.OP_KILL=connection.ccdlib-module.html#OP_KILL"><a title="connection.ccdlib.OP_KILL" class="py-name" href="#" onclick="return doclink('link-13', 'OP_KILL', 'link-13');">OP_KILL</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x11</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"><tt id="link-14" class="py-name" targets="Variable connection.ccdlib.OP_UPLOAD=connection.ccdlib-module.html#OP_UPLOAD"><a title="connection.ccdlib.OP_UPLOAD" class="py-name" href="#" onclick="return doclink('link-14', 'OP_UPLOAD', 'link-14');">OP_UPLOAD</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x12</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"><tt id="link-15" class="py-name" targets="Variable connection.ccdlib.OP_GETLOG=connection.ccdlib-module.html#OP_GETLOG"><a title="connection.ccdlib.OP_GETLOG" class="py-name" href="#" onclick="return doclink('link-15', 'OP_GETLOG', 'link-15');">OP_GETLOG</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x13</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"><tt id="link-16" class="py-name" targets="Variable connection.ccdlib.OP_RELOAD=connection.ccdlib-module.html#OP_RELOAD"><a title="connection.ccdlib.OP_RELOAD" class="py-name" href="#" onclick="return doclink('link-16', 'OP_RELOAD', 'link-16');">OP_RELOAD</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x14</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"><tt id="link-17" class="py-name" targets="Variable connection.ccdlib.OP_GETSTATE=connection.ccdlib-module.html#OP_GETSTATE"><a title="connection.ccdlib.OP_GETSTATE" class="py-name" href="#" onclick="return doclink('link-17', 'OP_GETSTATE', 'link-17');">OP_GETSTATE</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x15</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"><tt id="link-18" class="py-name" targets="Variable connection.ccdlib.OP_REGISTER=connection.ccdlib-module.html#OP_REGISTER"><a title="connection.ccdlib.OP_REGISTER" class="py-name" href="#" onclick="return doclink('link-18', 'OP_REGISTER', 'link-18');">OP_REGISTER</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x16</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"><tt id="link-19" class="py-name" targets="Variable connection.ccdlib.OP_UNREGISTER=connection.ccdlib-module.html#OP_UNREGISTER"><a title="connection.ccdlib.OP_UNREGISTER" class="py-name" href="#" onclick="return doclink('link-19', 'OP_UNREGISTER', 'link-19');">OP_UNREGISTER</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x17</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"><tt id="link-20" class="py-name" targets="Variable connection.ccdlib.OP_PLUGIN=connection.ccdlib-module.html#OP_PLUGIN"><a title="connection.ccdlib.OP_PLUGIN" class="py-name" href="#" onclick="return doclink('link-20', 'OP_PLUGIN', 'link-20');">OP_PLUGIN</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x18</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line"><tt id="link-21" class="py-name" targets="Variable connection.ccdlib.OP_DOWNLOAD=connection.ccdlib-module.html#OP_DOWNLOAD"><a title="connection.ccdlib.OP_DOWNLOAD" class="py-name" href="#" onclick="return doclink('link-21', 'OP_DOWNLOAD', 'link-21');">OP_DOWNLOAD</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x19</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"><tt class="py-comment"># proxy chains and connection groups</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line"><tt id="link-22" class="py-name" targets="Variable connection.ccdlib.OP_SHOWPCHAIN=connection.ccdlib-module.html#OP_SHOWPCHAIN"><a title="connection.ccdlib.OP_SHOWPCHAIN" class="py-name" href="#" onclick="return doclink('link-22', 'OP_SHOWPCHAIN', 'link-22');">OP_SHOWPCHAIN</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x20</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"><tt id="link-23" class="py-name" targets="Variable connection.ccdlib.OP_FLUSHPCHAIN=connection.ccdlib-module.html#OP_FLUSHPCHAIN"><a title="connection.ccdlib.OP_FLUSHPCHAIN" class="py-name" href="#" onclick="return doclink('link-23', 'OP_FLUSHPCHAIN', 'link-23');">OP_FLUSHPCHAIN</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x21</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line"><tt id="link-24" class="py-name" targets="Variable connection.ccdlib.OP_DELPCHAIN=connection.ccdlib-module.html#OP_DELPCHAIN"><a title="connection.ccdlib.OP_DELPCHAIN" class="py-name" href="#" onclick="return doclink('link-24', 'OP_DELPCHAIN', 'link-24');">OP_DELPCHAIN</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x22</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"><tt id="link-25" class="py-name" targets="Variable connection.ccdlib.OP_NEWPCHAIN=connection.ccdlib-module.html#OP_NEWPCHAIN"><a title="connection.ccdlib.OP_NEWPCHAIN" class="py-name" href="#" onclick="return doclink('link-25', 'OP_NEWPCHAIN', 'link-25');">OP_NEWPCHAIN</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x23</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"><tt id="link-26" class="py-name" targets="Variable connection.ccdlib.OP_NEWGROUP=connection.ccdlib-module.html#OP_NEWGROUP"><a title="connection.ccdlib.OP_NEWGROUP" class="py-name" href="#" onclick="return doclink('link-26', 'OP_NEWGROUP', 'link-26');">OP_NEWGROUP</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x24</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line"><tt id="link-27" class="py-name" targets="Variable connection.ccdlib.OP_SHOWGROUP=connection.ccdlib-module.html#OP_SHOWGROUP"><a title="connection.ccdlib.OP_SHOWGROUP" class="py-name" href="#" onclick="return doclink('link-27', 'OP_SHOWGROUP', 'link-27');">OP_SHOWGROUP</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x25</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"><tt id="link-28" class="py-name" targets="Variable connection.ccdlib.OP_FLUSHGROUP=connection.ccdlib-module.html#OP_FLUSHGROUP"><a title="connection.ccdlib.OP_FLUSHGROUP" class="py-name" href="#" onclick="return doclink('link-28', 'OP_FLUSHGROUP', 'link-28');">OP_FLUSHGROUP</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x26</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line"><tt id="link-29" class="py-name" targets="Variable connection.ccdlib.OP_DELGROUP=connection.ccdlib-module.html#OP_DELGROUP"><a title="connection.ccdlib.OP_DELGROUP" class="py-name" href="#" onclick="return doclink('link-29', 'OP_DELGROUP', 'link-29');">OP_DELGROUP</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x27</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line"><tt id="link-30" class="py-name" targets="Variable connection.ccdlib.OP_USEGROUP=connection.ccdlib-module.html#OP_USEGROUP"><a title="connection.ccdlib.OP_USEGROUP" class="py-name" href="#" onclick="return doclink('link-30', 'OP_USEGROUP', 'link-30');">OP_USEGROUP</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x28</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line"> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line"><tt class="py-comment"># user management</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line"><tt id="link-31" class="py-name" targets="Variable connection.ccdlib.OP_NEWUSER=connection.ccdlib-module.html#OP_NEWUSER"><a title="connection.ccdlib.OP_NEWUSER" class="py-name" href="#" onclick="return doclink('link-31', 'OP_NEWUSER', 'link-31');">OP_NEWUSER</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x30</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line"><tt id="link-32" class="py-name" targets="Variable connection.ccdlib.OP_DELUSER=connection.ccdlib-module.html#OP_DELUSER"><a title="connection.ccdlib.OP_DELUSER" class="py-name" href="#" onclick="return doclink('link-32', 'OP_DELUSER', 'link-32');">OP_DELUSER</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x31</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line"><tt id="link-33" class="py-name" targets="Variable connection.ccdlib.OP_UPDATEUSER=connection.ccdlib-module.html#OP_UPDATEUSER"><a title="connection.ccdlib.OP_UPDATEUSER" class="py-name" href="#" onclick="return doclink('link-33', 'OP_UPDATEUSER', 'link-33');">OP_UPDATEUSER</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x32</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line"><tt id="link-34" class="py-name" targets="Variable connection.ccdlib.OP_SHOWUSER=connection.ccdlib-module.html#OP_SHOWUSER"><a title="connection.ccdlib.OP_SHOWUSER" class="py-name" href="#" onclick="return doclink('link-34', 'OP_SHOWUSER', 'link-34');">OP_SHOWUSER</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x33</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line"><tt id="link-35" class="py-name" targets="Variable connection.ccdlib.OP_UPDATEUSERPWD=connection.ccdlib-module.html#OP_UPDATEUSERPWD"><a title="connection.ccdlib.OP_UPDATEUSERPWD" class="py-name" href="#" onclick="return doclink('link-35', 'OP_UPDATEUSERPWD', 'link-35');">OP_UPDATEUSERPWD</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x34</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line"><tt id="link-36" class="py-name" targets="Variable connection.ccdlib.OP_GETHOME=connection.ccdlib-module.html#OP_GETHOME"><a title="connection.ccdlib.OP_GETHOME" class="py-name" href="#" onclick="return doclink('link-36', 'OP_GETHOME', 'link-36');">OP_GETHOME</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x35</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line"> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line"><tt class="py-comment"># workgroup management</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line"><tt id="link-37" class="py-name" targets="Variable connection.ccdlib.OP_NEWWGROUP=connection.ccdlib-module.html#OP_NEWWGROUP"><a title="connection.ccdlib.OP_NEWWGROUP" class="py-name" href="#" onclick="return doclink('link-37', 'OP_NEWWGROUP', 'link-37');">OP_NEWWGROUP</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x40</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line"><tt id="link-38" class="py-name" targets="Variable connection.ccdlib.OP_DELWGROUP=connection.ccdlib-module.html#OP_DELWGROUP"><a title="connection.ccdlib.OP_DELWGROUP" class="py-name" href="#" onclick="return doclink('link-38', 'OP_DELWGROUP', 'link-38');">OP_DELWGROUP</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x41</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"><tt id="link-39" class="py-name" targets="Variable connection.ccdlib.OP_UPDATEWGROUP=connection.ccdlib-module.html#OP_UPDATEWGROUP"><a title="connection.ccdlib.OP_UPDATEWGROUP" class="py-name" href="#" onclick="return doclink('link-39', 'OP_UPDATEWGROUP', 'link-39');">OP_UPDATEWGROUP</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x42</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line"><tt id="link-40" class="py-name" targets="Variable connection.ccdlib.OP_ADDWGROUPMEMBER=connection.ccdlib-module.html#OP_ADDWGROUPMEMBER"><a title="connection.ccdlib.OP_ADDWGROUPMEMBER" class="py-name" href="#" onclick="return doclink('link-40', 'OP_ADDWGROUPMEMBER', 'link-40');">OP_ADDWGROUPMEMBER</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x43</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line"><tt id="link-41" class="py-name" targets="Variable connection.ccdlib.OP_DELWGROUPMEMBER=connection.ccdlib-module.html#OP_DELWGROUPMEMBER"><a title="connection.ccdlib.OP_DELWGROUPMEMBER" class="py-name" href="#" onclick="return doclink('link-41', 'OP_DELWGROUPMEMBER', 'link-41');">OP_DELWGROUPMEMBER</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x44</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line"><tt id="link-42" class="py-name" targets="Variable connection.ccdlib.OP_SHOWWGROUP=connection.ccdlib-module.html#OP_SHOWWGROUP"><a title="connection.ccdlib.OP_SHOWWGROUP" class="py-name" href="#" onclick="return doclink('link-42', 'OP_SHOWWGROUP', 'link-42');">OP_SHOWWGROUP</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x45</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line"><tt id="link-43" class="py-name" targets="Variable connection.ccdlib.OP_ADDWGROUPPLG=connection.ccdlib-module.html#OP_ADDWGROUPPLG"><a title="connection.ccdlib.OP_ADDWGROUPPLG" class="py-name" href="#" onclick="return doclink('link-43', 'OP_ADDWGROUPPLG', 'link-43');">OP_ADDWGROUPPLG</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x46</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line"><tt id="link-44" class="py-name" targets="Variable connection.ccdlib.OP_DELWGROUPPLG=connection.ccdlib-module.html#OP_DELWGROUPPLG"><a title="connection.ccdlib.OP_DELWGROUPPLG" class="py-name" href="#" onclick="return doclink('link-44', 'OP_DELWGROUPPLG', 'link-44');">OP_DELWGROUPPLG</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x47</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line"> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line"><tt class="py-comment"># project management</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line"><tt id="link-45" class="py-name" targets="Variable connection.ccdlib.OP_NEWPROJ=connection.ccdlib-module.html#OP_NEWPROJ"><a title="connection.ccdlib.OP_NEWPROJ" class="py-name" href="#" onclick="return doclink('link-45', 'OP_NEWPROJ', 'link-45');">OP_NEWPROJ</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x50</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line"><tt id="link-46" class="py-name" targets="Variable connection.ccdlib.OP_DELPROJ=connection.ccdlib-module.html#OP_DELPROJ"><a title="connection.ccdlib.OP_DELPROJ" class="py-name" href="#" onclick="return doclink('link-46', 'OP_DELPROJ', 'link-46');">OP_DELPROJ</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x51</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line"><tt id="link-47" class="py-name" targets="Variable connection.ccdlib.OP_UPDATEPROJ=connection.ccdlib-module.html#OP_UPDATEPROJ"><a title="connection.ccdlib.OP_UPDATEPROJ" class="py-name" href="#" onclick="return doclink('link-47', 'OP_UPDATEPROJ', 'link-47');">OP_UPDATEPROJ</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x52</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line"><tt id="link-48" class="py-name" targets="Variable connection.ccdlib.OP_ADDPROJMEMBER=connection.ccdlib-module.html#OP_ADDPROJMEMBER"><a title="connection.ccdlib.OP_ADDPROJMEMBER" class="py-name" href="#" onclick="return doclink('link-48', 'OP_ADDPROJMEMBER', 'link-48');">OP_ADDPROJMEMBER</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x53</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line"><tt id="link-49" class="py-name" targets="Variable connection.ccdlib.OP_DELPROJMEMBER=connection.ccdlib-module.html#OP_DELPROJMEMBER"><a title="connection.ccdlib.OP_DELPROJMEMBER" class="py-name" href="#" onclick="return doclink('link-49', 'OP_DELPROJMEMBER', 'link-49');">OP_DELPROJMEMBER</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x54</tt> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line"><tt id="link-50" class="py-name" targets="Variable connection.ccdlib.OP_SHOWPROJ=connection.ccdlib-module.html#OP_SHOWPROJ"><a title="connection.ccdlib.OP_SHOWPROJ" class="py-name" href="#" onclick="return doclink('link-50', 'OP_SHOWPROJ', 'link-50');">OP_SHOWPROJ</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x55</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line"><tt id="link-51" class="py-name" targets="Variable connection.ccdlib.OP_SETPROJ=connection.ccdlib-module.html#OP_SETPROJ"><a title="connection.ccdlib.OP_SETPROJ" class="py-name" href="#" onclick="return doclink('link-51', 'OP_SETPROJ', 'link-51');">OP_SETPROJ</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x56</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line"><tt id="link-52" class="py-name" targets="Variable connection.ccdlib.OP_ADDPROJPLG=connection.ccdlib-module.html#OP_ADDPROJPLG"><a title="connection.ccdlib.OP_ADDPROJPLG" class="py-name" href="#" onclick="return doclink('link-52', 'OP_ADDPROJPLG', 'link-52');">OP_ADDPROJPLG</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x57</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line"><tt id="link-53" class="py-name" targets="Variable connection.ccdlib.OP_DELPROJPLG=connection.ccdlib-module.html#OP_DELPROJPLG"><a title="connection.ccdlib.OP_DELPROJPLG" class="py-name" href="#" onclick="return doclink('link-53', 'OP_DELPROJPLG', 'link-53');">OP_DELPROJPLG</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x58</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line"> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line"><tt class="py-comment"># report</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line"><tt id="link-54" class="py-name" targets="Variable connection.ccdlib.OP_REPORT=connection.ccdlib-module.html#OP_REPORT"><a title="connection.ccdlib.OP_REPORT" class="py-name" href="#" onclick="return doclink('link-54', 'OP_REPORT', 'link-54');">OP_REPORT</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x60</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line"> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line"><tt class="py-comment"># proxy management</tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line"><tt id="link-55" class="py-name" targets="Variable connection.ccdlib.OP_NEWPROXY=connection.ccdlib-module.html#OP_NEWPROXY"><a title="connection.ccdlib.OP_NEWPROXY" class="py-name" href="#" onclick="return doclink('link-55', 'OP_NEWPROXY', 'link-55');">OP_NEWPROXY</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x70</tt> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line"><tt id="link-56" class="py-name" targets="Variable connection.ccdlib.OP_DELPROXY=connection.ccdlib-module.html#OP_DELPROXY"><a title="connection.ccdlib.OP_DELPROXY" class="py-name" href="#" onclick="return doclink('link-56', 'OP_DELPROXY', 'link-56');">OP_DELPROXY</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x71</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line"><tt id="link-57" class="py-name" targets="Variable connection.ccdlib.OP_SHOWPROXY=connection.ccdlib-module.html#OP_SHOWPROXY"><a title="connection.ccdlib.OP_SHOWPROXY" class="py-name" href="#" onclick="return doclink('link-57', 'OP_SHOWPROXY', 'link-57');">OP_SHOWPROXY</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x72</tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line"> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line"><tt class="py-comment"># server responses</tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line"><tt id="link-58" class="py-name" targets="Variable connection.ccdlib.OP_SUCCESS=connection.ccdlib-module.html#OP_SUCCESS"><a title="connection.ccdlib.OP_SUCCESS" class="py-name" href="#" onclick="return doclink('link-58', 'OP_SUCCESS', 'link-58');">OP_SUCCESS</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0xf0</tt> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line"><tt id="link-59" class="py-name" targets="Variable connection.ccdlib.OP_FAILURE=connection.ccdlib-module.html#OP_FAILURE"><a title="connection.ccdlib.OP_FAILURE" class="py-name" href="#" onclick="return doclink('link-59', 'OP_FAILURE', 'link-59');">OP_FAILURE</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0xf1</tt> </tt>
+<a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line"><tt id="link-60" class="py-name" targets="Variable connection.ccdlib.OP_MISSING_FILE=connection.ccdlib-module.html#OP_MISSING_FILE"><a title="connection.ccdlib.OP_MISSING_FILE" class="py-name" href="#" onclick="return doclink('link-60', 'OP_MISSING_FILE', 'link-60');">OP_MISSING_FILE</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0xf2</tt> </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line"><tt id="link-61" class="py-name" targets="Variable connection.ccdlib.OP_PROTOCOL_ERROR=connection.ccdlib-module.html#OP_PROTOCOL_ERROR"><a title="connection.ccdlib.OP_PROTOCOL_ERROR" class="py-name" href="#" onclick="return doclink('link-61', 'OP_PROTOCOL_ERROR', 'link-61');">OP_PROTOCOL_ERROR</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0xf3</tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line"><tt id="link-62" class="py-name" targets="Variable connection.ccdlib.OP_PERMISSION_DENIED=connection.ccdlib-module.html#OP_PERMISSION_DENIED"><a title="connection.ccdlib.OP_PERMISSION_DENIED" class="py-name" href="#" onclick="return doclink('link-62', 'OP_PERMISSION_DENIED', 'link-62');">OP_PERMISSION_DENIED</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0xf4</tt> </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line"> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line"><tt class="py-comment"># 2 Byte Method</tt> </tt>
+<a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line"><tt id="link-63" class="py-name" targets="Variable connection.ccdlib.MTH_NOP=connection.ccdlib-module.html#MTH_NOP"><a title="connection.ccdlib.MTH_NOP" class="py-name" href="#" onclick="return doclink('link-63', 'MTH_NOP', 'link-63');">MTH_NOP</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x0000</tt> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line"><tt id="link-64" class="py-name" targets="Variable connection.ccdlib.MTH_HELP=connection.ccdlib-module.html#MTH_HELP"><a title="connection.ccdlib.MTH_HELP" class="py-name" href="#" onclick="return doclink('link-64', 'MTH_HELP', 'link-64');">MTH_HELP</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x0001</tt> </tt>
+<a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line"><tt id="link-65" class="py-name" targets="Variable connection.ccdlib.MTH_EXEC=connection.ccdlib-module.html#MTH_EXEC"><a title="connection.ccdlib.MTH_EXEC" class="py-name" href="#" onclick="return doclink('link-65', 'MTH_EXEC', 'link-65');">MTH_EXEC</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x0002</tt> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line"><tt id="link-66" class="py-name" targets="Variable connection.ccdlib.MTH_FORCE=connection.ccdlib-module.html#MTH_FORCE"><a title="connection.ccdlib.MTH_FORCE" class="py-name" href="#" onclick="return doclink('link-66', 'MTH_FORCE', 'link-66');">MTH_FORCE</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x0003</tt> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line"><tt id="link-67" class="py-name" targets="Variable connection.ccdlib.MTH_INTERACTIVE=connection.ccdlib-module.html#MTH_INTERACTIVE"><a title="connection.ccdlib.MTH_INTERACTIVE" class="py-name" href="#" onclick="return doclink('link-67', 'MTH_INTERACTIVE', 'link-67');">MTH_INTERACTIVE</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x0004</tt> </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line"><tt id="link-68" class="py-name" targets="Variable connection.ccdlib.MTH_INPUT=connection.ccdlib-module.html#MTH_INPUT"><a title="connection.ccdlib.MTH_INPUT" class="py-name" href="#" onclick="return doclink('link-68', 'MTH_INPUT', 'link-68');">MTH_INPUT</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x0005</tt> </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line"><tt id="link-69" class="py-name" targets="Variable connection.ccdlib.MTH_OUTPUT=connection.ccdlib-module.html#MTH_OUTPUT"><a title="connection.ccdlib.MTH_OUTPUT" class="py-name" href="#" onclick="return doclink('link-69', 'MTH_OUTPUT', 'link-69');">MTH_OUTPUT</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x0006</tt> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line"><tt id="link-70" class="py-name" targets="Variable connection.ccdlib.MTH_VIEW=connection.ccdlib-module.html#MTH_VIEW"><a title="connection.ccdlib.MTH_VIEW" class="py-name" href="#" onclick="return doclink('link-70', 'MTH_VIEW', 'link-70');">MTH_VIEW</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x0007</tt> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line"><tt id="link-71" class="py-name" targets="Variable connection.ccdlib.MTH_INFO=connection.ccdlib-module.html#MTH_INFO"><a title="connection.ccdlib.MTH_INFO" class="py-name" href="#" onclick="return doclink('link-71', 'MTH_INFO', 'link-71');">MTH_INFO</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x0008</tt> </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line"><tt id="link-72" class="py-name" targets="Variable connection.ccdlib.MTH_SAVE=connection.ccdlib-module.html#MTH_SAVE"><a title="connection.ccdlib.MTH_SAVE" class="py-name" href="#" onclick="return doclink('link-72', 'MTH_SAVE', 'link-72');">MTH_SAVE</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x0009</tt> </tt>
+<a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line"><tt id="link-73" class="py-name" targets="Variable connection.ccdlib.MTH_TERMINATE=connection.ccdlib-module.html#MTH_TERMINATE"><a title="connection.ccdlib.MTH_TERMINATE" class="py-name" href="#" onclick="return doclink('link-73', 'MTH_TERMINATE', 'link-73');">MTH_TERMINATE</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x0010</tt> </tt>
+<a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line"> </tt>
+<a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line"><tt id="link-74" class="py-name" targets="Variable connection.ccdlib.LEN_VER=connection.ccdlib-module.html#LEN_VER"><a title="connection.ccdlib.LEN_VER" class="py-name" href="#" onclick="return doclink('link-74', 'LEN_VER', 'link-74');">LEN_VER</a></tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line"><tt id="link-75" class="py-name" targets="Variable connection.ccdlib.LEN_OP=connection.ccdlib-module.html#LEN_OP"><a title="connection.ccdlib.LEN_OP" class="py-name" href="#" onclick="return doclink('link-75', 'LEN_OP', 'link-75');">LEN_OP</a></tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line"><tt id="link-76" class="py-name" targets="Variable connection.ccdlib.LEN_SID=connection.ccdlib-module.html#LEN_SID"><a title="connection.ccdlib.LEN_SID" class="py-name" href="#" onclick="return doclink('link-76', 'LEN_SID', 'link-76');">LEN_SID</a></tt> <tt class="py-op">=</tt> <tt id="link-77" class="py-name" targets="Variable connection.ccdlib.LEN_RID=connection.ccdlib-module.html#LEN_RID"><a title="connection.ccdlib.LEN_RID" class="py-name" href="#" onclick="return doclink('link-77', 'LEN_RID', 'link-77');">LEN_RID</a></tt> <tt class="py-op">=</tt> <tt id="link-78" class="py-name" targets="Variable connection.ccdlib.LEN_PLG=connection.ccdlib-module.html#LEN_PLG"><a title="connection.ccdlib.LEN_PLG" class="py-name" href="#" onclick="return doclink('link-78', 'LEN_PLG', 'link-78');">LEN_PLG</a></tt> <tt class="py-op">=</tt> <tt class="py-number">16</tt> </tt>
+<a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line"><tt id="link-79" class="py-name" targets="Variable connection.ccdlib.LEN_CAT=connection.ccdlib-module.html#LEN_CAT"><a title="connection.ccdlib.LEN_CAT" class="py-name" href="#" onclick="return doclink('link-79', 'LEN_CAT', 'link-79');">LEN_CAT</a></tt> <tt class="py-op">=</tt> <tt class="py-number">2</tt> </tt>
+<a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line"><tt id="link-80" class="py-name" targets="Variable connection.ccdlib.LEN_GID=connection.ccdlib-module.html#LEN_GID"><a title="connection.ccdlib.LEN_GID" class="py-name" href="#" onclick="return doclink('link-80', 'LEN_GID', 'link-80');">LEN_GID</a></tt> <tt class="py-op">=</tt> <tt class="py-number">8</tt> </tt>
+<a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line"><tt id="link-81" class="py-name" targets="Variable connection.ccdlib.LEN_MTH=connection.ccdlib-module.html#LEN_MTH"><a title="connection.ccdlib.LEN_MTH" class="py-name" href="#" onclick="return doclink('link-81', 'LEN_MTH', 'link-81');">LEN_MTH</a></tt> <tt class="py-op">=</tt> <tt class="py-number">2</tt> </tt>
+<a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line"><tt id="link-82" class="py-name" targets="Variable connection.ccdlib.LEN_PLN=connection.ccdlib-module.html#LEN_PLN"><a title="connection.ccdlib.LEN_PLN" class="py-name" href="#" onclick="return doclink('link-82', 'LEN_PLN', 'link-82');">LEN_PLN</a></tt> <tt class="py-op">=</tt> <tt class="py-number">4</tt> </tt>
+<a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line"> </tt>
+<a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line"><tt id="link-83" class="py-name" targets="Variable connection.ccdlib.LEN_HEADER=connection.ccdlib-module.html#LEN_HEADER"><a title="connection.ccdlib.LEN_HEADER" class="py-name" href="#" onclick="return doclink('link-83', 'LEN_HEADER', 'link-83');">LEN_HEADER</a></tt> <tt class="py-op">=</tt> <tt id="link-84" class="py-name"><a title="connection.ccdlib.LEN_VER" class="py-name" href="#" onclick="return doclink('link-84', 'LEN_VER', 'link-74');">LEN_VER</a></tt> <tt class="py-op">+</tt>\ </tt>
+<a name="L214"></a><tt class="py-lineno">214</tt>  <tt class="py-line">             <tt id="link-85" class="py-name"><a title="connection.ccdlib.LEN_OP" class="py-name" href="#" onclick="return doclink('link-85', 'LEN_OP', 'link-75');">LEN_OP</a></tt> <tt class="py-op">+</tt>\ </tt>
+<a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line">             <tt id="link-86" class="py-name"><a title="connection.ccdlib.LEN_SID" class="py-name" href="#" onclick="return doclink('link-86', 'LEN_SID', 'link-76');">LEN_SID</a></tt> <tt class="py-op">+</tt>\ </tt>
+<a name="L216"></a><tt class="py-lineno">216</tt>  <tt class="py-line">             <tt id="link-87" class="py-name"><a title="connection.ccdlib.LEN_RID" class="py-name" href="#" onclick="return doclink('link-87', 'LEN_RID', 'link-77');">LEN_RID</a></tt> <tt class="py-op">+</tt>\ </tt>
+<a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line">             <tt id="link-88" class="py-name"><a title="connection.ccdlib.LEN_CAT" class="py-name" href="#" onclick="return doclink('link-88', 'LEN_CAT', 'link-79');">LEN_CAT</a></tt> <tt class="py-op">+</tt>\ </tt>
+<a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line">             <tt id="link-89" class="py-name"><a title="connection.ccdlib.LEN_PLG" class="py-name" href="#" onclick="return doclink('link-89', 'LEN_PLG', 'link-78');">LEN_PLG</a></tt> <tt class="py-op">+</tt>\ </tt>
+<a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line">             <tt id="link-90" class="py-name"><a title="connection.ccdlib.LEN_GID" class="py-name" href="#" onclick="return doclink('link-90', 'LEN_GID', 'link-80');">LEN_GID</a></tt> <tt class="py-op">+</tt>\ </tt>
+<a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line">             <tt id="link-91" class="py-name"><a title="connection.ccdlib.LEN_MTH" class="py-name" href="#" onclick="return doclink('link-91', 'LEN_MTH', 'link-81');">LEN_MTH</a></tt> <tt class="py-op">+</tt>\ </tt>
+<a name="L221"></a><tt class="py-lineno">221</tt>  <tt class="py-line">             <tt id="link-92" class="py-name"><a title="connection.ccdlib.LEN_PLN" class="py-name" href="#" onclick="return doclink('link-92', 'LEN_PLN', 'link-82');">LEN_PLN</a></tt> </tt>
+<a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line"> </tt>
+<a name="L223"></a><tt class="py-lineno">223</tt>  <tt class="py-line"><tt id="link-93" class="py-name" targets="Variable connection.ccdlib.TIMEOUT=connection.ccdlib-module.html#TIMEOUT"><a title="connection.ccdlib.TIMEOUT" class="py-name" href="#" onclick="return doclink('link-93', 'TIMEOUT', 'link-93');">TIMEOUT</a></tt> <tt class="py-op">=</tt> <tt class="py-number">10.0</tt> </tt>
+<a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line"> </tt>
+<a name="recv"></a><div id="recv-def"><a name="L225"></a><tt class="py-lineno">225</tt> <a class="py-toggle" href="#" id="recv-toggle" onclick="return toggle('recv');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="connection.ccdlib-module.html#recv">recv</a><tt class="py-op">(</tt><tt class="py-param">sock</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="recv-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="recv-expanded"><a name="L226"></a><tt class="py-lineno">226</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L227"></a><tt class="py-lineno">227</tt>  <tt class="py-line"><tt class="py-docstring">    Function receives data on socket, unpacks it and unpickles</tt> </tt>
+<a name="L228"></a><tt class="py-lineno">228</tt>  <tt class="py-line"><tt class="py-docstring">    the payload. It returns a tuple.</tt> </tt>
+<a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line"><tt class="py-docstring">    input:</tt> </tt>
+<a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line"><tt class="py-docstring">        sock    socket to read from</tt> </tt>
+<a name="L232"></a><tt class="py-lineno">232</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line"><tt class="py-docstring">    output:</tt> </tt>
+<a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line"><tt class="py-docstring">        return a tuple consisting of:</tt> </tt>
+<a name="L235"></a><tt class="py-lineno">235</tt>  <tt class="py-line"><tt class="py-docstring">            op  ccd protocol opertion</tt> </tt>
+<a name="L236"></a><tt class="py-lineno">236</tt>  <tt class="py-line"><tt class="py-docstring">            sid session id</tt> </tt>
+<a name="L237"></a><tt class="py-lineno">237</tt>  <tt class="py-line"><tt class="py-docstring">            rid request id</tt> </tt>
+<a name="L238"></a><tt class="py-lineno">238</tt>  <tt class="py-line"><tt class="py-docstring">            cat category id</tt> </tt>
+<a name="L239"></a><tt class="py-lineno">239</tt>  <tt class="py-line"><tt class="py-docstring">            plg plugin id</tt> </tt>
+<a name="L240"></a><tt class="py-lineno">240</tt>  <tt class="py-line"><tt class="py-docstring">            gid connection group id</tt> </tt>
+<a name="L241"></a><tt class="py-lineno">241</tt>  <tt class="py-line"><tt class="py-docstring">            mth method to perform</tt> </tt>
+<a name="L242"></a><tt class="py-lineno">242</tt>  <tt class="py-line"><tt class="py-docstring">            pld payload</tt> </tt>
+<a name="L243"></a><tt class="py-lineno">243</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L244"></a><tt class="py-lineno">244</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L245"></a><tt class="py-lineno">245</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L246"></a><tt class="py-lineno">246</tt>  <tt class="py-line">    <tt id="link-94" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-94', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"receiving data.. on %s from %s on %s"</tt><tt class="py-op">,</tt> </tt>
+<a name="L247"></a><tt class="py-lineno">247</tt>  <tt class="py-line">                 <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">sock</tt><tt class="py-op">.</tt><tt class="py-name">getsockname</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L248"></a><tt class="py-lineno">248</tt>  <tt class="py-line">                 <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">sock</tt><tt class="py-op">.</tt><tt class="py-name">getpeername</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L249"></a><tt class="py-lineno">249</tt>  <tt class="py-line">                 <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">sock</tt><tt class="py-op">)</tt> </tt>
+<a name="L250"></a><tt class="py-lineno">250</tt>  <tt class="py-line">                 <tt class="py-op">)</tt> </tt>
+<a name="L251"></a><tt class="py-lineno">251</tt>  <tt class="py-line"> </tt>
+<a name="L252"></a><tt class="py-lineno">252</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L253"></a><tt class="py-lineno">253</tt>  <tt class="py-line">        <tt class="py-comment"># read version</tt> </tt>
+<a name="L254"></a><tt class="py-lineno">254</tt>  <tt class="py-line">        <tt class="py-name">ver_bin</tt> <tt class="py-op">=</tt> <tt class="py-name">sock</tt><tt class="py-op">.</tt><tt id="link-95" class="py-name" targets="Function connection.ccdlib.recv()=connection.ccdlib-module.html#recv"><a title="connection.ccdlib.recv" class="py-name" href="#" onclick="return doclink('link-95', 'recv', 'link-95');">recv</a></tt><tt class="py-op">(</tt><tt id="link-96" class="py-name"><a title="connection.ccdlib.LEN_VER" class="py-name" href="#" onclick="return doclink('link-96', 'LEN_VER', 'link-74');">LEN_VER</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L255"></a><tt class="py-lineno">255</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">ver_bin</tt><tt class="py-op">:</tt> </tt>
+<a name="L256"></a><tt class="py-lineno">256</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt id="link-97" class="py-name" targets="Class connection.ccdlib.EmptyException=connection.ccdlib.EmptyException-class.html"><a title="connection.ccdlib.EmptyException" class="py-name" href="#" onclick="return doclink('link-97', 'EmptyException', 'link-97');">EmptyException</a></tt><tt class="py-op">(</tt><tt class="py-string">"Received empty packet!"</tt><tt class="py-op">)</tt> </tt>
+<a name="L257"></a><tt class="py-lineno">257</tt>  <tt class="py-line"> </tt>
+<a name="L258"></a><tt class="py-lineno">258</tt>  <tt class="py-line">        <tt class="py-name">ver</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">unpack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;B"</tt><tt class="py-op">,</tt> <tt class="py-name">ver_bin</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L259"></a><tt class="py-lineno">259</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">ver</tt><tt class="py-op">)</tt> <tt class="py-op">!=</tt> <tt id="link-98" class="py-name"><a title="connection.ccdlib.PROTOCOL_VERSION" class="py-name" href="#" onclick="return doclink('link-98', 'PROTOCOL_VERSION', 'link-2');">PROTOCOL_VERSION</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L260"></a><tt class="py-lineno">260</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt id="link-99" class="py-name" targets="Class connection.ccdlib.InvalidPacketError=connection.ccdlib.InvalidPacketError-class.html"><a title="connection.ccdlib.InvalidPacketError" class="py-name" href="#" onclick="return doclink('link-99', 'InvalidPacketError', 'link-99');">InvalidPacketError</a></tt><tt class="py-op">(</tt><tt class="py-string">"fatal: Invalid protocol version!"</tt><tt class="py-op">)</tt> </tt>
+<a name="L261"></a><tt class="py-lineno">261</tt>  <tt class="py-line">        <tt id="link-100" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-100', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"ver:%d"</tt><tt class="py-op">,</tt> <tt class="py-name">ver</tt><tt class="py-op">)</tt> </tt>
+<a name="L262"></a><tt class="py-lineno">262</tt>  <tt class="py-line"> </tt>
+<a name="L263"></a><tt class="py-lineno">263</tt>  <tt class="py-line">        <tt class="py-comment"># get rest of header</tt> </tt>
+<a name="L264"></a><tt class="py-lineno">264</tt>  <tt class="py-line">        <tt id="link-101" class="py-name" targets="Function database.ccdProject.data()=database.ccdProject-module.html#data"><a title="database.ccdProject.data" class="py-name" href="#" onclick="return doclink('link-101', 'data', 'link-101');">data</a></tt> <tt class="py-op">=</tt> <tt class="py-name">sock</tt><tt class="py-op">.</tt><tt id="link-102" class="py-name"><a title="connection.ccdlib.recv" class="py-name" href="#" onclick="return doclink('link-102', 'recv', 'link-95');">recv</a></tt><tt class="py-op">(</tt><tt id="link-103" class="py-name"><a title="connection.ccdlib.LEN_HEADER" class="py-name" href="#" onclick="return doclink('link-103', 'LEN_HEADER', 'link-83');">LEN_HEADER</a></tt> <tt class="py-op">-</tt> <tt id="link-104" class="py-name"><a title="connection.ccdlib.LEN_VER" class="py-name" href="#" onclick="return doclink('link-104', 'LEN_VER', 'link-74');">LEN_VER</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L265"></a><tt class="py-lineno">265</tt>  <tt class="py-line">        <tt class="py-name">offset</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L266"></a><tt class="py-lineno">266</tt>  <tt class="py-line">        <tt class="py-name">op</tt> <tt class="py-op">=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">unpack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;B"</tt><tt class="py-op">,</tt> <tt id="link-105" class="py-name"><a title="database.ccdProject.data" class="py-name" href="#" onclick="return doclink('link-105', 'data', 'link-101');">data</a></tt><tt class="py-op">[</tt><tt class="py-name">offset</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L267"></a><tt class="py-lineno">267</tt>  <tt class="py-line">        <tt class="py-name">offset</tt> <tt class="py-op">+=</tt> <tt id="link-106" class="py-name"><a title="connection.ccdlib.LEN_OP" class="py-name" href="#" onclick="return doclink('link-106', 'LEN_OP', 'link-75');">LEN_OP</a></tt> </tt>
+<a name="L268"></a><tt class="py-lineno">268</tt>  <tt class="py-line">        <tt id="link-107" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-107', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"op:%s"</tt><tt class="py-op">,</tt> <tt class="py-name">hex</tt><tt class="py-op">(</tt><tt class="py-name">op</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L269"></a><tt class="py-lineno">269</tt>  <tt class="py-line"> </tt>
+<a name="L270"></a><tt class="py-lineno">270</tt>  <tt class="py-line">        <tt class="py-name">sid</tt> <tt class="py-op">=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">unpack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;QQ"</tt><tt class="py-op">,</tt> <tt id="link-108" class="py-name"><a title="database.ccdProject.data" class="py-name" href="#" onclick="return doclink('link-108', 'data', 'link-101');">data</a></tt><tt class="py-op">[</tt><tt class="py-name">offset</tt><tt class="py-op">:</tt><tt class="py-name">offset</tt><tt class="py-op">+</tt><tt id="link-109" class="py-name"><a title="connection.ccdlib.LEN_SID" class="py-name" href="#" onclick="return doclink('link-109', 'LEN_SID', 'link-76');">LEN_SID</a></tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L271"></a><tt class="py-lineno">271</tt>  <tt class="py-line">        <tt class="py-name">sid</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">sid</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">&lt;&lt;</tt><tt class="py-number">64</tt><tt class="py-op">)</tt><tt class="py-op">|</tt><tt class="py-name">sid</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L272"></a><tt class="py-lineno">272</tt>  <tt class="py-line">        <tt class="py-name">sid</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-string">"%x"</tt> <tt class="py-op">%</tt> <tt class="py-name">sid</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">zfill</tt><tt class="py-op">(</tt><tt class="py-number">32</tt><tt class="py-op">)</tt> </tt>
+<a name="L273"></a><tt class="py-lineno">273</tt>  <tt class="py-line">        <tt class="py-name">offset</tt> <tt class="py-op">+=</tt> <tt id="link-110" class="py-name"><a title="connection.ccdlib.LEN_SID" class="py-name" href="#" onclick="return doclink('link-110', 'LEN_SID', 'link-76');">LEN_SID</a></tt> </tt>
+<a name="L274"></a><tt class="py-lineno">274</tt>  <tt class="py-line">        <tt id="link-111" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-111', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"sid:%s"</tt><tt class="py-op">,</tt> <tt class="py-name">sid</tt><tt class="py-op">)</tt> </tt>
+<a name="L275"></a><tt class="py-lineno">275</tt>  <tt class="py-line"> </tt>
+<a name="L276"></a><tt class="py-lineno">276</tt>  <tt class="py-line">        <tt class="py-name">rid</tt> <tt class="py-op">=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">unpack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;QQ"</tt><tt class="py-op">,</tt> <tt id="link-112" class="py-name"><a title="database.ccdProject.data" class="py-name" href="#" onclick="return doclink('link-112', 'data', 'link-101');">data</a></tt><tt class="py-op">[</tt><tt class="py-name">offset</tt><tt class="py-op">:</tt><tt class="py-name">offset</tt><tt class="py-op">+</tt><tt id="link-113" class="py-name"><a title="connection.ccdlib.LEN_RID" class="py-name" href="#" onclick="return doclink('link-113', 'LEN_RID', 'link-77');">LEN_RID</a></tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L277"></a><tt class="py-lineno">277</tt>  <tt class="py-line">        <tt class="py-name">rid</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">rid</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">&lt;&lt;</tt><tt class="py-number">64</tt><tt class="py-op">)</tt><tt class="py-op">|</tt><tt class="py-name">rid</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L278"></a><tt class="py-lineno">278</tt>  <tt class="py-line">        <tt class="py-name">rid</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-string">"%x"</tt> <tt class="py-op">%</tt> <tt class="py-name">rid</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">zfill</tt><tt class="py-op">(</tt><tt class="py-number">32</tt><tt class="py-op">)</tt> </tt>
+<a name="L279"></a><tt class="py-lineno">279</tt>  <tt class="py-line">        <tt class="py-name">offset</tt> <tt class="py-op">+=</tt> <tt id="link-114" class="py-name"><a title="connection.ccdlib.LEN_RID" class="py-name" href="#" onclick="return doclink('link-114', 'LEN_RID', 'link-77');">LEN_RID</a></tt> </tt>
+<a name="L280"></a><tt class="py-lineno">280</tt>  <tt class="py-line">        <tt id="link-115" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-115', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"rid:%s"</tt><tt class="py-op">,</tt> <tt class="py-name">rid</tt><tt class="py-op">)</tt> </tt>
+<a name="L281"></a><tt class="py-lineno">281</tt>  <tt class="py-line"> </tt>
+<a name="L282"></a><tt class="py-lineno">282</tt>  <tt class="py-line">        <tt class="py-name">cat</tt> <tt class="py-op">=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">unpack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;BB"</tt><tt class="py-op">,</tt> <tt id="link-116" class="py-name"><a title="database.ccdProject.data" class="py-name" href="#" onclick="return doclink('link-116', 'data', 'link-101');">data</a></tt><tt class="py-op">[</tt><tt class="py-name">offset</tt><tt class="py-op">:</tt><tt class="py-name">offset</tt><tt class="py-op">+</tt><tt id="link-117" class="py-name"><a title="connection.ccdlib.LEN_CAT" class="py-name" href="#" onclick="return doclink('link-117', 'LEN_CAT', 'link-79');">LEN_CAT</a></tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L283"></a><tt class="py-lineno">283</tt>  <tt class="py-line">        <tt class="py-name">cat</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">cat</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">&lt;&lt;</tt><tt class="py-number">16</tt><tt class="py-op">)</tt><tt class="py-op">|</tt><tt class="py-name">cat</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L284"></a><tt class="py-lineno">284</tt>  <tt class="py-line">        <tt class="py-name">offset</tt> <tt class="py-op">+=</tt> <tt id="link-118" class="py-name"><a title="connection.ccdlib.LEN_CAT" class="py-name" href="#" onclick="return doclink('link-118', 'LEN_CAT', 'link-79');">LEN_CAT</a></tt> </tt>
+<a name="L285"></a><tt class="py-lineno">285</tt>  <tt class="py-line">        <tt id="link-119" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-119', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"cat:%s"</tt><tt class="py-op">,</tt> <tt class="py-name">cat</tt><tt class="py-op">)</tt> </tt>
+<a name="L286"></a><tt class="py-lineno">286</tt>  <tt class="py-line"> </tt>
+<a name="L287"></a><tt class="py-lineno">287</tt>  <tt class="py-line">        <tt class="py-name">plg</tt> <tt class="py-op">=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">unpack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;QQ"</tt><tt class="py-op">,</tt> <tt id="link-120" class="py-name"><a title="database.ccdProject.data" class="py-name" href="#" onclick="return doclink('link-120', 'data', 'link-101');">data</a></tt><tt class="py-op">[</tt><tt class="py-name">offset</tt><tt class="py-op">:</tt><tt class="py-name">offset</tt><tt class="py-op">+</tt><tt id="link-121" class="py-name"><a title="connection.ccdlib.LEN_PLG" class="py-name" href="#" onclick="return doclink('link-121', 'LEN_PLG', 'link-78');">LEN_PLG</a></tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L288"></a><tt class="py-lineno">288</tt>  <tt class="py-line">        <tt class="py-name">plg</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">plg</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">&lt;&lt;</tt><tt class="py-number">64</tt><tt class="py-op">)</tt><tt class="py-op">|</tt><tt class="py-name">plg</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L289"></a><tt class="py-lineno">289</tt>  <tt class="py-line">        <tt class="py-name">plg</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-string">"%x"</tt> <tt class="py-op">%</tt> <tt class="py-name">plg</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">zfill</tt><tt class="py-op">(</tt><tt class="py-number">32</tt><tt class="py-op">)</tt> </tt>
+<a name="L290"></a><tt class="py-lineno">290</tt>  <tt class="py-line">        <tt class="py-name">offset</tt> <tt class="py-op">+=</tt> <tt id="link-122" class="py-name"><a title="connection.ccdlib.LEN_PLG" class="py-name" href="#" onclick="return doclink('link-122', 'LEN_PLG', 'link-78');">LEN_PLG</a></tt> </tt>
+<a name="L291"></a><tt class="py-lineno">291</tt>  <tt class="py-line">        <tt id="link-123" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-123', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"plg:%s"</tt><tt class="py-op">,</tt> <tt class="py-name">plg</tt><tt class="py-op">)</tt> </tt>
+<a name="L292"></a><tt class="py-lineno">292</tt>  <tt class="py-line"> </tt>
+<a name="L293"></a><tt class="py-lineno">293</tt>  <tt class="py-line">        <tt class="py-name">gid</tt> <tt class="py-op">=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">unpack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;Q"</tt><tt class="py-op">,</tt> <tt id="link-124" class="py-name"><a title="database.ccdProject.data" class="py-name" href="#" onclick="return doclink('link-124', 'data', 'link-101');">data</a></tt><tt class="py-op">[</tt><tt class="py-name">offset</tt><tt class="py-op">:</tt><tt class="py-name">offset</tt><tt class="py-op">+</tt><tt id="link-125" class="py-name"><a title="connection.ccdlib.LEN_GID" class="py-name" href="#" onclick="return doclink('link-125', 'LEN_GID', 'link-80');">LEN_GID</a></tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L294"></a><tt class="py-lineno">294</tt>  <tt class="py-line">        <tt class="py-name">gid</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-string">"%x"</tt> <tt class="py-op">%</tt> <tt class="py-name">gid</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">zfill</tt><tt class="py-op">(</tt><tt class="py-number">8</tt><tt class="py-op">)</tt> </tt>
+<a name="L295"></a><tt class="py-lineno">295</tt>  <tt class="py-line">        <tt class="py-name">offset</tt> <tt class="py-op">+=</tt> <tt id="link-126" class="py-name"><a title="connection.ccdlib.LEN_GID" class="py-name" href="#" onclick="return doclink('link-126', 'LEN_GID', 'link-80');">LEN_GID</a></tt> </tt>
+<a name="L296"></a><tt class="py-lineno">296</tt>  <tt class="py-line">        <tt id="link-127" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-127', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"gid:%s"</tt><tt class="py-op">,</tt> <tt class="py-name">gid</tt><tt class="py-op">)</tt> </tt>
+<a name="L297"></a><tt class="py-lineno">297</tt>  <tt class="py-line"> </tt>
+<a name="L298"></a><tt class="py-lineno">298</tt>  <tt class="py-line">        <tt class="py-name">mth</tt> <tt class="py-op">=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">unpack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;BB"</tt><tt class="py-op">,</tt> <tt id="link-128" class="py-name"><a title="database.ccdProject.data" class="py-name" href="#" onclick="return doclink('link-128', 'data', 'link-101');">data</a></tt><tt class="py-op">[</tt><tt class="py-name">offset</tt><tt class="py-op">:</tt><tt class="py-name">offset</tt><tt class="py-op">+</tt><tt id="link-129" class="py-name"><a title="connection.ccdlib.LEN_MTH" class="py-name" href="#" onclick="return doclink('link-129', 'LEN_MTH', 'link-81');">LEN_MTH</a></tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L299"></a><tt class="py-lineno">299</tt>  <tt class="py-line">        <tt class="py-name">mth</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">mth</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">&lt;&lt;</tt><tt class="py-number">16</tt><tt class="py-op">)</tt><tt class="py-op">|</tt><tt class="py-name">mth</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L300"></a><tt class="py-lineno">300</tt>  <tt class="py-line">        <tt class="py-name">offset</tt> <tt class="py-op">+=</tt> <tt id="link-130" class="py-name"><a title="connection.ccdlib.LEN_MTH" class="py-name" href="#" onclick="return doclink('link-130', 'LEN_MTH', 'link-81');">LEN_MTH</a></tt> </tt>
+<a name="L301"></a><tt class="py-lineno">301</tt>  <tt class="py-line">        <tt id="link-131" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-131', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"mth:%s"</tt><tt class="py-op">,</tt> <tt class="py-name">mth</tt><tt class="py-op">)</tt> </tt>
+<a name="L302"></a><tt class="py-lineno">302</tt>  <tt class="py-line"> </tt>
+<a name="L303"></a><tt class="py-lineno">303</tt>  <tt class="py-line">        <tt class="py-name">pln</tt> <tt class="py-op">=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">unpack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;L"</tt><tt class="py-op">,</tt> <tt id="link-132" class="py-name"><a title="database.ccdProject.data" class="py-name" href="#" onclick="return doclink('link-132', 'data', 'link-101');">data</a></tt><tt class="py-op">[</tt><tt class="py-name">offset</tt><tt class="py-op">:</tt><tt class="py-name">offset</tt><tt class="py-op">+</tt><tt id="link-133" class="py-name"><a title="connection.ccdlib.LEN_PLN" class="py-name" href="#" onclick="return doclink('link-133', 'LEN_PLN', 'link-82');">LEN_PLN</a></tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L304"></a><tt class="py-lineno">304</tt>  <tt class="py-line">        <tt class="py-name">pln</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">pln</tt><tt class="py-op">)</tt> </tt>
+<a name="L305"></a><tt class="py-lineno">305</tt>  <tt class="py-line">        <tt id="link-134" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-134', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"pln: %d"</tt><tt class="py-op">,</tt> <tt class="py-name">pln</tt><tt class="py-op">)</tt> </tt>
+<a name="L306"></a><tt class="py-lineno">306</tt>  <tt class="py-line">        <tt class="py-name">payload_data</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L307"></a><tt class="py-lineno">307</tt>  <tt class="py-line"> </tt>
+<a name="L308"></a><tt class="py-lineno">308</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">pln</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L309"></a><tt class="py-lineno">309</tt>  <tt class="py-line">            <tt class="py-keyword">while</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">payload_data</tt><tt class="py-op">)</tt> <tt class="py-op">&lt;</tt> <tt class="py-name">pln</tt><tt class="py-op">:</tt> </tt>
+<a name="L310"></a><tt class="py-lineno">310</tt>  <tt class="py-line">                <tt id="link-135" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-135', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"waiting for payload (%d B)"</tt><tt class="py-op">,</tt> <tt class="py-name">pln</tt><tt class="py-op">)</tt> </tt>
+<a name="L311"></a><tt class="py-lineno">311</tt>  <tt class="py-line">                <tt class="py-name">payload_data</tt> <tt class="py-op">+=</tt> <tt class="py-name">sock</tt><tt class="py-op">.</tt><tt id="link-136" class="py-name"><a title="connection.ccdlib.recv" class="py-name" href="#" onclick="return doclink('link-136', 'recv', 'link-95');">recv</a></tt><tt class="py-op">(</tt><tt class="py-name">pln</tt><tt class="py-op">)</tt> </tt>
+<a name="L312"></a><tt class="py-lineno">312</tt>  <tt class="py-line"> </tt>
+<a name="L313"></a><tt class="py-lineno">313</tt>  <tt class="py-line">            <tt class="py-name">pld_base64</tt> <tt class="py-op">=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">unpack</tt><tt class="py-op">(</tt><tt class="py-string">"%ds"</tt><tt class="py-op">%</tt><tt class="py-name">pln</tt><tt class="py-op">,</tt> <tt class="py-name">payload_data</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L314"></a><tt class="py-lineno">314</tt>  <tt class="py-line">            <tt class="py-name">pld_serialised</tt> <tt class="py-op">=</tt> <tt class="py-name">base64</tt><tt class="py-op">.</tt><tt class="py-name">decodestring</tt><tt class="py-op">(</tt><tt class="py-name">pld_base64</tt><tt class="py-op">)</tt> </tt>
+<a name="L315"></a><tt class="py-lineno">315</tt>  <tt class="py-line">            <tt class="py-name">pld</tt> <tt class="py-op">=</tt> <tt class="py-name">json</tt><tt class="py-op">.</tt><tt class="py-name">loads</tt><tt class="py-op">(</tt><tt class="py-name">pld_serialised</tt><tt class="py-op">)</tt> </tt>
+<a name="L316"></a><tt class="py-lineno">316</tt>  <tt class="py-line"> </tt>
+<a name="L317"></a><tt class="py-lineno">317</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L318"></a><tt class="py-lineno">318</tt>  <tt class="py-line">            <tt class="py-name">pld</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L319"></a><tt class="py-lineno">319</tt>  <tt class="py-line"> </tt>
+<a name="L320"></a><tt class="py-lineno">320</tt>  <tt class="py-line">        <tt id="link-137" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-137', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"received:%d"</tt><tt class="py-op">,</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">payload_data</tt><tt class="py-op">)</tt><tt class="py-op">+</tt><tt id="link-138" class="py-name"><a title="connection.ccdlib.LEN_HEADER" class="py-name" href="#" onclick="return doclink('link-138', 'LEN_HEADER', 'link-83');">LEN_HEADER</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L321"></a><tt class="py-lineno">321</tt>  <tt class="py-line"> </tt>
+<a name="L322"></a><tt class="py-lineno">322</tt>  <tt class="py-line">    <tt class="py-comment"># if parsing fails, the packet is malformed and we inform the caller</tt> </tt>
+<a name="L323"></a><tt class="py-lineno">323</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">error</tt> <tt class="py-keyword">as</tt> <tt class="py-name">err</tt><tt class="py-op">:</tt> </tt>
+<a name="L324"></a><tt class="py-lineno">324</tt>  <tt class="py-line">        <tt id="link-139" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-139', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">error</tt><tt class="py-op">(</tt><tt class="py-string">"Received malformed packet: '%s'"</tt><tt class="py-op">,</tt> <tt class="py-name">err</tt><tt class="py-op">)</tt> </tt>
+<a name="L325"></a><tt class="py-lineno">325</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt id="link-140" class="py-name"><a title="connection.ccdlib.InvalidPacketError" class="py-name" href="#" onclick="return doclink('link-140', 'InvalidPacketError', 'link-99');">InvalidPacketError</a></tt><tt class="py-op">(</tt><tt class="py-string">"fatal: Unpacking failed!"</tt><tt class="py-op">)</tt> </tt>
+<a name="L326"></a><tt class="py-lineno">326</tt>  <tt class="py-line"> </tt>
+<a name="L327"></a><tt class="py-lineno">327</tt>  <tt class="py-line">    <tt class="py-comment"># socket error</tt> </tt>
+<a name="L328"></a><tt class="py-lineno">328</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-name">socket</tt><tt class="py-op">.</tt><tt class="py-name">error</tt> <tt class="py-keyword">as</tt> <tt class="py-name">err</tt><tt class="py-op">:</tt> </tt>
+<a name="L329"></a><tt class="py-lineno">329</tt>  <tt class="py-line">        <tt class="py-name">no</tt> <tt class="py-op">=</tt> <tt class="py-name">err</tt><tt class="py-op">.</tt><tt class="py-name">args</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L330"></a><tt class="py-lineno">330</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">no</tt> <tt class="py-op">==</tt> <tt class="py-name">errno</tt><tt class="py-op">.</tt><tt class="py-name">EAGAIN</tt> <tt class="py-keyword">or</tt> <tt class="py-name">no</tt> <tt class="py-op">==</tt> <tt class="py-name">errno</tt><tt class="py-op">.</tt><tt class="py-name">EWOULDBLOCK</tt><tt class="py-op">:</tt> </tt>
+<a name="L331"></a><tt class="py-lineno">331</tt>  <tt class="py-line">            <tt id="link-141" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-141', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">"No data available!"</tt><tt class="py-op">)</tt> </tt>
+<a name="L332"></a><tt class="py-lineno">332</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">err</tt> </tt>
+<a name="L333"></a><tt class="py-lineno">333</tt>  <tt class="py-line"> </tt>
+<a name="L334"></a><tt class="py-lineno">334</tt>  <tt class="py-line">    <tt class="py-comment"># invalid packet occurs e.g. if protocol version is invalid</tt> </tt>
+<a name="L335"></a><tt class="py-lineno">335</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt id="link-142" class="py-name"><a title="connection.ccdlib.InvalidPacketError" class="py-name" href="#" onclick="return doclink('link-142', 'InvalidPacketError', 'link-99');">InvalidPacketError</a></tt> <tt class="py-keyword">as</tt> <tt class="py-name">ipacketerr</tt><tt class="py-op">:</tt> </tt>
+<a name="L336"></a><tt class="py-lineno">336</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">ipacketerr</tt> </tt>
+<a name="L337"></a><tt class="py-lineno">337</tt>  <tt class="py-line"> </tt>
+<a name="L338"></a><tt class="py-lineno">338</tt>  <tt class="py-line">    <tt class="py-comment"># remaining errors</tt> </tt>
+<a name="L339"></a><tt class="py-lineno">339</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt> <tt class="py-keyword">as</tt> <tt class="py-name">err</tt><tt class="py-op">:</tt> </tt>
+<a name="L340"></a><tt class="py-lineno">340</tt>  <tt class="py-line">        <tt id="link-143" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-143', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">"Error while receiving packet:'%s'"</tt><tt class="py-op">,</tt> <tt class="py-name">err</tt><tt class="py-op">)</tt> </tt>
+<a name="L341"></a><tt class="py-lineno">341</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">err</tt> </tt>
+<a name="L342"></a><tt class="py-lineno">342</tt>  <tt class="py-line"> </tt>
+<a name="L343"></a><tt class="py-lineno">343</tt>  <tt class="py-line">    <tt id="link-144" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-144', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"pld:%s"</tt><tt class="py-op">,</tt> <tt class="py-name">repr</tt><tt class="py-op">(</tt><tt class="py-name">pld</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L344"></a><tt class="py-lineno">344</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-name">op</tt><tt class="py-op">,</tt> <tt class="py-name">sid</tt><tt class="py-op">,</tt> <tt class="py-name">rid</tt><tt class="py-op">,</tt> <tt class="py-name">cat</tt><tt class="py-op">,</tt> <tt class="py-name">plg</tt><tt class="py-op">,</tt> <tt class="py-name">gid</tt><tt class="py-op">,</tt> <tt class="py-name">mth</tt><tt class="py-op">,</tt> <tt class="py-name">pld</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L345"></a><tt class="py-lineno">345</tt>  <tt class="py-line"> </tt>
+<a name="send"></a><div id="send-def"><a name="L346"></a><tt class="py-lineno">346</tt> <a class="py-toggle" href="#" id="send-toggle" onclick="return toggle('send');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="connection.ccdlib-module.html#send">send</a><tt class="py-op">(</tt><tt class="py-param">sock</tt><tt class="py-op">,</tt> <tt class="py-param">request_t</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="send-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="send-expanded"><a name="L347"></a><tt class="py-lineno">347</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L348"></a><tt class="py-lineno">348</tt>  <tt class="py-line"><tt class="py-docstring">    Function get request tuple and builds ccd protocol conform packet</tt> </tt>
+<a name="L349"></a><tt class="py-lineno">349</tt>  <tt class="py-line"><tt class="py-docstring">    to rend it over socket. The payload will be pickled automatically.</tt> </tt>
+<a name="L350"></a><tt class="py-lineno">350</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L351"></a><tt class="py-lineno">351</tt>  <tt class="py-line"><tt class="py-docstring">    input:</tt> </tt>
+<a name="L352"></a><tt class="py-lineno">352</tt>  <tt class="py-line"><tt class="py-docstring">        sock        socket to send from</tt> </tt>
+<a name="L353"></a><tt class="py-lineno">353</tt>  <tt class="py-line"><tt class="py-docstring">        request_t   tuple containing the full request:</tt> </tt>
+<a name="L354"></a><tt class="py-lineno">354</tt>  <tt class="py-line"><tt class="py-docstring">                        op  ccd protocol opertion</tt> </tt>
+<a name="L355"></a><tt class="py-lineno">355</tt>  <tt class="py-line"><tt class="py-docstring">                        sid session id</tt> </tt>
+<a name="L356"></a><tt class="py-lineno">356</tt>  <tt class="py-line"><tt class="py-docstring">                        rid request id</tt> </tt>
+<a name="L357"></a><tt class="py-lineno">357</tt>  <tt class="py-line"><tt class="py-docstring">                        cat category id</tt> </tt>
+<a name="L358"></a><tt class="py-lineno">358</tt>  <tt class="py-line"><tt class="py-docstring">                        plg plugin id</tt> </tt>
+<a name="L359"></a><tt class="py-lineno">359</tt>  <tt class="py-line"><tt class="py-docstring">                        gid connection group id</tt> </tt>
+<a name="L360"></a><tt class="py-lineno">360</tt>  <tt class="py-line"><tt class="py-docstring">                        mth method to perform</tt> </tt>
+<a name="L361"></a><tt class="py-lineno">361</tt>  <tt class="py-line"><tt class="py-docstring">                        pld payload</tt> </tt>
+<a name="L362"></a><tt class="py-lineno">362</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L363"></a><tt class="py-lineno">363</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L364"></a><tt class="py-lineno">364</tt>  <tt class="py-line"><tt class="py-docstring">    output:</tt> </tt>
+<a name="L365"></a><tt class="py-lineno">365</tt>  <tt class="py-line"><tt class="py-docstring">        sent        return sent bytes</tt> </tt>
+<a name="L366"></a><tt class="py-lineno">366</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L367"></a><tt class="py-lineno">367</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L368"></a><tt class="py-lineno">368</tt>  <tt class="py-line">    <tt id="link-145" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-145', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"sending data.. on %s to %s over %s"</tt><tt class="py-op">,</tt> </tt>
+<a name="L369"></a><tt class="py-lineno">369</tt>  <tt class="py-line">                 <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">sock</tt><tt class="py-op">.</tt><tt class="py-name">getsockname</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L370"></a><tt class="py-lineno">370</tt>  <tt class="py-line">                 <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">sock</tt><tt class="py-op">.</tt><tt class="py-name">getpeername</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L371"></a><tt class="py-lineno">371</tt>  <tt class="py-line">                 <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">sock</tt><tt class="py-op">)</tt> </tt>
+<a name="L372"></a><tt class="py-lineno">372</tt>  <tt class="py-line">                 <tt class="py-op">)</tt> </tt>
+<a name="L373"></a><tt class="py-lineno">373</tt>  <tt class="py-line">    <tt class="py-name">max_int64</tt> <tt class="py-op">=</tt> <tt class="py-number">0xFFFFFFFFFFFFFFFF</tt> </tt>
+<a name="L374"></a><tt class="py-lineno">374</tt>  <tt class="py-line">    <tt class="py-name">max_int16</tt> <tt class="py-op">=</tt> <tt class="py-number">0xFFFF</tt> </tt>
+<a name="L375"></a><tt class="py-lineno">375</tt>  <tt class="py-line">    <tt class="py-name">packet</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L376"></a><tt class="py-lineno">376</tt>  <tt class="py-line">    <tt class="py-name">sent</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L377"></a><tt class="py-lineno">377</tt>  <tt class="py-line"> </tt>
+<a name="L378"></a><tt class="py-lineno">378</tt>  <tt class="py-line">    <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L379"></a><tt class="py-lineno">379</tt>  <tt class="py-line">        <tt class="py-name">op</tt><tt class="py-op">,</tt> <tt class="py-name">sid</tt><tt class="py-op">,</tt> <tt class="py-name">rid</tt><tt class="py-op">,</tt> <tt class="py-name">cat</tt><tt class="py-op">,</tt> <tt class="py-name">plg</tt><tt class="py-op">,</tt> <tt class="py-name">gid</tt><tt class="py-op">,</tt> <tt class="py-name">mth</tt><tt class="py-op">,</tt> <tt class="py-name">pld</tt> <tt class="py-op">=</tt> <tt class="py-name">request_t</tt> </tt>
+<a name="L380"></a><tt class="py-lineno">380</tt>  <tt class="py-line"> </tt>
+<a name="L381"></a><tt class="py-lineno">381</tt>  <tt class="py-line">        <tt class="py-name">packet</tt> <tt class="py-op">+=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">pack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;B"</tt><tt class="py-op">,</tt> <tt id="link-146" class="py-name"><a title="connection.ccdlib.PROTOCOL_VERSION" class="py-name" href="#" onclick="return doclink('link-146', 'PROTOCOL_VERSION', 'link-2');">PROTOCOL_VERSION</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L382"></a><tt class="py-lineno">382</tt>  <tt class="py-line">        <tt id="link-147" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-147', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"ver:%d"</tt><tt class="py-op">,</tt> <tt id="link-148" class="py-name"><a title="connection.ccdlib.PROTOCOL_VERSION" class="py-name" href="#" onclick="return doclink('link-148', 'PROTOCOL_VERSION', 'link-2');">PROTOCOL_VERSION</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L383"></a><tt class="py-lineno">383</tt>  <tt class="py-line"> </tt>
+<a name="L384"></a><tt class="py-lineno">384</tt>  <tt class="py-line">        <tt class="py-name">packet</tt> <tt class="py-op">+=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">pack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;B"</tt><tt class="py-op">,</tt> <tt class="py-name">op</tt><tt class="py-op">)</tt> </tt>
+<a name="L385"></a><tt class="py-lineno">385</tt>  <tt class="py-line">        <tt id="link-149" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-149', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"op:%s"</tt><tt class="py-op">,</tt> <tt class="py-name">hex</tt><tt class="py-op">(</tt><tt class="py-name">op</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L386"></a><tt class="py-lineno">386</tt>  <tt class="py-line"> </tt>
+<a name="L387"></a><tt class="py-lineno">387</tt>  <tt class="py-line">        <tt class="py-name">sid_int</tt> <tt class="py-op">=</tt> <tt class="py-name">long</tt><tt class="py-op">(</tt><tt class="py-name">sid</tt><tt class="py-op">,</tt><tt class="py-number">16</tt><tt class="py-op">)</tt> </tt>
+<a name="L388"></a><tt class="py-lineno">388</tt>  <tt class="py-line">        <tt class="py-name">packet</tt> <tt class="py-op">+=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">pack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;QQ"</tt><tt class="py-op">,</tt> <tt class="py-op">(</tt><tt class="py-name">sid_int</tt><tt class="py-op">&gt;&gt;</tt><tt class="py-number">64</tt><tt class="py-op">)</tt><tt class="py-op">&amp;</tt><tt class="py-name">max_int64</tt><tt class="py-op">,</tt> <tt class="py-name">sid_int</tt><tt class="py-op">&amp;</tt><tt class="py-name">max_int64</tt><tt class="py-op">)</tt> </tt>
+<a name="L389"></a><tt class="py-lineno">389</tt>  <tt class="py-line">        <tt id="link-150" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-150', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"sid:%s"</tt><tt class="py-op">,</tt> <tt class="py-name">sid</tt><tt class="py-op">)</tt> </tt>
+<a name="L390"></a><tt class="py-lineno">390</tt>  <tt class="py-line"> </tt>
+<a name="L391"></a><tt class="py-lineno">391</tt>  <tt class="py-line">        <tt class="py-name">rid_int</tt> <tt class="py-op">=</tt> <tt class="py-name">long</tt><tt class="py-op">(</tt><tt class="py-name">rid</tt><tt class="py-op">,</tt><tt class="py-number">16</tt><tt class="py-op">)</tt> </tt>
+<a name="L392"></a><tt class="py-lineno">392</tt>  <tt class="py-line">        <tt class="py-name">packet</tt> <tt class="py-op">+=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">pack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;QQ"</tt><tt class="py-op">,</tt> <tt class="py-op">(</tt><tt class="py-name">rid_int</tt><tt class="py-op">&gt;&gt;</tt><tt class="py-number">64</tt><tt class="py-op">)</tt><tt class="py-op">&amp;</tt><tt class="py-name">max_int64</tt><tt class="py-op">,</tt> <tt class="py-name">rid_int</tt><tt class="py-op">&amp;</tt><tt class="py-name">max_int64</tt><tt class="py-op">)</tt> </tt>
+<a name="L393"></a><tt class="py-lineno">393</tt>  <tt class="py-line">        <tt id="link-151" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-151', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"rid:%s"</tt><tt class="py-op">,</tt> <tt class="py-name">rid</tt><tt class="py-op">)</tt> </tt>
+<a name="L394"></a><tt class="py-lineno">394</tt>  <tt class="py-line"> </tt>
+<a name="L395"></a><tt class="py-lineno">395</tt>  <tt class="py-line">        <tt class="py-name">packet</tt> <tt class="py-op">+=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">pack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;BB"</tt><tt class="py-op">,</tt> <tt class="py-op">(</tt><tt class="py-name">cat</tt><tt class="py-op">&gt;&gt;</tt><tt class="py-number">16</tt><tt class="py-op">)</tt><tt class="py-op">&amp;</tt><tt class="py-name">max_int16</tt><tt class="py-op">,</tt> <tt class="py-name">cat</tt><tt class="py-op">&amp;</tt><tt class="py-name">max_int16</tt><tt class="py-op">)</tt> </tt>
+<a name="L396"></a><tt class="py-lineno">396</tt>  <tt class="py-line">        <tt id="link-152" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-152', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"cat:%s"</tt><tt class="py-op">,</tt> <tt class="py-name">cat</tt><tt class="py-op">)</tt> </tt>
+<a name="L397"></a><tt class="py-lineno">397</tt>  <tt class="py-line"> </tt>
+<a name="L398"></a><tt class="py-lineno">398</tt>  <tt class="py-line">        <tt class="py-name">plg_int</tt> <tt class="py-op">=</tt> <tt class="py-name">long</tt><tt class="py-op">(</tt><tt class="py-name">plg</tt><tt class="py-op">,</tt><tt class="py-number">16</tt><tt class="py-op">)</tt> </tt>
+<a name="L399"></a><tt class="py-lineno">399</tt>  <tt class="py-line">        <tt class="py-name">packet</tt> <tt class="py-op">+=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">pack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;QQ"</tt><tt class="py-op">,</tt> <tt class="py-op">(</tt><tt class="py-name">plg_int</tt><tt class="py-op">&gt;&gt;</tt><tt class="py-number">64</tt><tt class="py-op">)</tt><tt class="py-op">&amp;</tt><tt class="py-name">max_int64</tt><tt class="py-op">,</tt> <tt class="py-name">plg_int</tt><tt class="py-op">&amp;</tt><tt class="py-name">max_int64</tt><tt class="py-op">)</tt> </tt>
+<a name="L400"></a><tt class="py-lineno">400</tt>  <tt class="py-line">        <tt id="link-153" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-153', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"plg:%s"</tt><tt class="py-op">,</tt> <tt class="py-name">plg</tt><tt class="py-op">)</tt> </tt>
+<a name="L401"></a><tt class="py-lineno">401</tt>  <tt class="py-line"> </tt>
+<a name="L402"></a><tt class="py-lineno">402</tt>  <tt class="py-line">        <tt class="py-name">gid_int</tt> <tt class="py-op">=</tt> <tt class="py-name">long</tt><tt class="py-op">(</tt><tt class="py-name">gid</tt><tt class="py-op">,</tt> <tt class="py-number">16</tt><tt class="py-op">)</tt> </tt>
+<a name="L403"></a><tt class="py-lineno">403</tt>  <tt class="py-line">        <tt class="py-name">packet</tt> <tt class="py-op">+=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">pack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;Q"</tt><tt class="py-op">,</tt> <tt class="py-name">gid_int</tt><tt class="py-op">)</tt> </tt>
+<a name="L404"></a><tt class="py-lineno">404</tt>  <tt class="py-line">        <tt id="link-154" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-154', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"gid:%s"</tt><tt class="py-op">,</tt> <tt class="py-name">gid</tt><tt class="py-op">)</tt> </tt>
+<a name="L405"></a><tt class="py-lineno">405</tt>  <tt class="py-line"> </tt>
+<a name="L406"></a><tt class="py-lineno">406</tt>  <tt class="py-line">        <tt class="py-name">packet</tt> <tt class="py-op">+=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">pack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;BB"</tt><tt class="py-op">,</tt> <tt class="py-op">(</tt><tt class="py-name">mth</tt><tt class="py-op">&gt;&gt;</tt><tt class="py-number">16</tt><tt class="py-op">)</tt><tt class="py-op">&amp;</tt><tt class="py-name">max_int16</tt><tt class="py-op">,</tt> <tt class="py-name">mth</tt><tt class="py-op">&amp;</tt><tt class="py-name">max_int16</tt><tt class="py-op">)</tt> </tt>
+<a name="L407"></a><tt class="py-lineno">407</tt>  <tt class="py-line">        <tt id="link-155" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-155', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"mth:%s"</tt><tt class="py-op">,</tt> <tt class="py-name">mth</tt><tt class="py-op">)</tt> </tt>
+<a name="L408"></a><tt class="py-lineno">408</tt>  <tt class="py-line"> </tt>
+<a name="L409"></a><tt class="py-lineno">409</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">pld</tt><tt class="py-op">:</tt> </tt>
+<a name="L410"></a><tt class="py-lineno">410</tt>  <tt class="py-line">            <tt class="py-name">pld_serialised</tt> <tt class="py-op">=</tt> <tt class="py-name">json</tt><tt class="py-op">.</tt><tt class="py-name">dumps</tt><tt class="py-op">(</tt><tt class="py-name">pld</tt><tt class="py-op">,</tt> <tt class="py-name">separators</tt><tt class="py-op">=</tt><tt class="py-op">(</tt><tt class="py-string">","</tt><tt class="py-op">,</tt><tt class="py-string">":"</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L411"></a><tt class="py-lineno">411</tt>  <tt class="py-line">            <tt class="py-name">pld_base64</tt> <tt class="py-op">=</tt> <tt class="py-name">base64</tt><tt class="py-op">.</tt><tt class="py-name">encodestring</tt><tt class="py-op">(</tt><tt class="py-name">pld_serialised</tt><tt class="py-op">)</tt> </tt>
+<a name="L412"></a><tt class="py-lineno">412</tt>  <tt class="py-line">            <tt class="py-name">pln</tt> <tt class="py-op">=</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">pld_base64</tt><tt class="py-op">)</tt> </tt>
+<a name="L413"></a><tt class="py-lineno">413</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L414"></a><tt class="py-lineno">414</tt>  <tt class="py-line">            <tt class="py-name">pld_base64</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L415"></a><tt class="py-lineno">415</tt>  <tt class="py-line">            <tt class="py-name">pln</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L416"></a><tt class="py-lineno">416</tt>  <tt class="py-line"> </tt>
+<a name="L417"></a><tt class="py-lineno">417</tt>  <tt class="py-line">        <tt class="py-name">packet</tt> <tt class="py-op">+=</tt> <tt class="py-name">struct</tt><tt class="py-op">.</tt><tt class="py-name">pack</tt><tt class="py-op">(</tt><tt class="py-string">"&gt;L"</tt><tt class="py-op">,</tt> <tt class="py-name">pln</tt><tt class="py-op">)</tt> </tt>
+<a name="L418"></a><tt class="py-lineno">418</tt>  <tt class="py-line">        <tt id="link-156" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-156', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"pln:%d"</tt><tt class="py-op">,</tt> <tt class="py-name">pln</tt><tt class="py-op">)</tt> </tt>
+<a name="L419"></a><tt class="py-lineno">419</tt>  <tt class="py-line"> </tt>
+<a name="L420"></a><tt class="py-lineno">420</tt>  <tt class="py-line">        <tt class="py-name">packet</tt> <tt class="py-op">+=</tt> <tt class="py-name">pld_base64</tt> </tt>
+<a name="L421"></a><tt class="py-lineno">421</tt>  <tt class="py-line">        <tt id="link-157" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-157', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"pld:%s"</tt><tt class="py-op">,</tt> <tt class="py-name">repr</tt><tt class="py-op">(</tt><tt class="py-name">pld_base64</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L422"></a><tt class="py-lineno">422</tt>  <tt class="py-line"> </tt>
+<a name="L423"></a><tt class="py-lineno">423</tt>  <tt class="py-line">        <tt class="py-name">sent</tt> <tt class="py-op">=</tt> <tt class="py-name">sock</tt><tt class="py-op">.</tt><tt id="link-158" class="py-name" targets="Function connection.ccdlib.send()=connection.ccdlib-module.html#send"><a title="connection.ccdlib.send" class="py-name" href="#" onclick="return doclink('link-158', 'send', 'link-158');">send</a></tt><tt class="py-op">(</tt><tt class="py-name">packet</tt><tt class="py-op">)</tt> </tt>
+<a name="L424"></a><tt class="py-lineno">424</tt>  <tt class="py-line"> </tt>
+<a name="L425"></a><tt class="py-lineno">425</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">sent</tt> <tt class="py-op">&lt;=</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L426"></a><tt class="py-lineno">426</tt>  <tt class="py-line">            <tt id="link-159" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-159', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">"warning: Sent %d bytes!"</tt><tt class="py-op">,</tt> <tt class="py-name">sent</tt><tt class="py-op">)</tt> </tt>
+<a name="L427"></a><tt class="py-lineno">427</tt>  <tt class="py-line"> </tt>
+<a name="L428"></a><tt class="py-lineno">428</tt>  <tt class="py-line">    <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt> <tt class="py-keyword">as</tt> <tt class="py-name">err</tt><tt class="py-op">:</tt> </tt>
+<a name="L429"></a><tt class="py-lineno">429</tt>  <tt class="py-line">        <tt id="link-160" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-160', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">"Error while sending packet:'%s'"</tt><tt class="py-op">,</tt> <tt class="py-name">err</tt><tt class="py-op">)</tt> </tt>
+<a name="L430"></a><tt class="py-lineno">430</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> </tt>
+<a name="L431"></a><tt class="py-lineno">431</tt>  <tt class="py-line"> </tt>
+<a name="L432"></a><tt class="py-lineno">432</tt>  <tt class="py-line">    <tt id="link-161" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-161', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"sent %d bytes"</tt><tt class="py-op">,</tt> <tt class="py-name">sent</tt><tt class="py-op">)</tt> </tt>
+<a name="L433"></a><tt class="py-lineno">433</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">sent</tt> </tt>
+</div><a name="L434"></a><tt class="py-lineno">434</tt>  <tt class="py-line"> </tt>
+<a name="checkRsp"></a><div id="checkRsp-def"><a name="L435"></a><tt class="py-lineno">435</tt> <a class="py-toggle" href="#" id="checkRsp-toggle" onclick="return toggle('checkRsp');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="connection.ccdlib-module.html#checkRsp">checkRsp</a><tt class="py-op">(</tt><tt class="py-param">request</tt><tt class="py-op">,</tt> <tt class="py-param">response</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="checkRsp-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="checkRsp-expanded"><a name="L436"></a><tt class="py-lineno">436</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L437"></a><tt class="py-lineno">437</tt>  <tt class="py-line"><tt class="py-docstring">    Function validates whether sid, rid, cat, plg and method</tt> </tt>
+<a name="L438"></a><tt class="py-lineno">438</tt>  <tt class="py-line"><tt class="py-docstring">    match.</tt> </tt>
+<a name="L439"></a><tt class="py-lineno">439</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L440"></a><tt class="py-lineno">440</tt>  <tt class="py-line"><tt class="py-docstring">    input:</tt> </tt>
+<a name="L441"></a><tt class="py-lineno">441</tt>  <tt class="py-line"><tt class="py-docstring">        request     request tuple that triggered response</tt> </tt>
+<a name="L442"></a><tt class="py-lineno">442</tt>  <tt class="py-line"><tt class="py-docstring">        response    response to check against request</tt> </tt>
+<a name="L443"></a><tt class="py-lineno">443</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L444"></a><tt class="py-lineno">444</tt>  <tt class="py-line"><tt class="py-docstring">    output:</tt> </tt>
+<a name="L445"></a><tt class="py-lineno">445</tt>  <tt class="py-line"><tt class="py-docstring">        boolean     indicates whether the response is valid against the request</tt> </tt>
+<a name="L446"></a><tt class="py-lineno">446</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L447"></a><tt class="py-lineno">447</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L448"></a><tt class="py-lineno">448</tt>  <tt class="py-line">    <tt class="py-name">op</tt><tt class="py-op">,</tt> <tt class="py-name">sid</tt><tt class="py-op">,</tt> <tt class="py-name">rid</tt><tt class="py-op">,</tt> <tt class="py-name">cat</tt><tt class="py-op">,</tt> <tt class="py-name">plg</tt><tt class="py-op">,</tt> <tt class="py-name">gid</tt><tt class="py-op">,</tt> <tt class="py-name">mth</tt><tt class="py-op">,</tt> <tt class="py-name">pld</tt> <tt class="py-op">=</tt> <tt class="py-name">request</tt> </tt>
+<a name="L449"></a><tt class="py-lineno">449</tt>  <tt class="py-line">    <tt class="py-name">r_op</tt><tt class="py-op">,</tt> <tt class="py-name">r_sid</tt><tt class="py-op">,</tt> <tt class="py-name">r_rid</tt><tt class="py-op">,</tt> <tt class="py-name">r_cat</tt><tt class="py-op">,</tt> <tt class="py-name">r_plg</tt><tt class="py-op">,</tt> <tt class="py-name">r_gid</tt><tt class="py-op">,</tt> <tt class="py-name">r_mth</tt><tt class="py-op">,</tt> <tt class="py-name">r_pld</tt> <tt class="py-op">=</tt> <tt class="py-name">response</tt> </tt>
+<a name="L450"></a><tt class="py-lineno">450</tt>  <tt class="py-line">    <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L451"></a><tt class="py-lineno">451</tt>  <tt class="py-line"> </tt>
+<a name="L452"></a><tt class="py-lineno">452</tt>  <tt class="py-line">    <tt class="py-comment"># version is already checked by recvPacket</tt> </tt>
+<a name="L453"></a><tt class="py-lineno">453</tt>  <tt class="py-line">    <tt class="py-comment"># operation is checked by caller</tt> </tt>
+<a name="L454"></a><tt class="py-lineno">454</tt>  <tt class="py-line">    <tt class="py-comment"># check the rest</tt> </tt>
+<a name="L455"></a><tt class="py-lineno">455</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">r_sid</tt> <tt class="py-op">!=</tt> <tt class="py-name">sid</tt><tt class="py-op">.</tt><tt class="py-name">zfill</tt><tt class="py-op">(</tt><tt class="py-number">32</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L456"></a><tt class="py-lineno">456</tt>  <tt class="py-line">        <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L457"></a><tt class="py-lineno">457</tt>  <tt class="py-line"> </tt>
+<a name="L458"></a><tt class="py-lineno">458</tt>  <tt class="py-line">    <tt class="py-keyword">elif</tt> <tt class="py-name">r_rid</tt> <tt class="py-op">!=</tt> <tt class="py-name">rid</tt><tt class="py-op">.</tt><tt class="py-name">zfill</tt><tt class="py-op">(</tt><tt class="py-number">32</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L459"></a><tt class="py-lineno">459</tt>  <tt class="py-line">        <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L460"></a><tt class="py-lineno">460</tt>  <tt class="py-line"> </tt>
+<a name="L461"></a><tt class="py-lineno">461</tt>  <tt class="py-line">    <tt class="py-keyword">elif</tt> <tt class="py-name">r_cat</tt> <tt class="py-op">!=</tt> <tt class="py-name">cat</tt><tt class="py-op">:</tt> </tt>
+<a name="L462"></a><tt class="py-lineno">462</tt>  <tt class="py-line">        <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L463"></a><tt class="py-lineno">463</tt>  <tt class="py-line"> </tt>
+<a name="L464"></a><tt class="py-lineno">464</tt>  <tt class="py-line">    <tt class="py-keyword">elif</tt> <tt class="py-name">r_plg</tt> <tt class="py-op">!=</tt> <tt class="py-name">plg</tt><tt class="py-op">.</tt><tt class="py-name">zfill</tt><tt class="py-op">(</tt><tt class="py-number">32</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L465"></a><tt class="py-lineno">465</tt>  <tt class="py-line">        <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L466"></a><tt class="py-lineno">466</tt>  <tt class="py-line"> </tt>
+<a name="L467"></a><tt class="py-lineno">467</tt>  <tt class="py-line">    <tt class="py-keyword">elif</tt> <tt class="py-name">r_gid</tt> <tt class="py-op">!=</tt> <tt class="py-name">gid</tt><tt class="py-op">.</tt><tt class="py-name">zfill</tt><tt class="py-op">(</tt><tt class="py-number">8</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L468"></a><tt class="py-lineno">468</tt>  <tt class="py-line">        <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L469"></a><tt class="py-lineno">469</tt>  <tt class="py-line"> </tt>
+<a name="L470"></a><tt class="py-lineno">470</tt>  <tt class="py-line">    <tt id="link-162" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-162', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"validation result:%s"</tt><tt class="py-op">,</tt> <tt class="py-name">result</tt><tt class="py-op">)</tt> </tt>
+<a name="L471"></a><tt class="py-lineno">471</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">result</tt> </tt>
+</div><a name="L472"></a><tt class="py-lineno">472</tt>  <tt class="py-line"> </tt>
+<a name="EmptyException"></a><div id="EmptyException-def"><a name="L473"></a><tt class="py-lineno">473</tt> <a class="py-toggle" href="#" id="EmptyException-toggle" onclick="return toggle('EmptyException');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="connection.ccdlib.EmptyException-class.html">EmptyException</a><tt class="py-op">(</tt><tt class="py-base-class">Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EmptyException-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="EmptyException-expanded"><a name="L474"></a><tt class="py-lineno">474</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L475"></a><tt class="py-lineno">475</tt>  <tt class="py-line"> </tt>
+<a name="InvalidPacketError"></a><div id="InvalidPacketError-def"><a name="L476"></a><tt class="py-lineno">476</tt> <a class="py-toggle" href="#" id="InvalidPacketError-toggle" onclick="return toggle('InvalidPacketError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="connection.ccdlib.InvalidPacketError-class.html">InvalidPacketError</a><tt class="py-op">(</tt><tt class="py-base-class">Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InvalidPacketError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="InvalidPacketError-expanded"><a name="InvalidPacketError.__init__"></a><div id="InvalidPacketError.__init__-def"><a name="L477"></a><tt class="py-lineno">477</tt> <a class="py-toggle" href="#" id="InvalidPacketError.__init__-toggle" onclick="return toggle('InvalidPacketError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="connection.ccdlib.InvalidPacketError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">v</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InvalidPacketError.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="InvalidPacketError.__init__-expanded"><a name="L478"></a><tt class="py-lineno">478</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">=</tt> <tt class="py-name">v</tt> </tt>
+</div><a name="InvalidPacketError.__str__"></a><div id="InvalidPacketError.__str__-def"><a name="L479"></a><tt class="py-lineno">479</tt> <a class="py-toggle" href="#" id="InvalidPacketError.__str__-toggle" onclick="return toggle('InvalidPacketError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="connection.ccdlib.InvalidPacketError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InvalidPacketError.__str__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="InvalidPacketError.__str__-expanded"><a name="L480"></a><tt class="py-lineno">480</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">repr</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">value</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L481"></a><tt class="py-lineno">481</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:38 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

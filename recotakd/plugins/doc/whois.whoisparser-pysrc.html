@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>whois.whoisparser</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd plugin documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="whois-module.html">Package&nbsp;whois</a> ::
+        Module&nbsp;whoisparser
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="whois.whoisparser-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="whois.whoisparser-module.html">Module whois.whoisparser</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">re</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2014, curesec GmbH</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># All rights reserved.</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># Redistribution and use in source and binary forms, with or without modification, </tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># are permitted provided that the following conditions are met:</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"># 1. Redistributions of source code must retain the above copyright notice, this list of </tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"># conditions and the following disclaimer.</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"># 2. Redistributions in binary form must reproduce the above copyright notice, this list </tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># of conditions and the following disclaimer in the documentation and/or other materials </tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># provided with the distribution.</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"># 3. Neither the name of the copyright holder nor the names of its contributors may be used </tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"># to endorse or promote products derived from this software without specific prior written </tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># permission.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-comment"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS </tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-comment"># OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF </tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE </tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-comment"># COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, </tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-comment"># EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF </tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-comment"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) </tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-comment"># HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR </tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-comment"># TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, </tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-comment"># EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">ConfigParser</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">types</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Variable search-duckgo.duckgo.logging=search-duckgo.duckgo-module.html#logging"><a title="search-duckgo.duckgo.logging" class="py-name" href="#" onclick="return doclink('link-0', 'logging', 'link-0');">logging</a></tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt id="link-1" class="py-name" targets="Variable whois.whoisparser.FILE=whois.whoisparser-module.html#FILE"><a title="whois.whoisparser.FILE" class="py-name" href="#" onclick="return doclink('link-1', 'FILE', 'link-1');">FILE</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"parser.regex"</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt id="link-2" class="py-name" targets="Variable whois.whoisparser.loggerparser=whois.whoisparser-module.html#loggerparser"><a title="whois.whoisparser.loggerparser" class="py-name" href="#" onclick="return doclink('link-2', 'loggerparser', 'link-2');">loggerparser</a></tt> <tt class="py-op">=</tt> <tt id="link-3" class="py-name"><a title="search-duckgo.duckgo.logging" class="py-name" href="#" onclick="return doclink('link-3', 'logging', 'link-0');">logging</a></tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-name">__name__</tt><tt class="py-op">)</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"> </tt>
+<a name="Parser"></a><div id="Parser-def"><a name="L37"></a><tt class="py-lineno"> 37</tt> <a class="py-toggle" href="#" id="Parser-toggle" onclick="return toggle('Parser');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="whois.whoisparser.Parser-class.html">Parser</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Parser-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Parser-expanded"><a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">    <tt id="link-4" class="py-name" targets="Variable whois.whoisparser.Parser.IPTYPE=whois.whoisparser.Parser-class.html#IPTYPE"><a title="whois.whoisparser.Parser.IPTYPE" class="py-name" href="#" onclick="return doclink('link-4', 'IPTYPE', 'link-4');">IPTYPE</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"ip"</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">    <tt id="link-5" class="py-name" targets="Variable whois.whoisparser.Parser.NICTYPE=whois.whoisparser.Parser-class.html#NICTYPE"><a title="whois.whoisparser.Parser.NICTYPE" class="py-name" href="#" onclick="return doclink('link-5', 'NICTYPE', 'link-5');">NICTYPE</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"admin-nic"</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">    <tt id="link-6" class="py-name" targets="Variable whois.whoisparser.Parser.NETNAMETYPE=whois.whoisparser.Parser-class.html#NETNAMETYPE"><a title="whois.whoisparser.Parser.NETNAMETYPE" class="py-name" href="#" onclick="return doclink('link-6', 'NETNAMETYPE', 'link-6');">NETNAMETYPE</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"netname-nic"</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"> </tt>
+<a name="Parser.__init__"></a><div id="Parser.__init__-def"><a name="L42"></a><tt class="py-lineno"> 42</tt> <a class="py-toggle" href="#" id="Parser.__init__-toggle" onclick="return toggle('Parser.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="whois.whoisparser.Parser-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">fn</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Parser.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Parser.__init__-expanded"><a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-comment"># this is used for nested</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-comment"># object creation while</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-comment"># parsing regex results</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__objectStack</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__count</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt class="py-comment"># load regex</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">regex</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Method whois.whoisparser.Parser.__loadRegex()=whois.whoisparser.Parser-class.html#__loadRegex"><a title="whois.whoisparser.Parser.__loadRegex" class="py-name" href="#" onclick="return doclink('link-7', '__loadRegex', 'link-7');">__loadRegex</a></tt><tt class="py-op">(</tt><tt class="py-name">fn</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"> </tt>
+<a name="Parser.parseWhoisResponse"></a><div id="Parser.parseWhoisResponse-def"><a name="L54"></a><tt class="py-lineno"> 54</tt> <a class="py-toggle" href="#" id="Parser.parseWhoisResponse-toggle" onclick="return toggle('Parser.parseWhoisResponse');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="whois.whoisparser.Parser-class.html#parseWhoisResponse">parseWhoisResponse</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">server</tt><tt class="py-op">,</tt> <tt class="py-param">response</tt><tt class="py-op">,</tt> <tt class="py-param">responseType</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Parser.parseWhoisResponse-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Parser.parseWhoisResponse-expanded"><a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt id="link-8" class="py-name"><a title="whois.whoisparser.loggerparser" class="py-name" href="#" onclick="return doclink('link-8', 'loggerparser', 'link-2');">loggerparser</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"parsing response=%s"</tt> <tt class="py-op">%</tt> <tt class="py-name">response</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-name">serverCommentChar</tt> <tt class="py-op">=</tt> <tt class="py-string">"%"</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">dict</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt class="py-name">regex</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">regex</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">responseType</tt> <tt class="py-op">==</tt> <tt id="link-9" class="py-name" targets="Class whois.whoisparser.Parser=whois.whoisparser.Parser-class.html"><a title="whois.whoisparser.Parser" class="py-name" href="#" onclick="return doclink('link-9', 'Parser', 'link-9');">Parser</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="whois.whoisparser.Parser.NICTYPE" class="py-name" href="#" onclick="return doclink('link-10', 'NICTYPE', 'link-5');">NICTYPE</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">            <tt class="py-name">server</tt> <tt class="py-op">=</tt> <tt class="py-string">"ADMINNIC:%s"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">server</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">        <tt class="py-keyword">elif</tt> <tt class="py-name">responseType</tt> <tt class="py-op">==</tt> <tt id="link-11" class="py-name"><a title="whois.whoisparser.Parser" class="py-name" href="#" onclick="return doclink('link-11', 'Parser', 'link-9');">Parser</a></tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="whois.whoisparser.Parser.NETNAMETYPE" class="py-name" href="#" onclick="return doclink('link-12', 'NETNAMETYPE', 'link-6');">NETNAMETYPE</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">            <tt class="py-name">server</tt> <tt class="py-op">=</tt> <tt class="py-string">"NETNAMENIC:%s"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">server</tt><tt class="py-op">)</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-name">server</tt> <tt class="py-op">=</tt> <tt class="py-name">server</tt><tt class="py-op">.</tt><tt class="py-name">upper</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">        <tt class="py-comment"># check whether regex for this</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">        <tt class="py-comment"># server are defined in config</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">regex</tt><tt class="py-op">.</tt><tt class="py-name">has_section</tt><tt class="py-op">(</tt><tt class="py-name">server</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">            <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Method whois.whoisparser.Parser.__applyReg()=whois.whoisparser.Parser-class.html#__applyReg"><a title="whois.whoisparser.Parser.__applyReg" class="py-name" href="#" onclick="return doclink('link-13', '__applyReg', 'link-13');">__applyReg</a></tt><tt class="py-op">(</tt><tt class="py-name">regex</tt><tt class="py-op">,</tt> <tt class="py-name">server</tt><tt class="py-op">,</tt> <tt class="py-name">response</tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">            <tt id="link-14" class="py-name"><a title="whois.whoisparser.loggerparser" class="py-name" href="#" onclick="return doclink('link-14', 'loggerparser', 'link-2');">loggerparser</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">"[Parser] Server has no defined regex. "</tt><tt class="py-op">+</tt>\ </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">                            <tt class="py-string">"Using regex of ripe.net."</tt><tt class="py-op">)</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">            <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name"><a title="whois.whoisparser.Parser.__applyReg" class="py-name" href="#" onclick="return doclink('link-15', '__applyReg', 'link-13');">__applyReg</a></tt><tt class="py-op">(</tt><tt class="py-name">regex</tt><tt class="py-op">,</tt> <tt class="py-string">"WHOIS.RIPE.NET"</tt><tt class="py-op">,</tt> <tt class="py-name">response</tt><tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">result</tt> </tt>
+</div><a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="Parser.__applyReg"></a><div id="Parser.__applyReg-def"><a name="L78"></a><tt class="py-lineno"> 78</tt> <a class="py-toggle" href="#" id="Parser.__applyReg-toggle" onclick="return toggle('Parser.__applyReg');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="whois.whoisparser.Parser-class.html#__applyReg">__applyReg</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">regex</tt><tt class="py-op">,</tt> <tt class="py-param">server</tt><tt class="py-op">,</tt> <tt class="py-param">response</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Parser.__applyReg-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Parser.__applyReg-expanded"><a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">dict</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">        <tt class="py-comment"># we need to remember objects</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">        <tt class="py-comment"># already created - this is</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-comment"># due to nested objects</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">        <tt class="py-name">objectstack</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt class="py-comment"># load all key-value pairs</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-comment"># for the matching section</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt id="link-16" class="py-name" targets="Method cureto.cureto.config.items()=cureto.cureto.config-class.html#items"><a title="cureto.cureto.config.items" class="py-name" href="#" onclick="return doclink('link-16', 'items', 'link-16');">items</a></tt> <tt class="py-op">=</tt> <tt class="py-name">regex</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="cureto.cureto.config.items" class="py-name" href="#" onclick="return doclink('link-17', 'items', 'link-16');">items</a></tt><tt class="py-op">(</tt><tt class="py-name">server</tt><tt class="py-op">)</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-comment"># apply every regex</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">name</tt><tt class="py-op">,</tt> <tt class="py-name">reg</tt> <tt class="py-keyword">in</tt> <tt id="link-18" class="py-name"><a title="cureto.cureto.config.items" class="py-name" href="#" onclick="return doclink('link-18', 'items', 'link-16');">items</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">            <tt class="py-name">findings</tt> <tt class="py-op">=</tt> <tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">findall</tt><tt class="py-op">(</tt><tt class="py-name">reg</tt><tt class="py-op">,</tt><tt class="py-name">response</tt><tt class="py-op">)</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">            <tt class="py-comment"># strip spaces etc</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">            <tt class="py-name">findings</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Method whois.whoisparser.Parser.__stripFindings()=whois.whoisparser.Parser-class.html#__stripFindings"><a title="whois.whoisparser.Parser.__stripFindings" class="py-name" href="#" onclick="return doclink('link-19', '__stripFindings', 'link-19');">__stripFindings</a></tt><tt class="py-op">(</tt><tt class="py-name">findings</tt><tt class="py-op">)</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">            <tt class="py-comment"># build nested objects</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">            <tt class="py-name">objects</tt> <tt class="py-op">=</tt> <tt class="py-name">name</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">"-"</tt><tt class="py-op">)</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">            <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Method whois.whoisparser.Parser.__addToObject()=whois.whoisparser.Parser-class.html#__addToObject"><a title="whois.whoisparser.Parser.__addToObject" class="py-name" href="#" onclick="return doclink('link-20', '__addToObject', 'link-20');">__addToObject</a></tt><tt class="py-op">(</tt>\ </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">                        <tt class="py-name">parentObject</tt><tt class="py-op">=</tt><tt class="py-name">result</tt><tt class="py-op">,</tt>\ </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">                        <tt class="py-name">subObjects</tt><tt class="py-op">=</tt><tt class="py-name">objects</tt><tt class="py-op">,</tt>\ </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">                        <tt id="link-21" class="py-name" targets="Method cureto.cureto.config.values()=cureto.cureto.config-class.html#values"><a title="cureto.cureto.config.values" class="py-name" href="#" onclick="return doclink('link-21', 'values', 'link-21');">values</a></tt><tt class="py-op">=</tt><tt class="py-name">findings</tt>\ </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">                        <tt class="py-op">)</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">result</tt> </tt>
+</div><a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"> </tt>
+<a name="Parser.__addToObject"></a><div id="Parser.__addToObject-def"><a name="L107"></a><tt class="py-lineno">107</tt> <a class="py-toggle" href="#" id="Parser.__addToObject-toggle" onclick="return toggle('Parser.__addToObject');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="whois.whoisparser.Parser-class.html#__addToObject">__addToObject</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">parentObject</tt><tt class="py-op">,</tt> <tt class="py-param">subObjects</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-param">values</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Parser.__addToObject-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Parser.__addToObject-expanded"><a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">        <tt class="py-name">length</tt> <tt class="py-op">=</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">subObjects</tt><tt class="py-op">)</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">        <tt class="py-comment"># create subobjects - add last entry n</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-comment"># to predecessor n-1</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">length</tt><tt class="py-op">&gt;</tt><tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">            <tt class="py-name">n</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-name">subObjects</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">:</tt><tt class="py-op">{</tt><tt class="py-op">}</tt><tt class="py-op">}</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">            <tt class="py-name">nPlusOne</tt> <tt class="py-op">=</tt> <tt class="py-name">subObjects</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">:</tt><tt class="py-op">]</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">            <tt class="py-comment"># n to n+1</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">            <tt class="py-name">n</tt><tt class="py-op">[</tt><tt class="py-name">subObjects</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="whois.whoisparser.Parser.__addToObject" class="py-name" href="#" onclick="return doclink('link-22', '__addToObject', 'link-20');">__addToObject</a></tt><tt class="py-op">(</tt><tt class="py-name">n</tt><tt class="py-op">[</tt><tt class="py-name">subObjects</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">nPlusOne</tt><tt class="py-op">,</tt> <tt id="link-23" class="py-name"><a title="cureto.cureto.config.values" class="py-name" href="#" onclick="return doclink('link-23', 'values', 'link-21');">values</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">            <tt class="py-comment"># sub to parent</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">            <tt class="py-name">parentObject</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="whois.whoisparser.Parser.__addToObject" class="py-name" href="#" onclick="return doclink('link-24', '__addToObject', 'link-20');">__addToObject</a></tt><tt class="py-op">(</tt><tt class="py-name">parentObject</tt><tt class="py-op">,</tt><tt class="py-op">[</tt><tt class="py-name">n</tt><tt class="py-op">]</tt><tt class="py-op">,</tt><tt id="link-25" class="py-name"><a title="cureto.cureto.config.values" class="py-name" href="#" onclick="return doclink('link-25', 'values', 'link-21');">values</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">parentObject</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">        <tt class="py-comment"># check whether parent already has</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">        <tt class="py-comment"># an object with that name -</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">        <tt class="py-comment"># if so extend, otherwise create one</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">        <tt class="py-keyword">elif</tt> <tt class="py-name">length</tt> <tt class="py-op">==</tt><tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">            <tt class="py-name">new</tt> <tt class="py-op">=</tt> <tt class="py-name">subObjects</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">type</tt><tt class="py-op">(</tt><tt class="py-name">new</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-name">types</tt><tt class="py-op">.</tt><tt class="py-name">DictType</tt><tt class="py-op">:</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">                <tt class="py-name">name</tt> <tt class="py-op">=</tt> <tt class="py-name">new</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name" targets="Method cureto.cureto.config.keys()=cureto.cureto.config-class.html#keys"><a title="cureto.cureto.config.keys" class="py-name" href="#" onclick="return doclink('link-26', 'keys', 'link-26');">keys</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">                <tt class="py-name">new</tt> <tt class="py-op">=</tt> <tt class="py-name">new</tt><tt class="py-op">[</tt><tt class="py-name">name</tt><tt class="py-op">]</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">            <tt class="py-keyword">elif</tt> <tt class="py-name">type</tt><tt class="py-op">(</tt><tt class="py-name">new</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-name">types</tt><tt class="py-op">.</tt><tt class="py-name">StringType</tt><tt class="py-op">:</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">                <tt class="py-name">name</tt> <tt class="py-op">=</tt> <tt class="py-name">new</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">                <tt class="py-name">new</tt> <tt class="py-op">=</tt> <tt id="link-27" class="py-name"><a title="cureto.cureto.config.values" class="py-name" href="#" onclick="return doclink('link-27', 'values', 'link-21');">values</a></tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">            <tt class="py-name">new</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name" targets="Method whois.whoisparser.Parser.__extendNode()=whois.whoisparser.Parser-class.html#__extendNode"><a title="whois.whoisparser.Parser.__extendNode" class="py-name" href="#" onclick="return doclink('link-28', '__extendNode', 'link-28');">__extendNode</a></tt><tt class="py-op">(</tt><tt class="py-name">name</tt><tt class="py-op">,</tt> <tt class="py-name">parentObject</tt><tt class="py-op">,</tt><tt class="py-name">new</tt><tt class="py-op">)</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line"> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">parentObject</tt> </tt>
+</div><a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line"> </tt>
+<a name="Parser.__extendNode"></a><div id="Parser.__extendNode-def"><a name="L141"></a><tt class="py-lineno">141</tt> <a class="py-toggle" href="#" id="Parser.__extendNode-toggle" onclick="return toggle('Parser.__extendNode');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="whois.whoisparser.Parser-class.html#__extendNode">__extendNode</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">,</tt> <tt class="py-param">parentObject</tt><tt class="py-op">,</tt> <tt class="py-param">new</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Parser.__extendNode-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Parser.__extendNode-expanded"><a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">type</tt><tt class="py-op">(</tt><tt class="py-name">new</tt><tt class="py-op">)</tt> <tt class="py-op">!=</tt> <tt class="py-name">types</tt><tt class="py-op">.</tt><tt class="py-name">DictType</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">            <tt class="py-name">parentObject</tt><tt class="py-op">[</tt><tt class="py-name">name</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">new</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">new</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line"> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">name</tt> <tt class="py-keyword">in</tt> <tt class="py-name">parentObject</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="cureto.cureto.config.keys" class="py-name" href="#" onclick="return doclink('link-29', 'keys', 'link-26');">keys</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">            <tt class="py-name">tmp</tt> <tt class="py-op">=</tt> <tt class="py-name">name</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">            <tt class="py-name">name</tt> <tt class="py-op">=</tt> <tt class="py-name">new</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="cureto.cureto.config.keys" class="py-name" href="#" onclick="return doclink('link-30', 'keys', 'link-26');">keys</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name"><a title="whois.whoisparser.Parser.__extendNode" class="py-name" href="#" onclick="return doclink('link-31', '__extendNode', 'link-28');">__extendNode</a></tt><tt class="py-op">(</tt><tt class="py-name">name</tt><tt class="py-op">,</tt> <tt class="py-name">parentObject</tt><tt class="py-op">[</tt><tt class="py-name">tmp</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">new</tt><tt class="py-op">[</tt><tt class="py-name">name</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">            <tt class="py-name">parentObject</tt><tt class="py-op">[</tt><tt class="py-name">name</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">new</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">new</tt> </tt>
+</div><a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line"> </tt>
+<a name="Parser.__stripFindings"></a><div id="Parser.__stripFindings-def"><a name="L155"></a><tt class="py-lineno">155</tt> <a class="py-toggle" href="#" id="Parser.__stripFindings-toggle" onclick="return toggle('Parser.__stripFindings');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="whois.whoisparser.Parser-class.html#__stripFindings">__stripFindings</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">findings</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Parser.__stripFindings-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Parser.__stripFindings-expanded"><a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">        <tt class="py-name">strippedFindings</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">f</tt> <tt class="py-keyword">in</tt> <tt class="py-name">findings</tt><tt class="py-op">:</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">            <tt class="py-name">s</tt> <tt class="py-op">=</tt> <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">strip</tt><tt class="py-op">(</tt><tt class="py-string">' \t\n\r'</tt><tt class="py-op">)</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"><tt class="py-comment">#           s = s.encode("utf-8")</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">            <tt class="py-name">strippedFindings</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">s</tt><tt class="py-op">)</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line"> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">strippedFindings</tt> </tt>
+</div><a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line"> </tt>
+<a name="Parser.__loadRegex"></a><div id="Parser.__loadRegex-def"><a name="L164"></a><tt class="py-lineno">164</tt> <a class="py-toggle" href="#" id="Parser.__loadRegex-toggle" onclick="return toggle('Parser.__loadRegex');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="whois.whoisparser.Parser-class.html#__loadRegex">__loadRegex</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">fn</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Parser.__loadRegex-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Parser.__loadRegex-expanded"><a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">        <tt class="py-name">regex</tt> <tt class="py-op">=</tt> <tt class="py-name">ConfigParser</tt><tt class="py-op">.</tt><tt class="py-name">RawConfigParser</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">        <tt class="py-keyword">with</tt> <tt class="py-name">openany</tt><tt class="py-op">(</tt><tt class="py-name">fn</tt><tt class="py-op">,</tt> <tt class="py-string">'r'</tt><tt class="py-op">)</tt> <tt class="py-keyword">as</tt> <tt class="py-name">fp</tt><tt class="py-op">:</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">            <tt class="py-name">regex</tt><tt class="py-op">.</tt><tt class="py-name">readfp</tt><tt class="py-op">(</tt><tt class="py-name">fp</tt><tt class="py-op">)</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">regex</tt> </tt>
+</div></div><a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd plugin documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:45 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

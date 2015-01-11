@@ -1,0 +1,7 @@
+v0.34
+* minor fixes
+
+v0.3.0
+- It is now possible to set up a file pattern for 'Output' section.
+- new output: txt file
+- set up as module that is installable

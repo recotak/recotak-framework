@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>ctools.cBing.main</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="ctools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >ctools</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="ctools-module.html">Package&nbsp;ctools</a> ::
+        <a href="ctools.cBing-module.html">Package&nbsp;cBing</a> ::
+        Module&nbsp;main
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="ctools.cBing.main-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="ctools.cBing.main-module.html">Module ctools.cBing.main</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/env python</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-docstring">"""This module initializes the bing search plugin"""</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2014, curesec GmbH</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment"># All rights reserved.</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment"># Redistribution and use in source and binary forms, with or without modification, </tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment"># are permitted provided that the following conditions are met:</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-comment"># 1. Redistributions of source code must retain the above copyright notice, this list of </tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-comment"># conditions and the following disclaimer.</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-comment"># 2. Redistributions in binary form must reproduce the above copyright notice, this list </tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-comment"># of conditions and the following disclaimer in the documentation and/or other materials </tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-comment"># provided with the distribution.</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-comment"># 3. Neither the name of the copyright holder nor the names of its contributors may be used </tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-comment"># to endorse or promote products derived from this software without specific prior written </tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-comment"># permission.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"><tt class="py-comment"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS </tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-comment"># OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF </tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE </tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"><tt class="py-comment"># COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, </tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-comment"># EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF </tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"><tt class="py-comment"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) </tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt class="py-comment"># HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR </tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt class="py-comment"># TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, </tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt class="py-comment"># EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">time</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">threading</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Module ctools.cBing.bing=ctools.cBing.bing-module.html"><a title="ctools.cBing.bing" class="py-name" href="#" onclick="return doclink('link-0', 'bing', 'link-0');">bing</a></tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Class ctools.cBing.bing.BingQuery=ctools.cBing.bing.BingQuery-class.html"><a title="ctools.cBing.bing.BingQuery" class="py-name" href="#" onclick="return doclink('link-1', 'BingQuery', 'link-1');">BingQuery</a></tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">ccdClasses</tt> <tt class="py-keyword">as</tt> <tt class="py-name">ccd</tt> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line"> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"><tt id="link-2" class="py-name" targets="Variable ctools.cBing.main.LOG_IP=ctools.cBing.main-module.html#LOG_IP"><a title="ctools.cBing.main.LOG_IP" class="py-name" href="#" onclick="return doclink('link-2', 'LOG_IP', 'link-2');">LOG_IP</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"127.0.0.1"</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line"><tt id="link-3" class="py-name" targets="Variable ctools.cBing.main.LOG_PORT=ctools.cBing.main-module.html#LOG_PORT"><a title="ctools.cBing.main.LOG_PORT" class="py-name" href="#" onclick="return doclink('link-3', 'LOG_PORT', 'link-3');">LOG_PORT</a></tt> <tt class="py-op">=</tt> <tt class="py-number">3002</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"> </tt>
+<a name="main"></a><div id="main-def"><a name="L40"></a><tt class="py-lineno">40</tt> <a class="py-toggle" href="#" id="main-toggle" onclick="return toggle('main');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cBing.main-module.html#main">main</a><tt class="py-op">(</tt><tt class="py-param">f_getSocket</tt><tt class="py-op">,</tt> <tt class="py-param">rootpath</tt><tt class="py-op">,</tt> <tt class="py-param">dbh</tt><tt class="py-op">,</tt> <tt class="py-param">args</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="main-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="main-expanded"><a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">    <tt class="py-docstring">"""bing search plugin main function"""</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line"> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line">    <tt class="py-name">socket_handler</tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">handlers</tt><tt class="py-op">.</tt><tt class="py-name">SocketHandler</tt><tt class="py-op">(</tt><tt id="link-4" class="py-name"><a title="ctools.cBing.main.LOG_IP" class="py-name" href="#" onclick="return doclink('link-4', 'LOG_IP', 'link-2');">LOG_IP</a></tt><tt class="py-op">,</tt> <tt id="link-5" class="py-name"><a title="ctools.cBing.main.LOG_PORT" class="py-name" href="#" onclick="return doclink('link-5', 'LOG_PORT', 'link-3');">LOG_PORT</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">    <tt class="py-name">socket_handler</tt><tt class="py-op">.</tt><tt class="py-name">setLevel</tt><tt class="py-op">(</tt><tt class="py-name">logging</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Variable ctools.cDns.DEBUG=ctools.cDns-module.html#DEBUG"><a title="ctools.cDns.DEBUG" class="py-name" href="#" onclick="return doclink('link-6', 'DEBUG', 'link-6');">DEBUG</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line"> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">    <tt id="link-7" class="py-name" targets="Variable ctools.cCircCash.logger=ctools.cCircCash-module.html#logger,Variable ctools.cComm.logger=ctools.cComm-module.html#logger,Variable ctools.cDns.logger=ctools.cDns-module.html#logger,Variable ctools.cMon.logger=ctools.cMon-module.html#logger,Variable ctools.cMysql.logger=ctools.cMysql-module.html#logger,Variable ctools.cTargets.logger=ctools.cTargets-module.html#logger,Variable ctools.cTelnet.logger=ctools.cTelnet-module.html#logger,Variable ctools.cTuples.logger=ctools.cTuples-module.html#logger,Variable ctools.cUtil.logger=ctools.cUtil-module.html#logger,Variable ctools.cWorkerThreads.logger=ctools.cWorkerThreads-module.html#logger,Variable ctools.csockslib.logger=ctools.csockslib-module.html#logger,Variable ctools.sshlib.logger=ctools.sshlib-module.html#logger"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-7', 'logger', 'link-7');">logger</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-name">__name__</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">    <tt id="link-8" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-8', 'logger', 'link-7');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">setLevel</tt><tt class="py-op">(</tt><tt class="py-name">logging</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="ctools.cDns.DEBUG" class="py-name" href="#" onclick="return doclink('link-9', 'DEBUG', 'link-6');">DEBUG</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">    <tt id="link-10" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-10', 'logger', 'link-7');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">addHandler</tt><tt class="py-op">(</tt><tt class="py-name">socket_handler</tt><tt class="py-op">)</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">    <tt id="link-11" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-11', 'logger', 'link-7');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"starting plugin %s"</tt><tt class="py-op">,</tt> <tt class="py-name">__name__</tt><tt class="py-op">)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line"> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line">    <tt id="link-12" class="py-name"><a title="ctools.cBing.bing" class="py-name" href="#" onclick="return doclink('link-12', 'bing', 'link-0');">bing</a></tt> <tt class="py-op">=</tt> <tt id="link-13" class="py-name"><a title="ctools.cBing.bing.BingQuery" class="py-name" href="#" onclick="return doclink('link-13', 'BingQuery', 'link-1');">BingQuery</a></tt><tt class="py-op">(</tt><tt class="py-name">rootpath</tt><tt class="py-op">,</tt> <tt class="py-name">dbh</tt><tt class="py-op">)</tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">    <tt id="link-14" class="py-name"><a title="ctools.cBing.bing" class="py-name" href="#" onclick="return doclink('link-14', 'bing', 'link-0');">bing</a></tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method ctools.cBing.bing.BingQuery.parse_arguments()=ctools.cBing.bing.BingQuery-class.html#parse_arguments"><a title="ctools.cBing.bing.BingQuery.parse_arguments" class="py-name" href="#" onclick="return doclink('link-15', 'parse_arguments', 'link-15');">parse_arguments</a></tt><tt class="py-op">(</tt><tt class="py-name">args</tt><tt class="py-op">)</tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">    <tt id="link-16" class="py-name"><a title="ctools.cBing.bing" class="py-name" href="#" onclick="return doclink('link-16', 'bing', 'link-0');">bing</a></tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Method ctools.cBing.bing.BingQuery.calc_query_id()=ctools.cBing.bing.BingQuery-class.html#calc_query_id"><a title="ctools.cBing.bing.BingQuery.calc_query_id" class="py-name" href="#" onclick="return doclink('link-17', 'calc_query_id', 'link-17');">calc_query_id</a></tt><tt class="py-op">(</tt><tt id="link-18" class="py-name"><a title="ctools.cBing.bing" class="py-name" href="#" onclick="return doclink('link-18', 'bing', 'link-0');">bing</a></tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Method ctools.cDns.DNSQuery.query()=ctools.cDns.DNSQuery-class.html#query"><a title="ctools.cDns.DNSQuery.query" class="py-name" href="#" onclick="return doclink('link-19', 'query', 'link-19');">query</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line"> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">    <tt class="py-name">event</tt> <tt class="py-op">=</tt> <tt class="py-name">threading</tt><tt class="py-op">.</tt><tt class="py-name">Event</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">    <tt class="py-name">threads</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line">    <tt id="link-20" class="py-name"><a title="ctools.cBing.bing" class="py-name" href="#" onclick="return doclink('link-20', 'bing', 'link-0');">bing</a></tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Method ctools.cBing.bing.BingQuery.search()=ctools.cBing.bing.BingQuery-class.html#search,Method ctools.imapccd.CCDIMAP4.search()=ctools.imapccd.CCDIMAP4-class.html#search"><a title="ctools.cBing.bing.BingQuery.search
+ctools.imapccd.CCDIMAP4.search" class="py-name" href="#" onclick="return doclink('link-21', 'search', 'link-21');">search</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">    <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">sleep</tt><tt class="py-op">(</tt><tt class="py-number">0.05</tt><tt class="py-op">)</tt> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line"> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">_</tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt id="link-22" class="py-name"><a title="ctools.cBing.bing" class="py-name" href="#" onclick="return doclink('link-22', 'bing', 'link-0');">bing</a></tt><tt class="py-op">.</tt><tt class="py-name">thread_count</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line">        <tt class="py-name">bing_thread</tt> <tt class="py-op">=</tt> <tt id="link-23" class="py-name"><a title="ctools.cBing.bing.BingQuery" class="py-name" href="#" onclick="return doclink('link-23', 'BingQuery', 'link-1');">BingQuery</a></tt><tt class="py-op">(</tt><tt class="py-name">rootpath</tt><tt class="py-op">,</tt> <tt class="py-name">dbh</tt><tt class="py-op">,</tt> <tt class="py-name">event</tt><tt class="py-op">)</tt> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line">        <tt class="py-name">bing_thread</tt><tt class="py-op">.</tt><tt class="py-name">setDaemon</tt><tt class="py-op">(</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line">        <tt class="py-name">bing_thread</tt><tt class="py-op">.</tt><tt class="py-name">output_directory</tt> <tt class="py-op">=</tt> <tt id="link-24" class="py-name"><a title="ctools.cBing.bing" class="py-name" href="#" onclick="return doclink('link-24', 'bing', 'link-0');">bing</a></tt><tt class="py-op">.</tt><tt class="py-name">output_directory</tt> </tt>
+<a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line">        <tt class="py-name">bing_thread</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name" targets="Method ctools.cBing.bing.BingQuery.set_query()=ctools.cBing.bing.BingQuery-class.html#set_query"><a title="ctools.cBing.bing.BingQuery.set_query" class="py-name" href="#" onclick="return doclink('link-25', 'set_query', 'link-25');">set_query</a></tt><tt class="py-op">(</tt><tt id="link-26" class="py-name"><a title="ctools.cBing.bing" class="py-name" href="#" onclick="return doclink('link-26', 'bing', 'link-0');">bing</a></tt><tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="ctools.cDns.DNSQuery.query" class="py-name" href="#" onclick="return doclink('link-27', 'query', 'link-19');">query</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line">        <tt class="py-name">bing_thread</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name" targets="Method ctools.cBing.bing.BingQuery.set_count()=ctools.cBing.bing.BingQuery-class.html#set_count"><a title="ctools.cBing.bing.BingQuery.set_count" class="py-name" href="#" onclick="return doclink('link-28', 'set_count', 'link-28');">set_count</a></tt><tt class="py-op">(</tt><tt id="link-29" class="py-name"><a title="ctools.cBing.bing" class="py-name" href="#" onclick="return doclink('link-29', 'bing', 'link-0');">bing</a></tt><tt class="py-op">.</tt><tt class="py-name">count</tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">        <tt class="py-name">bing_thread</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name" targets="Method ctools.cBing.bing.BingQuery.set_query_id()=ctools.cBing.bing.BingQuery-class.html#set_query_id"><a title="ctools.cBing.bing.BingQuery.set_query_id" class="py-name" href="#" onclick="return doclink('link-30', 'set_query_id', 'link-30');">set_query_id</a></tt><tt class="py-op">(</tt><tt id="link-31" class="py-name"><a title="ctools.cBing.bing" class="py-name" href="#" onclick="return doclink('link-31', 'bing', 'link-0');">bing</a></tt><tt class="py-op">.</tt><tt class="py-name">query_id</tt><tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line">        <tt class="py-name">bing_thread</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name" targets="Method ctools.cWorkerThreads.cWork.start()=ctools.cWorkerThreads.cWork-class.html#start"><a title="ctools.cWorkerThreads.cWork.start" class="py-name" href="#" onclick="return doclink('link-32', 'start', 'link-32');">start</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line">        <tt class="py-name">threads</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">bing_thread</tt><tt class="py-op">)</tt> </tt>
+<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line"> </tt>
+<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">bing_thread</tt> <tt class="py-keyword">in</tt> <tt class="py-name">threads</tt><tt class="py-op">:</tt> </tt>
+<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line">        <tt class="py-name">bing_thread</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name" targets="Method ctools.cTelnet.Listener.join()=ctools.cTelnet.Listener-class.html#join,Method ctools.cWorkerThreads._cWorker.join()=ctools.cWorkerThreads._cWorker-class.html#join"><a title="ctools.cTelnet.Listener.join
+ctools.cWorkerThreads._cWorker.join" class="py-name" href="#" onclick="return doclink('link-33', 'join', 'link-33');">join</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line"> </tt>
+<a name="register"></a><div id="register-def"><a name="L73"></a><tt class="py-lineno">73</tt> <a class="py-toggle" href="#" id="register-toggle" onclick="return toggle('register');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cBing.main-module.html#register">register</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="register-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="register-expanded"><a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line">    <tt class="py-docstring">"""method which registers the plugin"""</tt> </tt>
+<a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line"> </tt>
+<a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line">    <tt class="py-name">plugin</tt> <tt class="py-op">=</tt> <tt class="py-name">ccd</tt><tt class="py-op">.</tt><tt class="py-name">Plugin</tt><tt class="py-op">(</tt> </tt>
+<a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line">        <tt class="py-string">"bing"</tt><tt class="py-op">,</tt> </tt>
+<a name="L78"></a><tt class="py-lineno">78</tt>  <tt class="py-line">        <tt class="py-op">[</tt><tt class="py-string">"searchengines"</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L79"></a><tt class="py-lineno">79</tt>  <tt class="py-line">        <tt class="py-name">dbtemplate</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-name">ccd</tt><tt class="py-op">.</tt><tt class="py-name">Tmpl</tt><tt class="py-op">.</tt><tt class="py-name">SE_LINK_CRAWLER</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L80"></a><tt class="py-lineno">80</tt>  <tt class="py-line">    <tt class="py-name">plugin</tt><tt class="py-op">.</tt><tt class="py-name">execute</tt> <tt class="py-op">=</tt> <tt id="link-34" class="py-name" targets="Module ctools.cBing.main=ctools.cBing.main-module.html,Function ctools.cdaemonise.main()=ctools.cdaemonise-module.html#main"><a title="ctools.cBing.main
+ctools.cdaemonise.main" class="py-name" href="#" onclick="return doclink('link-34', 'main', 'link-34');">main</a></tt> </tt>
+<a name="L81"></a><tt class="py-lineno">81</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">plugin</tt> </tt>
+</div><a name="L82"></a><tt class="py-lineno">82</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="ctools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >ctools</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:41 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

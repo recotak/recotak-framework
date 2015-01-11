@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class Hierarchy</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Trees&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">&nbsp;</td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="class-tree.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<center><b>
+ [ <a href="module-tree.html">Module Hierarchy</a>
+ | <a href="class-tree.html">Class Hierarchy</a> ]
+</b></center><br />
+<h1 class="epydoc">Class Hierarchy</h1>
+<ul class="nomargin-top">
+    <li> <strong class="uidlink">ccdClasses.Category</strong>
+    </li>
+    <li> <strong class="uidlink"><a href="genreport.creport.doc.document.Doc-class.html">genreport.creport.doc.document.Doc</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="genreport.creport.doc.styles.DocumentStyle-class.html">genreport.creport.doc.styles.DocumentStyle</a></strong>
+    </li>
+    <li> <strong class="uidlink">unittest.TestCase</strong>
+    </li>
+    <li> <strong class="uidlink">object</strong>:
+      <em class="summary">The most base type</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.BaseException</strong>:
+      <em class="summary">Common base class for all exceptions</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.Exception</strong>:
+      <em class="summary">Common base class for all non-exit exceptions.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="database.ccddb.AlreadyExistingError-class.html">database.ccddb.AlreadyExistingError</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="database.ccdErrors.CcdError-class.html">database.ccdErrors.CcdError</a></strong>
+    <ul>
+    <li> <strong class="uidlink"><a href="database.ccdErrors.EClosed-class.html">database.ccdErrors.EClosed</a></strong>:
+      <em class="summary">Pipe has already been closed</em>
+    </li>
+    <li> <strong class="uidlink"><a href="database.ccdErrors.InputError-class.html">database.ccdErrors.InputError</a></strong>:
+      <em class="summary">used for invalid json formats or input that arrives via ccd 
+        protocol and is illegal</em>
+    </li>
+    <li> <strong class="uidlink"><a href="database.ccdErrors.NotFoundError-class.html">database.ccdErrors.NotFoundError</a></strong>:
+      <em class="summary">if wgroup, user, project, ..</em>
+    </li>
+    <li> <strong class="uidlink"><a href="database.ccdErrors.PermissionDenied-class.html">database.ccdErrors.PermissionDenied</a></strong>:
+      <em class="summary">used in case of illegal access</em>
+    </li>
+    <li> <strong class="uidlink"><a href="database.ccdErrors.SessionError-class.html">database.ccdErrors.SessionError</a></strong>:
+      <em class="summary">A session exception might be raised if one of the session 
+        authentication stages fail.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="database.ccdErrors.InvalidSessionID-class.html">database.ccdErrors.InvalidSessionID</a></strong>:
+      <em class="summary">raised if an invalid session id encounters</em>
+    </li>
+    <li> <strong class="uidlink"><a href="database.ccdErrors.SessionEnd-class.html">database.ccdErrors.SessionEnd</a></strong>:
+      <em class="summary">if a OP_LOGOUT is received throw a SessionEnd error</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="database.ccddb.DatabaseError-class.html">database.ccddb.DatabaseError</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="connection.ccdlib.EmptyException-class.html">connection.ccdlib.EmptyException</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="connection.ccdlib.InvalidPacketError-class.html">connection.ccdlib.InvalidPacketError</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="database.ccddb.InvalidQuery-class.html">database.ccddb.InvalidQuery</a></strong>
+    </li>
+    <li> <strong class="uidlink">exceptions.StandardError</strong>:
+      <em class="summary">Base class for all standard Python exceptions that do not represent
+        interpreter exiting.</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.EnvironmentError</strong>:
+      <em class="summary">Base class for I/O related errors.</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.IOError</strong>:
+      <em class="summary">I/O operation failed.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="database.ccdErrors.EClosed-class.html">database.ccdErrors.EClosed</a></strong>:
+      <em class="summary">Pipe has already been closed</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="ccd.Ccd-class.html">ccd.Ccd</a></strong>:
+      <em class="summary">Server class that handles the client's requests.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="config.read.Config-class.html">config.read.Config</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="connection.ccdGroup.ConnectionGroup-class.html">connection.ccdGroup.ConnectionGroup</a></strong>:
+      <em class="summary">A connection group is basically a list of proxy chains with a certain
+priority.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="genreport.creport.doc.datatable.DataTable-class.html">genreport.creport.doc.datatable.DataTable</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="database.project.db.DatabaseHandler-class.html">database.project.db.DatabaseHandler</a></strong>:
+      <em class="summary">The database handler is used by the plugin to interact with the 
+        database.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="genreport.creport.doc.chart.PieChart-class.html">genreport.creport.doc.chart.PieChart</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="database.ccdProject.Project-class.html">database.ccdProject.Project</a></strong>:
+      <em class="summary">A project can be seen as workspace for the user or a plugin.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="connection.ccdProxy.Proxy-class.html">connection.ccdProxy.Proxy</a></strong>:
+      <em class="summary">A proxy is an object that is assigned to a proxy chain.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="connection.ccdProxyChain.ProxyChain-class.html">connection.ccdProxyChain.ProxyChain</a></strong>:
+      <em class="summary">A socket chain consists of different connections leading
+to a final address.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="connection.ccdSession.Session-class.html">connection.ccdSession.Session</a></strong>:
+      <em class="summary">A session represents a connection between a specifc user and the ccd.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="database.ccdUser.User-class.html">database.ccdUser.User</a></strong>:
+      <em class="summary">implements a user</em>
+    </li>
+    <li> <strong class="uidlink"><a href="database.ccdWorkgroup.Workgroup-class.html">database.ccdWorkgroup.Workgroup</a></strong>:
+      <em class="summary">A workgroup is similiar to a company's department.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="database.project.tables.__ProjectTable-class.html" onclick="show_private();">database.project.tables.__ProjectTable</a></strong>:
+      <em class="summary">The project table acts as interface to the project table.</em>
+    </li>
+    <li> <strong class="uidlink">socket._socketobject</strong>
+    </li>
+    </ul>
+    </li>
+</ul>
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Trees&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:37 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

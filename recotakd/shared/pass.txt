@@ -1,0 +1,12 @@
+root
+toor
+www
+backup
+service
+server
+www
+mysql
+test
+login
+user
+

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>genreport.creport.doc.document</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="genreport-module.html">Package&nbsp;genreport</a> ::
+        <a href="genreport.creport-module.html">Package&nbsp;creport</a> ::
+        <a href="genreport.creport.doc-module.html">Package&nbsp;doc</a> ::
+        Module&nbsp;document
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="genreport.creport.doc.document-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="genreport.creport.doc.document-module.html">Module genreport.creport.doc.document</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># coding: utf8</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2014, curesec GmbH</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># All rights reserved.</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># Redistribution and use in source and binary forms, with or without modification, </tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># are permitted provided that the following conditions are met:</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"># 1. Redistributions of source code must retain the above copyright notice, this list of </tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"># conditions and the following disclaimer.</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"># 2. Redistributions in binary form must reproduce the above copyright notice, this list </tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># of conditions and the following disclaimer in the documentation and/or other materials </tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># provided with the distribution.</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"># 3. Neither the name of the copyright holder nor the names of its contributors may be used </tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"># to endorse or promote products derived from this software without specific prior written </tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># permission.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-comment"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS </tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-comment"># OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF </tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE </tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-comment"># COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, </tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-comment"># EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF </tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-comment"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) </tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-comment"># HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR </tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-comment"># TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, </tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-comment"># EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">odf</tt><tt class="py-op">.</tt><tt class="py-name">opendocument</tt> <tt class="py-keyword">import</tt> <tt class="py-name">OpenDocumentText</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">datetime</tt> <tt class="py-keyword">import</tt> <tt class="py-name">date</tt> <tt class="py-keyword">as</tt> <tt class="py-name">pyDate</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-comment"># local modules</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Module genreport.creport.doc.styles=genreport.creport.doc.styles-module.html"><a title="genreport.creport.doc.styles" class="py-name" href="#" onclick="return doclink('link-0', 'styles', 'link-0');">styles</a></tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Class genreport.creport.doc.styles.DocumentStyle=genreport.creport.doc.styles.DocumentStyle-class.html"><a title="genreport.creport.doc.styles.DocumentStyle" class="py-name" href="#" onclick="return doclink('link-1', 'DocumentStyle', 'link-1');">DocumentStyle</a></tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt id="link-2" class="py-name" targets="Variable genreport.creport.doc.document.TODAY=genreport.creport.doc.document-module.html#TODAY"><a title="genreport.creport.doc.document.TODAY" class="py-name" href="#" onclick="return doclink('link-2', 'TODAY', 'link-2');">TODAY</a></tt> <tt class="py-op">=</tt> <tt class="py-name">pyDate</tt><tt class="py-op">.</tt><tt class="py-name">today</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">strftime</tt><tt class="py-op">(</tt><tt class="py-string">"%d.%m.%y"</tt><tt class="py-op">)</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"> </tt>
+<a name="Doc"></a><div id="Doc-def"><a name="L37"></a><tt class="py-lineno"> 37</tt> <a class="py-toggle" href="#" id="Doc-toggle" onclick="return toggle('Doc');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="genreport.creport.doc.document.Doc-class.html">Doc</a><tt class="py-op">:</tt> </tt>
+</div><div id="Doc-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Doc-expanded"><a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"> </tt>
+<a name="Doc.__init__"></a><div id="Doc.__init__-def"><a name="L39"></a><tt class="py-lineno"> 39</tt> <a class="py-toggle" href="#" id="Doc.__init__-toggle" onclick="return toggle('Doc.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="genreport.creport.doc.document.Doc-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">filename</tt><tt class="py-op">,</tt> <tt class="py-param">language</tt><tt class="py-op">=</tt><tt class="py-string">"de"</tt><tt class="py-op">,</tt> <tt class="py-param">curesec_brand</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Doc.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Doc.__init__-expanded"><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-comment"># create document tree</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Module genreport.creport.doc.document=genreport.creport.doc.document-module.html"><a title="genreport.creport.doc.document" class="py-name" href="#" onclick="return doclink('link-3', 'document', 'link-3');">document</a></tt> <tt class="py-op">=</tt> <tt class="py-name">OpenDocumentText</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-comment"># set members</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">filename</tt> <tt class="py-op">=</tt> <tt class="py-name">filename</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">language</tt> <tt class="py-op">=</tt> <tt class="py-name">language</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-comment"># some basic report details</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Package database.project=database.project-module.html"><a title="database.project" class="py-name" href="#" onclick="return doclink('link-4', 'project', 'link-4');">project</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"XY-932521-OMEGA"</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">date</tt> <tt class="py-op">=</tt> <tt id="link-5" class="py-name"><a title="genreport.creport.doc.document.TODAY" class="py-name" href="#" onclick="return doclink('link-5', 'TODAY', 'link-2');">TODAY</a></tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dateStart</tt> <tt class="py-op">=</tt> <tt id="link-6" class="py-name"><a title="genreport.creport.doc.document.TODAY" class="py-name" href="#" onclick="return doclink('link-6', 'TODAY', 'link-2');">TODAY</a></tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dateEnd</tt> <tt class="py-op">=</tt> <tt id="link-7" class="py-name"><a title="genreport.creport.doc.document.TODAY" class="py-name" href="#" onclick="return doclink('link-7', 'TODAY', 'link-2');">TODAY</a></tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">author</tt> <tt class="py-op">=</tt> <tt class="py-string">"Curesec GmbH"</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">authorAddress</tt> <tt class="py-op">=</tt> <tt class="py-string">"Berliner Allee 170"</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">clientName</tt> <tt class="py-op">=</tt> <tt class="py-string">"Name des Kunden"</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">clientAddress</tt> <tt class="py-op">=</tt> <tt class="py-string">"Adresse des Kunden"</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">version</tt> <tt class="py-op">=</tt> <tt class="py-string">"0.1"</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt class="py-comment"># define style and add user information</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__style</tt> <tt class="py-op">=</tt> <tt id="link-8" class="py-name"><a title="genreport.creport.doc.styles.DocumentStyle" class="py-name" href="#" onclick="return doclink('link-8', 'DocumentStyle', 'link-1');">DocumentStyle</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__style</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Method genreport.creport.doc.styles.DocumentStyle.defineCuresecStyles()=genreport.creport.doc.styles.DocumentStyle-class.html#defineCuresecStyles"><a title="genreport.creport.doc.styles.DocumentStyle.defineCuresecStyles" class="py-name" href="#" onclick="return doclink('link-9', 'defineCuresecStyles', 'link-9');">defineCuresecStyles</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="genreport.creport.doc.document" class="py-name" href="#" onclick="return doclink('link-10', 'document', 'link-3');">document</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">language</tt><tt class="py-op">)</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">curesec_brand</tt><tt class="py-op">:</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__style</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Method genreport.creport.doc.styles.DocumentStyle.addUserfieldsToBody()=genreport.creport.doc.styles.DocumentStyle-class.html#addUserfieldsToBody"><a title="genreport.creport.doc.styles.DocumentStyle.addUserfieldsToBody" class="py-name" href="#" onclick="return doclink('link-11', 'addUserfieldsToBody', 'link-11');">addUserfieldsToBody</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="genreport.creport.doc.document" class="py-name" href="#" onclick="return doclink('link-12', 'document', 'link-3');">document</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">                                             <tt class="py-name">projekt</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="database.project" class="py-name" href="#" onclick="return doclink('link-13', 'project', 'link-4');">project</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">                                             <tt class="py-name">date</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">date</tt><tt class="py-op">,</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">                                             <tt class="py-name">dateStart</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dateStart</tt><tt class="py-op">,</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">                                             <tt class="py-name">dateEnd</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dateEnd</tt><tt class="py-op">,</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">                                             <tt class="py-name">author</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">author</tt><tt class="py-op">,</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">                                             <tt class="py-name">authorAddress</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">authorAddress</tt><tt class="py-op">,</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">                                             <tt class="py-name">clientName</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">clientName</tt><tt class="py-op">,</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">                                             <tt class="py-name">clientAddress</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">clientAddress</tt><tt class="py-op">,</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">                                             <tt class="py-name">version</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">version</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">                                             <tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Method genreport.creport.doc.document.Doc.setHeader()=genreport.creport.doc.document.Doc-class.html#setHeader"><a title="genreport.creport.doc.document.Doc.setHeader" class="py-name" href="#" onclick="return doclink('link-14', 'setHeader', 'link-14');">setHeader</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method genreport.creport.doc.document.Doc.setFooter()=genreport.creport.doc.document.Doc-class.html#setFooter"><a title="genreport.creport.doc.document.Doc.setFooter" class="py-name" href="#" onclick="return doclink('link-15', 'setFooter', 'link-15');">setFooter</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Method genreport.creport.doc.document.Doc.setDeckblatt()=genreport.creport.doc.document.Doc-class.html#setDeckblatt"><a title="genreport.creport.doc.document.Doc.setDeckblatt" class="py-name" href="#" onclick="return doclink('link-16', 'setDeckblatt', 'link-16');">setDeckblatt</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Method genreport.creport.doc.document.Doc.setVertragspartner()=genreport.creport.doc.document.Doc-class.html#setVertragspartner"><a title="genreport.creport.doc.document.Doc.setVertragspartner" class="py-name" href="#" onclick="return doclink('link-17', 'setVertragspartner', 'link-17');">setVertragspartner</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Method genreport.creport.doc.document.Doc.setTableOfContent()=genreport.creport.doc.document.Doc-class.html#setTableOfContent"><a title="genreport.creport.doc.document.Doc.setTableOfContent" class="py-name" href="#" onclick="return doclink('link-18', 'setTableOfContent', 'link-18');">setTableOfContent</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"> </tt>
+<a name="Doc.setTableOfContent"></a><div id="Doc.setTableOfContent-def"><a name="L81"></a><tt class="py-lineno"> 81</tt> <a class="py-toggle" href="#" id="Doc.setTableOfContent-toggle" onclick="return toggle('Doc.setTableOfContent');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="genreport.creport.doc.document.Doc-class.html#setTableOfContent">setTableOfContent</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Doc.setTableOfContent-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Doc.setTableOfContent-expanded"><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__style</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Method genreport.creport.doc.styles.DocumentStyle.addTableOfContent()=genreport.creport.doc.styles.DocumentStyle-class.html#addTableOfContent"><a title="genreport.creport.doc.styles.DocumentStyle.addTableOfContent" class="py-name" href="#" onclick="return doclink('link-19', 'addTableOfContent', 'link-19');">addTableOfContent</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="genreport.creport.doc.document" class="py-name" href="#" onclick="return doclink('link-20', 'document', 'link-3');">document</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"> </tt>
+<a name="Doc.setDeckblatt"></a><div id="Doc.setDeckblatt-def"><a name="L84"></a><tt class="py-lineno"> 84</tt> <a class="py-toggle" href="#" id="Doc.setDeckblatt-toggle" onclick="return toggle('Doc.setDeckblatt');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="genreport.creport.doc.document.Doc-class.html#setDeckblatt">setDeckblatt</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Doc.setDeckblatt-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Doc.setDeckblatt-expanded"><a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__style</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Method genreport.creport.doc.styles.DocumentStyle.addDeckblatt()=genreport.creport.doc.styles.DocumentStyle-class.html#addDeckblatt"><a title="genreport.creport.doc.styles.DocumentStyle.addDeckblatt" class="py-name" href="#" onclick="return doclink('link-21', 'addDeckblatt', 'link-21');">addDeckblatt</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="genreport.creport.doc.document" class="py-name" href="#" onclick="return doclink('link-22', 'document', 'link-3');">document</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"> </tt>
+<a name="Doc.setVertragspartner"></a><div id="Doc.setVertragspartner-def"><a name="L87"></a><tt class="py-lineno"> 87</tt> <a class="py-toggle" href="#" id="Doc.setVertragspartner-toggle" onclick="return toggle('Doc.setVertragspartner');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="genreport.creport.doc.document.Doc-class.html#setVertragspartner">setVertragspartner</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Doc.setVertragspartner-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Doc.setVertragspartner-expanded"><a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__style</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Method genreport.creport.doc.styles.DocumentStyle.addVertragspartner()=genreport.creport.doc.styles.DocumentStyle-class.html#addVertragspartner"><a title="genreport.creport.doc.styles.DocumentStyle.addVertragspartner" class="py-name" href="#" onclick="return doclink('link-23', 'addVertragspartner', 'link-23');">addVertragspartner</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="genreport.creport.doc.document" class="py-name" href="#" onclick="return doclink('link-24', 'document', 'link-3');">document</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"> </tt>
+<a name="Doc.setFooter"></a><div id="Doc.setFooter-def"><a name="L90"></a><tt class="py-lineno"> 90</tt> <a class="py-toggle" href="#" id="Doc.setFooter-toggle" onclick="return toggle('Doc.setFooter');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="genreport.creport.doc.document.Doc-class.html#setFooter">setFooter</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Doc.setFooter-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Doc.setFooter-expanded"><a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__style</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name" targets="Method genreport.creport.doc.styles.DocumentStyle.setFooterData()=genreport.creport.doc.styles.DocumentStyle-class.html#setFooterData"><a title="genreport.creport.doc.styles.DocumentStyle.setFooterData" class="py-name" href="#" onclick="return doclink('link-25', 'setFooterData', 'link-25');">setFooterData</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="genreport.creport.doc.document" class="py-name" href="#" onclick="return doclink('link-26', 'document', 'link-3');">document</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"> </tt>
+<a name="Doc.setHeader"></a><div id="Doc.setHeader-def"><a name="L93"></a><tt class="py-lineno"> 93</tt> <a class="py-toggle" href="#" id="Doc.setHeader-toggle" onclick="return toggle('Doc.setHeader');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="genreport.creport.doc.document.Doc-class.html#setHeader">setHeader</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Doc.setHeader-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Doc.setHeader-expanded"><a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">__style</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name" targets="Method genreport.creport.doc.styles.DocumentStyle.setHeaderData()=genreport.creport.doc.styles.DocumentStyle-class.html#setHeaderData"><a title="genreport.creport.doc.styles.DocumentStyle.setHeaderData" class="py-name" href="#" onclick="return doclink('link-27', 'setHeaderData', 'link-27');">setHeaderData</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="genreport.creport.doc.document" class="py-name" href="#" onclick="return doclink('link-28', 'document', 'link-3');">document</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">                                   <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="database.project" class="py-name" href="#" onclick="return doclink('link-29', 'project', 'link-4');">project</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">                                   <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">date</tt><tt class="py-op">,</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">                                   <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">version</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"> </tt>
+<a name="Doc.save"></a><div id="Doc.save-def"><a name="L99"></a><tt class="py-lineno"> 99</tt> <a class="py-toggle" href="#" id="Doc.save-toggle" onclick="return toggle('Doc.save');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="genreport.creport.doc.document.Doc-class.html#save">save</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Doc.save-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Doc.save-expanded"><a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-comment"># save document</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="genreport.creport.doc.document" class="py-name" href="#" onclick="return doclink('link-30', 'document', 'link-3');">document</a></tt><tt class="py-op">.</tt><tt id="link-31" class="py-name" targets="Method genreport.creport.doc.document.Doc.save()=genreport.creport.doc.document.Doc-class.html#save"><a title="genreport.creport.doc.document.Doc.save" class="py-name" href="#" onclick="return doclink('link-31', 'save', 'link-31');">save</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">filename</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"> </tt>
+<a name="Doc.add"></a><div id="Doc.add-def"><a name="L103"></a><tt class="py-lineno">103</tt> <a class="py-toggle" href="#" id="Doc.add-toggle" onclick="return toggle('Doc.add');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="genreport.creport.doc.document.Doc-class.html#add">add</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">element</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Doc.add-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Doc.add-expanded"><a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">element</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name"><a title="genreport.creport.doc.document" class="py-name" href="#" onclick="return doclink('link-32', 'document', 'link-3');">document</a></tt><tt class="py-op">.</tt><tt class="py-name">text</tt><tt class="py-op">.</tt><tt class="py-name">addElement</tt><tt class="py-op">(</tt><tt class="py-name">element</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"> </tt>
+<a name="Doc.addAsObject"></a><div id="Doc.addAsObject-def"><a name="L107"></a><tt class="py-lineno">107</tt> <a class="py-toggle" href="#" id="Doc.addAsObject-toggle" onclick="return toggle('Doc.addAsObject');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="genreport.creport.doc.document.Doc-class.html#addAsObject">addAsObject</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">element</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Doc.addAsObject-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Doc.addAsObject-expanded"><a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">element</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="genreport.creport.doc.document" class="py-name" href="#" onclick="return doclink('link-33', 'document', 'link-3');">document</a></tt><tt class="py-op">.</tt><tt class="py-name">addObject</tt><tt class="py-op">(</tt><tt class="py-name">element</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"><tt class="py-comment">#   def applyProperty(self, _property):</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"><tt class="py-comment">#       self._document.automaticself.__style.addElement(_property)</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:38 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

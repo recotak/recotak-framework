@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>genreport.csv</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="genreport-module.html">Package&nbsp;genreport</a> ::
+        Module&nbsp;csv
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="genreport.csv-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="genreport.csv-module.html">Module genreport.csv</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-docstring">This module creates export the project database to csv</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-docstring"># Copyright (c) 2014, curesec GmbH</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-docstring"># All rights reserved.</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-docstring"># Redistribution and use in source and binary forms, with or without modification, </tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-docstring"># are permitted provided that the following conditions are met:</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-docstring"># 1. Redistributions of source code must retain the above copyright notice, this list of </tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-docstring"># conditions and the following disclaimer.</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-docstring"># 2. Redistributions in binary form must reproduce the above copyright notice, this list </tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-docstring"># of conditions and the following disclaimer in the documentation and/or other materials </tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-docstring"># provided with the distribution.</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-docstring"># 3. Neither the name of the copyright holder nor the names of its contributors may be used </tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-docstring"># to endorse or promote products derived from this software without specific prior written </tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-docstring"># permission.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-docstring"># </tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"><tt class="py-docstring"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS </tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-docstring"># OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF </tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt class="py-docstring"># MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE </tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"><tt class="py-docstring"># COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, </tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-docstring"># EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF </tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"><tt class="py-docstring"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) </tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt class="py-docstring"># HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR </tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt class="py-docstring"># TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, </tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt class="py-docstring"># EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package database=database-module.html"><a title="database" class="py-name" href="#" onclick="return doclink('link-0', 'database', 'link-0');">database</a></tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Module database.ccddb=database.ccddb-module.html"><a title="database.ccddb" class="py-name" href="#" onclick="return doclink('link-1', 'ccddb', 'link-1');">ccddb</a></tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name"><a title="database" class="py-name" href="#" onclick="return doclink('link-2', 'database', 'link-0');">database</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Package database.project=database.project-module.html"><a title="database.project" class="py-name" href="#" onclick="return doclink('link-3', 'project', 'link-3');">project</a></tt> <tt class="py-keyword">import</tt> <tt id="link-4" class="py-name" targets="Module database.project.db=database.project.db-module.html"><a title="database.project.db" class="py-name" href="#" onclick="return doclink('link-4', 'db', 'link-4');">db</a></tt> <tt class="py-keyword">as</tt> <tt class="py-name">projectdb</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"><tt class="py-name">__version__</tt> <tt class="py-op">=</tt> <tt class="py-number">0.1</tt> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line"> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"><tt id="link-5" class="py-name" targets="Variable ccd.logger=ccd-module.html#logger,Variable config.read.logger=config.read-module.html#logger,Variable connection.ccdGroup.logger=connection.ccdGroup-module.html#logger,Variable connection.ccdProxy.logger=connection.ccdProxy-module.html#logger,Variable connection.ccdProxyChain.logger=connection.ccdProxyChain-module.html#logger,Variable connection.ccdSession.logger=connection.ccdSession-module.html#logger,Variable connection.ccdlib.logger=connection.ccdlib-module.html#logger,Variable database.ccdProject.logger=database.ccdProject-module.html#logger,Variable database.ccdUser.logger=database.ccdUser-module.html#logger,Variable database.ccdWorkgroup.logger=database.ccdWorkgroup-module.html#logger,Variable database.ccddb.logger=database.ccddb-module.html#logger,Variable database.project.db.logger=database.project.db-module.html#logger,Variable database.project.tables.logger=database.project.tables-module.html#logger,Variable files.download.logger=files.download-module.html#logger,Variable files.open.logger=files.open-module.html#logger,Variable files.upload.logger=files.upload-module.html#logger,Variable genreport.cOdf.logger=genreport.cOdf-module.html#logger,Variable genreport.csv.logger=genreport.csv-module.html#logger,Variable genreport.latex.logger=genreport.latex-module.html#logger,Variable genreport.pdf.logger=genreport.pdf-module.html#logger,Variable plugins.comm.logger=plugins.comm-module.html#logger,Variable plugins.plugin.logger=plugins.plugin-module.html#logger,Variable plugins.setup.logger=plugins.setup-module.html#logger"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-5', 'logger', 'link-5');">logger</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-string">"ccd.%s"</tt> <tt class="py-op">%</tt> <tt class="py-name">__name__</tt><tt class="py-op">)</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line"><tt id="link-6" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-6', 'logger', 'link-5');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">setLevel</tt><tt class="py-op">(</tt><tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">DEBUG</tt><tt class="py-op">)</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line"> </tt>
+<a name="gen_csv"></a><div id="gen_csv-def"><a name="L41"></a><tt class="py-lineno">41</tt> <a class="py-toggle" href="#" id="gen_csv-toggle" onclick="return toggle('gen_csv');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="genreport.csv-module.html#gen_csv">gen_csv</a><tt class="py-op">(</tt><tt class="py-param">db</tt><tt class="py-op">,</tt> <tt class="py-param">pid</tt><tt class="py-op">,</tt> <tt class="py-param">filename</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="gen_csv-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="gen_csv-expanded"><a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line"><tt class="py-docstring">    generates a csv report</tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line"><tt class="py-docstring">    input:</tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line"><tt class="py-docstring">        db          database connection object</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line"><tt class="py-docstring">        pid         project id</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line"><tt class="py-docstring">        filename    name of the file to generate</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line"><tt class="py-docstring">    output:</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line"><tt class="py-docstring">        final filename</tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line"> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line"> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">    <tt id="link-7" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-7', 'logger', 'link-5');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">'generating csv report %s'</tt><tt class="py-op">,</tt> <tt class="py-name">filename</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line">    <tt id="link-8" class="py-name" targets="Module database.project.tables=database.project.tables-module.html"><a title="database.project.tables" class="py-name" href="#" onclick="return doclink('link-8', 'tables', 'link-8');">tables</a></tt> <tt class="py-op">=</tt> <tt class="py-name">projectdb</tt><tt class="py-op">.</tt><tt class="py-name">get_table_dict</tt><tt class="py-op">(</tt><tt id="link-9" class="py-name"><a title="database.project.db" class="py-name" href="#" onclick="return doclink('link-9', 'db', 'link-4');">db</a></tt><tt class="py-op">,</tt> <tt class="py-name">pid</tt><tt class="py-op">)</tt> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line"> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt id="link-10" class="py-name"><a title="database.project.tables" class="py-name" href="#" onclick="return doclink('link-10', 'tables', 'link-8');">tables</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line"> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line">    <tt class="py-name">fd</tt> <tt class="py-op">=</tt> <tt id="link-11" class="py-name" targets="Module files.open=files.open-module.html"><a title="files.open" class="py-name" href="#" onclick="return doclink('link-11', 'open', 'link-11');">open</a></tt><tt class="py-op">(</tt><tt class="py-name">filename</tt><tt class="py-op">,</tt> <tt class="py-string">'w'</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line"> </tt>
+<a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">name</tt><tt class="py-op">,</tt> <tt id="link-12" class="py-name" targets="Function database.ccdProject.data()=database.ccdProject-module.html#data"><a title="database.ccdProject.data" class="py-name" href="#" onclick="return doclink('link-12', 'data', 'link-12');">data</a></tt> <tt class="py-keyword">in</tt> <tt id="link-13" class="py-name"><a title="database.project.tables" class="py-name" href="#" onclick="return doclink('link-13', 'tables', 'link-8');">tables</a></tt><tt class="py-op">.</tt><tt class="py-name">items</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line">        <tt class="py-name">fd</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-string">'-'</tt> <tt class="py-op">*</tt> <tt class="py-number">80</tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">        <tt class="py-name">fd</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-string">'\n'</tt><tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line">        <tt class="py-name">fd</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-name">name</tt><tt class="py-op">)</tt> </tt>
+<a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line">        <tt class="py-name">fd</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-string">'\n'</tt><tt class="py-op">)</tt> </tt>
+<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line">        <tt class="py-name">fd</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-string">'-'</tt> <tt class="py-op">*</tt> <tt class="py-number">80</tt><tt class="py-op">)</tt> </tt>
+<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line">        <tt class="py-name">fd</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-string">'\n'</tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">items</tt> <tt class="py-keyword">in</tt> <tt id="link-14" class="py-name"><a title="database.ccdProject.data" class="py-name" href="#" onclick="return doclink('link-14', 'data', 'link-12');">data</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line">            <tt class="py-name">fd</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-string">','</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">items</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line">            <tt class="py-name">fd</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-string">'\n'</tt><tt class="py-op">)</tt> </tt>
+<a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line">    <tt class="py-name">fd</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Function database.ccddb.close()=database.ccddb-module.html#close,Function database.project.db.close()=database.project.db-module.html#close,Function plugins.comm.close()=plugins.comm-module.html#close"><a title="database.ccddb.close
+database.project.db.close
+plugins.comm.close" class="py-name" href="#" onclick="return doclink('link-15', 'close', 'link-15');">close</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line"> </tt>
+<a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line">    <tt id="link-16" class="py-name"><a title="ccd.logger
+config.read.logger
+connection.ccdGroup.logger
+connection.ccdProxy.logger
+connection.ccdProxyChain.logger
+connection.ccdSession.logger
+connection.ccdlib.logger
+database.ccdProject.logger
+database.ccdUser.logger
+database.ccdWorkgroup.logger
+database.ccddb.logger
+database.project.db.logger
+database.project.tables.logger
+files.download.logger
+files.open.logger
+files.upload.logger
+genreport.cOdf.logger
+genreport.csv.logger
+genreport.latex.logger
+genreport.pdf.logger
+plugins.comm.logger
+plugins.plugin.logger
+plugins.setup.logger" class="py-name" href="#" onclick="return doclink('link-16', 'logger', 'link-5');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Created csv %s'</tt><tt class="py-op">,</tt> <tt class="py-name">filename</tt><tt class="py-op">)</tt> </tt>
+<a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">filename</tt> </tt>
+</div><a name="L78"></a><tt class="py-lineno">78</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:39 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+LDAP - What is the dn?
+
+dn: Distinguished Name (made of cn, ou, dc...)
+cn: Common Name
+ou: Organisational Unit
+dc: Domain Component 
+
+Testcases:
+
+cn=user,[dc=subdomain,]dc=domain,dc=tld
+cn=user,ou=group,[dc=subdomain,],dc=domain,dc=tld
+[Some LDAP servers do cn=group instead of ou=group.]
+cn=user,ou=subgroup,ou=group,[dc=subdomain,],dc=domain,dc=tld
+
+For the domain example.com, you should at least test the usernames admin, manager and Administrator (possibly in combination with the groups users and administrator):
+cn=admin,dc=example,dc=com
+cn=manager,dc=example,dc=com
+cn=Administrator,dc=example,dc=com
+
+Also important (for OpenLDAP):
+cn=admin,cn=config [1]
+
+If you could enumerate usernames (eg "jsmith"), you should at least test:
+cn=jsmith,dc=example,dc=com
+cn=jsmith,ou=users,dc=example,dc=com
+
+On my LDAP server (slapd, Ubuntu), the dn is case insensitive, ie cn=admin and cd=Admin are the same.
+
+Usually, the cn is a user ID like "jsmith" but it could also be "John Smith" containing space characters.
+
+[1]
+http://wiki.ubuntuusers.de/OpenLDAP

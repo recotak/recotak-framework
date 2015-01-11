@@ -1,0 +1,6 @@
+SSH-2.0-OpenSSH_6.1
+SSH-2.0-OpenSSH_5.1
+SSH-2.0-OpenSSH_4.1
+SSH-2.0-OpenSSH_3.1
+SSH-2.0-OpenSSH_2.1
+SSH-2.0-OpenSSH_1.1

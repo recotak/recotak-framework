@@ -1,0 +1,5 @@
+# ./ldap-brute-forcer.py -ip 192.168.20.15 -dn "cn=admin,dc=test,dc=com" -password 1234
+success
+
+# ./ldap-brute-forcer.py -ip 192.168.20.15 -dn "cn=user1,ou=users,dc=test,dc=com" -password password
+success

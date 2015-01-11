@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>database.ccdUser</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="database-module.html">Package&nbsp;database</a> ::
+        Module&nbsp;ccdUser
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="database.ccdUser-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module ccdUser</h1><p class="nomargin-top"><span class="codelink"><a href="database.ccdUser-pysrc.html">source&nbsp;code</a></span></p>
+<pre class="literalblock">
+
+user management
+# Copyright (c) 2014, curesec GmbH
+# All rights reserved.
+# 
+# Redistribution and use in source and binary forms, with or without modification, 
+# are permitted provided that the following conditions are met:
+# 
+# 1. Redistributions of source code must retain the above copyright notice, this list of 
+# conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright notice, this list 
+# of conditions and the following disclaimer in the documentation and/or other materials 
+# provided with the distribution.
+# 
+# 3. Neither the name of the copyright holder nor the names of its contributors may be used 
+# to endorse or promote products derived from this software without specific prior written 
+# permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS 
+# OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+# MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR 
+# TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
+# EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+There basically two types of users
+    a) the superadmin
+       The hero of the world, the guy who is allowed to do everything.
+       The superadmin user is stored as ccd instance variable. You will find a
+       lot of statements, that check whether the user sending the request is
+       the superadmin:
+
+        if (not user.uid == ccd.superadmin.uid) and ..
+
+    b) the rest
+       users need to have specific permissions to perform operations. This
+       operations are checked before processing a request. For instance:
+
+        if (not user.uid == ccd.superadmin.uid) and
+            (not is_allowed(ccd._db.conn, user, ccddb.ACCESS_ADD)):
+            raise PermissionDenied(user.name)
+
+The user's permissions are managed in table 'role'. This is basically an ACL,
+where every set of permissions have an ID. This role ID indicates which
+operations are allowed for a user and which not.
+
+User information are stored in a table called 'user'. The relation, that a user
+is member of a workgroup or project is represented by a table '_user2workgroup'
+or '_user2project'. These tables contain the id of the user, uid, the id of the
+workgroup, wid, and the id of role, rid.
+
+This module abstracts access to database tables by providing basic
+functionalities and a User class to work with. So do not bypass anything provided
+here, since it provides authorisation checks.
+
+</pre>
+
+<!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="database.ccdUser.User-class.html" class="summary-name">User</a><br />
+      implements a user
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_valid_owner"></a><span class="summary-sig-name">_valid_owner</span>(<span class="summary-sig-arg">subdir_fn</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccdUser-pysrc.html#_valid_owner">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccdUser-module.html#is_allowed" class="summary-sig-name">is_allowed</a>(<span class="summary-sig-arg">db</span>,
+        <span class="summary-sig-arg">user</span>,
+        <span class="summary-sig-arg">access</span>)</span><br />
+      returns True if user has the access bits set</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccdUser-pysrc.html#is_allowed">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccdUser-module.html#new_user" class="summary-sig-name">new_user</a>(<span class="summary-sig-arg">ccd</span>,
+        <span class="summary-sig-arg">sid</span>,
+        <span class="summary-sig-arg">pld</span>)</span><br />
+      create new user.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccdUser-pysrc.html#new_user">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccdUser-module.html#show_user" class="summary-sig-name">show_user</a>(<span class="summary-sig-arg">ccd</span>,
+        <span class="summary-sig-arg">sid</span>,
+        <span class="summary-sig-arg">pld</span>)</span><br />
+      get user information</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccdUser-pysrc.html#show_user">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccdUser-module.html#delete_user" class="summary-sig-name">delete_user</a>(<span class="summary-sig-arg">ccd</span>,
+        <span class="summary-sig-arg">sid</span>,
+        <span class="summary-sig-arg">pld</span>)</span><br />
+      delete existing user.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccdUser-pysrc.html#delete_user">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccdUser-module.html#update_user" class="summary-sig-name">update_user</a>(<span class="summary-sig-arg">ccd</span>,
+        <span class="summary-sig-arg">sid</span>,
+        <span class="summary-sig-arg">pld</span>)</span><br />
+      update existing user.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccdUser-pysrc.html#update_user">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="database.ccdUser-module.html#update_user_passwd" class="summary-sig-name">update_user_passwd</a>(<span class="summary-sig-arg">ccd</span>,
+        <span class="summary-sig-arg">sid</span>,
+        <span class="summary-sig-arg">pld</span>)</span><br />
+      update existing user's password</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="database.ccdUser-pysrc.html#update_user_passwd">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="logger"></a><span class="summary-name">logger</span> = <code title="logging.getLogger(&quot;ccd.%s&quot; % __name__)">logging.getLogger(&quot;ccd.%s&quot; % __name__)</code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="is_allowed"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_allowed</span>(<span class="sig-arg">db</span>,
+        <span class="sig-arg">user</span>,
+        <span class="sig-arg">access</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccdUser-pysrc.html#is_allowed">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+returns True if user has the access bits set
+
+input:
+    db      database connection
+    user    user object to request allowance for
+    access  requested permissions
+            e.g:
+                ccddb.ACCESS_READ
+                ccddb.ACCESS_WRITE
+                ccddb.ACCESS_ADD
+                ccddb.ACCESS_DEL
+                ccddb.ACCESS_EXEC
+
+            request for multiple permission via OR (e.g.
+            ccddb.ACCESS_READ|ccddb.ACCESS_WRITE)
+
+output:
+    True if allowed else False
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="new_user"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">new_user</span>(<span class="sig-arg">ccd</span>,
+        <span class="sig-arg">sid</span>,
+        <span class="sig-arg">pld</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccdUser-pysrc.html#new_user">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+create new user. The user must be the superadmin or must have ACCESS_ADD in
+the _user2users table.
+
+input:
+    ccd     ccd instance
+    sid     session id of the user that wants to create a new user
+    pld     payload. the payload consists of. If mandatory fields are
+            missing, raises a database.ccddb.InputError.
+
+                name    name of the user to create. the length of the name
+                        must not exceed database.ccddb.MAX_LEN_NAME. the
+                        user name must only consist of letters a-zA-z and
+                        numbers 0-9 and underscore _
+                mail    mail address of the user to create. the length of
+                        the mail address must not exceed
+                        database.ccddb.MAX_LEN_MAIL
+                password    password of the user to create. note, the
+                            password should be hashed. the length of the
+                            password must not exceed the length of
+                            database.ccddb.MAX_LEN_PASSWORD
+                description a descriptional text for the user. the length
+                (optional)  of the description must not exceed
+                            database.ccddb.MAX_LEN_DESC
+
+
+output:
+    returns the user id
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="show_user"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">show_user</span>(<span class="sig-arg">ccd</span>,
+        <span class="sig-arg">sid</span>,
+        <span class="sig-arg">pld</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccdUser-pysrc.html#show_user">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+get user information
+
+input:
+    ccd     ccd instance
+    sid     session id
+    pld     payload as dict to update user information. either one of the
+            following keys must occur in payload:
+
+                uid     return informations for a specific user. A user is
+                        only allowed to receive information about himself
+                        as loong as he is not explicitly authorised by
+                        having the ACCESS_READ flag set in
+                        user2user-table.
+                        the superadmin is allowed to request arbitrary
+                        users' information.
+
+                        a user is able to request information about
+                        himself by requesting his own uid or an empty uid
+                        (uid=)..
+
+                pid     returns members of a given project.
+                wid     returns members of a given workgroup
+
+output:
+    requested user information
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="delete_user"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">delete_user</span>(<span class="sig-arg">ccd</span>,
+        <span class="sig-arg">sid</span>,
+        <span class="sig-arg">pld</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccdUser-pysrc.html#delete_user">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+delete existing user. the user must either be superadmin or has ACCESS_DEL.
+
+input:
+    ccd     ccd instance
+    sid     session id
+    pld     payload as dict to update user information. the following key
+            must be submitted:
+
+                uid     the user's id to remove
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="update_user"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">update_user</span>(<span class="sig-arg">ccd</span>,
+        <span class="sig-arg">sid</span>,
+        <span class="sig-arg">pld</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccdUser-pysrc.html#update_user">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+update existing user. The user must either be superadmin or has
+ACCESS_WRITE.
+
+input:
+    ccd     ccd instance
+    sid     session id
+    pld     payload as dict to update user information.
+
+                uid         id of the user to update
+                name        new name of the user
+                mail        new mail of the user
+                description the new description text of the user. this
+                (optional)  argument is optional
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="update_user_passwd"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">update_user_passwd</span>(<span class="sig-arg">ccd</span>,
+        <span class="sig-arg">sid</span>,
+        <span class="sig-arg">pld</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="database.ccdUser-pysrc.html#update_user_passwd">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+update existing user's password
+
+input:
+    ccd     ccd instance
+    sid     session id
+    pld     payload as dict to contain old and new password
+
+                uid     user id of the user
+                old     old password
+                new     new password
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:37 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+v0.8.0
+* cProbeparse to parse banner
+* cScanner as scanner base class
+* nmap-service-probes is now installed in /usr/probes
+
+v0.7.9
+* img dict contains header_logo.tif for report(odt) generation
+
+v0.7.8
+* added dns package
+* dns.domain contains method to extract domain of fqdn
+* dns.exceptions contains some dns-exceptions
+
+0.7.1
+* moved add_rotat_logger from ctools to cUtil
+
+0.7.6
+* added targets module to generate pretargets/targets
+
+v0.7.4
+* added bloomfilter
+
+v0.7.3
+* minor fixes
+
+v0.7.2
+* minor fixes
+
+v0.7.1
+* ctools now with resolveIP, resolveDomain
+
+v0.7.0
+* add_rotat_logger to add new ratation logger
+* getNetmask to get start and end ip of netmask
+* isIP and isDomain
+
+v0.6.8
+* csockslib: new: csockslib.socks4a_resolveHostByAddr()
+
+v0.6.7
+* csockslib: socks4a_connection is split into three functions: building
+  request, connecting to socket and sending request
+
+v0.6.6
+* new: ctools.py provides some global functionality
+
+v0.6.5
+* minor bug fixes
+
+v0.6.4
+* csocks connection codes are now real hex (0x5a)
+* removed 'torResolve' in cserverlib remote_resolv func
+
+v0.6.3
+* minor bugfixes
+* cserverlib wraps socket into ssl socket if port is in SSL_PORTS array (e.g. 443)
+* there remain some time out experiences to be made
+
+v0.6.2
+* csockslib now with global variable:
+	SOCKS4_TCP_REQUEST that indicates a SOCKS4 request by a client
+	SOCKS4_ESTABLISHED that indicates a successful connection
+	SOCKS4_REFUSED indicates a refused connection
+	SOCKS4_ERR_CONNECT indicates that an error occured (e.g: timeout)
+	SOCKS4_REMOTE_RESOVLE indicates that the client wants to resolve a hostname
+* csockslib and cserverlib both do not provide any error handling anymore. this ought to be part of the server. this enables the server to catch errors and provide corresponding responses to the client.
+
+v0.6.1
+* csockslib.socks4a_connect now with 'timeout'(socket timeout) and 'secure'(use of ssl) parameter

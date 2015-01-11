@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>ctools.cWorkerThreads</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="ctools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >ctools</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="ctools-module.html">Package&nbsp;ctools</a> ::
+        Module&nbsp;cWorkerThreads
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="ctools.cWorkerThreads-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="ctools.cWorkerThreads-module.html">Module ctools.cWorkerThreads</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">multiprocessing</tt> <tt class="py-keyword">as</tt> <tt class="py-name">mp</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">threading</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2014, curesec GmbH</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># All rights reserved.</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># Redistribution and use in source and binary forms, with or without modification, </tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># are permitted provided that the following conditions are met:</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"># 1. Redistributions of source code must retain the above copyright notice, this list of </tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"># conditions and the following disclaimer.</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"># 2. Redistributions in binary form must reproduce the above copyright notice, this list </tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># of conditions and the following disclaimer in the documentation and/or other materials </tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># provided with the distribution.</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"># 3. Neither the name of the copyright holder nor the names of its contributors may be used </tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"># to endorse or promote products derived from this software without specific prior written </tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># permission.</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-comment"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS </tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-comment"># OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF </tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE </tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-comment"># COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, </tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-comment"># EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF </tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-comment"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) </tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-comment"># HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR </tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-comment"># TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, </tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-comment"># EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">Queue</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Module ctools.cMon=ctools.cMon-module.html"><a title="ctools.cMon" class="py-name" href="#" onclick="return doclink('link-0', 'cMon', 'link-0');">cMon</a></tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-comment"># logging</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-comment">#LOG = "/tmp/cScanThreads.log"</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-comment">#FORMAT = '%(asctime)s - %(name)s - ' + \</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-comment">#    '%(levelname)s - %(threadName)s - %(message)s'</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-comment">#logging.basicConfig(filename=LOG,</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-comment">#                    filemode="w",</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-comment">#                    format=FORMAT,</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-comment">#                    level=logging.DEBUG)</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt id="link-1" class="py-name" targets="Variable ctools.cCircCash.logger=ctools.cCircCash-module.html#logger,Variable ctools.cComm.logger=ctools.cComm-module.html#logger,Variable ctools.cDns.logger=ctools.cDns-module.html#logger,Variable ctools.cMon.logger=ctools.cMon-module.html#logger,Variable ctools.cMysql.logger=ctools.cMysql-module.html#logger,Variable ctools.cTargets.logger=ctools.cTargets-module.html#logger,Variable ctools.cTelnet.logger=ctools.cTelnet-module.html#logger,Variable ctools.cTuples.logger=ctools.cTuples-module.html#logger,Variable ctools.cUtil.logger=ctools.cUtil-module.html#logger,Variable ctools.cWorkerThreads.logger=ctools.cWorkerThreads-module.html#logger,Variable ctools.csockslib.logger=ctools.csockslib-module.html#logger,Variable ctools.sshlib.logger=ctools.sshlib-module.html#logger"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-1', 'logger', 'link-1');">logger</a></tt> <tt class="py-op">=</tt> <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">getLogger</tt><tt class="py-op">(</tt><tt class="py-name">__name__</tt><tt class="py-op">)</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt id="link-2" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-2', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">setLevel</tt><tt class="py-op">(</tt><tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">INFO</tt><tt class="py-op">)</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-comment">#logger.setLevel(logging.DEBUG)</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt id="link-3" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-3', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">addHandler</tt><tt class="py-op">(</tt><tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">NullHandler</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt id="link-4" class="py-name" targets="Variable ctools.cUtil.Q_TIMEOUT=ctools.cUtil-module.html#Q_TIMEOUT,Variable ctools.cWorkerThreads.Q_TIMEOUT=ctools.cWorkerThreads-module.html#Q_TIMEOUT"><a title="ctools.cUtil.Q_TIMEOUT
+ctools.cWorkerThreads.Q_TIMEOUT" class="py-name" href="#" onclick="return doclink('link-4', 'Q_TIMEOUT', 'link-4');">Q_TIMEOUT</a></tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"> </tt>
+<a name="_cWorker"></a><div id="_cWorker-def"><a name="L50"></a><tt class="py-lineno"> 50</tt> <a class="py-toggle" href="#" id="_cWorker-toggle" onclick="return toggle('_cWorker');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="ctools.cWorkerThreads._cWorker-class.html">_cWorker</a><tt class="py-op">(</tt><tt class="py-base-class">threading</tt><tt class="py-op">.</tt><tt class="py-base-class">Thread</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_cWorker-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="_cWorker-expanded"><a name="_cWorker.__init__"></a><div id="_cWorker.__init__-def"><a name="L51"></a><tt class="py-lineno"> 51</tt> <a class="py-toggle" href="#" id="_cWorker.__init__-toggle" onclick="return toggle('_cWorker.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cWorkerThreads._cWorker-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">callback</tt><tt class="py-op">,</tt> <tt class="py-param">in_q</tt><tt class="py-op">,</tt> <tt class="py-param">out_q</tt><tt class="py-op">,</tt> <tt class="py-param">sentinel</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_cWorker.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_cWorker.__init__-expanded"><a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-docstring">        A worker class to perform scan requests on several targets.</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"><tt class="py-docstring">        The worker takes an input tuple from the input queue and</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-docstring">        passes it to a callback funktion, which performs the actual</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-docstring">        scan requests and returns a result tuple, which is in turn</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-docstring">        placed into the result queue by the worker.</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-docstring">        To stop the worker, you either place sentinels inside the input queue</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-docstring">        (equal to the amount of workers), or call the join funktion, which sets</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-docstring">        a multiprocessing event, signalling the worker to stop execution</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-docstring">        Input:</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"><tt class="py-docstring">            callback        callback funktion to perform actual scan request</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt class="py-docstring">            in_q            multiprocessing queue for input tuples</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-docstring">            out_q           multiprocessing queue for result tuples</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring">            sentinel        end of queue marker</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">        <tt class="py-name">super</tt><tt class="py-op">(</tt><tt id="link-5" class="py-name" targets="Class ctools.cWorkerThreads._cWorker=ctools.cWorkerThreads._cWorker-class.html"><a title="ctools.cWorkerThreads._cWorker" class="py-name" href="#" onclick="return doclink('link-5', '_cWorker', 'link-5');">_cWorker</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method ctools.bloomfilter.BloomFilter.__init__()=ctools.bloomfilter.BloomFilter-class.html#__init__,Method ctools.cBing.bing.BingQuery.__init__()=ctools.cBing.bing.BingQuery-class.html#__init__,Method ctools.cBing.socks4.Socks4Socket.__init__()=ctools.cBing.socks4.Socks4Socket-class.html#__init__,Method ctools.cCircCash.EInvalidThreshold.__init__()=ctools.cCircCash.EInvalidThreshold-class.html#__init__,Method ctools.cCircCash._circ_cash.__init__()=ctools.cCircCash._circ_cash-class.html#__init__,Method ctools.cComm.Mark.__init__()=ctools.cComm.Mark-class.html#__init__,Method ctools.cDns.DNSQuery.__init__()=ctools.cDns.DNSQuery-class.html#__init__,Method ctools.cDns.DNSparam.__init__()=ctools.cDns.DNSparam-class.html#__init__,Method ctools.cDns.EInvalidDNS.__init__()=ctools.cDns.EInvalidDNS-class.html#__init__,Method ctools.cMon.MonitorCPU.__init__()=ctools.cMon.MonitorCPU-class.html#__init__,Method ctools.cMon.MonitorRAM.__init__()=ctools.cMon.MonitorRAM-class.html#__init__,Method ctools.cMssql.Mssql.__init__()=ctools.cMssql.Mssql-class.html#__init__,Method ctools.cMysql.MysqlClient.__init__()=ctools.cMysql.MysqlClient-class.html#__init__,Method ctools.cProbeparse.Probeparser.__init__()=ctools.cProbeparse.Probeparser-class.html#__init__,Method ctools.cRpc.Rpc.__init__()=ctools.cRpc.Rpc-class.html#__init__,Method ctools.cScanner.cScanner.__init__()=ctools.cScanner.cScanner-class.html#__init__,Method ctools.cTargets.TargetGenerator.__init__()=ctools.cTargets.TargetGenerator-class.html#__init__,Method ctools.cTelnet.Listener.__init__()=ctools.cTelnet.Listener-class.html#__init__,Method ctools.cTelnet.Telnet.__init__()=ctools.cTelnet.Telnet-class.html#__init__,Method ctools.cTuples.ENoInput.__init__()=ctools.cTuples.ENoInput-class.html#__init__,Method ctools.cTuples.cInputGenerator.__init__()=ctools.cTuples.cInputGenerator-class.html#__init__,Method ctools.cTuples.cTHQueue.__init__()=ctools.cTuples.cTHQueue-class.html#__init__,Method ctools.cTuples.cTuples.__init__()=ctools.cTuples.cTuples-class.html#__init__,Method ctools.cUtil.cTimer.__init__()=ctools.cUtil.cTimer-class.html#__init__,Method ctools.cWorkerThreads._cWorker.__init__()=ctools.cWorkerThreads._cWorker-class.html#__init__,Method ctools.cWorkerThreads.cWork.__init__()=ctools.cWorkerThreads.cWork-class.html#__init__,Method ctools.dns.exceptions.BadUrl.__init__()=ctools.dns.exceptions.BadUrl-class.html#__init__,Method ctools.dns.exceptions.DomainNotFound.__init__()=ctools.dns.exceptions.DomainNotFound-class.html#__init__,Method ctools.imapccd.CCDIMAP4.__init__()=ctools.imapccd.CCDIMAP4-class.html#__init__,Method ctools.popccd.CCDPOP3.__init__()=ctools.popccd.CCDPOP3-class.html#__init__,Method ctools.sshlib.sftpClass.__init__()=ctools.sshlib.sftpClass-class.html#__init__,Method ctools.sshlib.socketClass.__init__()=ctools.sshlib.socketClass-class.html#__init__,Method ctools.sshlib.sshClass.__init__()=ctools.sshlib.sshClass-class.html#__init__,Method ctools.tee.tee.__init__()=ctools.tee.tee-class.html#__init__"><a title="ctools.bloomfilter.BloomFilter.__init__
+ctools.cBing.bing.BingQuery.__init__
+ctools.cBing.socks4.Socks4Socket.__init__
+ctools.cCircCash.EInvalidThreshold.__init__
+ctools.cCircCash._circ_cash.__init__
+ctools.cComm.Mark.__init__
+ctools.cDns.DNSQuery.__init__
+ctools.cDns.DNSparam.__init__
+ctools.cDns.EInvalidDNS.__init__
+ctools.cMon.MonitorCPU.__init__
+ctools.cMon.MonitorRAM.__init__
+ctools.cMssql.Mssql.__init__
+ctools.cMysql.MysqlClient.__init__
+ctools.cProbeparse.Probeparser.__init__
+ctools.cRpc.Rpc.__init__
+ctools.cScanner.cScanner.__init__
+ctools.cTargets.TargetGenerator.__init__
+ctools.cTelnet.Listener.__init__
+ctools.cTelnet.Telnet.__init__
+ctools.cTuples.ENoInput.__init__
+ctools.cTuples.cInputGenerator.__init__
+ctools.cTuples.cTHQueue.__init__
+ctools.cTuples.cTuples.__init__
+ctools.cUtil.cTimer.__init__
+ctools.cWorkerThreads._cWorker.__init__
+ctools.cWorkerThreads.cWork.__init__
+ctools.dns.exceptions.BadUrl.__init__
+ctools.dns.exceptions.DomainNotFound.__init__
+ctools.imapccd.CCDIMAP4.__init__
+ctools.popccd.CCDPOP3.__init__
+ctools.sshlib.sftpClass.__init__
+ctools.sshlib.socketClass.__init__
+ctools.sshlib.sshClass.__init__
+ctools.tee.tee.__init__" class="py-name" href="#" onclick="return doclink('link-6', '__init__', 'link-6');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">callback</tt> <tt class="py-op">=</tt> <tt class="py-name">callback</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">in_q</tt> <tt class="py-op">=</tt> <tt class="py-name">in_q</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">out_q</tt> <tt class="py-op">=</tt> <tt class="py-name">out_q</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">stop_ev</tt> <tt class="py-op">=</tt> <tt class="py-name">mp</tt><tt class="py-op">.</tt><tt class="py-name">Event</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Variable ctools.cTuples.cTuples.sentinel=ctools.cTuples.cTuples-class.html#sentinel"><a title="ctools.cTuples.cTuples.sentinel" class="py-name" href="#" onclick="return doclink('link-7', 'sentinel', 'link-7');">sentinel</a></tt> <tt class="py-op">=</tt> <tt id="link-8" class="py-name"><a title="ctools.cTuples.cTuples.sentinel" class="py-name" href="#" onclick="return doclink('link-8', 'sentinel', 'link-7');">sentinel</a></tt> </tt>
+</div><a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"> </tt>
+<a name="_cWorker.run"></a><div id="_cWorker.run-def"><a name="L77"></a><tt class="py-lineno"> 77</tt> <a class="py-toggle" href="#" id="_cWorker.run-toggle" onclick="return toggle('_cWorker.run');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cWorkerThreads._cWorker-class.html#run">run</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_cWorker.run-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_cWorker.run-expanded"><a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">        <tt id="link-9" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-9', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Scan Worker started'</tt><tt class="py-op">)</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">stop_ev</tt><tt class="py-op">.</tt><tt class="py-name">is_set</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">            <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">                <tt class="py-comment"># try to get an item from the input queue</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">                <tt class="py-name">args</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">in_q</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Method ctools.cCircCash._circ_cash.get()=ctools.cCircCash._circ_cash-class.html#get,Method ctools.cTargets.TargetGenerator.get()=ctools.cTargets.TargetGenerator-class.html#get,Method ctools.cTuples.cTHQueue.get()=ctools.cTuples.cTHQueue-class.html#get"><a title="ctools.cCircCash._circ_cash.get
+ctools.cTargets.TargetGenerator.get
+ctools.cTuples.cTHQueue.get" class="py-name" href="#" onclick="return doclink('link-10', 'get', 'link-10');">get</a></tt><tt class="py-op">(</tt><tt class="py-name">False</tt><tt class="py-op">,</tt> <tt id="link-11" class="py-name"><a title="ctools.cUtil.Q_TIMEOUT
+ctools.cWorkerThreads.Q_TIMEOUT" class="py-name" href="#" onclick="return doclink('link-11', 'Q_TIMEOUT', 'link-4');">Q_TIMEOUT</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="ctools.cTuples.cTuples.sentinel" class="py-name" href="#" onclick="return doclink('link-12', 'sentinel', 'link-7');">sentinel</a></tt> <tt class="py-keyword">and</tt> <tt class="py-name">args</tt> <tt class="py-op">==</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="ctools.cTuples.cTuples.sentinel" class="py-name" href="#" onclick="return doclink('link-13', 'sentinel', 'link-7');">sentinel</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">                    <tt id="link-14" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-14', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'%s is quitting after recieving sentinel'</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Variable ctools.cDns.EInvalidDNS.name=ctools.cDns.EInvalidDNS-class.html#name,Variable ctools.cDns.NOTAUTH.name=ctools.cDns.NOTAUTH-class.html#name"><a title="ctools.cDns.EInvalidDNS.name
+ctools.cDns.NOTAUTH.name" class="py-name" href="#" onclick="return doclink('link-15', 'name', 'link-15');">name</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">                    <tt class="py-keyword">break</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">                <tt class="py-name">res</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">                <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">                    <tt class="py-name">res</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">callback</tt><tt class="py-op">(</tt><tt class="py-op">*</tt><tt class="py-name">args</tt><tt class="py-op">)</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">                <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">                    <tt class="py-comment"># sth went wrong inside the callback,</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">                    <tt class="py-comment"># but it might be expected, so just issue a warning and</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">                    <tt class="py-comment"># keep on scanning</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">                    <tt id="link-16" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-16', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">warning</tt><tt class="py-op">(</tt><tt class="py-string">'Error: '</tt> <tt class="py-op">+</tt> <tt class="py-name">repr</tt><tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">                <tt class="py-keyword">finally</tt><tt class="py-op">:</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">out_q</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Method ctools.cCircCash._circ_cash.put()=ctools.cCircCash._circ_cash-class.html#put,Method ctools.cTuples.cTHQueue.put()=ctools.cTuples.cTHQueue-class.html#put"><a title="ctools.cCircCash._circ_cash.put
+ctools.cTuples.cTHQueue.put" class="py-name" href="#" onclick="return doclink('link-17', 'put', 'link-17');">put</a></tt><tt class="py-op">(</tt><tt class="py-name">res</tt><tt class="py-op">)</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">                    <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">in_q</tt><tt class="py-op">.</tt><tt class="py-name">task_done</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">            <tt class="py-keyword">except</tt> <tt class="py-name">Queue</tt><tt class="py-op">.</tt><tt class="py-name">Empty</tt><tt class="py-op">:</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">                <tt class="py-keyword">pass</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">            <tt class="py-keyword">except</tt> <tt class="py-name">Exception</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">:</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">                <tt id="link-18" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-18', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">error</tt><tt class="py-op">(</tt><tt class="py-name">repr</tt><tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt id="link-19" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-19', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Scan Worker stopped'</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"> </tt>
+<a name="_cWorker.join"></a><div id="_cWorker.join-def"><a name="L103"></a><tt class="py-lineno">103</tt> <a class="py-toggle" href="#" id="_cWorker.join-toggle" onclick="return toggle('_cWorker.join');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cWorkerThreads._cWorker-class.html#join">join</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="_cWorker.join-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="_cWorker.join-expanded"><a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-name">super</tt><tt class="py-op">(</tt><tt id="link-20" class="py-name"><a title="ctools.cWorkerThreads._cWorker" class="py-name" href="#" onclick="return doclink('link-20', '_cWorker', 'link-5');">_cWorker</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Method ctools.cTelnet.Listener.join()=ctools.cTelnet.Listener-class.html#join,Method ctools.cWorkerThreads._cWorker.join()=ctools.cWorkerThreads._cWorker-class.html#join"><a title="ctools.cTelnet.Listener.join
+ctools.cWorkerThreads._cWorker.join" class="py-name" href="#" onclick="return doclink('link-21', 'join', 'link-21');">join</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">stop_ev</tt><tt class="py-op">.</tt><tt class="py-name">set</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">        <tt id="link-22" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-22', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Stopping Scan Worker'</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"> </tt>
+<a name="work_init"></a><div id="work_init-def"><a name="L109"></a><tt class="py-lineno">109</tt> <a class="py-toggle" href="#" id="work_init-toggle" onclick="return toggle('work_init');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cWorkerThreads-module.html#work_init">work_init</a><tt class="py-op">(</tt><tt class="py-param">callback</tt><tt class="py-op">,</tt> <tt class="py-param">in_q</tt><tt class="py-op">,</tt> <tt class="py-param">out_q</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="work_init-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="work_init-expanded"><a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">    <tt id="link-23" class="py-name" targets="Function ctools.cWorkerThreads.work()=ctools.cWorkerThreads-module.html#work"><a title="ctools.cWorkerThreads.work" class="py-name" href="#" onclick="return doclink('link-23', 'work', 'link-23');">work</a></tt><tt class="py-op">.</tt><tt class="py-name">callback</tt> <tt class="py-op">=</tt> <tt class="py-name">callback</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">    <tt id="link-24" class="py-name"><a title="ctools.cWorkerThreads.work" class="py-name" href="#" onclick="return doclink('link-24', 'work', 'link-23');">work</a></tt><tt class="py-op">.</tt><tt class="py-name">out_q</tt> <tt class="py-op">=</tt> <tt class="py-name">out_q</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">    <tt id="link-25" class="py-name"><a title="ctools.cWorkerThreads.work" class="py-name" href="#" onclick="return doclink('link-25', 'work', 'link-23');">work</a></tt><tt class="py-op">.</tt><tt class="py-name">in_q</tt> <tt class="py-op">=</tt> <tt class="py-name">in_q</tt> </tt>
+</div><a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"> </tt>
+<a name="work"></a><div id="work-def"><a name="L115"></a><tt class="py-lineno">115</tt> <a class="py-toggle" href="#" id="work-toggle" onclick="return toggle('work');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cWorkerThreads-module.html#work">work</a><tt class="py-op">(</tt><tt class="py-param">args</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="work-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="work-expanded"><a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">    <tt class="py-name">res</tt> <tt class="py-op">=</tt> <tt id="link-26" class="py-name"><a title="ctools.cWorkerThreads.work" class="py-name" href="#" onclick="return doclink('link-26', 'work', 'link-23');">work</a></tt><tt class="py-op">.</tt><tt class="py-name">callback</tt><tt class="py-op">(</tt><tt class="py-name">args</tt><tt class="py-op">)</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">    <tt id="link-27" class="py-name"><a title="ctools.cWorkerThreads.work" class="py-name" href="#" onclick="return doclink('link-27', 'work', 'link-23');">work</a></tt><tt class="py-op">.</tt><tt class="py-name">out_q</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="ctools.cCircCash._circ_cash.put
+ctools.cTuples.cTHQueue.put" class="py-name" href="#" onclick="return doclink('link-28', 'put', 'link-17');">put</a></tt><tt class="py-op">(</tt><tt class="py-name">res</tt><tt class="py-op">)</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">    <tt id="link-29" class="py-name"><a title="ctools.cWorkerThreads.work" class="py-name" href="#" onclick="return doclink('link-29', 'work', 'link-23');">work</a></tt><tt class="py-op">.</tt><tt class="py-name">in_q</tt><tt class="py-op">.</tt><tt class="py-name">task_done</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"> </tt>
+<a name="cWork"></a><div id="cWork-def"><a name="L121"></a><tt class="py-lineno">121</tt> <a class="py-toggle" href="#" id="cWork-toggle" onclick="return toggle('cWork');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="ctools.cWorkerThreads.cWork-class.html">cWork</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="cWork-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="cWork-expanded"><a name="cWork.__init__"></a><div id="cWork.__init__-def"><a name="L122"></a><tt class="py-lineno">122</tt> <a class="py-toggle" href="#" id="cWork.__init__-toggle" onclick="return toggle('cWork.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cWorkerThreads.cWork-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">                 <tt class="py-param">callback</tt><tt class="py-op">,</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">                 <tt class="py-param">out_q</tt><tt class="py-op">,</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">                 <tt class="py-param">in_q</tt><tt class="py-op">,</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">                 <tt class="py-param">nthreads</tt><tt class="py-op">,</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">                 <tt class="py-param">sentinel</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="cWork.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="cWork.__init__-expanded"><a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">        <tt id="link-30" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-30', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Init cScan'</tt><tt class="py-op">)</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">callback</tt> <tt class="py-op">=</tt> <tt id="link-31" class="py-name"><a title="ctools.cMon" class="py-name" href="#" onclick="return doclink('link-31', 'cMon', 'link-0');">cMon</a></tt><tt class="py-op">.</tt><tt id="link-32" class="py-name" targets="Class ctools.cMon.MonitorCPU=ctools.cMon.MonitorCPU-class.html"><a title="ctools.cMon.MonitorCPU" class="py-name" href="#" onclick="return doclink('link-32', 'MonitorCPU', 'link-32');">MonitorCPU</a></tt><tt class="py-op">(</tt><tt class="py-name">callback</tt><tt class="py-op">)</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">in_q</tt> <tt class="py-op">=</tt> <tt class="py-name">in_q</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">out_q</tt> <tt class="py-op">=</tt> <tt class="py-name">out_q</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nthreads</tt> <tt class="py-op">=</tt> <tt class="py-name">nthreads</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="ctools.cTuples.cTuples.sentinel" class="py-name" href="#" onclick="return doclink('link-33', 'sentinel', 'link-7');">sentinel</a></tt> <tt class="py-op">=</tt> <tt id="link-34" class="py-name"><a title="ctools.cTuples.cTuples.sentinel" class="py-name" href="#" onclick="return doclink('link-34', 'sentinel', 'link-7');">sentinel</a></tt> </tt>
+</div><a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"> </tt>
+<a name="cWork.start"></a><div id="cWork.start-def"><a name="L135"></a><tt class="py-lineno">135</tt> <a class="py-toggle" href="#" id="cWork.start-toggle" onclick="return toggle('cWork.start');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cWorkerThreads.cWork-class.html#start">start</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">blocking</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="cWork.start-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="cWork.start-expanded"><a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">        <tt id="link-35" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-35', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'cScan started'</tt><tt class="py-op">)</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">        <tt class="py-comment">#pool = mp.Pool(self.nthreads, work_init, [self.callback, self.in_q, self.out_q])</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">        <tt class="py-comment">#pool.map(work, self.in_q.get())</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">threads</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt id="link-36" class="py-name"><a title="ctools.cWorkerThreads._cWorker" class="py-name" href="#" onclick="return doclink('link-36', '_cWorker', 'link-5');">_cWorker</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">callback</tt><tt class="py-op">,</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">                                 <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">in_q</tt><tt class="py-op">,</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">                                 <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">out_q</tt><tt class="py-op">,</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">                                 <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="ctools.cTuples.cTuples.sentinel" class="py-name" href="#" onclick="return doclink('link-37', 'sentinel', 'link-7');">sentinel</a></tt><tt class="py-op">)</tt> <tt class="py-keyword">for</tt> <tt class="py-name">_</tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nthreads</tt><tt class="py-op">)</tt><tt class="py-op">]</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">t</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">threads</tt><tt class="py-op">:</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">            <tt class="py-name">t</tt><tt class="py-op">.</tt><tt id="link-38" class="py-name" targets="Method ctools.cWorkerThreads.cWork.start()=ctools.cWorkerThreads.cWork-class.html#start"><a title="ctools.cWorkerThreads.cWork.start" class="py-name" href="#" onclick="return doclink('link-38', 'start', 'link-38');">start</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">blocking</tt><tt class="py-op">:</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name" targets="Method ctools.cWorkerThreads.cWork.wait()=ctools.cWorkerThreads.cWork-class.html#wait"><a title="ctools.cWorkerThreads.cWork.wait" class="py-name" href="#" onclick="return doclink('link-39', 'wait', 'link-39');">wait</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line"> </tt>
+<a name="cWork.wait"></a><div id="cWork.wait-def"><a name="L149"></a><tt class="py-lineno">149</tt> <a class="py-toggle" href="#" id="cWork.wait-toggle" onclick="return toggle('cWork.wait');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cWorkerThreads.cWork-class.html#wait">wait</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="cWork.wait-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="cWork.wait-expanded"><a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-name">True</tt><tt class="py-op">:</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">            <tt class="py-name">live_threads</tt> <tt class="py-op">=</tt> <tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-keyword">lambda</tt> <tt class="py-name">t</tt><tt class="py-op">:</tt> <tt class="py-name">t</tt><tt class="py-op">.</tt><tt class="py-name">is_alive</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">threads</tt><tt class="py-op">)</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">live_threads</tt><tt class="py-op">:</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">                <tt class="py-keyword">break</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">        <tt id="link-40" class="py-name"><a title="ctools.cMon" class="py-name" href="#" onclick="return doclink('link-40', 'cMon', 'link-0');">cMon</a></tt><tt class="py-op">.</tt><tt id="link-41" class="py-name" targets="Function ctools.cMon.stop()=ctools.cMon-module.html#stop,Method ctools.cWorkerThreads.cWork.stop()=ctools.cWorkerThreads.cWork-class.html#stop"><a title="ctools.cMon.stop
+ctools.cWorkerThreads.cWork.stop" class="py-name" href="#" onclick="return doclink('link-41', 'stop', 'link-41');">stop</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">        <tt id="link-42" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-42', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'cScan stopped'</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line"> </tt>
+<a name="cWork.is_done"></a><div id="cWork.is_done-def"><a name="L157"></a><tt class="py-lineno">157</tt> <a class="py-toggle" href="#" id="cWork.is_done-toggle" onclick="return toggle('cWork.is_done');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cWorkerThreads.cWork-class.html#is_done">is_done</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="cWork.is_done-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="cWork.is_done-expanded"><a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">        <tt class="py-name">live_threads</tt> <tt class="py-op">=</tt> <tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-keyword">lambda</tt> <tt class="py-name">t</tt><tt class="py-op">:</tt> <tt class="py-name">t</tt><tt class="py-op">.</tt><tt class="py-name">is_alive</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">threads</tt><tt class="py-op">)</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-keyword">not</tt> <tt class="py-name">live_threads</tt> </tt>
+</div><a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line"> </tt>
+<a name="cWork.stop"></a><div id="cWork.stop-def"><a name="L161"></a><tt class="py-lineno">161</tt> <a class="py-toggle" href="#" id="cWork.stop-toggle" onclick="return toggle('cWork.stop');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="ctools.cWorkerThreads.cWork-class.html#stop">stop</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">blocking</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="cWork.stop-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="cWork.stop-expanded"><a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">        <tt id="link-43" class="py-name"><a title="ctools.cCircCash.logger
+ctools.cComm.logger
+ctools.cDns.logger
+ctools.cMon.logger
+ctools.cMysql.logger
+ctools.cTargets.logger
+ctools.cTelnet.logger
+ctools.cTuples.logger
+ctools.cUtil.logger
+ctools.cWorkerThreads.logger
+ctools.csockslib.logger
+ctools.sshlib.logger" class="py-name" href="#" onclick="return doclink('link-43', 'logger', 'link-1');">logger</a></tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">'Stopping cScan Generator'</tt><tt class="py-op">)</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">        <tt class="py-name">live_threads</tt> <tt class="py-op">=</tt> <tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-keyword">lambda</tt> <tt class="py-name">t</tt><tt class="py-op">:</tt> <tt class="py-name">t</tt><tt class="py-op">.</tt><tt class="py-name">is_alive</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">threads</tt><tt class="py-op">)</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">t</tt> <tt class="py-keyword">in</tt> <tt class="py-name">live_threads</tt><tt class="py-op">:</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">            <tt class="py-name">t</tt><tt class="py-op">.</tt><tt id="link-44" class="py-name"><a title="ctools.cTelnet.Listener.join
+ctools.cWorkerThreads._cWorker.join" class="py-name" href="#" onclick="return doclink('link-44', 'join', 'link-21');">join</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">blocking</tt><tt class="py-op">:</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-45" class="py-name"><a title="ctools.cWorkerThreads.cWork.wait" class="py-name" href="#" onclick="return doclink('link-45', 'wait', 'link-39');">wait</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="ctools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >ctools</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:41 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

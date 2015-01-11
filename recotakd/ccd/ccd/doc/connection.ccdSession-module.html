@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>connection.ccdSession</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="connection-module.html">Package&nbsp;connection</a> ::
+        Module&nbsp;ccdSession
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="connection.ccdSession-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module ccdSession</h1><p class="nomargin-top"><span class="codelink"><a href="connection.ccdSession-pysrc.html">source&nbsp;code</a></span></p>
+<pre class="literalblock">
+
+session handling
+# Copyright (c) 2014, curesec GmbH
+# All rights reserved.
+# 
+# Redistribution and use in source and binary forms, with or without modification, 
+# are permitted provided that the following conditions are met:
+# 
+# 1. Redistributions of source code must retain the above copyright notice, this list of 
+# conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright notice, this list 
+# of conditions and the following disclaimer in the documentation and/or other materials 
+# provided with the distribution.
+# 
+# 3. Neither the name of the copyright holder nor the names of its contributors may be used 
+# to endorse or promote products derived from this software without specific prior written 
+# permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS 
+# OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+# MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR 
+# TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
+# EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+how incoming requests are handled
+----------------------------------
+
+there is a three staged verification. the first stage verifies that a valid
+session id is provided. without session id it is allowed to login in order to
+get one. the second stage checks for a valid request id. without request id it
+is allowed to request one or to write to plugins stdin, which is relevant for
+interactive plugins. the third stage verifies, that the user has selected a
+project. without selecting a project, it is only allowed to create or manipulate
+projects. executing plugins for instance remains forbidden.
+
+
+    +---------------+    +---------------+    +---------------+
+    |    stage 1    |---&gt;|    stage 2    |---&gt;|    stage 3    |---&gt; process
+    +---------------+    +---------------+    +---------------+
+    ccd state:           ccd state:           ccd state:
+    - no session id      - no request id      - no project set
+                                              exception:
+                                              - user is superadmin
+                                              - user is workgroup admin
+
+
+    allowed:             allowed:             allowed:
+    - OP_LOGIN           - OP_GETRID          - OP_LOGOUT
+                         - OP_PLUGIN          - OP_SETPROJ
+                                              - OP_SHOWPROJ
+                                              - OP_NEWPROJ
+                                              - OP_DELPROJ
+                                              - OP_UPDATEPROJ
+                                              - OP_ADDPROJMEMBER
+                                              - OP_DELPROJMEMBER
+                                              - OP_ADDPROJPLG
+                                              - OP_DELPROJPLG
+                                              - OP_SHOWWGROUP
+
+</pre>
+
+<!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="connection.ccdSession.Session-class.html" class="summary-name">Session</a><br />
+      A session represents a connection between a specifc user and the ccd.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="connection.ccdSession.ForwarderThread-class.html" class="summary-name">ForwarderThread</a><br />
+      actually forwards data between plugin and client
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="connection.ccdSession.ResendThread-class.html" class="summary-name">ResendThread</a>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_sessions"></a><span class="summary-sig-name">get_sessions</span>(<span class="summary-sig-arg">db</span>)</span><br />
+      returns a dictionary with session ids as key and users as value</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="connection.ccdSession-pysrc.html#get_sessions">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_rid"></a><span class="summary-sig-name">get_rid</span>(<span class="summary-sig-arg">ccd</span>,
+        <span class="summary-sig-arg">sid</span>)</span><br />
+      return a request id</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="connection.ccdSession-pysrc.html#get_rid">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="invalidate_session"></a><span class="summary-sig-name">invalidate_session</span>(<span class="summary-sig-arg">ccd</span>,
+        <span class="summary-sig-arg">sid</span>)</span><br />
+      invalidate a user's session</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="connection.ccdSession-pysrc.html#invalidate_session">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="validate_rid"></a><span class="summary-sig-name">validate_rid</span>(<span class="summary-sig-arg">ccd</span>,
+        <span class="summary-sig-arg">sid</span>,
+        <span class="summary-sig-arg">rid</span>)</span><br />
+      returns True if request id is valid, otherwise False</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="connection.ccdSession-pysrc.html#validate_rid">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_send_response"></a><span class="summary-sig-name">_send_response</span>(<span class="summary-sig-arg">sock</span>,
+        <span class="summary-sig-arg">req_t</span>,
+        <span class="summary-sig-arg">rid</span>,
+        <span class="summary-sig-arg">data</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="connection.ccdSession-pysrc.html#_send_response">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="connection.ccdSession-module.html#stage_one" class="summary-sig-name">stage_one</a>(<span class="summary-sig-arg">ccd</span>,
+        <span class="summary-sig-arg">sid</span>)</span><br />
+      Perform a stage 1 check.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="connection.ccdSession-pysrc.html#stage_one">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="connection.ccdSession-module.html#stage_two" class="summary-sig-name">stage_two</a>(<span class="summary-sig-arg">ccd</span>,
+        <span class="summary-sig-arg">sid</span>,
+        <span class="summary-sig-arg">rid</span>)</span><br />
+      Perform a stage 2 check.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="connection.ccdSession-pysrc.html#stage_two">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="connection.ccdSession-module.html#stage_three" class="summary-sig-name">stage_three</a>(<span class="summary-sig-arg">ccd</span>,
+        <span class="summary-sig-arg">sid</span>)</span><br />
+      Perform a stage 3 check.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="connection.ccdSession-pysrc.html#stage_three">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="connection.ccdSession-module.html#verify_stages" class="summary-sig-name">verify_stages</a>(<span class="summary-sig-arg">ccd</span>,
+        <span class="summary-sig-arg">sid</span>,
+        <span class="summary-sig-arg">rid</span>,
+        <span class="summary-sig-arg">op</span>)</span><br />
+      &quot;
+There are three stages that a package must pass in order to get processed.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="connection.ccdSession-pysrc.html#verify_stages">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="logger"></a><span class="summary-name">logger</span> = <code title="logging.getLogger(&quot;ccd.%s&quot; % __name__)">logging.getLogger(&quot;ccd.%s&quot; % __name__)</code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="stage_one"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">stage_one</span>(<span class="sig-arg">ccd</span>,
+        <span class="sig-arg">sid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="connection.ccdSession-pysrc.html#stage_one">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+Perform a stage 1 check. This check verifies the session id.
+
+input:
+    ccd     ccd instance
+    sid     session id that is proposed by incoming packet
+
+output:
+    valid   True if stage 1 is passed - otherwise False
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="stage_two"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">stage_two</span>(<span class="sig-arg">ccd</span>,
+        <span class="sig-arg">sid</span>,
+        <span class="sig-arg">rid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="connection.ccdSession-pysrc.html#stage_two">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+Perform a stage 2 check. This check verifies that the user
+presents a valid rid.
+
+input:
+    ccd     ccd instance
+    sid     session id that is proposed by incoming packet
+    rid     request id that is proposed by incoming packet
+
+output:
+    valid   True if stage 1 is passed - otherwise False
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="stage_three"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">stage_three</span>(<span class="sig-arg">ccd</span>,
+        <span class="sig-arg">sid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="connection.ccdSession-pysrc.html#stage_three">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+Perform a stage 3 check. This verifies that the user selected
+a valid project. The superadmin is allowed to not select a project.
+
+input:
+    ccd     ccd instance
+    sid     session id that is proposed by incoming packet
+
+output:
+    valid   True if stage 1 is passed - otherwise False
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="verify_stages"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">verify_stages</span>(<span class="sig-arg">ccd</span>,
+        <span class="sig-arg">sid</span>,
+        <span class="sig-arg">rid</span>,
+        <span class="sig-arg">op</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="connection.ccdSession-pysrc.html#verify_stages">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+&quot;
+There are three stages that a package must pass in order to get processed.
+First, it must has a valid session id(sid), second, it must has a valid
+request id(rid) and third, a project must be associated with the current
+session.
+There are exception. For instance it is allowed to not have a session id if
+the packet is a login packet.
+
+input:
+    ccd     ccd instance
+    sid     session id of the packet
+    rid     request id of the packet
+    op      operation of the packet
+
+output
+    raises a database.ccdErrors.SessionError in case of error. otherwise
+    returns True
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd server</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:37 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,1096 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>socket._socketobject</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd plugin documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        socket ::
+        _socketobject ::
+        Class&nbsp;_socketobject
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="socket._socketobject-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class _socketobject</h1><p class="nomargin-top"><span class="codelink"><a href="socket-pysrc.html#_socketobject">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_socket___3" name="uml_class_diagram_for_socket___3">
+<area shape="rect" id="node1_24" href="socket._socketobject-class.html#__doc__" title="socket._socketobject.__doc__" alt="" coords="291,29,539,49"/>
+<area shape="rect" id="node1_25" href="socket._socketobject-class.html#family" title="the socket family" alt="" coords="291,49,539,69"/>
+<area shape="rect" id="node1_26" href="socket._socketobject-class.html#type" title="the socket type" alt="" coords="291,69,539,89"/>
+<area shape="rect" id="node1_27" href="socket._socketobject-class.html#proto" title="the socket protocol" alt="" coords="291,89,539,109"/>
+<area shape="rect" id="node1_28" href="socket._socketobject-class.html#recv" title="socket._socketobject.recv" alt="" coords="291,109,539,129"/>
+<area shape="rect" id="node1_29" href="socket._socketobject-class.html#recv_into" title="socket._socketobject.recv_into" alt="" coords="291,129,539,149"/>
+<area shape="rect" id="node1_30" href="socket._socketobject-class.html#recvfrom" title="socket._socketobject.recvfrom" alt="" coords="291,149,539,169"/>
+<area shape="rect" id="node1_31" href="socket._socketobject-class.html#recvfrom_into" title="socket._socketobject.recvfrom_into" alt="" coords="291,169,539,189"/>
+<area shape="rect" id="node1_32" href="socket._socketobject-class.html#send" title="socket._socketobject.send" alt="" coords="291,189,539,209"/>
+<area shape="rect" id="node1_33" href="socket._socketobject-class.html#sendto" title="socket._socketobject.sendto" alt="" coords="291,209,539,229"/>
+<area shape="rect" id="node1_34" href="socket._socketobject-class.html#__init__" title="x.__init__(...) initializes x; see help(type(x)) for signature" alt="" coords="291,232,539,252"/>
+<area shape="rect" id="node1_35" href="socket._socketobject-class.html#close" title="Close the socket." alt="" coords="291,252,539,272"/>
+<area shape="rect" id="node1_36" href="socket._socketobject-class.html#accept" title="Wait for an incoming connection." alt="" coords="291,272,539,292"/>
+<area shape="rect" id="node1_37" href="socket._socketobject-class.html#dup" title="Return a new socket object connected to the same system resource." alt="" coords="291,292,539,312"/>
+<area shape="rect" id="node1_38" href="socket._socketobject-class.html#makefile" title="Return a regular file object corresponding to the socket." alt="" coords="291,312,539,332"/>
+<area shape="rect" id="node1_39" href="socket._socketobject-class.html#bind" title="Bind the socket to a local address." alt="" coords="291,332,539,352"/>
+<area shape="rect" id="node1_40" href="socket._socketobject-class.html#connect" title="Connect the socket to a remote address." alt="" coords="291,352,539,372"/>
+<area shape="rect" id="node1_41" href="socket._socketobject-class.html#connect_ex" title="This is like connect(address), but returns an error code (the errno value) &#160;instead of raising an exception when an error occurs." alt="" coords="291,372,539,392"/>
+<area shape="rect" id="node1_42" href="socket._socketobject-class.html#fileno" title="Return the integer file descriptor of the socket." alt="" coords="291,392,539,412"/>
+<area shape="rect" id="node1_43" href="socket._socketobject-class.html#getpeername" title="Return the address of the remote endpoint." alt="" coords="291,412,539,432"/>
+<area shape="rect" id="node1_44" href="socket._socketobject-class.html#getsockname" title="Return the address of the local endpoint." alt="" coords="291,432,539,452"/>
+<area shape="rect" id="node1_45" href="socket._socketobject-class.html#getsockopt" title="Get a socket option." alt="" coords="291,452,539,472"/>
+<area shape="rect" id="node1_46" href="socket._socketobject-class.html#gettimeout" title="Returns the timeout in seconds (float) associated with socket operations." alt="" coords="291,472,539,492"/>
+<area shape="rect" id="node1_47" href="socket._socketobject-class.html#shutdown" title="Shut down the reading side of the socket (flag == SHUT_RD), the writing &#160;side of the socket (flag == SHUT_WR), or both ends (flag == SHUT_RDWR)." alt="" coords="291,512,539,532"/>
+<area shape="rect" id="node1" href="socket._socketobject-class.html" title="socket([family[, type[, proto]]]) &#45;&gt; socket object" alt="" coords="279,5,551,539"/>
+<area shape="rect" id="node2" href="search-bing.socks4.Socks4Socket-class.html" title="search&#45;bing.socks4.Socks4Socket" alt="" coords="5,557,253,596"/>
+<area shape="rect" id="node3" href="search-google.socks4.Socks4Socket-class.html" title="search&#45;google.socks4.Socks4Socket" alt="" coords="283,557,547,596"/>
+<area shape="rect" id="node4" href="search-duckgo.socks4.Socks4Socket-class.html" title="search&#45;duckgo.socks4.Socks4Socket" alt="" coords="576,557,843,596"/>
+</map>
+  <img src="uml_class_diagram_for_socket___3.gif" alt='' usemap="#uml_class_diagram_for_socket___3" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<pre class="literalblock">
+socket([family[, type[, proto]]]) -&gt; socket object
+
+Open a socket of the given type.  The family argument specifies the
+address family; it defaults to AF_INET.  The type argument specifies
+whether this is a stream (SOCK_STREAM, this is the default)
+or datagram (SOCK_DGRAM) socket.  The protocol argument defaults to 0,
+specifying the default protocol.  Keyword arguments are accepted.
+
+A socket object represents one endpoint of a network connection.
+
+Methods of socket objects (keyword arguments not allowed):
+
+accept() -- accept a connection, returning new socket and client address
+bind(addr) -- bind the socket to a local address
+close() -- close the socket
+connect(addr) -- connect the socket to a remote address
+connect_ex(addr) -- connect, return an error code instead of an exception
+dup() -- return a new socket object identical to the current one [*]
+fileno() -- return underlying file descriptor
+getpeername() -- return remote address [*]
+getsockname() -- return local address
+getsockopt(level, optname[, buflen]) -- get socket options
+gettimeout() -- return timeout or None
+listen(n) -- start listening for incoming connections
+makefile([mode, [bufsize]]) -- return a file object for the socket [*]
+recv(buflen[, flags]) -- receive data
+recv_into(buffer[, nbytes[, flags]]) -- receive data (into a buffer)
+recvfrom(buflen[, flags]) -- receive data and sender's address
+recvfrom_into(buffer[, nbytes, [, flags])
+  -- receive data and sender's address (into a buffer)
+sendall(data[, flags]) -- send all data
+send(data[, flags]) -- send data, may not send all of it
+sendto(data[, flags], addr) -- send data to a given address
+setblocking(0 | 1) -- set or clear the blocking I/O flag
+setsockopt(level, optname, value) -- set socket options
+settimeout(None | float) -- set or clear the timeout
+shutdown(how) -- shut down traffic in one or both directions
+
+ [*] not available on all platforms!
+
+</pre>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><pre class="literalblock">
+socket object
+
+</pre></span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="socket._socketobject-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">family</span>=<span class="summary-sig-default">...</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default">...</span>,
+        <span class="summary-sig-arg">proto</span>=<span class="summary-sig-default">...=...</span>)</span><br />
+      x.__init__(...) initializes x; see help(type(x)) for signature</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#_socketobject.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="socket._socketobject-class.html#close" class="summary-sig-name">close</a>()</span><br />
+      Close the socket.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#_socketobject.close">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">(socket object, address info)</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="socket._socketobject-class.html#accept" class="summary-sig-name">accept</a>()</span><br />
+      Wait for an incoming connection.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#_socketobject.accept">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">socket object</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="dup"></a><span class="summary-sig-name">dup</span>()</span><br />
+      Return a new socket object connected to the same system resource.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#_socketobject.dup">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">file object</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="socket._socketobject-class.html#makefile" class="summary-sig-name">makefile</a>(<span class="summary-sig-arg">mode</span>=<span class="summary-sig-default">...</span>,
+        <span class="summary-sig-arg">bufsize</span>=<span class="summary-sig-default">...</span>)</span><br />
+      Return a regular file object corresponding to the socket.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#_socketobject.makefile">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="socket._socketobject-class.html#bind" class="summary-sig-name">bind</a>(<span class="summary-sig-arg">address</span>)</span><br />
+      Bind the socket to a local address.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#_socketobject.bind">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="socket._socketobject-class.html#connect" class="summary-sig-name">connect</a>(<span class="summary-sig-arg">address</span>)</span><br />
+      Connect the socket to a remote address.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#_socketobject.connect">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">errno</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="connect_ex"></a><span class="summary-sig-name">connect_ex</span>(<span class="summary-sig-arg">address</span>)</span><br />
+      This is like connect(address), but returns an error code (the errno 
+      value) instead of raising an exception when an error occurs.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#_socketobject.connect_ex">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">integer</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="fileno"></a><span class="summary-sig-name">fileno</span>()</span><br />
+      Return the integer file descriptor of the socket.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#_socketobject.fileno">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">address info</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="socket._socketobject-class.html#getpeername" class="summary-sig-name">getpeername</a>()</span><br />
+      Return the address of the remote endpoint.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#_socketobject.getpeername">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">address info</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="socket._socketobject-class.html#getsockname" class="summary-sig-name">getsockname</a>()</span><br />
+      Return the address of the local endpoint.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#_socketobject.getsockname">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">value</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="socket._socketobject-class.html#getsockopt" class="summary-sig-name">getsockopt</a>(<span class="summary-sig-arg">level</span>,
+        <span class="summary-sig-arg">option</span>,
+        <span class="summary-sig-arg">buffersize</span>=<span class="summary-sig-default">...</span>)</span><br />
+      Get a socket option.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#_socketobject.getsockopt">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">timeout</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="socket._socketobject-class.html#gettimeout" class="summary-sig-name">gettimeout</a>()</span><br />
+      Returns the timeout in seconds (float) associated with socket 
+      operations.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#_socketobject.gettimeout">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="socket._socketobject-class.html#listen" class="summary-sig-name">listen</a>(<span class="summary-sig-arg">backlog</span>)</span><br />
+      Enable a server to accept connections.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#_socketobject.listen">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="socket._socketobject-class.html#sendall" class="summary-sig-name">sendall</a>(<span class="summary-sig-arg">data</span>,
+        <span class="summary-sig-arg">flags</span>=<span class="summary-sig-default">...</span>)</span><br />
+      Send a data string to the socket.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#_socketobject.sendall">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="socket._socketobject-class.html#setblocking" class="summary-sig-name">setblocking</a>(<span class="summary-sig-arg">flag</span>)</span><br />
+      Set the socket to blocking (flag is true) or non-blocking (false).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#_socketobject.setblocking">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="socket._socketobject-class.html#setsockopt" class="summary-sig-name">setsockopt</a>(<span class="summary-sig-arg">level</span>,
+        <span class="summary-sig-arg">option</span>,
+        <span class="summary-sig-arg">value</span>)</span><br />
+      Set a socket option.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#_socketobject.setsockopt">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="socket._socketobject-class.html#settimeout" class="summary-sig-name">settimeout</a>(<span class="summary-sig-arg">timeout</span>)</span><br />
+      Set a timeout on socket operations.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#_socketobject.settimeout">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="shutdown"></a><span class="summary-sig-name">shutdown</span>(<span class="summary-sig-arg">flag</span>)</span><br />
+      Shut down the reading side of the socket (flag == SHUT_RD), the 
+      writing side of the socket (flag == SHUT_WR), or both ends (flag == 
+      SHUT_RDWR).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="socket-pysrc.html#m">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__doc__"></a><span class="summary-name">__doc__</span> = <code title="_realsocket.__doc__">_realsocket.__doc__</code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="socket._socketobject-class.html#family" class="summary-name">family</a><br />
+      the socket family
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="socket._socketobject-class.html#type" class="summary-name">type</a><br />
+      the socket type
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="socket._socketobject-class.html#proto" class="summary-name">proto</a><br />
+      the socket protocol
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_sock"></a><span class="summary-name">_sock</span>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="recv"></a><span class="summary-name">recv</span>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="recv_into"></a><span class="summary-name">recv_into</span>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="recvfrom"></a><span class="summary-name">recvfrom</span>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="recvfrom_into"></a><span class="summary-name">recvfrom_into</span>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="send"></a><span class="summary-name">send</span>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="sendto"></a><span class="summary-name">sendto</span>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">family</span>=<span class="sig-default">...</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default">...</span>,
+        <span class="sig-arg">proto</span>=<span class="sig-default">...=...</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="socket-pysrc.html#_socketobject.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>x.__init__(...) initializes x; see help(type(x)) for signature</p>
+  <dl class="fields">
+    <dt>Returns: <pre class="literalblock">
+socket object
+
+</pre></dt>
+    <dt>Overrides:
+        object.__init__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="close"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">close</span>()</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="socket-pysrc.html#_socketobject.close">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Close the socket.  It cannot be used after this call.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="accept"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">accept</span>()</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="socket-pysrc.html#_socketobject.accept">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Wait for an incoming connection.  Return a new socket representing the
+  connection, and the address of the client.  For IP sockets, the address 
+  info is a pair (hostaddr, port).</p>
+  <dl class="fields">
+    <dt>Returns: (socket object, address info)</dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="makefile"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">makefile</span>(<span class="sig-arg">mode</span>=<span class="sig-default">...</span>,
+        <span class="sig-arg">bufsize</span>=<span class="sig-default">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="socket-pysrc.html#_socketobject.makefile">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return a regular file object corresponding to the socket.  The mode 
+  and bufsize arguments are as for the built-in open() function.</p>
+  <dl class="fields">
+    <dt>Returns: file object</dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="bind"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">bind</span>(<span class="sig-arg">address</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="socket-pysrc.html#_socketobject.bind">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Bind the socket to a local address.  For IP sockets, the address is a 
+  pair (host, port); the host must refer to the local host. For raw packet 
+  sockets the address is a tuple (ifname, proto [,pkttype [,hatype]])</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="connect"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">connect</span>(<span class="sig-arg">address</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="socket-pysrc.html#_socketobject.connect">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Connect the socket to a remote address.  For IP sockets, the address 
+  is a pair (host, port).</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="getpeername"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getpeername</span>()</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="socket-pysrc.html#_socketobject.getpeername">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return the address of the remote endpoint.  For IP sockets, the 
+  address info is a pair (hostaddr, port).</p>
+  <dl class="fields">
+    <dt>Returns: address info</dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getsockname"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getsockname</span>()</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="socket-pysrc.html#_socketobject.getsockname">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return the address of the local endpoint.  For IP sockets, the address
+  info is a pair (hostaddr, port).</p>
+  <dl class="fields">
+    <dt>Returns: address info</dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getsockopt"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getsockopt</span>(<span class="sig-arg">level</span>,
+        <span class="sig-arg">option</span>,
+        <span class="sig-arg">buffersize</span>=<span class="sig-default">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="socket-pysrc.html#_socketobject.getsockopt">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Get a socket option.  See the Unix manual for level and option. If a 
+  nonzero buffersize argument is given, the return value is a string of 
+  that length; otherwise it is an integer.</p>
+  <dl class="fields">
+    <dt>Returns: value</dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="gettimeout"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">gettimeout</span>()</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="socket-pysrc.html#_socketobject.gettimeout">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the timeout in seconds (float) associated with socket 
+  operations. A timeout of None indicates that timeouts on socket 
+  operations are disabled.</p>
+  <dl class="fields">
+    <dt>Returns: timeout</dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="listen"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">listen</span>(<span class="sig-arg">backlog</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="socket-pysrc.html#_socketobject.listen">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Enable a server to accept connections.  The backlog argument must be 
+  at least 0 (if it is lower, it is set to 0); it specifies the number of 
+  unaccepted connections that the system will allow before refusing new 
+  connections.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="sendall"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">sendall</span>(<span class="sig-arg">data</span>,
+        <span class="sig-arg">flags</span>=<span class="sig-default">...</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="socket-pysrc.html#_socketobject.sendall">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Send a data string to the socket.  For the optional flags argument, 
+  see the Unix manual.  This calls send() repeatedly until all data is 
+  sent.  If an error occurs, it's impossible to tell how much data has been
+  sent.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="setblocking"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">setblocking</span>(<span class="sig-arg">flag</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="socket-pysrc.html#_socketobject.setblocking">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Set the socket to blocking (flag is true) or non-blocking (false). 
+  setblocking(True) is equivalent to settimeout(None); setblocking(False) 
+  is equivalent to settimeout(0.0).</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="setsockopt"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">setsockopt</span>(<span class="sig-arg">level</span>,
+        <span class="sig-arg">option</span>,
+        <span class="sig-arg">value</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="socket-pysrc.html#_socketobject.setsockopt">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Set a socket option.  See the Unix manual for level and option. The 
+  value argument can either be an integer or a string.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="settimeout"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">settimeout</span>(<span class="sig-arg">timeout</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="socket-pysrc.html#_socketobject.settimeout">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Set a timeout on socket operations.  'timeout' can be a float, giving 
+  in seconds, or None.  Setting a timeout of None disables the timeout 
+  feature and is equivalent to setblocking(1). Setting a timeout of zero is
+  the same as setblocking(0).</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== PROPERTY DETAILS ==================== -->
+<a name="section-PropertyDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Property Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-PropertyDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="family"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">family</h3>
+  <p>the socket family</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="type"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">type</h3>
+  <p>the socket type</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="proto"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">proto</h3>
+  <p>the socket protocol</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://recotak.curesec.com">ccd plugin documentation</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Mon Sep 29 17:38:54 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

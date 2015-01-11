@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>ctools.cMysql.MysqlClient</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="ctools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >ctools</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="ctools-module.html">Package&nbsp;ctools</a> ::
+        <a href="ctools.cMysql-module.html">Module&nbsp;cMysql</a> ::
+        Class&nbsp;MysqlClient
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="ctools.cMysql.MysqlClient-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class MysqlClient</h1><p class="nomargin-top"><span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient">source&nbsp;code</a></span></p>
+<p>MysqlClient performs a basic login handshake with an mysql server.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="ctools.cMysql.MysqlClient-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">ip</span>,
+        <span class="summary-sig-arg">port</span>=<span class="summary-sig-default">3306</span>,
+        <span class="summary-sig-arg">timeout</span>=<span class="summary-sig-default">3</span>,
+        <span class="summary-sig-arg">client_capabilities</span>=<span class="summary-sig-default">1446</span>,
+        <span class="summary-sig-arg">tls</span>=<span class="summary-sig-default">False</span>)</span><br />
+      MysqlClient ...</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="close"></a><span class="summary-sig-name">close</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient.close">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="ctools.cMysql.MysqlClient-class.html#login" class="summary-sig-name">login</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">user</span>,
+        <span class="summary-sig-arg">passw</span>,
+        <span class="summary-sig-arg">database</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>)</span><br />
+      Try to authenticate with user/passw at the mysql server</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient.login">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="ctools.cMysql.MysqlClient-class.html#send_cmd" class="summary-sig-name">send_cmd</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">cmd</span>)</span><br />
+      pack sql cmd into a packet and send it to the server</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient.send_cmd">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="ctools.cMysql.MysqlClient-class.html#_unpack" class="summary-sig-name" onclick="show_private();">_unpack</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">fmt</span>,
+        <span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">postpro</span>=<span class="summary-sig-default">None</span>)</span><br />
+      This function unpacks part of the packet as specified by the format string,
+the remaining packet data is returned.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient._unpack">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_wrap_header"></a><span class="summary-sig-name">_wrap_header</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">pkt</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient._wrap_header">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_make_password_hash"></a><span class="summary-sig-name">_make_password_hash</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">passw</span>)</span><br />
+      hash password string with SHA1 using a 20bit salt</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient._make_password_hash">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_lenenc"></a><span class="summary-sig-name">_lenenc</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">dsize</span>)</span><br />
+      mysql lenencoded integers</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient._lenenc">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_pack_ComQuery"></a><span class="summary-sig-name">_pack_ComQuery</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">sql_query</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient._pack_ComQuery">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_pack_SSLRequest"></a><span class="summary-sig-name">_pack_SSLRequest</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      pack a SSL Request packet</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient._pack_SSLRequest">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="ctools.cMysql.MysqlClient-class.html#_pack_HandshakeResponse41" class="summary-sig-name" onclick="show_private();">_pack_HandshakeResponse41</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">user</span>,
+        <span class="summary-sig-arg">passw</span>,
+        <span class="summary-sig-arg">database</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>)</span><br />
+      pack a handshake response packet</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient._pack_HandshakeResponse41">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="ctools.cMysql.MysqlClient-class.html#_unpack_HandshakeV10" class="summary-sig-name" onclick="show_private();">_unpack_HandshakeV10</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">pkt</span>)</span><br />
+      read and process initial handshake packet from server</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient._unpack_HandshakeV10">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_unpack_EOFMarker"></a><span class="summary-sig-name">_unpack_EOFMarker</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">pkt</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient._unpack_EOFMarker">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_unpack_ColumnDefinition41"></a><span class="summary-sig-name">_unpack_ColumnDefinition41</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">pkt</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient._unpack_ColumnDefinition41">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_unpack_server_response"></a><span class="summary-sig-name">_unpack_server_response</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">pkt</span>,
+        <span class="summary-sig-arg">field_count</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient._unpack_server_response">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_check_server_response"></a><span class="summary-sig-name">_check_server_response</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">pkt</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient._check_server_response">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_check_login_response"></a><span class="summary-sig-name">_check_login_response</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient._check_login_response">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_get_packet"></a><span class="summary-sig-name">_get_packet</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      read the packet size x (first 3 bytes) and return x bytes of the 
+      remaining pkt</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient._get_packet">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">ip</span>,
+        <span class="sig-arg">port</span>=<span class="sig-default">3306</span>,
+        <span class="sig-arg">timeout</span>=<span class="sig-default">3</span>,
+        <span class="sig-arg">client_capabilities</span>=<span class="sig-default">1446</span>,
+        <span class="sig-arg">tls</span>=<span class="sig-default">False</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+MysqlClient ...
+
+input:
+    ip                      Server ip
+    port                    Mysql port (default 3306)
+    timeout                 Socket timeout (default 3)
+    client_capabilities     Capability flags to determin the bahaviour of the client (default 0x05a6)
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="login"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">login</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">user</span>,
+        <span class="sig-arg">passw</span>,
+        <span class="sig-arg">database</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient.login">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Try to authenticate with user/passw at the mysql server
+
+input:
+    user        Username
+    passw       User password
+    database    Name of the database to connect to (optional)
+
+output:
+    True if the login was successful, Fale otherwise
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="send_cmd"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">send_cmd</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">cmd</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient.send_cmd">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+pack sql cmd into a packet and send it to the server
+
+input:
+    cmd     sql command string
+
+output:
+    response code   0x00: E
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_unpack"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_unpack</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">fmt</span>,
+        <span class="sig-arg">pkt</span>,
+        <span class="sig-arg">postpro</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient._unpack">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+This function unpacks part of the packet as specified by the format string,
+the remaining packet data is returned.
+Null terminated strings are specified by the format string '.s', the point
+will be replaced by an appropiate integer
+
+input:
+    fmt         Format string
+    pkt         Raw packet data
+    postpro     Postprocessing function to call on the unpacked values (optional)
+
+output:
+    Unpacked tuple, if multiple values are specified in the format string,
+    otherwise the unpacked data element
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_pack_HandshakeResponse41"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_pack_HandshakeResponse41</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">user</span>,
+        <span class="sig-arg">passw</span>,
+        <span class="sig-arg">database</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient._pack_HandshakeResponse41">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+pack a handshake response packet
+
+input:
+    user        Username
+    passw       User password
+    database    Name of the database to connect to (optional)
+
+output:
+    Raw packet data to be send to the mysql server
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_unpack_HandshakeV10"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_unpack_HandshakeV10</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">pkt</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="ctools.cMysql-pysrc.html#MysqlClient._unpack_HandshakeV10">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+read and process initial handshake packet from server
+
+input:
+    pkt     Raw packet data
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="ctools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >ctools</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov  7 12:44:41 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

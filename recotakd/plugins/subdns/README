@@ -1,0 +1,6 @@
+dnsscanner scans subdomains
+
+% ./dnsscan.py <host>
+
+The tool checks which of the provided domains (wordlist.txt) is present at <host>. 
+To configure some details see dnsscan.conf.

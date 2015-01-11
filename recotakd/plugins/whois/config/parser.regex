@@ -1,0 +1,90 @@
+[WHOIS.CRSNIC.NET]
+domain = Domain Name:\s?(.+)
+registrar = Registrar:\s?(.+)
+whoisserver = Whois Server:\s?(.+)
+referralurl = Referral URL:\s?(.+)
+updated = Updated Date:\s?(.+)
+creation = Creation Date:\s?(.+)
+expiration = Expiration Date:\s?(.+)
+namesserver = Name Server:\s?(.+)
+status = Status:\s?(.+)
+
+[WHOIS.SCHLUND.INFO]
+domain = domain:\s?(.+)
+creation = created:\s?(.+)
+changed = last-changed:\s?(.+)
+expiration = registration-expiration:\s?(.+)
+namesserver = nserver:\s?(.+)
+status = status:\s?(.+)
+admin-firstname=admin-c-firstname:\s?(.+)
+admin-lastname=admin-c-lastname:\s?(.+)
+admin-organisation=admin-c-organization:\s?(.+)
+admin-street=admin-c-street1:\s?(.+)
+admin-pcode=admin-c-pcode:\s?(.+)
+admin-city=admin-c-city:\s?(.+)
+admin-phone=admin-c-phone:\s?(.+)
+admin-email=admin-c-email:\s?(.+)
+tech-firstname=tech-c-firstname:\s?(.+)
+tech-lastname=tech-c-lastname:\s?(.+)
+tech-organisation=tech-c-organization:\s?(.+)
+tech-street=tech-c-street:\s?(.+)
+tech-pcode=tech-c-pcode:\s?(.+)
+tech-city=tech-c-city:\s?(.+)
+tech-phone=tech-c-phone:\s?(.+)
+tech-email=tech-c-email:\s?(.+)
+netname = netname:\s?(.+) 
+
+[WHOIS.DENIC.DE]
+domain = Domain:\s?(.+)
+registrar = Registrar:\s?(.+)
+whoisserver = Whois Server:\s?(.+)
+referralurl = Referral URL:\s?(.+)
+updated = Updated Date:\s?(.+)
+creation = Creation Date:\s?(.+)
+expiration = Expiration Date:\s?(.+)
+nameserver = Nserver:\s?(.+)
+changed = Changed:\s?(.+)
+status = Status:\s?(.+)
+tech-name=\[Tech-C\]\].+Name:\s?(.+){1}
+tech-organisation=Organization:\s?(.+){1}
+tech-street=Street:\s?(.+){1}
+tech-pcode=PostalCode:\s?(.+){1}
+tech-city=City:\s?(.+){1}
+tech-phone=Phone:\s?(.+){1}
+tech-email=Email:\s?(.+){1}
+tech-fax=Fax:\s?(.+){1}
+netname = netname:\s?(.+) 
+
+[WHOIS.RIPE.NET]
+inetnum = inetnum:\s?(.+) 
+netname = netname:\s?(.+) 
+description = descr:\s?(.+)
+country = country:\s?(.+)
+status = status:\s?(.+)
+adminhandle = admin-c:\s?(.+)
+techhandle = tech-c:\s?(.+)
+person = person:\s?(.+)
+
+[WHOIS.ARIN.NET]
+inetnum = NetRange:\s?(.+) 
+netname = NetName:\s?(.+) 
+country = Country:\s?(.+)
+adminhandle = OrgAbuseHandle:\s?(.+)
+techhandle = OrgTechHandle:\s?(.+)
+
+[WHOIS.LACNIC.NET]
+inetnum = inetnum:\s?(.+) 
+status = status:\s?(.+)
+netname = owner:\s?(.+) 
+country = country:\s?(.+)
+adminhandle = nic-hdl:\s?(.+)
+techhandle = tech-c:\s?(.+)
+
+[ADMINNIC:WHOIS.RIPE.NET]
+person = person:\s?(.+)
+address = address:\s?(.+)
+phone = phone:\s?(.+)
+handle = nic-hdl:\s?(.+)
+
+[NETNAMENIC:WHOIS.RIPE.NET]
+inetnum = inetnum:\s?(.+)
