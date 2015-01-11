@@ -15,8 +15,10 @@ You can learn in the plugin(http://recotak.org/plugins.html) section about modul
 installation guidance or reading the code documentation(http://recotak.org/documentation.html) go here.
 
 <h2>Installation</h2>
+git clone https://github.com/recotak/recotak-framework.git<br>
+./install.sh<br>
 
-
+<b><u>OR</u></b><br>
 git clone https://github.com/recotak/recotak-framework.git<br>
 cd recotak<br>
 ./install.py --all --no-confirm<br>
@@ -24,6 +26,12 @@ cd ..<br>
 cd recotakd<br>
 ./install.py --all --no-confirm<br>
 <br>
+<b><u>OR</u></b><br>
+You want a customized installation, in that case:<br>
+recotak/install.py --help<br>
+recotakd/install.py --help<br>
+<br>
+
 You're done.<br>
 Find more information here: http://recotak.org/documentation/installation.html
 
