@@ -31,7 +31,9 @@ Usage
 =====
 
 Find information here: 
+
 http://recotak.org/documentation/Configuration.html
+
 http://recotak.org/documentation/Use_Recotak.html
 
 Final Words
