@@ -1,0 +1,15 @@
+REQUIREMENTS
+============
+
+On Archlinux and Debian the base requirements will be installed by the install.py script. Otherwise have the following packets on your system:
+
+python2-pip
+python2-virtualenv
+postgresql
+python2-psycopg2
+python2-m2crypto
+python2-crypto
+python2-sqlalchemy
+texlive-latexextra
+python2-m2crypto
+python2-crypto
